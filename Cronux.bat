@@ -141,6 +141,12 @@ REM
 REM An uninstall-cronux script will also be created in the folder
 REM which can be used to remove Cronux supplementary command  
 REM from the system. 	
+REM To successfully install the commands you need to run as 
+REM administrator or use the Cronux command
+REM 
+REM ::
+REM 	Cronux install
+REM 
 :elevated-install
 	echo Preparing to install all Cronux command
 	mkdir "C:\Program Files\Cronux\"
@@ -172,8 +178,11 @@ REM
 	echo .
 	echo [COMMAND]: the system or supplementary system command to execute
 	echo The COMMANDS include:
-	echo help         print this help message and exit
-	echo ls,dir       list all the files and folder in a directory
+	echo help                            print this help message and exit
+	echo install                         install all the available command in the Script
+	echo ls,dir                          list all the files and folder in a directory
+	echo cls,clear                       clear the command prompt 
+	echo elevate 'program' 'params'...   run a command line program as administrator
 	echo .
 	exit /b 0
 	
