@@ -33,6 +33,7 @@ for %%x in (%*) do (
 		
 	)
 	
+	REM list files
 	if "%%x"=="ls" (
 		if not defined OPERATION ( SET OPERATION="listdir" )
 	)
@@ -49,6 +50,17 @@ for %%x in (%*) do (
 	)
 	if "%%x"=="su" (
 		if not defined OPERATION ( SET OPERATION="elevate" )
+	)
+	
+	REM download file
+	if "%%x"=="wget" (
+		if not defined OPERATION ( SET OPERATION="download" )
+	)
+	if "%%x"=="download" (
+		if not defined OPERATION ( SET OPERATION="download" )
+	)
+	if "%%x"=="irs" (
+		if not defined OPERATION ( SET OPERATION="download" )
 	)
 	
 	REM install the scripts
@@ -96,6 +108,9 @@ if %OPERATION%=="elevate" (
 )
 if %OPERATION%=="elevated-install" (
 	call:elevated-install !OP_ARGS!
+)
+if %OPERATION%=="download" (
+	call:download !OP_ARGS!
 )
 
 exit /b 0
@@ -171,6 +186,17 @@ REM
 
 	exit /b 0
 	
+REM Download file from the internet wget style 
+REM 
+REM ::
+REM 	Usage: Cronux wget /save/file/path.full https://thefileurl.com
+REM 
+REM 
+:download
+	powershell -Command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iwr -outf %*; } "
+
+	exit /b 0
+	
 REM Print the help message and exit
 REM 
 :help 
@@ -182,6 +208,7 @@ REM
 	echo install                         install all the available command in the Script
 	echo ls,dir                          list all the files and folder in a directory
 	echo cls,clear                       clear the command prompt 
+	echo wget,download,irs               download file from the internet into a folder widget style
 	echo elevate 'program' 'params'...   run a command line program as administrator
 	echo .
 	exit /b 0
