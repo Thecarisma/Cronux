@@ -13,9 +13,13 @@ SET AD="Heal the world, make it a better place"
 for %%x in (%*) do (
 
 	if "%%x"=="clear" (
+		SET OPERATION="clear"
+		SET AD=""
 		call:clear
 	)
 	if "%%x"=="cls" (
+		SET OPERATION="clear"
+		SET AD=""
 		call:clear
 	)
 	if "%%x"=="no-ad" (
@@ -186,14 +190,15 @@ REM
 
 	exit /b 0
 	
-REM Download file from the internet wget style 
+REM Download file from the internet wget style this  
+REM follows redirection 
 REM 
 REM ::
 REM 	Usage: Cronux wget /save/file/path.full https://thefileurl.com
 REM 
 REM 
 :download
-	powershell -Command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; iwr -outf %*; } "
+	powershell -Command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $request = (new-object System.Net.WebClient); $request.DownloadFile('%2','%1') ; }"
 
 	exit /b 0
 	
