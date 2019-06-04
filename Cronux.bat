@@ -88,6 +88,9 @@ for %%x in (%*) do (
 
 if %OPERATION%=="elevate" (
 	SET SUB_OP_ARGS=!OP_ARGS!
+	if "!SUB_OP_ARGS!"=="" (
+		SET SUB_OP_ARGS=cmd
+	)
 	SET OP_ARGS=""
 	for %%a in (!SUB_OP_ARGS!) do (
 		if !OP_ARGS!=="" (
