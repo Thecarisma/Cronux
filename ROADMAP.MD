@@ -8,3 +8,5 @@
  - [ ] relay command to the actual program if installed
  - [ ] command `add-to-path` to add a folder to path
  - [ ] add `ifconfig` command
+ - [x] add command to remove very long path name `rmlong`
+ - [ ] make `rmlong` remove folder recursively by allowing multiple folder in params

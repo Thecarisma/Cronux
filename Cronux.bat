@@ -78,6 +78,13 @@ for %%x in (%*) do (
 		exit /b 0
 	)
 	
+	REM remove long directory
+	if "%%x"=="rmlong" (
+		if not !OPERATION!=="rmlong" (
+			if not defined OPERATION ( SET OPERATION="rmlong" )
+		)
+	)
+	
 	REM print help and exit
 	if "%%x"=="help" (
 		call:help	
@@ -119,6 +126,9 @@ if %OPERATION%=="elevated-install" (
 if %OPERATION%=="download" (
 	call:download !OP_ARGS!
 )
+if %OPERATION%=="rmlong" (
+	call:rmlong !OP_ARGS!
+)
 
 exit /b 0
 
@@ -145,6 +155,8 @@ exit /b 0
 	)
 	exit /b 0
 
+REM Clear all the output in the current Command line window
+REM ad is disable by default in this command 
 :clear
 	cls
 	
@@ -203,6 +215,20 @@ REM
 :download
 	powershell -Command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $request = (new-object System.Net.WebClient); $request.DownloadFile('%2','%1') ; }"
 
+	exit /b 0
+	
+REM Remove a directory with a very long path or an endless path 
+REM using builting **robocopy** command in windows. 
+REM 
+REM This command creates a temporary folder in yout `%TEMP%` path 
+REM then the long folder to remove is purged through the folder 
+REM and the created temporary folder is removed 
+:rmlong
+	mkdir %TEMP%\cronux_tmp\
+	robocopy %TEMP%\cronux_tmp\ "%1" /purge
+	rmdir "%1"
+	rmdir %TEMP%\cronux_tmp\
+	
 	exit /b 0
 	
 REM Print the help message and exit
