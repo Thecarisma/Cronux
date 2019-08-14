@@ -10,3 +10,4 @@
  - [ ] add `ifconfig` command
  - [x] add command to remove very long path name `rmlong`
  - [ ] make `rmlong` remove folder recursively by allowing multiple folder in params
+ - [ ] enable shortcut creation 
