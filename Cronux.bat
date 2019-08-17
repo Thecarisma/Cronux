@@ -21,6 +21,11 @@ SET AD="Heal the world, make it a better place"
 
 for %%x in (%*) do (
 
+	REM silent the advertisement
+	if "%%x"=="no-ad" (
+		SET AD=""
+	)
+
 	if "%%x"=="clear" (
 		SET OPERATION="clear"
 		SET AD=""
@@ -31,19 +36,19 @@ for %%x in (%*) do (
 		SET AD=""
 		call:clear
 	)
-	if "%%x"=="no-ad" (
-		SET AD=""
-	)
 	
 	if !OPERATION!=="none" (
 		@echo off
 	) else (
-		if not defined OP_ARGS (
-			SET OP_ARGS=%%x
+		if "%%x"=="no-ad" (
+			SET AD=""
 		) else (
-			SET OP_ARGS=!OP_ARGS! %%x
-		)
-		
+			if not defined OP_ARGS (
+				SET OP_ARGS=%%x
+			) else (
+				SET OP_ARGS=!OP_ARGS! %%x
+			)
+		)		
 	)
 	
 	REM list files
@@ -107,8 +112,7 @@ for %%x in (%*) do (
 	
 	REM print help and exit
 	if "%%x"=="help" (
-		call:help	
-		exit /b 0
+		if !OPERATION!=="none" ( SET OPERATION="help" )
 	)
 )
 
@@ -140,6 +144,12 @@ if not exist !ROAMING_FOLDER! (
 	mkdir !ROAMING_FOLDER!
 )
 
+if %OPERATION%=="none" (
+	call:help !OP_ARGS!
+)
+if %OPERATION%=="help" (
+	call:help !OP_ARGS!
+)
 if %OPERATION%=="listdir" (
 	call:listdir !OP_ARGS!
 )
@@ -254,35 +264,35 @@ REM from the backup directoty
 		)
 		REM Check the provide full path
 		if exist %%x (
-			call:delete_and_backup "%%x"
+			call:backup_and_delete "%%x"
 		) else (
 			REM Check the provide full path after appending .bat
 			if exist %%x.bat (
-				call:delete_and_backup "%%x.bat"
+				call:backup_and_delete "%%x.bat"
 			) else (
 				REM check test directory
 				if exist !TEST_FOLDER!\%%x (
-					call:delete_and_backup "!TEST_FOLDER!\%%x"
+					call:backup_and_delete "!TEST_FOLDER!\%%x"
 				) else (
 					REM check test directory after appending .bat
 					if exist !TEST_FOLDER!\%%x.bat (
-						call:delete_and_backup "!TEST_FOLDER!\%%x.bat"
+						call:backup_and_delete "!TEST_FOLDER!\%%x.bat"
 					) else (
 						REM check test\installation directory
 						if exist !TEST_FOLDER!\installation\%%x (
-							call:delete_and_backup "!TEST_FOLDER!\installation\%%x"
+							call:backup_and_delete "!TEST_FOLDER!\installation\%%x"
 						) else (
 							REM check test\installation directory after appending .bat
 							if exist !TEST_FOLDER!\installation\%%x.bat (
-								call:delete_and_backup "!TEST_FOLDER!\installation\%%x.bat"
+								call:backup_and_delete "!TEST_FOLDER!\installation\%%x.bat"
 							) else (
 								REM check installation directory
 								if exist !INSTALLATION_FOLDER!\%%x (
-									call:delete_and_backup "!INSTALLATION_FOLDER!\%%x"
+									call:backup_and_delete "!INSTALLATION_FOLDER!\%%x"
 								) else (
 									REM check installation directory after appending .bat
 									if exist !INSTALLATION_FOLDER!\%%x.bat (
-										call:delete_and_backup "!INSTALLATION_FOLDER!\%%x.bat"
+										call:backup_and_delete "!INSTALLATION_FOLDER!\%%x.bat"
 									) else (
 										call:display deletion failed cannot find '%%x' in search path 
 									)
@@ -299,7 +309,7 @@ REM from the backup directoty
 	
 REM for time script see https://stackoverflow.com/a/1445724/6626422
 REM for full path split see https://stackoverflow.com/a/15568164/6626422
-:delete_and_backup
+:backup_and_delete
 	SET HOUR=%time:~0,2%
 	SET dtStamp9=%date:~-4%-%date:~4,2%-%date:~7,2%_0%time:~1,1%%time:~3,2%%time:~6,2% 
 	SET dtStamp24=%date:~-4%-%date:~4,2%-%date:~7,2%_%time:~0,2%%time:~3,2%%time:~6,2%
@@ -371,25 +381,43 @@ REM and the created temporary folder is removed
 REM Print the help message and exit
 REM 
 :help 
-	echo Usage: Cronux [COMMAND] [COMMAND_PARAMS]
-	echo .
-	echo [COMMAND]: the system or supplementary system command to execute
-	echo The COMMANDS include:
-	echo help                            print this help message and exit
-	echo install                         install all the available command in the Script
-	echo ls,dir                          list all the files and folder in a directory
-	echo clear,cls                       clear the command prompt 
-	echo download,wget,irs               download file from the internet into a folder widget style
-	echo elevate 'program' 'params...'   run a command line program as administrator
-	echo remove,uninstall,remove-command delete a file, script or command in the the search paths
-	echo .
+	if "%1"=="all" (
+		call:allhelp
+		exit /b 0
+	)
+	if "%1"=="" (
+		call:allhelp
+		exit /b 0
+	) 
+	
+	for %%x in (%*) do (
+		echo %%x
+	)
+	
 	exit /b 0
 	
-REM DO not run the commands below directly 
+REM DO not run the blocks below directly 
 REM Write each command to independent batch 
 REM script that can be executed individually 
 REM from the command line without prepending
 REM `Cronux`. 
+
+:allhelp
+	echo Usage: Cronux [COMMAND] [COMMAND_PARAMS]
+	echo For more information on a specific command, type `Cronux HELP command-name`
+	echo [COMMAND]: the system or supplementary system command to execute
+	echo [COMMAND_PARAMS]: the parameters or arguments to send to the command
+	echo.
+	echo The COMMANDS include:
+	echo  HELP                              print this help message and exit
+	echo  INSTALL                           install all the available command in the Script
+	echo  DIR,LS                            list all the files and folder in a directory
+	echo  CLEAR,CLS                         clear the command prompt 
+	echo  DOWNLOAD,WGET,IRS                 download file from the internet into a folder widget style
+	echo  ELEVATE 'PROGRAM' 'PARAMS...'     run a command line program as administrator
+	echo  REMOVE,UNINSTALL,REMOVE-COMMAND   delete a file, script or command in the the search paths
+	echo.
+	exit /b 0
 
 REM The script created is not for the alias but 
 REM for the main command. E.g to request Admin 

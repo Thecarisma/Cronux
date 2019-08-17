@@ -11,3 +11,4 @@
  - [x] add command to remove very long path name `rmlong`
  - [ ] make `rmlong` remove folder recursively by allowing multiple folder in params
  - [ ] enable shortcut creation 
+ - [ ] expands the help message to support independent help on command
