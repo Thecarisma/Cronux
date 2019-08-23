@@ -93,13 +93,13 @@ for %%x in (%*) do (
 	)
 	
 	REM install the scripts
-	if "%%x"=="elevated-install" (
+	if "%%x"=="noadmin-install" (
 		if not !OPERATION!=="elevate" (
-			if !OPERATION!=="none" ( SET OPERATION="elevated-install" )
+			if !OPERATION!=="none" ( SET OPERATION="noadmin-install" )
 		)
 	)
 	if "%%x"=="install" (
-		call:elevate "%cd%\Cronux.bat elevated-install"	
+		call:elevate "%cd%\Cronux.bat noadmin-install"	
 		exit /b 0
 	)
 	
@@ -156,8 +156,8 @@ if %OPERATION%=="listdir" (
 if %OPERATION%=="elevate" (
 	call:elevate %OP_ARGS%
 )
-if %OPERATION%=="elevated-install" (
-	call:elevated_install !OP_ARGS!
+if %OPERATION%=="noadmin-install" (
+	call:noadmin_install !OP_ARGS!
 )
 if %OPERATION%=="download" (
 	call:download !OP_ARGS!
@@ -222,7 +222,7 @@ REM
 REM ::
 REM 	Cronux install
 REM 
-:elevated_install
+:noadmin_install
 	call:display  Preparing to install all Cronux command
 	if %IS_TEST%==true (
 		mkdir "!TEST_FOLDER!\installation\"
@@ -428,26 +428,51 @@ REM `su` `sudo` can conflict with an actual
 REM installed program on the PC
 :write_and_create_comands
 	call:write_create_elevate %1
+	call:write_listdir %1
 	
 	exit /b 0
 	
 REM Create an independent batch script for 
-REM the elevate command 
+REM the `elevate` command 
 :write_create_elevate
-	SET ELEVATE_SCRIPT_PATH=%1/elevate.bat
-	call:display Creating batch script for the 'elevate' command at !ELEVATE_SCRIPT_PATH!
-	echo @echo off> !ELEVATE_SCRIPT_PATH!
-	echo setlocal enabledelayedexpansion>> !ELEVATE_SCRIPT_PATH!
-	echo SET OP_ARGS="">> !ELEVATE_SCRIPT_PATH!
-	echo for %%%%a in (%%*) do (>> !ELEVATE_SCRIPT_PATH!
-	echo 	if ^^!OP_ARGS^^!=="" (>> !ELEVATE_SCRIPT_PATH!
-	echo 		SET OP_ARGS=%%%%a \^"/k>> !ELEVATE_SCRIPT_PATH!
-	echo 	) else ( >> !ELEVATE_SCRIPT_PATH!
-	echo 		SET OP_ARGS=^^!OP_ARGS^^! %%%%a>> !ELEVATE_SCRIPT_PATH!
-	echo 	)>> !ELEVATE_SCRIPT_PATH!
-	echo )>> !ELEVATE_SCRIPT_PATH!
-	echo SET OP_ARGS=^^!OP_ARGS^^! \^">> !ELEVATE_SCRIPT_PATH!
-	echo powershell -Command ^"Start-Process ^^!OP_ARGS^^! -Verb RunAs^">> !ELEVATE_SCRIPT_PATH!
+	SET SCRIPT_PATH=%1/elevate.bat
+	call:display Creating batch script for the 'elevate' command at !SCRIPT_PATH!
+	echo @echo off> !SCRIPT_PATH!
+	echo setlocal enabledelayedexpansion>> !SCRIPT_PATH!
+	echo SET OP_ARGS="">> !SCRIPT_PATH!
+	echo for %%%%a in (%%*) do (>> !SCRIPT_PATH!
+	echo 	if ^^!OP_ARGS^^!=="" (>> !SCRIPT_PATH!
+	echo 		SET OP_ARGS=%%%%a \^"/k>> !SCRIPT_PATH!
+	echo 	) else ( >> !SCRIPT_PATH!
+	echo 		SET OP_ARGS=^^!OP_ARGS^^! %%%%a>> !SCRIPT_PATH!
+	echo 	)>> !SCRIPT_PATH!
+	echo )>> !SCRIPT_PATH!
+	echo SET OP_ARGS=^^!OP_ARGS^^! \^">> !SCRIPT_PATH!
+	echo powershell -Command ^"Start-Process ^^!OP_ARGS^^! -Verb RunAs^">> !SCRIPT_PATH!
+	
+	exit /b 0
+
+
+	
+REM Create an independent batch script for 
+REM the `ls` command not **dir** since the dir program 
+REM is built into the Windows OS
+:write_listdir
+	SET SCRIPT_PATH=%1/ls.bat
+	call:display Creating batch script for the 'ls' command at !SCRIPT_PATH!
+	echo @echo off> !SCRIPT_PATH!
+	echo setlocal enabledelayedexpansion>> !SCRIPT_PATH!
+	echo if "%%1%%"=="" (>> !SCRIPT_PATH!
+	echo 	dir>> !SCRIPT_PATH!
+	echo ) else (>> !SCRIPT_PATH!
+	echo 	cd %%1%%>> !SCRIPT_PATH!
+	echo 	dir>> !SCRIPT_PATH!
+	echo )>> !SCRIPT_PATH!
+	echo if "%%1%%"=="" (>> !SCRIPT_PATH!
+	echo 	REM>> !SCRIPT_PATH!
+	echo ) else (>> !SCRIPT_PATH!
+	echo 	cd !WORKING_DIR!>> !SCRIPT_PATH!
+	echo )>> !SCRIPT_PATH!
 	
 	exit /b 0
 
