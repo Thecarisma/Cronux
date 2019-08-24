@@ -12,3 +12,4 @@
  - [ ] make `rmlong` remove folder recursively by allowing multiple folder in params
  - [ ] enable shortcut creation 
  - [ ] expands the help message to support independent help on command
+ - [ ] possibly add another function to elevate to request elevateion on running program using PID

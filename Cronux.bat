@@ -27,14 +27,12 @@ for %%x in (%*) do (
 	)
 
 	if "%%x"=="clear" (
-		SET OPERATION="clear"
 		SET AD=""
-		call:clear
+		if !OPERATION!=="none" ( call:clear ) 
 	)
 	if "%%x"=="cls" (
-		SET OPERATION="clear"
 		SET AD=""
-		call:clear
+		if !OPERATION!=="none" ( call:clear ) 
 	)
 	
 	if !OPERATION!=="none" (
@@ -114,6 +112,12 @@ for %%x in (%*) do (
 	if "%%x"=="help" (
 		if !OPERATION!=="none" ( SET OPERATION="help" )
 	)
+	
+	REM echo text with color
+	if "%%x"=="echocolor" (
+		SET AD=""
+		if !OPERATION!=="none" ( SET OPERATION="echocolor" )
+	)
 )
 
 
@@ -167,6 +171,9 @@ if %OPERATION%=="rmlong" (
 )
 if %OPERATION%=="remove-command" (
 	call:remove !OP_ARGS!
+)
+if %OPERATION%=="echocolor" (
+	call:foreground_background_echo !OP_ARGS!
 )
 
 call:showad
@@ -311,8 +318,8 @@ REM for time script see https://stackoverflow.com/a/1445724/6626422
 REM for full path split see https://stackoverflow.com/a/15568164/6626422
 :backup_and_delete
 	SET HOUR=%time:~0,2%
-	SET dtStamp9=%date:~-4%-%date:~4,2%-%date:~7,2%_0%time:~1,1%%time:~3,2%%time:~6,2% 
-	SET dtStamp24=%date:~-4%-%date:~4,2%-%date:~7,2%_%time:~0,2%%time:~3,2%%time:~6,2%
+	SET dtStamp9=%date:~-4%-%date:~3,2%-%date:~0,2%_0%time:~1,1%%time:~3,2%%time:~6,2% 
+	SET dtStamp24=%date:~-4%-%date:~3,2%-%date:~0,2%_%time:~0,2%%time:~3,2%%time:~6,2%
 	if "%HOUR:~0,1%" == " " (SET dtStamp=%dtStamp9%) else (SET dtStamp=%dtStamp24%)
 	
 	if not exist !BACKUP_FOLDER! (
@@ -324,7 +331,7 @@ REM for full path split see https://stackoverflow.com/a/15568164/6626422
 		SET filepath=%%~pi
 		SET filename=%%~ni
 		SET fileextension=%%~xi
-	)
+	) 
 	call:display backing up !filename!!fileextension! before deleting
 	copy %1 !BACKUP_FOLDER!\!filename!!fileextension!.!dtStamp!.cronux.backup
 	del %1 /s /f /q
@@ -351,7 +358,7 @@ REM Download file from the internet wget style this
 REM follows redirection 
 REM 
 REM ::
-REM 	Usage: Cronux wget /save/file/path.full https://thefileurl.com
+REM 	Usage: Cronux download /save/file/path.full https://thefileurl.com
 REM 
 REM 
 :download
@@ -373,9 +380,50 @@ REM and the created temporary folder is removed
 	
 	exit /b 0
 	
+REM Display message and title in the console
 :display 
 	echo Cronux: %* 
 
+	exit /b 0
+	
+REM Print into the windows command prompt with 
+REM color set for the foreground and background
+REM 
+REM ::
+REM 
+REM 	Usage: Cronux echocolor [background-color] [foreground-color] <text to print...?
+REM 	Example: Cronux echocolor 101 34 this is the remaining text
+REM 
+REM .. Revisit for normal param block
+REM This console color behaviour is proudly learned at 
+REM from this stackoverflow question 
+REM https://stackoverflow.com/questions/2048509/how-to-echo-with-different-colors-in-the-windows-command-line
+REM The actual color codes is provided by https://gist.github.com/mlocati/ at 
+REM https://gist.github.com/mlocati/fdabcaeb8071d5c75a2d51712db24011
+REM first param is Background
+REM second param is Foreground
+REM The remaining is the text to print
+:foreground_background_echo
+	SET BG=
+	SET FG=
+	SET TEXT=
+	for %%a in (%*) do (
+		if "!BG!"=="" (
+			SET BG=%%a
+		) else (
+			if "!FG!"=="" (
+				SET FG=%%a
+			) else (
+				if "!TEXT!"=="" (
+					SET TEXT=%%a
+				) else (
+					SET TEXT=!TEXT! %%a
+				)
+			)
+		)
+	)
+	echo [!FG!;!BG!m!TEXT![0m
+	
 	exit /b 0
 	
 REM Print the help message and exit
@@ -401,7 +449,6 @@ REM Write each command to independent batch
 REM script that can be executed individually 
 REM from the command line without prepending
 REM `Cronux`. 
-
 :allhelp
 	echo Usage: Cronux [COMMAND] [COMMAND_PARAMS]
 	echo For more information on a specific command, type `Cronux HELP command-name`
@@ -410,7 +457,9 @@ REM `Cronux`.
 	echo.
 	echo The COMMANDS include:
 	echo  HELP                              print this help message and exit
-	echo  INSTALL                           install all the available command in the Script
+	echo  ECHOCOLOR                         print in the command prompt with custom background and foreground color
+	echo  INSTALL                           install all the available command in the Script (admin)
+	echo  NOADMIN-INSTALL                   install all the available command in the Script
 	echo  DIR,LS                            list all the files and folder in a directory
 	echo  CLEAR,CLS                         clear the command prompt 
 	echo  DOWNLOAD,WGET,IRS                 download file from the internet into a folder widget style
@@ -429,6 +478,7 @@ REM installed program on the PC
 :write_and_create_comands
 	call:write_create_elevate %1
 	call:write_listdir %1
+	call:write_echocolor %1
 	
 	exit /b 0
 	
@@ -451,8 +501,6 @@ REM the `elevate` command
 	echo powershell -Command ^"Start-Process ^^!OP_ARGS^^! -Verb RunAs^">> !SCRIPT_PATH!
 	
 	exit /b 0
-
-
 	
 REM Create an independent batch script for 
 REM the `ls` command not **dir** since the dir program 
@@ -473,6 +521,35 @@ REM is built into the Windows OS
 	echo ) else (>> !SCRIPT_PATH!
 	echo 	cd !WORKING_DIR!>> !SCRIPT_PATH!
 	echo )>> !SCRIPT_PATH!
+	
+	exit /b 0
+	
+REM Create an independent batch script for 
+REM the `echocolor` 
+:write_echocolor
+	SET SCRIPT_PATH=%1/echocolor.bat
+	call:display Creating batch script for the 'echocolor' command at !SCRIPT_PATH!
+	echo @echo off> !SCRIPT_PATH!
+	echo setlocal enabledelayedexpansion>> !SCRIPT_PATH!
+	echo SET BG=>> !SCRIPT_PATH!
+	echo SET FG=>> !SCRIPT_PATH!
+	echo SET TEXT=>> !SCRIPT_PATH!
+	echo for %%%%a in (%%*) do (>> !SCRIPT_PATH!
+	echo 	if "^!BG^!"=="" (>> !SCRIPT_PATH!
+	echo 		SET BG=%%%%a>> !SCRIPT_PATH!
+	echo 	) else (>> !SCRIPT_PATH!
+	echo 		if "^!FG^!"=="" (>> !SCRIPT_PATH!
+	echo 			SET FG=%%%%a>> !SCRIPT_PATH!
+	echo 		) else (>> !SCRIPT_PATH!
+	echo 			if "^!TEXT^!"=="" (>> !SCRIPT_PATH!
+	echo 				SET TEXT=%%%%a>> !SCRIPT_PATH!
+	echo 			) else (>> !SCRIPT_PATH!
+	echo 				SET TEXT=^^!TEXT^^! %%%%a>> !SCRIPT_PATH!
+	echo 			)>> !SCRIPT_PATH!
+	echo 		)>> !SCRIPT_PATH!
+	echo 	)>> !SCRIPT_PATH!
+	echo )>> !SCRIPT_PATH!
+	echo echo [^^!FG^^!;^^!BG^^!m^^!TEXT^^![0m>> !SCRIPT_PATH!
 	
 	exit /b 0
 

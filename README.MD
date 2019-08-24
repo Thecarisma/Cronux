@@ -1,6 +1,6 @@
 # <p style="text-align: center;" align="center">Cronux</p>
 
-<p style="text-align: center;" align="center">Bringing the linux and unix commands to the Windows platform</p>
+<p style="text-align: center;" align="center">Super useful handy commands to perform simple and complex task on the Windows command line</p>
 
 ___
 
@@ -18,9 +18,11 @@ ___
 
 ## Table of content
 - [Installation](#installation)
+	- [Install](#install)
+	- [Uninstall](#uninstall)
 - [Usage](#usage)
 - [Available Commands](#available-commands)
-- [Drawbacks](#drawbacks)
+- [Drawbacks And Safety](#drawbacks-and-safety)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -29,8 +31,10 @@ ___
 The script is completely independent as it relies on Windows OS api and infrastructure all the logic is native to the platform. 
 To install the script just download from the [release](https://github.com/Thecarisma/Cronux/releases). 
 
+#### Install
+
 To use all the commands you will need to prefix the word **Cronux** before the command e.g `Cronux clear`, `Cronux sudo` e.t.c to make the 
-command available independent of Cronux itself install the commands 
+command available independent of Cronux itself install the commands with
 
 ```
 Cronux install
@@ -41,24 +45,52 @@ can then be executed without prefixing **Cronux** e.g.
 
 ```
 clear
-sudo 
-ls
+elevate 
+echocolor
 ...
+```
+
+If you want Cronux to be available in your system path use the command below to add the folder into the **PATH** variable.
+You should only add Cronux directory to path is you did not install it. 
+
+```bash
+Cronux add-to-path C:/the/full/path/to/where/cronux.bat/is/
+```
+
+#### Uninstall
+
+To uninstall the Entrie Cronux and it sub commands Scripts use the command below
+
+```
+Cronux uninstall all
+```
+
+To remove a single command for example when an actual program with the same full functionality 
+has been installed e.g the **ls** command which mimics  the windows **dir.exe** program
+should be removed when the real program **ls.exe** is installed (e.g from the mingwn compiler toolchain). 
+
+```
+Cronux remove-command ls
 ```
 
 ### Usage
 
-if you do not choose to install Cronux.bat use below to execute commands from any folder. 
-To use extract Cronux.bat to a folder of your choice, a sample use to open cmd as admin
+After installation you can use the commands independently as each batch script 
+will be generated for each command. Note that not all the command will have it 
+own script such as the **dir** command as it will conflict with the installed dir program 
+that comes pre-installed with windows.
+
+E.g to open notepad as administrator
 
 ```bash
-Cronux sudo cmd
+elevate notepad
 ```
 
-If you want Cronux to be available in your system path use the command below to add the folder into the **PATH** variable 
+If you do not choose to install Cronux.bat use below to execute commands from any folder. 
+To use, extract Cronux.bat to a folder of your choice, a sample use to open cmd as administrator
 
 ```bash
-Cronux add-to-path C:/the/full/path/to/where/cronux.bat/is/
+Cronux elevate cmd
 ```
 
 ### Available Commands
@@ -66,8 +98,28 @@ Cronux add-to-path C:/the/full/path/to/where/cronux.bat/is/
 The following linux command has been implemented the command operation is as expected and behave exactly the same as the Linux commands.
 
 ```bash
-help, ls, wget, download, irs, sudo, elevate, su, clear
+clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, remove-command
+noadmin-install, install, rmlong, help, echocolor
 ```
+
+### Drawbacks And Safety
+
+The commands are not full programs and might not behave as expected completely. Also the command that comes with Cronux 
+should be remove after the actual program has been installed.
+
+Most of the operation requires a lot of care as it can damage the system in some instance e.g such as the entire 
+environment variable commands. Executing such command in Cronux will first backup sensitive and important files to it 
+backup folder before executing the commands. If the command causes un foreseen damages the backed up files can be used to 
+revert back to previous environment. Below are neccesary format for backups.
+
+```bash
+ROAMING_FOLDER=%HOMEDRIVE%%HOMEPATH%\AppData\Roaming\Cronux\
+BACKUP_FOLDER=%HOMEDRIVE%%HOMEPATH%\AppData\Roaming\Cronux\backup\
+BACKUP_ENVIRONMENT_FOLDER=%HOMEDRIVE%%HOMEPATH%\AppData\Roaming\Cronux\environment\
+```
+**ROAMING_FOLDER**: The Cronux roaming folder for backup, configuration and other datas
+**BACKUP_FOLDER**: This is the main folder where a file is backed up in the following format before deletion `!BACKUP_FOLDER!\!filename!!fileextension!.!time_stamp!`
+**BACKUP_ENVIRONMENT_FOLDER**: The environment variables is backed up in this folder before manipulating it
 
 ### Contributing
 
@@ -77,5 +129,5 @@ anytime and if you just add a more interesting, fun and usefull command do not h
 
 ### License
 
-GNU Lesser General Public License v3.0 Copyright (c) 2019 Azeez Adewale Built with :heart: in Nigeria
+GNU Lesser General Public License v3.0 Copyright (c) 2019 Azeez Adewale Built with :heart:
 
