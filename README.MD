@@ -98,8 +98,6 @@ command `noad` to your command argument at any point
 
 ### Available Commands
 
-The following linux command has been implemented the command operation is as expected and behave exactly the same as the Linux commands.
-
 ```bash
 clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, removecommand
 noadmin-install, install, rmlong, help, echocolor, colorlist, getenv, setenv, delenv
