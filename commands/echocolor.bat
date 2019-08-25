@@ -1,0 +1,77 @@
+@echo off
+setlocal enabledelayedexpansion
+
+SET OPERATION="none"
+SET OP_ARGS=
+SET SCRIPT_DIR=%~dp0
+SET WORKING_DIR=%cd%
+
+SET USER_FOLDER=%HOMEDRIVE%%HOMEPATH%
+SET INSTALLATION_FOLDER=C:\Program Files\Cronux\
+SET ROAMING_FOLDER=!USER_FOLDER!\AppData\Roaming\Cronux\
+SET BACKUP_FOLDER=!ROAMING_FOLDER!backup\
+
+REM Place the operation script in the block below
+REM START_OFFSET_FOR_MERGE
+
+REM Prefix
+REM Print into the windows command prompt with 
+REM color set for the foreground and background
+REM 
+REM ::
+REM 
+REM 	Usage: echocolor [background-color] [foreground-color] <text to print...>
+REM 
+REM .. Revisit for normal param block
+REM This console color behaviour is proudly learned at 
+REM from this stackoverflow question 
+REM https://stackoverflow.com/questions/2048509/how-to-echo-with-different-colors-in-the-windows-command-line
+REM The actual color codes is provided by [Michele Locati](https://gist.github.com/mlocati/) at 
+REM https://gist.github.com/mlocati/fdabcaeb8071d5c75a2d51712db24011
+REM first param is Background
+REM second param is Foreground
+REM The remaining is the text to print
+REM 
+REM **Parameters**:	
+REM 	param1 : int
+REM 		the background color to use when printing
+REM 	param2 : int
+REM 		the foreground color to use when printing
+REM 	param3... : string
+REM 		the remaining params are printed using the two 
+REM			previous attributes
+
+SET BG=
+SET FG=
+SET TEXT=
+for %%a in (%*) do (
+	if "!BG!"=="" (
+		SET BG=%%a
+	) else (
+		if "!FG!"=="" (
+			SET FG=%%a
+		) else (
+			if "!TEXT!"=="" (
+				SET TEXT=%%a
+			) else (
+				SET TEXT=!TEXT! %%a
+			)
+		)
+	)
+)
+echo [!FG!;!BG!m!TEXT![0m
+
+REM END_OFFSET_FOR_MERGE
+REM End of the actual operating script
+
+exit /b 0
+
+:display 
+	echo [0;32mCronux.backdel:[0m %* 
+	exit /b 0
+	
+:display_error
+	echo [0;31mCronux.backdel:[0m %* 
+	exit /b 0
+	
+
