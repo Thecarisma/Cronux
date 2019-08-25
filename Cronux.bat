@@ -81,13 +81,13 @@ for %%x in (%*) do (
 	
 	REM remove installed script
 	if "%%x"=="uninstall" (
-		if !OPERATION!=="none" ( SET OPERATION="remove-command" )
+		if !OPERATION!=="none" ( SET OPERATION="removecommand" )
 	)
 	if "%%x"=="remove" (
-		if !OPERATION!=="none" ( SET OPERATION="remove-command" )
+		if !OPERATION!=="none" ( SET OPERATION="removecommand" )
 	)
-	if "%%x"=="remove-command" (
-		if !OPERATION!=="none" ( SET OPERATION="remove-command" )
+	if "%%x"=="removecommand" (
+		if !OPERATION!=="none" ( SET OPERATION="removecommand" )
 	)
 	
 	REM install the scripts
@@ -117,6 +117,16 @@ for %%x in (%*) do (
 	if "%%x"=="echocolor" (
 		SET AD=""
 		if !OPERATION!=="none" ( SET OPERATION="echocolor" )
+	)
+	
+	REM print all colors accepted in echocommand
+	if "%%x"=="colorlist" (
+		if !OPERATION!=="none" ( SET OPERATION="colorlist" )
+	)
+	
+	REM backup a file before deleting it 
+	if "%%x"=="backdel" (
+		if !OPERATION!=="none" ( SET OPERATION="backupdelete" )
 	)
 )
 
@@ -169,11 +179,17 @@ if %OPERATION%=="download" (
 if %OPERATION%=="rmlong" (
 	call:rmlong !OP_ARGS!
 )
-if %OPERATION%=="remove-command" (
+if %OPERATION%=="removecommand" (
 	call:remove !OP_ARGS!
 )
 if %OPERATION%=="echocolor" (
 	call:foreground_background_echo !OP_ARGS!
+)
+if %OPERATION%=="colorlist" (
+	call:print_console_colors_list !OP_ARGS!
+)
+if %OPERATION%=="backupdelete" (
+	call:backup_and_delete !OP_ARGS!
 )
 
 call:showad
@@ -398,7 +414,7 @@ REM .. Revisit for normal param block
 REM This console color behaviour is proudly learned at 
 REM from this stackoverflow question 
 REM https://stackoverflow.com/questions/2048509/how-to-echo-with-different-colors-in-the-windows-command-line
-REM The actual color codes is provided by https://gist.github.com/mlocati/ at 
+REM The actual color codes is provided by [Michele Locati](https://gist.github.com/mlocati/) at 
 REM https://gist.github.com/mlocati/fdabcaeb8071d5c75a2d51712db24011
 REM first param is Background
 REM second param is Foreground
@@ -424,6 +440,56 @@ REM The remaining is the text to print
 	)
 	echo [!FG!;!BG!m!TEXT![0m
 	
+	exit /b 0
+	
+REM print out the list of colors that can be passed to the 
+REM command **echocolor**. The list of colors is extracted from 
+REM the gist https://gist.github.com/mlocati/fdabcaeb8071d5c75a2d51712db24011
+REM provided by [Michele Locati](https://gist.github.com/mlocati/)
+:print_console_colors_list
+	echo.
+	echo [101;93m NORMAL FOREGROUND COLORS [0m
+	echo 30 [30mBlack[0m (black)
+	echo 31 [31mRed[0m
+	echo 32 [32mGreen[0m
+	echo 33 [33mYellow[0m
+	echo 34 [34mBlue[0m
+	echo 35 [35mMagenta[0m
+	echo 36 [36mCyan[0m
+	echo 37 [37mWhite[0m
+	echo.
+	echo [101;93m NORMAL BACKGROUND COLORS [0m
+	echo 40 [40mBlack[0m
+	echo 41 [41mRed[0m
+	echo 42 [42mGreen[0m
+	echo 43 [43mYellow[0m
+	echo 44 [44mBlue[0m
+	echo 45 [45mMagenta[0m
+	echo 46 [46mCyan[0m
+	echo 47 [47mWhite[0m (white)
+	echo.
+	echo [101;93m STRONG FOREGROUND COLORS [0m
+	echo 90 [90mWhite[0m
+	echo 91 [91mRed[0m
+	echo 92 [92mGreen[0m
+	echo 93 [93mYellow[0m
+	echo 94 [94mBlue[0m
+	echo 95 [95mMagenta[0m
+	echo 96 [96mCyan[0m
+	echo 97 [97mWhite[0m
+	echo.
+	echo [101;93m STRONG BACKGROUND COLORS [0m
+	echo 100 [100mBlack[0m
+	echo 101 [101mRed[0m
+	echo 102 [102mGreen[0m
+	echo 103 [103mYellow[0m
+	echo 104 [104mBlue[0m
+	echo 105 [105mMagenta[0m
+	echo 106 [106mCyan[0m
+	echo 107 [107mWhite[0m
+	echo.
+	echo see https://gist.github.com/mlocati/fdabcaeb8071d5c75a2d51712db24011
+
 	exit /b 0
 	
 REM Print the help message and exit
@@ -464,7 +530,9 @@ REM `Cronux`.
 	echo  CLEAR,CLS                         clear the command prompt 
 	echo  DOWNLOAD,WGET,IRS                 download file from the internet into a folder widget style
 	echo  ELEVATE 'PROGRAM' 'PARAMS...'     run a command line program as administrator
-	echo  REMOVE,UNINSTALL,REMOVE-COMMAND   delete a file, script or command in the the search paths
+	echo  REMOVE,UNINSTALL,REMOVECOMMAND    delete a file, script or command in the the search paths
+	echo  COLORLIST                         print all the console color that can be used with `echocolor` command
+	echo  BACKDEL                           backup a file before deleting it
 	echo.
 	exit /b 0
 
@@ -476,9 +544,25 @@ REM will be exported as the alias commands such
 REM `su` `sudo` can conflict with an actual 
 REM installed program on the PC
 :write_and_create_comands
+	call:write_clear %1
 	call:write_create_elevate %1
 	call:write_listdir %1
+	call:write_download %1
+	call:write_rmlong %1
+	call:write_backup_and_delete %1
 	call:write_echocolor %1
+	call:write_colorlist %1
+	
+	exit /b 0
+	
+REM Create an independent batch script for 
+REM the `clear` command 
+:write_clear
+	SET SCRIPT_PATH=%1/clear.bat
+	call:display Creating batch script for the 'clear' command at !SCRIPT_PATH!
+	echo @echo off> !SCRIPT_PATH!
+	echo setlocal enabledelayedexpansion>> !SCRIPT_PATH!
+	echo cls>> !SCRIPT_PATH!
 	
 	exit /b 0
 	
@@ -525,6 +609,59 @@ REM is built into the Windows OS
 	exit /b 0
 	
 REM Create an independent batch script for 
+REM the `download` 
+:write_download
+	SET SCRIPT_PATH=%1/download.bat
+	call:display Creating batch script for the 'download' command at !SCRIPT_PATH!
+	echo @echo off> !SCRIPT_PATH!
+	echo setlocal enabledelayedexpansion>> !SCRIPT_PATH!
+	echo powershell -Command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $request = (new-object System.Net.WebClient); $request.DownloadFile('%%2','%%1') ; }">> !SCRIPT_PATH!
+
+	exit /b 0
+	
+REM Create an independent batch script for 
+REM the `rmlong` 
+:write_rmlong
+	SET SCRIPT_PATH=%1/rmlong.bat
+	call:display Creating batch script for the 'rmlong' command at !SCRIPT_PATH!
+	echo @echo off> !SCRIPT_PATH!
+	echo setlocal enabledelayedexpansion>> !SCRIPT_PATH!
+	echo mkdir %TEMP%\cronux_tmp\>> !SCRIPT_PATH!
+	echo robocopy %TEMP%\cronux_tmp\ "%%1" /purge>> !SCRIPT_PATH!
+	echo rmdir "%%1">> !SCRIPT_PATH!
+	echo rmdir %TEMP%\cronux_tmp\>> !SCRIPT_PATH!
+	
+	exit /b 0
+	
+REM Create an independent batch script for 
+REM the `backdel` 
+:write_backup_and_delete
+	SET SCRIPT_PATH=%1/backdel.bat
+	call:display Creating batch script for the 'backdel' command at !SCRIPT_PATH!
+	echo @echo off> !SCRIPT_PATH!
+	echo setlocal enabledelayedexpansion>> !SCRIPT_PATH!
+	echo SET HOUR=%%time:~0,2%%>> !SCRIPT_PATH!
+	echo SET dtStamp9=%%date:~-4%%-%%date:~3,2%%-%%date:~0,2%%_0%%time:~1,1%%%%time:~3,2%%%%time:~6,2%%>> !SCRIPT_PATH!
+	echo SET dtStamp24=%%date:~-4%%-%%date:~3,2%%-%%date:~0,2%%_%%time:~0,2%%%%time:~3,2%%%%time:~6,2%%>> !SCRIPT_PATH!
+	echo if "%%HOUR:~0,1%%" == " " (SET dtStamp=%%dtStamp9%%) else (SET dtStamp=%%dtStamp24%%)>> !SCRIPT_PATH!
+	echo.>> !SCRIPT_PATH!
+	echo if not exist !BACKUP_FOLDER! (>> !SCRIPT_PATH!
+	echo 	mkdir !BACKUP_FOLDER!>> !SCRIPT_PATH!
+	echo )>> !SCRIPT_PATH!
+	echo.>> !SCRIPT_PATH!
+	echo FOR %%%%i IN ("%%1") DO (>> !SCRIPT_PATH!
+	echo 	SET filedrive=%%%%~di>> !SCRIPT_PATH!
+	echo 	SET filepath=%%%%~pi>> !SCRIPT_PATH!
+	echo 	SET filename=%%%%~ni>> !SCRIPT_PATH!
+	echo 	SET fileextension=%%%%~xi>> !SCRIPT_PATH!
+	echo )>> !SCRIPT_PATH!
+	echo Cronux: backing up ^^!filename^^!^^!fileextension^^! before deleting>> !SCRIPT_PATH!
+	echo copy %%1 !BACKUP_FOLDER!\^^!filename^^!^^!fileextension^^!.^^!dtStamp^^!.cronux.backup>> !SCRIPT_PATH!
+	echo del %%1 /s /f /q>> !SCRIPT_PATH!
+	
+	exit /b 0
+	
+REM Create an independent batch script for 
 REM the `echocolor` 
 :write_echocolor
 	SET SCRIPT_PATH=%1/echocolor.bat
@@ -552,4 +689,58 @@ REM the `echocolor`
 	echo echo [^^!FG^^!;^^!BG^^!m^^!TEXT^^![0m>> !SCRIPT_PATH!
 	
 	exit /b 0
+	
+REM Create an independent batch script for 
+REM the `colorlist` command
+:write_colorlist
+	SET SCRIPT_PATH=%1/colorlist.bat
+	call:display Creating batch script for the 'colorlist' command at !SCRIPT_PATH!
+	echo @echo off> !SCRIPT_PATH!
+	echo setlocal enabledelayedexpansion>> !SCRIPT_PATH!
+	echo echo.>> !SCRIPT_PATH!
+	echo echo [101;93m NORMAL FOREGROUND COLORS [0m>> !SCRIPT_PATH!
+	echo echo 30 [30mBlack[0m (black)>> !SCRIPT_PATH!
+	echo echo 31 [31mRed[0m>> !SCRIPT_PATH!
+	echo echo 32 [32mGreen[0m>> !SCRIPT_PATH!
+	echo echo 33 [33mYellow[0m>> !SCRIPT_PATH!
+	echo echo 34 [34mBlue[0m>> !SCRIPT_PATH!
+	echo echo 35 [35mMagenta[0m>> !SCRIPT_PATH!
+	echo echo 36 [36mCyan[0m>> !SCRIPT_PATH!
+	echo echo 37 [37mWhite[0m>> !SCRIPT_PATH!
+	echo echo.>> !SCRIPT_PATH!
+	echo echo [101;93m NORMAL BACKGROUND COLORS [0m>> !SCRIPT_PATH!
+	echo echo 40 [40mBlack[0m>> !SCRIPT_PATH!
+	echo echo 41 [41mRed[0m>> !SCRIPT_PATH!
+	echo echo 42 [42mGreen[0m>> !SCRIPT_PATH!
+	echo echo 43 [43mYellow[0m>> !SCRIPT_PATH!
+	echo echo 44 [44mBlue[0m>> !SCRIPT_PATH!
+	echo echo 45 [45mMagenta[0m>> !SCRIPT_PATH!
+	echo echo 46 [46mCyan[0m>> !SCRIPT_PATH!
+	echo echo 47 [47mWhite[0m (white)>> !SCRIPT_PATH!
+	echo echo.>> !SCRIPT_PATH!
+	echo echo [101;93m STRONG FOREGROUND COLORS [0m>> !SCRIPT_PATH!
+	echo echo 90 [90mWhite[0m>> !SCRIPT_PATH!
+	echo echo 91 [91mRed[0m>> !SCRIPT_PATH!
+	echo echo 92 [92mGreen[0m>> !SCRIPT_PATH!
+	echo echo 93 [93mYellow[0m>> !SCRIPT_PATH!
+	echo echo 94 [94mBlue[0m>> !SCRIPT_PATH!
+	echo echo 95 [95mMagenta[0m>> !SCRIPT_PATH!
+	echo echo 96 [96mCyan[0m>> !SCRIPT_PATH!
+	echo echo 97 [97mWhite[0m>> !SCRIPT_PATH!
+	echo echo.>> !SCRIPT_PATH!
+	echo echo [101;93m STRONG BACKGROUND COLORS [0m>> !SCRIPT_PATH!
+	echo echo 100 [100mBlack[0m>> !SCRIPT_PATH!
+	echo echo 101 [101mRed[0m>> !SCRIPT_PATH!
+	echo echo 102 [102mGreen[0m>> !SCRIPT_PATH!
+	echo echo 103 [103mYellow[0m>> !SCRIPT_PATH!
+	echo echo 104 [104mBlue[0m>> !SCRIPT_PATH!
+	echo echo 105 [105mMagenta[0m>> !SCRIPT_PATH!
+	echo echo 106 [106mCyan[0m>> !SCRIPT_PATH!
+	echo echo 107 [107mWhite[0m>> !SCRIPT_PATH!
+	echo echo.>> !SCRIPT_PATH!
+	echo echo see https://gist.github.com/mlocati/fdabcaeb8071d5c75a2d51712db24011>> !SCRIPT_PATH!
+
+	exit /b 0
+	
+	
 

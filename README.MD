@@ -98,8 +98,8 @@ Cronux elevate cmd
 The following linux command has been implemented the command operation is as expected and behave exactly the same as the Linux commands.
 
 ```bash
-clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, remove-command
-noadmin-install, install, rmlong, help, echocolor
+clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, removecommand
+noadmin-install, install, rmlong, help, echocolor, colorlist
 ```
 
 ### Drawbacks And Safety
