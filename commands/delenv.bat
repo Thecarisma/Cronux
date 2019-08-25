@@ -14,7 +14,7 @@ SET BACKUP_FOLDER=!ROAMING_FOLDER!backup\
 REM Place the operation script in the block below
 REM START_OFFSET_FOR_MERGE
 
-REM Prefix
+REM P
 REM Delete an environment variable from the system. The first parameter is 
 REM is the target name of the environment which are 
 REM 
@@ -100,6 +100,7 @@ if "!TARGET!"=="Machine" (
 if "!TARGET!"=="admin__maqwqwch__ine___1212hghgg" (
 	powershell -Command "& { [Environment]::SetEnvironmentVariable(\"!NAME!\", $null, \"Machine\") }"
 )
+call:display the environement variable !NAME! has been deleted
 
 REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
@@ -113,3 +114,14 @@ exit /b 0
 :display_error
 	echo [0;31mCronux.delenv:[0m %* 
 	exit /b 0
+	
+REM S
+REM 	:copyright: 2019, Azeez Adewale
+REM 	:copyright: GNU LESSER GENERAL PUBLIC LICENSE v3 (c) 2019 Cronux
+REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
+REM 	:date: 25 August 2019
+REM 	:time: 02:24 PM
+REM 	:filename: delenv.bat
+REM 
+REM 
+REM		.. _ALink: ./ALink.html

@@ -14,7 +14,7 @@ SET BACKUP_FOLDER=!ROAMING_FOLDER!backup\
 REM Place the operation script in the block below
 REM START_OFFSET_FOR_MERGE
 
-REM Prefix
+REM P
 REM Backup a file before deleting it. The file is backed up in the 
 REM declared backup folder !USER_FOLDER!\AppData\Roaming\Cronux\backup\ 
 REM in the following format `!BACKUP_FOLDER!\!filename!!fileextension!.!time_stamp!`
@@ -68,3 +68,14 @@ exit /b 0
 :display_error
 	echo [0;31mCronux.backdel:[0m %* 
 	exit /b 0
+	
+REM S
+REM 	:copyright: 2019, Azeez Adewale
+REM 	:copyright: GNU LESSER GENERAL PUBLIC LICENSE v3 (c) 2019 Cronux
+REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
+REM 	:date: 25 August 2019
+REM 	:time: 02:24 PM
+REM 	:filename: backdel.bat
+REM 
+REM 
+REM		.. _ALink: ./ALink.html

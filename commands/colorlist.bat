@@ -14,7 +14,7 @@ SET BACKUP_FOLDER=!ROAMING_FOLDER!backup\
 REM Place the operation script in the block below
 REM START_OFFSET_FOR_MERGE
 
-REM Prefix
+REM P
 REM print out the list of colors that can be passed to the 
 REM command **echocolor**. The list of colors is extracted from 
 REM the gist https://gist.github.com/mlocati/fdabcaeb8071d5c75a2d51712db24011
@@ -79,3 +79,15 @@ exit /b 0
 :display_error
 	echo [0;31mCronux.colorlist:[0m %* 
 	exit /b 0
+
+	
+REM S
+REM 	:copyright: 2019, Azeez Adewale
+REM 	:copyright: GNU LESSER GENERAL PUBLIC LICENSE v3 (c) 2019 Cronux
+REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
+REM 	:date: 25 August 2019
+REM 	:time: 02:24 PM
+REM 	:filename: colorlist.bat
+REM 
+REM 
+REM		.. _ALink: ./ALink.html

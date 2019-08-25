@@ -114,6 +114,9 @@ for %%x in (%*) do (
 	if "%%x"=="help" (
 		if !OPERATION!=="none" ( SET OPERATION="help" )
 	)
+	if "%%x"=="cronuxhelp" (
+		if !OPERATION!=="none" ( SET OPERATION="help" )
+	)
 	
 	REM echo text with color
 	if "%%x"=="echocolor" (
@@ -139,6 +142,19 @@ for %%x in (%*) do (
 	REM set an environment variable 
 	if "%%x"=="setenv" (
 		if !OPERATION!=="none" ( SET OPERATION="setenv" )
+	)
+	
+	REM delete an environment variable 
+	if "%%x"=="delenv" (
+		if !OPERATION!=="none" ( SET OPERATION="delenv" )
+	)
+	
+	REM print content of a file in console
+	if "%%x"=="cat" (
+		if !OPERATION!=="none" ( SET OPERATION="printfile" )
+	)
+	if "%%x"=="printfile" (
+		if !OPERATION!=="none" ( SET OPERATION="printfile" )
 	)
 )
 
@@ -210,6 +226,12 @@ if %OPERATION%=="getenv" (
 )
 if %OPERATION%=="setenv" (
 	call:call_command_script setenv.bat %OP_ARGS%
+)
+if %OPERATION%=="delenv" (
+	call:call_command_script delenv.bat %OP_ARGS%
+)
+if %OPERATION%=="printfile" (
+	call:call_command_script printfile.bat %OP_ARGS%
 )
 
 call:showad
@@ -384,7 +406,7 @@ REM
 	) 
 	
 	for %%x in (%*) do (
-		echo %%x
+		call:call_command_script cronuxhelp.bat %%x
 	)
 	
 	exit /b 0
