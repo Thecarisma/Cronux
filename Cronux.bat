@@ -135,6 +135,11 @@ for %%x in (%*) do (
 	if "%%x"=="getenv" (
 		if !OPERATION!=="none" ( SET OPERATION="getenv" )
 	)
+	
+	REM set an environment variable 
+	if "%%x"=="setenv" (
+		if !OPERATION!=="none" ( SET OPERATION="setenv" )
+	)
 )
 
 
@@ -173,23 +178,23 @@ if %OPERATION%=="none" (
 if %OPERATION%=="help" (
 	call:help !OP_ARGS!
 )
+if %OPERATION%=="noadmin-install" (
+	call:noadmin_install !OP_ARGS!
+)
+if %OPERATION%=="removecommand" (
+	call:remove !OP_ARGS!
+)
 if %OPERATION%=="listdir" (
 	call:call_command_script ls.bat %OP_ARGS%
 )
 if %OPERATION%=="elevate" (
 	call:call_command_script elevate.bat %OP_ARGS%
 )
-if %OPERATION%=="noadmin-install" (
-	call:noadmin_install !OP_ARGS!
-)
 if %OPERATION%=="download" (
 	call:call_command_script download.bat %OP_ARGS%
 )
 if %OPERATION%=="rmlong" (
 	call:call_command_script rmlong.bat %OP_ARGS%
-)
-if %OPERATION%=="removecommand" (
-	call:remove !OP_ARGS!
 )
 if %OPERATION%=="echocolor" (
 	call:call_command_script echocolor.bat %OP_ARGS%
@@ -202,6 +207,9 @@ if %OPERATION%=="backupdelete" (
 )
 if %OPERATION%=="getenv" (
 	call:call_command_script getenv.bat %OP_ARGS%
+)
+if %OPERATION%=="setenv" (
+	call:call_command_script setenv.bat %OP_ARGS%
 )
 
 call:showad

@@ -23,7 +23,7 @@ REM option and the command parameter proceeds
 REM 
 REM ::
 REM 
-REM 	Usage: Cronux elevate <program> <program parameters>...
+REM 	Usage: elevate <program> <program parameters>...
 REM 
 REM
 REM **Parameters**:	
@@ -49,9 +49,9 @@ REM End of the actual operating script
 exit /b 0
 
 :display 
-	echo [0;32mCronux.backdel:[0m %* 
+	echo [0;32mCronux.elevate:[0m %* 
 	exit /b 0
 	
 :display_error
-	echo [0;31mCronux.backdel:[0m %* 
+	echo [0;31mCronux.elevate:[0m %* 
 	exit /b 0

@@ -73,9 +73,9 @@ REM End of the actual operating script
 exit /b 0
 
 :display 
-	echo [0;32mCronux.backdel:[0m %* 
+	echo [0;32mCronux.colorlist:[0m %* 
 	exit /b 0
 	
 :display_error
-	echo [0;31mCronux.backdel:[0m %* 
+	echo [0;31mCronux.colorlist:[0m %* 
 	exit /b 0

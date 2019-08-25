@@ -54,7 +54,7 @@ If you want Cronux to be available in your system path use the command below to 
 You should only add Cronux directory to path is you did not install it. 
 
 ```bash
-Cronux add-to-path C:/the/full/path/to/where/cronux.bat/is/
+Cronux addtopath C:/the/full/path/to/where/cronux.bat/is/
 ```
 
 #### Uninstall
@@ -70,7 +70,7 @@ has been installed e.g the **ls** command which mimics  the windows **dir.exe** 
 should be removed when the real program **ls.exe** is installed (e.g from the mingwn compiler toolchain). 
 
 ```
-Cronux remove-command ls
+Cronux removecommand ls
 ```
 
 ### Usage

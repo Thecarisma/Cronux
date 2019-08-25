@@ -19,6 +19,9 @@ REM Get an environment variable from the system. the first parameter is the
 REM environment variable to get, the second and last parameter which is the 
 REM environment target name and file to write output to is optional. 
 REM if the target name is not set then the environement target defualt to **Process**
+REM 
+REM ::
+REM 	Usage: getenv envname (targetname) (path/to/save/output.to)
 REM
 REM **Parameters**:	
 REM 	param1 : string
@@ -50,9 +53,9 @@ REM End of the actual operating script
 exit /b 0
 
 :display 
-	echo [0;32mCronux.backdel:[0m %* 
+	echo [0;32mCronux.getenv:[0m %* 
 	exit /b 0
 	
 :display_error
-	echo [0;31mCronux.backdel:[0m %* 
+	echo [0;31mCronux.getenv:[0m %* 
 	exit /b 0
