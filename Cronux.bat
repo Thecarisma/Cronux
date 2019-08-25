@@ -317,7 +317,7 @@ REM from the backup directoty
 									if exist !INSTALLATION_FOLDER!\%%x.bat (
 										call:backup_and_delete "!INSTALLATION_FOLDER!\%%x.bat"
 									) else (
-										call:display deletion failed cannot find '%%x' in search path 
+										call:display_error deletion failed cannot find '%%x' in search paths 
 									)
 								)
 							)
@@ -333,6 +333,10 @@ REM from the backup directoty
 REM for time script see https://stackoverflow.com/a/1445724/6626422
 REM for full path split see https://stackoverflow.com/a/15568164/6626422
 :backup_and_delete
+	if not exist "%1" (
+		call:display_error backup and deletion failed cannot find '%1' 
+		exit /b 0		
+	)
 	SET HOUR=%time:~0,2%
 	SET dtStamp9=%date:~-4%-%date:~3,2%-%date:~0,2%_0%time:~1,1%%time:~3,2%%time:~6,2% 
 	SET dtStamp24=%date:~-4%-%date:~3,2%-%date:~0,2%_%time:~0,2%%time:~3,2%%time:~6,2%
@@ -398,7 +402,13 @@ REM and the created temporary folder is removed
 	
 REM Display message and title in the console
 :display 
-	echo Cronux: %* 
+	echo [0;32mCronux:[0m %* 
+
+	exit /b 0
+	
+REM Display message and title in the console
+:display_error
+	echo [0;31mCronux:[0m %* 
 
 	exit /b 0
 	
@@ -438,7 +448,7 @@ REM The remaining is the text to print
 			)
 		)
 	)
-	echo [!FG!;!BG!m!TEXT![0m
+	echo [!BG!;!FG!m!TEXT![0m
 	
 	exit /b 0
 	
@@ -640,6 +650,10 @@ REM the `backdel`
 	call:display Creating batch script for the 'backdel' command at !SCRIPT_PATH!
 	echo @echo off> !SCRIPT_PATH!
 	echo setlocal enabledelayedexpansion>> !SCRIPT_PATH!
+	echo if not exist "%%1" (>> !SCRIPT_PATH!
+	echo 	echo Cronux: backup and deletion failed cannot find '%%1'>> !SCRIPT_PATH!
+	echo 	goto:eof>> !SCRIPT_PATH!		
+	echo )>> !SCRIPT_PATH!
 	echo SET HOUR=%%time:~0,2%%>> !SCRIPT_PATH!
 	echo SET dtStamp9=%%date:~-4%%-%%date:~3,2%%-%%date:~0,2%%_0%%time:~1,1%%%%time:~3,2%%%%time:~6,2%%>> !SCRIPT_PATH!
 	echo SET dtStamp24=%%date:~-4%%-%%date:~3,2%%-%%date:~0,2%%_%%time:~0,2%%%%time:~3,2%%%%time:~6,2%%>> !SCRIPT_PATH!
@@ -655,7 +669,7 @@ REM the `backdel`
 	echo 	SET filename=%%%%~ni>> !SCRIPT_PATH!
 	echo 	SET fileextension=%%%%~xi>> !SCRIPT_PATH!
 	echo )>> !SCRIPT_PATH!
-	echo Cronux: backing up ^^!filename^^!^^!fileextension^^! before deleting>> !SCRIPT_PATH!
+	echo echo Cronux: backing up ^^!filename^^!^^!fileextension^^! before deleting>> !SCRIPT_PATH!
 	echo copy %%1 !BACKUP_FOLDER!\^^!filename^^!^^!fileextension^^!.^^!dtStamp^^!.cronux.backup>> !SCRIPT_PATH!
 	echo del %%1 /s /f /q>> !SCRIPT_PATH!
 	
