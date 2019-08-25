@@ -93,6 +93,9 @@ To use, extract Cronux.bat to a folder of your choice, a sample use to open cmd 
 Cronux elevate cmd
 ```
 
+Note that custom advertisment, hint or quote is shown when command is run to silent the quote add the 
+command `noad` to your command argument at any point
+
 ### Available Commands
 
 The following linux command has been implemented the command operation is as expected and behave exactly the same as the Linux commands.

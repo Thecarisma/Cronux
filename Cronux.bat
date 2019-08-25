@@ -22,7 +22,7 @@ SET AD="Heal the world, make it a better place"
 for %%x in (%*) do (
 
 	REM silent the advertisement
-	if "%%x"=="no-ad" (
+	if "%%x"=="noad" (
 		SET AD=""
 	)
 
@@ -38,7 +38,7 @@ for %%x in (%*) do (
 	if !OPERATION!=="none" (
 		@echo off
 	) else (
-		if "%%x"=="no-ad" (
+		if "%%x"=="noad" (
 			SET AD=""
 		) else (
 			if not defined OP_ARGS (
@@ -128,6 +128,11 @@ for %%x in (%*) do (
 	if "%%x"=="backdel" (
 		if !OPERATION!=="none" ( SET OPERATION="backupdelete" )
 	)
+	
+	REM get an environment variable 
+	if "%%x"=="getenv" (
+		if !OPERATION!=="none" ( SET OPERATION="getenv" )
+	)
 )
 
 
@@ -190,6 +195,9 @@ if %OPERATION%=="colorlist" (
 )
 if %OPERATION%=="backupdelete" (
 	call:backup_and_delete !OP_ARGS!
+)
+if %OPERATION%=="getenv" (
+	call:get_environment !OP_ARGS!
 )
 
 call:showad
@@ -502,48 +510,35 @@ REM provided by [Michele Locati](https://gist.github.com/mlocati/)
 
 	exit /b 0
 	
-REM Print the help message and exit
-REM 
-:help 
-	if "%1"=="all" (
-		call:allhelp
+REM get an environment variable from the system. the first parameter is the 
+REM environment variable to get, the second and last parameter which is the 
+REM environment target name and file to write output to is optional. 
+REM if the target name is not set then the environement target defualt to **Process**
+REM
+REM **Parameters**:	
+REM 	param1 : string
+REM 		the environment parameter to fetch 
+REM 	param2 : string (optional)
+REM 		the target name of the environment, usually User, Machine or Process
+REM 	param3 : string (optional)
+REM 		full file path to write the output to instead of the console
+:get_environment
+	SET ENV=%1
+	SET TARGET=%2
+	SET WRITE_FILE=%3
+	if "!ENV!"=="" (
+		call:display_error the getenv command expect at least one parameter 
 		exit /b 0
 	)
-	if "%1"=="" (
-		call:allhelp
-		exit /b 0
-	) 
-	
-	for %%x in (%*) do (
-		echo %%x
+	if "!TARGET!"=="" (
+		SET TARGET=Process
+	)
+	if "!WRITE_FILE!"=="" (
+		powershell -Command "& { [environment]::GetEnvironmentVariable(\"!ENV!\",\"!TARGET!\") }"
+	) else (
+		powershell -Command "& { [environment]::GetEnvironmentVariable(\"!ENV!\",\"!TARGET!\") | Out-File !WRITE_FILE! }" 
 	)
 	
-	exit /b 0
-	
-REM DO not run the blocks below directly 
-REM Write each command to independent batch 
-REM script that can be executed individually 
-REM from the command line without prepending
-REM `Cronux`. 
-:allhelp
-	echo Usage: Cronux [COMMAND] [COMMAND_PARAMS]
-	echo For more information on a specific command, type `Cronux HELP command-name`
-	echo [COMMAND]: the system or supplementary system command to execute
-	echo [COMMAND_PARAMS]: the parameters or arguments to send to the command
-	echo.
-	echo The COMMANDS include:
-	echo  HELP                              print this help message and exit
-	echo  ECHOCOLOR                         print in the command prompt with custom background and foreground color
-	echo  INSTALL                           install all the available command in the Script (admin)
-	echo  NOADMIN-INSTALL                   install all the available command in the Script
-	echo  DIR,LS                            list all the files and folder in a directory
-	echo  CLEAR,CLS                         clear the command prompt 
-	echo  DOWNLOAD,WGET,IRS                 download file from the internet into a folder widget style
-	echo  ELEVATE 'PROGRAM' 'PARAMS...'     run a command line program as administrator
-	echo  REMOVE,UNINSTALL,REMOVECOMMAND    delete a file, script or command in the the search paths
-	echo  COLORLIST                         print all the console color that can be used with `echocolor` command
-	echo  BACKDEL                           backup a file before deleting it
-	echo.
 	exit /b 0
 
 REM The script created is not for the alias but 
@@ -562,6 +557,7 @@ REM installed program on the PC
 	call:write_backup_and_delete %1
 	call:write_echocolor %1
 	call:write_colorlist %1
+	call:write_get_environment %1
 	
 	exit /b 0
 	
@@ -756,5 +752,76 @@ REM the `colorlist` command
 
 	exit /b 0
 	
+REM Create an independent batch script for 
+REM the `getenv` command 
+:write_get_environment
+	SET SCRIPT_PATH=%1/getenv.bat
+	call:display Creating batch script for the 'getenv' command at !SCRIPT_PATH!
+	echo @echo off> !SCRIPT_PATH!
+	echo setlocal enabledelayedexpansion>> !SCRIPT_PATH!
+	echo SET ENV=%%1>> !SCRIPT_PATH!
+	echo SET TARGET=%%2>> !SCRIPT_PATH!
+	echo SET WRITE_FILE=%%3>> !SCRIPT_PATH!
+	echo if "^!ENV^!"=="" (>> !SCRIPT_PATH!
+	echo 	call:display_error the getenv command expect at least one parameter >> !SCRIPT_PATH!
+	echo 	goto:eof>> !SCRIPT_PATH!
+	echo )>> !SCRIPT_PATH!
+	echo if "^!TARGET^!"=="" (>> !SCRIPT_PATH!
+	echo 	SET TARGET=Process>> !SCRIPT_PATH!
+	echo )>> !SCRIPT_PATH!
+	echo if "^!WRITE_FILE^!"=="" (>> !SCRIPT_PATH!
+	echo 	powershell -Command "& { [environment]::GetEnvironmentVariable(\"^^!ENV^^!\",\"^^!TARGET^^!\") }">> !SCRIPT_PATH!
+	echo ) else (>> !SCRIPT_PATH!
+	echo 	powershell -Command "& { [environment]::GetEnvironmentVariable(\"^^!ENV^^!\",\"^^!TARGET^^!\") ^| Out-File ^!WRITE_FILE^! }">> !SCRIPT_PATH!
+	echo )>> !SCRIPT_PATH!
 	
+	exit /b 0
+	
+
+	
+REM Print the help message and exit
+REM 
+:help 
+	if "%1"=="all" (
+		call:allhelp
+		exit /b 0
+	)
+	if "%1"=="" (
+		call:allhelp
+		exit /b 0
+	) 
+	
+	for %%x in (%*) do (
+		echo %%x
+	)
+	
+	exit /b 0
+	
+REM DO not run the blocks below directly 
+REM Write each command to independent batch 
+REM script that can be executed individually 
+REM from the command line without prepending
+REM `Cronux`. 
+:allhelp
+	echo Usage: Cronux [COMMAND] [COMMAND_PARAMS]
+	echo For more information on a specific command, type `Cronux HELP command-name`
+	echo [COMMAND]: the system or supplementary system command to execute
+	echo [COMMAND_PARAMS]: the parameters or arguments to send to the command
+	echo.
+	echo The COMMANDS include:
+	echo  HELP                              print this help message and exit
+	echo  ECHOCOLOR                         print in the command prompt with custom background and foreground color
+	echo  INSTALL                           install all the available command in the Script (admin)
+	echo  NOADMIN-INSTALL                   install all the available command in the Script
+	echo  DIR,LS                            list all the files and folder in a directory
+	echo  CLEAR,CLS                         clear the command prompt 
+	echo  DOWNLOAD,WGET,IRS                 download file from the internet into a folder widget style
+	echo  ELEVATE 'PROGRAM' 'PARAMS...'     run a command line program as administrator
+	echo  REMOVE,UNINSTALL,REMOVECOMMAND    delete a file, script or command in the the search paths
+	echo  COLORLIST                         print all the console color that can be used with `echocolor` command
+	echo  BACKDEL                           backup a file before deleting it
+	echo  GETENV                            get an environment variable from either Machine, User or Process
+	echo  SETENV                            set an environment variable for either Machine, User or Process
+	echo.
+	exit /b 0
 

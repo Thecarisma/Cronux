@@ -15,3 +15,4 @@
  - [ ] possibly add another function to request elevateion on running program using PID
  - [x] function to print out list of color value
  - [ ] add function to show about, licence, authors e.t.c
+ - [ ] split commands to independent file for ease addition and PRs
