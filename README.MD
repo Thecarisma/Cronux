@@ -102,7 +102,7 @@ The following linux command has been implemented the command operation is as exp
 
 ```bash
 clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, removecommand
-noadmin-install, install, rmlong, help, echocolor, colorlist
+noadmin-install, install, rmlong, help, echocolor, colorlist, getenv, setenv, delenv
 ```
 
 ### Drawbacks And Safety

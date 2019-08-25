@@ -414,6 +414,7 @@ REM `Cronux`.
 	echo  BACKDEL                           backup a file before deleting it
 	echo  GETENV                            get an environment variable from either Machine, User or Process
 	echo  SETENV                            set an environment variable for either Machine, User or Process
+	echo  DELENV                            delete an environment variable from either Machine, User or Process environment
 	echo.
 	exit /b 0
 
