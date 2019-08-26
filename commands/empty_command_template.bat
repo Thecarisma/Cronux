@@ -28,10 +28,10 @@ REM 		the full url of the file to download
 
 
 
+exit /b 0
+
 REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
-
-exit /b 0
 
 :display 
 	echo [0;32mCronux.:[0m %* 
@@ -47,7 +47,7 @@ REM 	:copyright: GNU LESSER GENERAL PUBLIC LICENSE v3 (c) 2019 Cronux
 REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
 REM 	:date: 25 August 2019
 REM 	:time: 02:24 PM
-REM 	:filename: Object.sim
+REM 	:filename: name.bat
 REM 
 REM 
 REM		.. _ALink: ./ALink.html

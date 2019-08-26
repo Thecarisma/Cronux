@@ -1,3 +1,4 @@
+REM START_OFFSET_FOR_MERGE
 @echo off
 REM bad thing `setlocal enabledelayedexpansion` can make your current session bloated
 REM but good because it sure better than using %?%
@@ -29,11 +30,11 @@ for %%x in (%*) do (
 
 	if "%%x"=="clear" (
 		SET AD=""
-		call:call_command_script clear.bat %OP_ARGS% 
+		call:call_command_script clear %OP_ARGS% 
 		SET CLEARED=true
 	)
 	if "%%x"=="cls" (
-		call:call_command_script clear.bat %OP_ARGS% 
+		call:call_command_script clear %OP_ARGS% 
 		SET CLEARED=true
 	)
 	
@@ -166,6 +167,16 @@ for %%x in (%*) do (
 	if "%%x"=="say" (
 		if !OPERATION!=="none" ( SET OPERATION="say" )
 	)
+	
+	REM text to speech
+	if "%%x"=="testlabel" (
+		if !OPERATION!=="none" ( SET OPERATION="testlabel" )
+	)
+	
+	REM compile command scripts into one
+	if "%%x"=="compilescript" (
+		if !OPERATION!=="none" ( SET OPERATION="compilescript" )
+	)
 )
 
 
@@ -183,8 +194,6 @@ if !OPERATION!=="elevate" (
 		)
 	)
 	SET OP_ARGS=!OP_ARGS! \"
-) else (
-	REM SET OP_ARGS="!OP_ARGS!"
 )
 REM echo !OP_ARGS!
 
@@ -211,56 +220,54 @@ if %OPERATION%=="removecommand" (
 	call:remove !OP_ARGS!
 )
 if %OPERATION%=="listdir" (
-	call:call_command_script ls.bat %OP_ARGS%
+	call:call_command_script ls %OP_ARGS%
 )
 if %OPERATION%=="elevate" (
-	call:call_command_script elevate.bat %OP_ARGS%
+	call:call_command_script elevate %OP_ARGS%
 )
 if %OPERATION%=="download" (
-	call:call_command_script download.bat %OP_ARGS%
+	call:call_command_script download %OP_ARGS%
 )
 if %OPERATION%=="rmlong" (
-	call:call_command_script rmlong.bat %OP_ARGS%
+	call:call_command_script rmlong %OP_ARGS%
 )
 if %OPERATION%=="echocolor" (
-	call:call_command_script echocolor.bat %OP_ARGS%
+	call:call_command_script echocolor %OP_ARGS%
 )
 if %OPERATION%=="colorlist" (
-	call:call_command_script colorlist.bat %OP_ARGS%
+	call:call_command_script colorlist %OP_ARGS%
 )
 if %OPERATION%=="backupdelete" (
-	call:call_command_script backdel.bat %OP_ARGS%
+	call:call_command_script backdel %OP_ARGS%
 )
 if %OPERATION%=="getenv" (
-	call:call_command_script getenv.bat %OP_ARGS%
+	call:call_command_script getenv %OP_ARGS%
 )
 if %OPERATION%=="setenv" (
-	call:call_command_script setenv.bat %OP_ARGS%
+	call:call_command_script setenv %OP_ARGS%
 )
 if %OPERATION%=="delenv" (
-	call:call_command_script delenv.bat %OP_ARGS%
+	call:call_command_script delenv %OP_ARGS%
 )
 if %OPERATION%=="printfile" (
-	call:call_command_script printfile.bat %OP_ARGS%
+	call:call_command_script printfile %OP_ARGS%
 )
 if %OPERATION%=="ssay" (
-	call:call_command_script ssay.bat %OP_ARGS%
+	call:call_command_script ssay %OP_ARGS%
 )
 if %OPERATION%=="say" (
-	call:call_command_script say.bat %OP_ARGS%
+	call:call_command_script say %OP_ARGS%
+)
+if %OPERATION%=="testlabel" (
+	call:call_command_script testlabel %OP_ARGS%
+)
+if %OPERATION%=="compilescript" (
+	call:call_command_script compilescript %OP_ARGS%
 )
 
 call:showad
 
 exit /b 0
-
-:showad 
-	if not !AD!=="" (
-		@echo ``````````````````````````````````````````````
-		echo !AD!
-		@echo ..............................................
-	)
-	exit /b 0
 	
 REM 
 :call_command_script
@@ -268,7 +275,7 @@ REM
 	SET ARGS__=
 	for %%a in (%*) do (
 		if "!SCRIPT_PATH!"=="" (
-			SET SCRIPT_PATH=%%a
+			SET SCRIPT_PATH=%%a.bat
 		) else (
 			if "!ARGS__!"=="" (
 				SET ARGS__=%%a
@@ -279,16 +286,26 @@ REM
 	)
 	if "!SCRIPT_PATH!"=="" (
 		call:display_error the script name or path cannot be empty
-		exit /b 0
+		goto:eof
 	)
 	if not exist "!SCRIPT_PATH!" (
-		SET SCRIPT_PATH=commands\%1
+		SET SCRIPT_PATH=commands\%1.bat
 		if not exist "!SCRIPT_PATH!" (
-			call:display_error cannot find the script !SCRIPT_PATH!
+			REM call:display_error cannot find the script '%1'
+			call:%1 !ARGS__!
+			goto:eof
 		)
 	) 
 	!SCRIPT_PATH! !ARGS__!
 	
+	exit /b 0
+
+:showad 
+	if not !AD!=="" (
+		@echo ``````````````````````````````````````````````
+		echo !AD!
+		@echo ..............................................
+	)
 	exit /b 0
 	
 REM install all the individual command in the Program files 
@@ -329,7 +346,7 @@ REM permanently remove a program, file or script. The file is
 REM searched for in the order below. the first found is deleted 
 REM
 REM 	* the supplied full path
-REm 	* the supplied full path with .bat added to the file name
+REM 	* the supplied full path with .bat added to the file name
 REM 	* cronux test directoty
 REM 	* cronux test directoty with .bat added to the file name
 REM 	* cronux test\installation directoty
@@ -457,4 +474,11 @@ REM `Cronux`.
 	echo  SAY                               use the speech syntensizer to speak provided text
 	echo.
 	exit /b 0
+	
+REM test label
+:testlabel 
+	echo this is to test label fallback in script args: %*
+	
+	exit /b 0
 
+REM END_OFFSET_FOR_MERGE
