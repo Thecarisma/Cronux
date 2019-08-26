@@ -56,10 +56,10 @@ call:display backing up !filename!!fileextension! before deleting
 copy %1 C:\Users\adewale.azeez\AppData\Roaming\Cronux\backup\\!filename!!fileextension!.!dtStamp!.cronux.backup
 del %1 /s /f /q
 
+exit /b 0
+
 REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
-
-exit /b 0
 
 :display 
 	echo [0;32mCronux.backdel:[0m %* 

@@ -156,6 +156,16 @@ for %%x in (%*) do (
 	if "%%x"=="printfile" (
 		if !OPERATION!=="none" ( SET OPERATION="printfile" )
 	)
+	
+	REM text to speech with custom voice nd speed
+	if "%%x"=="ssay" (
+		if !OPERATION!=="none" ( SET OPERATION="ssay" )
+	)
+	
+	REM text to speech
+	if "%%x"=="say" (
+		if !OPERATION!=="none" ( SET OPERATION="say" )
+	)
 )
 
 
@@ -232,6 +242,12 @@ if %OPERATION%=="delenv" (
 )
 if %OPERATION%=="printfile" (
 	call:call_command_script printfile.bat %OP_ARGS%
+)
+if %OPERATION%=="ssay" (
+	call:call_command_script ssay.bat %OP_ARGS%
+)
+if %OPERATION%=="say" (
+	call:call_command_script say.bat %OP_ARGS%
 )
 
 call:showad
@@ -437,6 +453,8 @@ REM `Cronux`.
 	echo  GETENV                            get an environment variable from either Machine, User or Process
 	echo  SETENV                            set an environment variable for either Machine, User or Process
 	echo  DELENV                            delete an environment variable from either Machine, User or Process environment
+	echo  SSAY                              use the speech syntensizer to speak provided text with custom speed and voice
+	echo  SAY                               use the speech syntensizer to speak provided text
 	echo.
 	exit /b 0
 

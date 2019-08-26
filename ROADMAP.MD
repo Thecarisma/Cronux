@@ -19,3 +19,4 @@
  - [ ] list pids of running apps
  - [ ] get application attributes from pid
  - [x] make help extract comment from each command
+ - [ ] add text to speech command
