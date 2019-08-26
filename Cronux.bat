@@ -1,3 +1,4 @@
+@echo off
 REM START_OFFSET_FOR_MERGE
 @echo off
 REM bad thing `setlocal enabledelayedexpansion` can make your current session bloated
@@ -12,6 +13,7 @@ SET FIRST_PARAM=%0
 SET IS_TEST=true
 SET CLEARED=false
 
+SET COMMANDS_FOLDER=commands\
 SET USER_FOLDER=%HOMEDRIVE%%HOMEPATH%
 SET TEST_FOLDER=!SCRIPT_DIR!\test\
 SET INSTALLATION_FOLDER=C:\Program Files\Cronux\
@@ -94,13 +96,13 @@ for %%x in (%*) do (
 	)
 	
 	REM install the scripts
-	if "%%x"=="noadmin-install" (
+	if "%%x"=="noadmininstall" (
 		if not !OPERATION!=="elevate" (
-			if !OPERATION!=="none" ( SET OPERATION="noadmin-install" )
+			if !OPERATION!=="none" ( SET OPERATION="noadmininstall" )
 		)
 	)
 	if "%%x"=="install" (
-		call:elevate "%cd%\Cronux.bat noadmin-install"	
+		call:call_command_script elevate %cd%\Cronux.bat noadmininstall
 		exit /b 0
 	)
 	
@@ -168,10 +170,12 @@ for %%x in (%*) do (
 		if !OPERATION!=="none" ( SET OPERATION="say" )
 	)
 	
-	REM text to speech
+	REM START_OFFSET_FOR_MERGE
+	REM test label script fallback
 	if "%%x"=="testlabel" (
 		if !OPERATION!=="none" ( SET OPERATION="testlabel" )
 	)
+	REM END_OFFSET_FOR_MERGE
 	
 	REM compile command scripts into one
 	if "%%x"=="compilescript" (
@@ -213,7 +217,7 @@ if %OPERATION%=="none" (
 if %OPERATION%=="help" (
 	call:help !OP_ARGS!
 )
-if %OPERATION%=="noadmin-install" (
+if %OPERATION%=="noadmininstall" (
 	call:noadmin_install !OP_ARGS!
 )
 if %OPERATION%=="removecommand" (
@@ -258,9 +262,11 @@ if %OPERATION%=="ssay" (
 if %OPERATION%=="say" (
 	call:call_command_script say %OP_ARGS%
 )
+REM END_OFFSET_FOR_MERGE
 if %OPERATION%=="testlabel" (
 	call:call_command_script testlabel %OP_ARGS%
 )
+REM START_OFFSET_FOR_MERGE
 if %OPERATION%=="compilescript" (
 	call:call_command_script compilescript %OP_ARGS%
 )
@@ -328,17 +334,40 @@ REM ::
 REM 	Cronux install
 REM 
 :noadmin_install
+	SET FINAL_INSTALLATION_FOLDER=
+	SET COMMAND_SCRIPTS=
 	call:display  Preparing to install all Cronux command
 	if %IS_TEST%==true (
-		mkdir "!TEST_FOLDER!\installation\"
-		copy !SCRIPT_DIR!\Cronux.bat "!TEST_FOLDER!\installation\Cronux.bat"
-		call:write_and_create_comands "!TEST_FOLDER!\installation\"
+		SET FINAL_INSTALLATION_FOLDER=!TEST_FOLDER!\installation\
 	) else (
-		mkdir "!INSTALLATION_FOLDER!"
-		copy !FIRST_PARAM! "!INSTALLATION_FOLDER!"
-		call:write_and_create_comands "!INSTALLATION_FOLDER!"
+		SET FINAL_INSTALLATION_FOLDER=!INSTALLATION_FOLDER!
 	)
-	REM timeout 10 > NUL
+	mkdir !FINAL_INSTALLATION_FOLDER!
+	SET WORKING_DIR=%cd%
+	
+	if exist "!COMMANDS_FOLDER!" (
+		REM copy !COMMANDS_FOLDER! "!FINAL_INSTALLATION_FOLDER!"
+		cd !COMMANDS_FOLDER!
+		for %%a in (*) do ( 
+			call:display copying the command script '%%a'
+			copy %%a "!FINAL_INSTALLATION_FOLDER!" > nul
+			FOR %%i IN ("%%a") DO (
+				SET filedrive=%%~di
+				SET filepath=%%~pi
+				SET filename=%%~ni
+				SET fileextension=%%~xi
+			) 
+			if "!COMMAND_SCRIPTS!"=="" (
+				SET COMMAND_SCRIPTS=!filename!
+			) else (
+				SET COMMAND_SCRIPTS=!COMMAND_SCRIPTS! !filename!
+			)
+		)
+		cd !WORKING_DIR!
+		REM call:display !COMMAND_SCRIPTS!
+	)
+	call:call_command_script compilescript !FINAL_INSTALLATION_FOLDER!\Cronux.bat !COMMAND_SCRIPTS!
+	timeout 3 > NUL
 	
 	exit /b 0
 	
@@ -474,11 +503,10 @@ REM `Cronux`.
 	echo  SAY                               use the speech syntensizer to speak provided text
 	echo.
 	exit /b 0
-	
+
+REM END_OFFSET_FOR_MERGE
 REM test label
 :testlabel 
 	echo this is to test label fallback in script args: %*
 	
 	exit /b 0
-
-REM END_OFFSET_FOR_MERGE

@@ -72,7 +72,8 @@ for %%a in (%*) do (
 		) else ( call:compile_single_script %%a !SCRIPT_PATH! !OUTPUT_PATH! )
 	)
 )
-call:display compilation and build completed successfully. Built script at !OUTPUT_PATH!
+call:display compilation and build completed successfully. 
+call:display Built script at !OUTPUT_PATH!
 
 exit /b 0
 
