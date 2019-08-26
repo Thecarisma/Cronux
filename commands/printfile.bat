@@ -33,10 +33,10 @@ if not exist "%1" (
 )
 for /f "delims=" %%x in (%1) do echo %%x
 
+exit /b 0
+
 REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
-
-exit /b 0
 
 :display 
 	echo [0;32mCronux.printfile:[0m %* 

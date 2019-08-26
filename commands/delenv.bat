@@ -102,10 +102,10 @@ if "!TARGET!"=="admin__maqwqwch__ine___1212hghgg" (
 )
 call:display the environement variable !NAME! has been deleted
 
+exit /b 0
+
 REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
-
-exit /b 0
 
 :display 
 	echo [0;32mCronux.delenv:[0m %* 

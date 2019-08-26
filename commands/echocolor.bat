@@ -61,10 +61,10 @@ for %%a in (%*) do (
 )
 echo [!FG!;!BG!m!TEXT![0m
 
+exit /b 0
+
 REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
-
-exit /b 0
 
 :display 
 	echo [0;32mCronux.echocolor:[0m %* 

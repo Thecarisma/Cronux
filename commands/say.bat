@@ -28,12 +28,12 @@ REM 		The entire parameters is converted to speech and spoken
 
 if exist "ssay.bat" (
 	ssay.bat Zira 0 %* 
-	got:eof
+	goto:eof
 )
 
 if exist "./commands/ssay.bat" (
 	!WORKING_DIR!\commands\ssay.bat Zira 0 %* 
-	got:eof
+	goto:eof
 )
 
 REM 

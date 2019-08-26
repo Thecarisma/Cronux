@@ -67,10 +67,10 @@ echo 107 [107mWhite[0m
 echo.
 echo see https://gist.github.com/mlocati/fdabcaeb8071d5c75a2d51712db24011
 
+exit /b 0
+
 REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
-
-exit /b 0
 
 :display 
 	echo [0;32mCronux.colorlist:[0m %* 

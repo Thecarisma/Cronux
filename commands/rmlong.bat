@@ -35,10 +35,10 @@ robocopy C:\Users\ADEWAL~1.AZE\AppData\Local\Temp\cronux_tmp\ "%1" /purge
 rmdir "%1"
 rmdir C:\Users\ADEWAL~1.AZE\AppData\Local\Temp\cronux_tmp\
 
+exit /b 0
+
 REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
-
-exit /b 0
 
 :display 
 	echo [0;32mCronux.rmlong:[0m %* 

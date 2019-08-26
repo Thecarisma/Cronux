@@ -37,10 +37,10 @@ if "%1%"=="" (
 	cd C:\Users\adewale.azeez\Documents\THECARISMA_GITHUB\Cronux
 )
 
+exit /b 0
+
 REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
-
-exit /b 0
 
 :display 
 	echo [0;32mCronux.ls:[0m %* 
