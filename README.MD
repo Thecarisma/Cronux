@@ -101,7 +101,7 @@ command `noad` to your command argument at any point
 ```bash
 clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, removecommand, 
 noadmin-install, install, rmlong, help, echocolor, colorlist, getenv, setenv, delenv, delenv, 
-cat, printfile, ssay, say, testlabel, compilescript, cbackup, backup, chelp, 
+cat, printfile, ssay, say, testlabel, compilescript, cbackup, backup, chelp, addpath, 
 ```
 
 ### Drawbacks And Safety

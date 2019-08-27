@@ -46,6 +46,16 @@ REM **Parameters**:
 REM 	param1 : string (optional)
 REM 		the target name of the environment, usually User, Machine or Process
 
+
+SET HOUR=%time:~0,2%
+SET dtStamp9=%date:~-4%-%date:~3,2%-%date:~0,2%_0%time:~1,1%%time:~3,2%%time:~6,2%
+SET dtStamp24=%date:~-4%-%date:~3,2%-%date:~0,2%_%time:~0,2%%time:~3,2%%time:~6,2%
+if "%HOUR:~0,1%" == " " (SET dtStamp=%dtStamp9%) else (SET dtStamp=%dtStamp24%)
+
+if not exist "!ROAMING_FOLDER!environment" (
+	mkdir "!ROAMING_FOLDER!environment"
+)
+
 SET FOLDER_FULL_PATH=%1
 SET TARGET=%2
 
@@ -69,10 +79,10 @@ if not "!TARGET!"=="user" (
 						if not "!TARGET!"=="process" (
 							if not "!TARGET!"=="Process" (
 								if not "!TARGET!"=="PROCESS" (
-									if not "!TARGET!"=="admin__maqwqwch__ine___1212hghgg" (
+									if not "!TARGET!"=="admiwn_awqwch__ine__esds_1212hghgg" (
 										call:display_error The target is invalid, it has to be either User, Process or Machine
 										goto:eof
-									) else ( SET TARGET=admin__maqwqwch__ine___1212hghgg)
+									) else ( SET TARGET=admiwn_awqwch__ine__esds_1212hghgg)
 								) else ( SET TARGET=Process)
 							) else ( SET TARGET=Process)
 						) else ( SET TARGET=Process)
@@ -83,10 +93,34 @@ if not "!TARGET!"=="user" (
 	) else ( SET TARGET=User)
 ) else ( SET TARGET=User)
 
-call:display backing up the current Path environment
+if "!TARGET!"=="admiwn_awqwch__ine__esds_1212hghgg" (
+	SET BACKUP_FULL_PATH=!ROAMING_FOLDER!environment\Path.Machine.!dtStamp!.cronux.backup
+	call:display backing up Path at !BACKUP_FULL_PATH!
+	powershell -Command "& { [environment]::GetEnvironmentVariable(\"Path\",\"Machine\") | Out-File !BACKUP_FULL_PATH! }"
+) else (
+	SET BACKUP_FULL_PATH=!ROAMING_FOLDER!environment\Path.!TARGET!.!dtStamp!.cronux.backup
+	call:display backing up Path at !BACKUP_FULL_PATH!
+	powershell -Command "& { [environment]::GetEnvironmentVariable(\"Path\",\"!TARGET!\") | Out-File !BACKUP_FULL_PATH! }"
+)
+if not exist "!BACKUP_FULL_PATH!" (
+	call:display_error backup failed
+	goto:eof
+)
 
-echo !FOLDER_FULL_PATH!
-echo !TARGET!
+call:display adding !FOLDER_FULL_PATH! to path
+if "!TARGET!"=="Process" (
+	powershell -Command "& { $path = [environment]::GetEnvironmentVariable(\"Path\",\"!TARGET!\") + \";!FOLDER_FULL_PATH!\"; $env:Path = \"$path\" }"
+)
+if "!TARGET!"=="User" (
+	powershell -Command "& { $path = [environment]::GetEnvironmentVariable(\"Path\",\"!TARGET!\") + ';!FOLDER_FULL_PATH!'; [Environment]::SetEnvironmentVariable(\"Path\", \"$path\", \"!TARGET!\") }"
+)
+if "!TARGET!"=="Machine" (
+	powershell -Command "Start-Process cmd \"/k "!SCRIPT_DIR!\addpath.bat" !FOLDER_FULL_PATH! admiwn_awqwch__ine__esds_1212hghgg ^&^& exit \" -Verb RunAs"
+)
+if "!TARGET!"=="admiwn_awqwch__ine__esds_1212hghgg" (
+	powershell -Command "& { $path = [environment]::GetEnvironmentVariable(\"Path\",\"Machine\") + ';!FOLDER_FULL_PATH!'; [Environment]::SetEnvironmentVariable(\"Path\", \"$path\", \"Machine\") }"
+)
+call:display the environement Path  has been updated for target '!TARGET!'
 
 exit /b 0
 

@@ -191,6 +191,11 @@ REM START_OFFSET_FOR_MERGE
 	if "%%x"=="backup" (
 		if !OPERATION!=="none" ( SET OPERATION="cbackup" )
 	)
+	
+	REM add a folder to Path environment
+	if "%%x"=="addpath" (
+		if !OPERATION!=="none" ( SET OPERATION="addpath" )
+	)
 )
 
 
@@ -287,6 +292,9 @@ if %OPERATION%=="compilescript" (
 )
 if %OPERATION%=="cbackup" (
 	call:call_command_script cbackup %OP_ARGS%
+)
+if %OPERATION%=="addpath" (
+	call:call_command_script addpath %OP_ARGS%
 )
 
 call:showad
