@@ -15,19 +15,19 @@ REM Place the operation script in the block below
 REM START_OFFSET_FOR_MERGE
 
 REM P
-REM Backup a file before deleting it. The file is backed up in the 
-REM declared backup folder !USER_FOLDER!\AppData\Roaming\Cronux\backup\ 
-REM in the following format `!BACKUP_FOLDER!\!filename!!fileextension!.!time_stamp!`
-REM for time script see https://stackoverflow.com/a/1445724/6626422
-REM for full path split see https://stackoverflow.com/a/15568164/6626422
+REM Backup a file in the specified folder
 REM 
 REM ::
-REM 	Usage: backdel /path/to/file
+REM 	Usage: download /save/file/path.full https://thefileurl.com
 REM 
-REM
+REM Ensure that you use the forward slash in your file path for both 
+REM the file to backup and folder to back it up into
+REM 
 REM **Parameters**:	
 REM 	param1 : string
-REM 		the file to delete note that it accept file path only 
+REM 		the the absolute or relative path  to file to backup
+REM 	param2 : string
+REM 		the absolute or relative path to the folder to save backup
 
 SET FULL_FILE_NAME=%1
 SET REAL_BACKUP_FOLDER=%2
@@ -60,7 +60,6 @@ FOR %%i IN ("!FULL_FILE_NAME!") DO (
 )
 call:display backing up !filename!!fileextension! into !REAL_BACKUP_FOLDER!
 copy !FULL_FILE_NAME! !REAL_BACKUP_FOLDER!\!filename!!fileextension!.!dtStamp!.cronux.backup
-del !FULL_FILE_NAME! /s /f /q
 
 exit /b 0
 
@@ -68,20 +67,20 @@ REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
 
 :display 
-	echo [0;32mCronux.backdel:[0m %* 
+	echo [0;32mCronux.cronuxbackup:[0m %* 
 	exit /b 0
 	
 :display_error
-	echo [0;31mCronux.backdel:[0m %* 
+	echo [0;31mCronux.cronuxbackup:[0m %* 
 	exit /b 0
 	
 REM S
 REM 	:copyright: 2019, Azeez Adewale
 REM 	:copyright: GNU LESSER GENERAL PUBLIC LICENSE v3 (c) 2019 Cronux
 REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
-REM 	:date: 25 August 2019
-REM 	:time: 02:24 PM
-REM 	:filename: backdel.bat
+REM 	:date: 27 August 2019
+REM 	:time: 06:13 PM
+REM 	:filename: cronuxbackup.bat
 REM 
 REM 
 REM		.. _ALink: ./ALink.html

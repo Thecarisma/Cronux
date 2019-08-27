@@ -101,7 +101,7 @@ command `noad` to your command argument at any point
 ```bash
 clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, removecommand, 
 noadmin-install, install, rmlong, help, echocolor, colorlist, getenv, setenv, delenv, delenv, 
-cat, printfile, ssay, say, testlabel, compilescript
+cat, printfile, ssay, say, testlabel, compilescript, cbackup, backup, chelp, 
 ```
 
 ### Drawbacks And Safety
@@ -120,7 +120,7 @@ BACKUP_FOLDER=%HOMEDRIVE%%HOMEPATH%\AppData\Roaming\Cronux\backup\
 BACKUP_ENVIRONMENT_FOLDER=%HOMEDRIVE%%HOMEPATH%\AppData\Roaming\Cronux\environment\
 ```
 ROAMING_FOLDER: The Cronux roaming folder for backup, configuration and other datas.
-BACKUP_FOLDER: This is the main folder where a file is backed up in the following format before deletion `!BACKUP_FOLDER!\!filename!!fileextension!.!time_stamp!`.
+BACKUP_FOLDER: This is the main folder where a file is backed up in the following format before deletion `!BACKUP_FOLDER!\!filename!!fileextension!.!time_stamp!`.cronux.backup
 BACKUP_ENVIRONMENT_FOLDER: The environment variables is backed up in this folder before manipulating it.
 
 ### Contributing

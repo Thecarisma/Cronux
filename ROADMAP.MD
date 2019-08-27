@@ -1,12 +1,12 @@
 
  - [ ] integrate with Travis CI
  - [ ] fix xdm corrupted download.txt 
- - [ ] install flag to extract a command field into a seperate bat file and add folder to path
+ - [x] install flag to extract a command field into a seperate bat file and add folder to path
  - [x] add the `ls,dir` commands
  - [x] add the cls,clear commands
  - [x] command to request elevation before running command, program <requestelevation> `sudo`
  - [ ] relay command to the actual program if installed
- - [ ] command `add-to-path` to add a folder to path
+ - [ ] command `addpath` to add a folder to path
  - [ ] add `ifconfig` command
  - [x] add command to remove very long path name `rmlong`
  - [ ] make `rmlong` remove folder recursively by allowing multiple folder in params
@@ -20,3 +20,6 @@
  - [ ] get application attributes from pid
  - [x] make help extract comment from each command
  - [x] add text to speech command
+ - [ ] command to remove or set lan proxy
+ - [ ] command to connect and disconnect to wifi 
+ - [ ] create command to remove a folder from Path 

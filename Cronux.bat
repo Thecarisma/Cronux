@@ -22,6 +22,7 @@ SET BACKUP_FOLDER=!ROAMING_FOLDER!backup\
 
 SET AD="Heal the world, make it a better place"
 
+cd !SCRIPT_DIR!
 
 for %%x in (%*) do (
 
@@ -95,6 +96,7 @@ for %%x in (%*) do (
 		if !OPERATION!=="none" ( SET OPERATION="removecommand" )
 	)
 	
+REM END_OFFSET_FOR_MERGE
 	REM install the scripts
 	if "%%x"=="noadmininstall" (
 		if not !OPERATION!=="elevate" (
@@ -102,9 +104,9 @@ for %%x in (%*) do (
 		)
 	)
 	if "%%x"=="install" (
-		call:call_command_script elevate %cd%\Cronux.bat noadmininstall
-		exit /b 0
+		if !OPERATION!=="none" ( SET OPERATION="install" )
 	)
+REM START_OFFSET_FOR_MERGE
 	
 	REM remove long directory
 	if "%%x"=="rmlong" (
@@ -117,7 +119,7 @@ for %%x in (%*) do (
 	if "%%x"=="help" (
 		if !OPERATION!=="none" ( SET OPERATION="help" )
 	)
-	if "%%x"=="cronuxhelp" (
+	if "%%x"=="chelp" (
 		if !OPERATION!=="none" ( SET OPERATION="help" )
 	)
 	
@@ -170,16 +172,24 @@ for %%x in (%*) do (
 		if !OPERATION!=="none" ( SET OPERATION="say" )
 	)
 	
-	REM START_OFFSET_FOR_MERGE
+REM END_OFFSET_FOR_MERGE
 	REM test label script fallback
 	if "%%x"=="testlabel" (
 		if !OPERATION!=="none" ( SET OPERATION="testlabel" )
 	)
-	REM END_OFFSET_FOR_MERGE
+REM START_OFFSET_FOR_MERGE
 	
 	REM compile command scripts into one
 	if "%%x"=="compilescript" (
 		if !OPERATION!=="none" ( SET OPERATION="compilescript" )
+	)
+	
+	REM backup a file into cronux backup folder
+	if "%%x"=="cbackup" (
+		if !OPERATION!=="none" ( SET OPERATION="cbackup" )
+	)
+	if "%%x"=="backup" (
+		if !OPERATION!=="none" ( SET OPERATION="cbackup" )
 	)
 )
 
@@ -214,12 +224,17 @@ if %OPERATION%=="none" (
 		call:help !OP_ARGS!
 	)
 )
+if %OPERATION%=="install" (
+	call:call_command_script elevate %cd%\Cronux.bat noadmininstall !OP_ARGS!
+)
 if %OPERATION%=="help" (
 	call:help !OP_ARGS!
 )
+REM END_OFFSET_FOR_MERGE
 if %OPERATION%=="noadmininstall" (
 	call:noadmin_install !OP_ARGS!
 )
+REM START_OFFSET_FOR_MERGE
 if %OPERATION%=="removecommand" (
 	call:remove !OP_ARGS!
 )
@@ -270,6 +285,9 @@ REM START_OFFSET_FOR_MERGE
 if %OPERATION%=="compilescript" (
 	call:call_command_script compilescript %OP_ARGS%
 )
+if %OPERATION%=="cbackup" (
+	call:call_command_script cbackup %OP_ARGS%
+)
 
 call:showad
 
@@ -314,6 +332,7 @@ REM
 	)
 	exit /b 0
 	
+REM END_OFFSET_FOR_MERGE
 REM install all the individual command in the Program files 
 REM the command are installed individually in the path 
 REM **C:\Program Files\Cronux\** Each command get a batch file 
@@ -336,20 +355,41 @@ REM
 :noadmin_install
 	SET FINAL_INSTALLATION_FOLDER=
 	SET COMMAND_SCRIPTS=
+	for %%a in (!OP_ARGS!) do (
+		if "%%a"=="prod" (
+			SET IS_TEST=false
+		)
+		if "%%a"=="production" (
+			SET IS_TEST=false
+		)
+		if "%%a"=="PROD" (
+			SET IS_TEST=false
+		)
+		if "%%a"=="PRODUCTION" (
+			SET IS_TEST=false
+		)
+		
+		if "%%a"=="test" (
+			SET IS_TEST=true
+		)
+		if "%%a"=="TEST" (
+			SET IS_TEST=true
+		)
+	)
 	call:display  Preparing to install all Cronux command
 	if %IS_TEST%==true (
 		SET FINAL_INSTALLATION_FOLDER=!TEST_FOLDER!\installation\
 	) else (
 		SET FINAL_INSTALLATION_FOLDER=!INSTALLATION_FOLDER!
 	)
-	mkdir !FINAL_INSTALLATION_FOLDER!
+	mkdir "!FINAL_INSTALLATION_FOLDER!"
 	SET WORKING_DIR=%cd%
 	
 	if exist "!COMMANDS_FOLDER!" (
 		REM copy !COMMANDS_FOLDER! "!FINAL_INSTALLATION_FOLDER!"
 		cd !COMMANDS_FOLDER!
 		for %%a in (*) do ( 
-			call:display copying the command script '%%a'
+			call:display copying the command script '%%a' into !FINAL_INSTALLATION_FOLDER!
 			copy %%a "!FINAL_INSTALLATION_FOLDER!" > nul
 			FOR %%i IN ("%%a") DO (
 				SET filedrive=%%~di
@@ -366,10 +406,11 @@ REM
 		cd !WORKING_DIR!
 		REM call:display !COMMAND_SCRIPTS!
 	)
-	call:call_command_script compilescript !FINAL_INSTALLATION_FOLDER!\Cronux.bat !COMMAND_SCRIPTS!
+	call:call_command_script compilescript "!FINAL_INSTALLATION_FOLDER!\Cronux.bat" !COMMAND_SCRIPTS!
 	timeout 3 > NUL
 	
 	exit /b 0
+REM START_OFFSET_FOR_MERGE
 	
 REM permanently remove a program, file or script. The file is 
 REM searched for in the order below. the first found is deleted 
@@ -468,7 +509,7 @@ REM
 	) 
 	
 	for %%x in (%*) do (
-		call:call_command_script cronuxhelp.bat %%x
+		call:call_command_script chelp %%x
 	)
 	
 	exit /b 0
@@ -485,10 +526,12 @@ REM `Cronux`.
 	echo [COMMAND_PARAMS]: the parameters or arguments to send to the command
 	echo.
 	echo The COMMANDS include:
-	echo  HELP                              print this help message and exit
+	echo  HELP,CHELP                        print this help message and if command is appended show the command help 
 	echo  ECHOCOLOR                         print in the command prompt with custom background and foreground color
+REM END_OFFSET_FOR_MERGE
 	echo  INSTALL                           install all the available command in the Script (admin)
 	echo  NOADMIN-INSTALL                   install all the available command in the Script
+REM START_OFFSET_FOR_MERGE
 	echo  DIR,LS                            list all the files and folder in a directory
 	echo  CLEAR,CLS                         clear the command prompt 
 	echo  DOWNLOAD,WGET,IRS                 download file from the internet into a folder widget style
@@ -501,6 +544,11 @@ REM `Cronux`.
 	echo  DELENV                            delete an environment variable from either Machine, User or Process environment
 	echo  SSAY                              use the speech syntensizer to speak provided text with custom speed and voice
 	echo  SAY                               use the speech syntensizer to speak provided text
+REM END_OFFSET_FOR_MERGE
+	echo  TESTLABEL                         check if command and it argument is properlly parsed
+REM START_OFFSET_FOR_MERGE
+	echo  COMPILESCRIPT                     extract the sloc from each batch script in the command/ folder into the output file
+	echo  BACKUP,CBACKUP                    backup a file with time stamp
 	echo.
 	exit /b 0
 
