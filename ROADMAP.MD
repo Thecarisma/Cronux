@@ -22,4 +22,7 @@
  - [x] add text to speech command
  - [ ] command to remove or set lan proxy
  - [ ] command to connect and disconnect to wifi 
- - [ ] create command to remove a folder from Path 
+ - [ ] create command to remove a folder from Path
+ - [ ] command to archive and extract zipped file
+ - [ ] start a server with custom port and ip from a folder
+ - [ ] allow pluginable such that command drop in the same folder as Cronux.bat is treated natively

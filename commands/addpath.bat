@@ -43,7 +43,9 @@ REM Endure you view the Path backup file in a text editor or using the cat comma
 REM you revert it
 REM 
 REM **Parameters**:	
-REM 	param1 : string (optional)
+REM 	param1 : string 
+REM 		the full absolute path to the directory to add to path
+REM 	param2 : string (optional)
 REM 		the target name of the environment, usually User, Machine or Process
 
 
@@ -115,7 +117,11 @@ if "!TARGET!"=="User" (
 	powershell -Command "& { $path = [environment]::GetEnvironmentVariable(\"Path\",\"!TARGET!\") + ';!FOLDER_FULL_PATH!'; [Environment]::SetEnvironmentVariable(\"Path\", \"$path\", \"!TARGET!\") }"
 )
 if "!TARGET!"=="Machine" (
-	powershell -Command "Start-Process cmd \"/k "!SCRIPT_DIR!\addpath.bat" !FOLDER_FULL_PATH! admiwn_awqwch__ine__esds_1212hghgg ^&^& exit \" -Verb RunAs"
+	if exist "!SCRIPT_DIR!\addpath.bat" (
+		powershell -Command "Start-Process cmd \"/k "!SCRIPT_DIR!\addpath.bat" !FOLDER_FULL_PATH! admiwn_awqwch__ine__esds_1212hghgg ^&^& exit \" -Verb RunAs"
+	) else (
+		powershell -Command "Start-Process cmd \"/k "!SCRIPT_DIR!\Cronux.bat" addpath !FOLDER_FULL_PATH! admiwn_awqwch__ine__esds_1212hghgg ^&^& exit \" -Verb RunAs"
+	)
 )
 if "!TARGET!"=="admiwn_awqwch__ine__esds_1212hghgg" (
 	powershell -Command "& { $path = [environment]::GetEnvironmentVariable(\"Path\",\"Machine\") + ';!FOLDER_FULL_PATH!'; [Environment]::SetEnvironmentVariable(\"Path\", \"$path\", \"Machine\") }"

@@ -149,6 +149,11 @@ REM START_OFFSET_FOR_MERGE
 		if !OPERATION!=="none" ( SET OPERATION="setenv" )
 	)
 	
+	REM set an environment variable with value from file 
+	if "%%x"=="setenvf" (
+		if !OPERATION!=="none" ( SET OPERATION="setenvf" )
+	)
+	
 	REM delete an environment variable 
 	if "%%x"=="delenv" (
 		if !OPERATION!=="none" ( SET OPERATION="delenv" )
@@ -195,6 +200,11 @@ REM START_OFFSET_FOR_MERGE
 	REM add a folder to Path environment
 	if "%%x"=="addpath" (
 		if !OPERATION!=="none" ( SET OPERATION="addpath" )
+	)
+	
+	REM remove folder from the Path environment
+	if "%%x"=="delpath" (
+		if !OPERATION!=="none" ( SET OPERATION="delpath" )
 	)
 )
 
@@ -295,6 +305,12 @@ if %OPERATION%=="cbackup" (
 )
 if %OPERATION%=="addpath" (
 	call:call_command_script addpath %OP_ARGS%
+)
+if %OPERATION%=="setenvf" (
+	call:call_command_script setenvf %OP_ARGS%
+)
+if %OPERATION%=="delpath" (
+	call:call_command_script delpath %OP_ARGS%
 )
 
 call:showad

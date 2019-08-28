@@ -15,8 +15,8 @@ REM Place the operation script in the block below
 REM START_OFFSET_FOR_MERGE
 
 REM P
-REM Set an environment variable for the system. The first parameter is 
-REM is the target name of the environment which are 
+REM Set an environment variable for the system from a file content. 
+REM The first parameter is the target name of the environment which are 
 REM 
 REM 	* User
 REM		* Machine
@@ -24,10 +24,10 @@ REM		* Process
 REM 
 REM If the first parameter is not one of the three above it is an error. 
 REM The second parameter is the Name of the environement variable and the 
-REM remaining argument is the value of the environement variable
+REM last argument is the file to use as value for the environement variable
 REM 
 REM ::
-REM 	Usage: setenv tartgetname varname [all the other argument is the value...]
+REM 	Usage: setenv tartgetname varname /the/file/to/use/as/value.text
 REM 
 REM If the target name is the Machine administrative access is requested to 
 REM allow the script make changes to the system environement variables.
@@ -38,12 +38,12 @@ REM 	param1 : string
 REM 		the target name of the environment, usually User, Machine or Process
 REM 	param2 : string
 REM 		the name of the environment variable
-REM 	params... : string
-REM 		the value of the environment variable to set
+REM 	params : string
+REM 		the file to use as value for the environement variable to set
 
 SET TARGET=
 SET NAME=
-SET VALUE=
+SET FILE_PATH=
 for %%a in (%*) do (
 	if "!TARGET!"=="" (
 		SET TARGET=%%a
@@ -51,10 +51,11 @@ for %%a in (%*) do (
 		if "!NAME!"=="" (
 			SET NAME=%%a
 		) else (
-			if "!VALUE!"=="" (
-				SET VALUE=%%a
+			if "!FILE_PATH!"=="" (
+				SET FILE_PATH=%%a
 			) else (
-				SET VALUE=!VALUE! %%a
+				call:display_error this command expect thres parameters only
+				goto:eof
 			)
 		)
 	)
@@ -67,8 +68,8 @@ if "!NAME!"=="" (
 	call:display_error The name of the environment to set or create cannot be empty
 	goto:eof
 )
-if "!VALUE!"=="" (
-	call:display_error The value of the environment to set or create cannot be empty
+if not exist "!FILE_PATH!" (
+	call:display_error The file '!FILE_PATH!' to fetch value from does not exist
 	goto:eof
 )
 if not "!TARGET!"=="user" (
@@ -95,20 +96,20 @@ if not "!TARGET!"=="user" (
 ) else ( SET TARGET=User)
 
 if "!TARGET!"=="Process" (
-	powershell -Command "& { $env:!NAME! = \"!VALUE!\" }"
+	powershell -Command "& { $env:!NAME! = (Get-Content !FILE_PATH!).Trim(); }"
 )
 if "!TARGET!"=="User" (
-	powershell -Command "& { [Environment]::SetEnvironmentVariable(\"!NAME!\", \"!VALUE!\", \"!TARGET!\") }"
+	powershell -Command "& { [Environment]::SetEnvironmentVariable(\"!NAME!\", (Get-Content !FILE_PATH!).Trim(), \"!TARGET!\") }"
 )
 if "!TARGET!"=="Machine" (
-	if exist "!SCRIPT_DIR!\setenv.bat" (
-		powershell -Command "Start-Process cmd \"/k "!SCRIPT_DIR!\setenv.bat" admin__maqwqwch__ine___1212hghgg !NAME! !VALUE! ^&^& exit \" -Verb RunAs"
+	if exist "!SCRIPT_DIR!\setenvf.bat" (
+		powershell -Command "Start-Process cmd \"/k "!SCRIPT_DIR!\setenvf.bat" admin__maqwqwch__ine___1212hghgg !NAME! !SCRIPT_DIR!\!FILE_PATH! ^&^& exit \" -Verb RunAs"
 	) else (
-		powershell -Command "Start-Process cmd \"/k "!SCRIPT_DIR!\Cronux.bat" setenv admin__maqwqwch__ine___1212hghgg !NAME! !VALUE! ^&^& exit \" -Verb RunAs"
+		powershell -Command "Start-Process cmd \"/k "!SCRIPT_DIR!\Cronux.bat" setenvf admin__maqwqwch__ine___1212hghgg !NAME! !SCRIPT_DIR!\!FILE_PATH! ^&^& exit \" -Verb RunAs"
 	)
 )
 if "!TARGET!"=="admin__maqwqwch__ine___1212hghgg" (
-	powershell -Command "& { [Environment]::SetEnvironmentVariable(\"!NAME!\", \"!VALUE!\", \"Machine\") }"
+	powershell -Command "& { [Environment]::SetEnvironmentVariable(\"!NAME!\", (Get-Content !FILE_PATH!).Trim(), \"Machine\") }"
 )
 call:display the environement variable !NAME! has been created and updated
 
