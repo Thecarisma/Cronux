@@ -11,20 +11,25 @@ SET INSTALLATION_FOLDER=C:\Program Files\Cronux\
 SET ROAMING_FOLDER=!USER_FOLDER!\AppData\Roaming\Cronux\
 SET BACKUP_FOLDER=!ROAMING_FOLDER!backup\
 
-REM Place the operation script in the block below
-REM START_OFFSET_FOR_MERGE
-
 REM P
+REM Create a zip archive using the .NET Compression library
+REM Add the content of a folder or a single file to the archive. 
+REM if the zipfile does not exists it is created first if it 
+REM already exist the file or folder will be added to the existing 
+REM archive
 REM 
 REM ::
-REM 	Usage: download /save/file/path.full https://thefileurl.com
+REM 	Usage: zip [zipname.zip] [folder/files...]
+REM 
+REM Note that all the file are added in the root folder of the 
+REM zip file
 REM 
 REM 
 REM **Parameters**:	
 REM 	param1 : string
-REM 		the path to save the downloaded file to
-REM 	param2 : string
-REM 		the full url of the file to download
+REM 		the name of the zip file to create, it must end with **.zip**
+REM 	params... : string
+REM 		all the remaining parameter must be existing file and folders
 
 SET ZIP_FILE_NAME=
 SET ZIP_EXIST=false
