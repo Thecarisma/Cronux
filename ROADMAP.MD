@@ -33,3 +33,4 @@
  - [ ] brute force connect to wifi using dictionary
  - [ ] make a folder accessible over ftp on the same network
  - [ ] registry commands
+ - [ ] test runner to check offsets, display warning exit code e.t.c

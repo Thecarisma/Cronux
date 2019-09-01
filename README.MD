@@ -98,6 +98,20 @@ command `noad` to your command argument at any point
 
 ### Available Commands
 
+To view the detail help message for each commands 
+
+```bash
+Cronux help [command]
+```
+
+or if Cronux is installed
+
+```bash
+chelp [command]
+```
+
+All the command are listed below with it alias(es)
+
 ```bash
 clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, removecommand, 
 noadmin-install, install, rmlong, help, echocolor, colorlist, getenv, setenv, delenv, delenv, 
