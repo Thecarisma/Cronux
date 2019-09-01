@@ -29,3 +29,7 @@
  - [ ] command to create a shortcut on windows
  - [ ] command to add app shortcut to start menu, startup folder
  - [ ] create Bakefile to build to executable
+ - [ ] command to calculate md5, sha1 value of string and file
+ - [ ] brute force connect to wifi using dictionary
+ - [ ] make a folder accessible over ftp on the same network
+ - [ ] registry commands

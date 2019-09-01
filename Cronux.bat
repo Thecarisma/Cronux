@@ -206,6 +206,30 @@ REM START_OFFSET_FOR_MERGE
 	if "%%x"=="delpath" (
 		if !OPERATION!=="none" ( SET OPERATION="delpath" )
 	)
+	
+	REM archive files and folder into a single zip file
+	if "%%x"=="zip" (
+		if !OPERATION!=="none" ( SET OPERATION="zip" )
+	)
+	if "%%x"=="archive" (
+		if !OPERATION!=="none" ( SET OPERATION="zip" )
+	)
+	
+	REM extract files and folder from zip file into a folder
+	if "%%x"=="unzip" (
+		if !OPERATION!=="none" ( SET OPERATION="unzip" )
+	)
+	if "%%x"=="extract" (
+		if !OPERATION!=="none" ( SET OPERATION="unzip" )
+	)
+	
+	REM list all content in a zip file
+	if "%%x"=="listzip" (
+		if !OPERATION!=="none" ( SET OPERATION="listzip" )
+	)
+	if "%%x"=="showzip" (
+		if !OPERATION!=="none" ( SET OPERATION="listzip" )
+	)
 )
 
 
@@ -311,6 +335,15 @@ if %OPERATION%=="setenvf" (
 )
 if %OPERATION%=="delpath" (
 	call:call_command_script delpath %OP_ARGS%
+)
+if %OPERATION%=="zip" (
+	call:call_command_script zip %OP_ARGS%
+)
+if %OPERATION%=="unzip" (
+	call:call_command_script unzip %OP_ARGS%
+)
+if %OPERATION%=="listzip" (
+	call:call_command_script listzip %OP_ARGS%
 )
 
 call:showad
@@ -431,9 +464,9 @@ REM
 		REM call:display !COMMAND_SCRIPTS!
 	)
 	call:call_command_script compilescript "!FINAL_INSTALLATION_FOLDER!\Cronux.bat" !COMMAND_SCRIPTS!
-	call:call_command_script delpath Machine Cronux bat
+	call:call_command_script delpath Machine Cronux
 	call:call_command_script addpath !FINAL_INSTALLATION_FOLDER! Machine
-	timeout 3 > NUL
+	timeout 10 > NUL
 	
 	exit /b 0
 REM START_OFFSET_FOR_MERGE
@@ -514,10 +547,16 @@ REM Display message and title in the console
 
 	exit /b 0
 	
-REM Display message and title in the console
+REM Display error message and title in the console
 :display_error
 	echo [0;31mCronux:[0m %* 
 
+	exit /b 0
+	
+REM Display warning message and title in the console
+:display_warning 
+	echo [0;33mCronux.zip:[0m %* 
+	
 	exit /b 0
 	
 
@@ -567,6 +606,7 @@ REM START_OFFSET_FOR_MERGE
 	echo  BACKDEL                           backup a file before deleting it
 	echo  GETENV                            get an environment variable from either Machine, User or Process
 	echo  SETENV                            set an environment variable for either Machine, User or Process
+	echo  SETENVF                           set an environment variable for either Machine, User or Processn with value from a file
 	echo  DELENV                            delete an environment variable from either Machine, User or Process environment
 	echo  SSAY                              use the speech syntensizer to speak provided text with custom speed and voice
 	echo  SAY                               use the speech syntensizer to speak provided text
@@ -575,6 +615,9 @@ REM END_OFFSET_FOR_MERGE
 REM START_OFFSET_FOR_MERGE
 	echo  COMPILESCRIPT                     extract the sloc from each batch script in the command/ folder into the output file
 	echo  BACKUP,CBACKUP                    backup a file with time stamp
+	echo  ZIP,ARCHIVE                       archive multiple files and folder into a single zip file
+	echo  UNZIP,EXTRACT                     extract files and folder from zip file into a folder
+	echo  LISTZIP,SHOWZIP                   list all content in a zip file
 	echo.
 	exit /b 0
 
