@@ -56,9 +56,9 @@ for %%x in (%*) do (
 	)
 	
 	REM list files
-	if "%%x"=="ls" (
-		if !OPERATION!=="none" ( SET OPERATION="listdir" )
-	)
+	REM if "%%x"=="ls" (
+		REM if !OPERATION!=="none" ( SET OPERATION="listdir" )
+	REM )
 	if "%%x"=="dir" (
 		if !OPERATION!=="none" ( SET OPERATION="listdir" )
 	)
@@ -431,6 +431,8 @@ REM
 		REM call:display !COMMAND_SCRIPTS!
 	)
 	call:call_command_script compilescript "!FINAL_INSTALLATION_FOLDER!\Cronux.bat" !COMMAND_SCRIPTS!
+	call:call_command_script delpath Machine Cronux bat
+	call:call_command_script addpath !FINAL_INSTALLATION_FOLDER! Machine
 	timeout 3 > NUL
 	
 	exit /b 0

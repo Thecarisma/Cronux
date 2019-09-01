@@ -52,10 +52,10 @@ for %%a in (%*) do (
 			goto:eof
 		)
 		if "!FOLDER_FOR_EXPRESSION!"=="" (
-			SET FOLDER_FOR_EXPRESSION=$path.Contains^(\"%%a\"^)
+			SET FOLDER_FOR_EXPRESSION=$path.Contains^('%%a'^)
 			SET REM_ARGS=%%a
 		) else (
-			SET FOLDER_FOR_EXPRESSION=!FOLDER_FOR_EXPRESSION! -and $path.Contains^(\"%%a\"^)
+			SET FOLDER_FOR_EXPRESSION=!FOLDER_FOR_EXPRESSION! -and $path.Contains^('%%a'^)
 			SET REM_ARGS=!REM_ARGS! %%a
 		)
 	)

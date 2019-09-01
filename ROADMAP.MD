@@ -26,3 +26,6 @@
  - [ ] command to archive and extract zipped file
  - [ ] start a server with custom port and ip from a folder
  - [ ] allow pluginable such that command drop in the same folder as Cronux.bat is treated natively
+ - [ ] command to create a shortcut on windows
+ - [ ] command to add app shortcut to start menu, startup folder
+ - [ ] create Bakefile to build to executable
