@@ -30,6 +30,10 @@ if exist "ssay.bat" (
 	ssay.bat Zira 0 %* 
 	goto:eof
 )
+if exist "!SCRIPT_DIR!\ssay.bat" (
+	!SCRIPT_DIR!\ssay.bat Zira 0 %* 
+	goto:eof
+)
 
 if exist "./commands/ssay.bat" (
 	!WORKING_DIR!\commands\ssay.bat Zira 0 %* 
@@ -40,7 +44,7 @@ REM
 REM Default to the label ssay in assumption the scripts has been combined 
 REM if the ssay.bat file cannot be found in search path
 REM 
-call:ssay Zira 0 %*
+call:call_command_script ssay Zira 0 %*
 
 exit /b 0
 

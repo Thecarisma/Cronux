@@ -54,13 +54,12 @@ REM E.g if the command is `Cronux clear`
 REM since clear.bat is located in ./command or in ./
 REM after installtion it is properly executed but for the 
 REM command `Cronux cls` **cls** is the alias for clear 
-REm therefor The operation should be changed from cls to clear
+REM therefor The operation should be changed from cls to clear
 REM Treat the aliases here 
 
-REM install
+REM install aliases
 if !OPERATION!==install (
-	call:call_command_script elevate !SCRIPT_DIR!\Cronux.bat noadmininstall !OP_ARGS!
-	goto:eof
+	SET OPERATION=cinstall
 )
 REM ls aliases
 if !OPERATION!==listdir (
@@ -197,3 +196,4 @@ REM Display warning message and title in the console
 	echo [0;33mCronux.zip:[0m %* 
 	
 	exit /b 0
+

@@ -25,7 +25,7 @@
  - [ ] create command to remove a folder from Path
  - [ ] command to archive and extract zipped file
  - [ ] start a server with custom port and ip from a folder
- - [ ] allow pluginable such that command drop in the same folder as Cronux.bat is treated natively
+ - [x] allow pluginable such that command drop in the same folder as Cronux.bat is treated natively
  - [ ] command to create a shortcut on windows
  - [ ] command to add app shortcut to start menu, startup folder
  - [ ] create Bakefile to build to executable
@@ -34,3 +34,4 @@
  - [ ] make a folder accessible over ftp on the same network
  - [ ] registry commands
  - [ ] test runner to check offsets, display warning exit code e.t.c
+ - [ ] create close and sleep command

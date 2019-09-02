@@ -114,8 +114,8 @@ All the command are listed below with it alias(es)
 
 ```bash
 clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, removecommand, 
-noadmininstall, install, rmlong, help, echocolor, colorlist, getenv, setenv, delenv, delenv, 
-cat, printfile, ssay, say, testlabel, compilescript, cbackup, backup, chelp, addpath, setenvf,
+cinstall, install, rmlong, help, echocolor, colorlist, getenv, setenv, delenv, delenv, close, 
+cat, printfile, ssay, say, testlabel, compilescript, cbackup, backup, chelp, addpath, setenvf, 
 delpath, zip, archive, unzip, extract, listzip, showzip, 
 
 ```
