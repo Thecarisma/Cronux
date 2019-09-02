@@ -40,31 +40,47 @@ REM
 SET FINAL_INSTALLATION_FOLDER=
 SET COMMAND_SCRIPTS=
 SET ADMIN_REQUESTED=false
+SET FILES_TO_INSTALL=
+SET IS_TEST=
 
 for %%a in (%*) do (
-	if "%%a"=="prod" (
-		SET IS_TEST=false
-	)
-	if "%%a"=="production" (
-		SET IS_TEST=false
-	)
-	if "%%a"=="PROD" (
-		SET IS_TEST=false
-	)
-	if "%%a"=="PRODUCTION" (
-		SET IS_TEST=false
-	)
-	
-	if "%%a"=="test" (
-		SET IS_TEST=true
-	)
-	if "%%a"=="TEST" (
-		SET IS_TEST=true
-	)
-	
-	if "%%a"=="hfgjsghfgf__SF_S_FS_FSfskhfjfdjksgajkg" (
-		SET IS_TEST=false
-		SET ADMIN_REQUESTED=true
+	if "!IS_TEST!"=="" (
+		if "%%a"=="prod" (
+			SET IS_TEST=false
+		)
+		if "%%a"=="production" (
+			SET IS_TEST=false
+		)
+		if "%%a"=="PROD" (
+			SET IS_TEST=false
+		)
+		if "%%a"=="PRODUCTION" (
+			SET IS_TEST=false
+		)
+		
+		if "%%a"=="test" (
+			SET IS_TEST=true
+		)
+		if "%%a"=="TEST" (
+			SET IS_TEST=true
+		)
+		
+		if "%%a"=="hfgjsghfgf__SF_S_FS_FSfskhfjfdjksgajkg" (
+			SET IS_TEST=false
+			SET ADMIN_REQUESTED=true
+		)
+	) else (	
+		FOR %%i IN ("%%a") DO (
+			SET filedrive=%%~di
+			SET filepath=%%~pi
+			SET filename=%%~ni
+			SET fileextension=%%~xi
+		)
+		if "!FILES_TO_INSTALL!"=="" (
+			SET FILES_TO_INSTALL=!filedrive!!filepath!!filename!!fileextension!
+		) else (
+			SET FILES_TO_INSTALL=!FILES_TO_INSTALL! !filedrive!!filepath!!filename!!fileextension!
+		)
 	)
 )
 call:display  Preparing to install all Cronux command
@@ -73,8 +89,8 @@ if %IS_TEST%==true (
 ) else (
 	SET FINAL_INSTALLATION_FOLDER=!INSTALLATION_FOLDER!
 	if !ADMIN_REQUESTED!==false (
-		call:display_warning requesting administration for Cronux installation
-		call:call_command_script_____cinstall elevate !SCRIPT_DIR!cinstall.bat hfgjsghfgf__SF_S_FS_FSfskhfjfdjksgajkg
+		call:display_warning requesting administration for Cronux installation 
+		call:call_command_script_____cinstall elevate !SCRIPT_DIR!cinstall.bat hfgjsghfgf__SF_S_FS_FSfskhfjfdjksgajkg !FILES_TO_INSTALL!
 		goto:eof
 	)
 	
@@ -84,9 +100,16 @@ mkdir "!FINAL_INSTALLATION_FOLDER!" 2> nul
 for %%i in ("!FINAL_INSTALLATION_FOLDER!") do (
 	SET FINAL_INSTALLATION_FOLDER=%%~si
 )
-
 if !ADMIN_REQUESTED!==true (
 	cd !SCRIPT_DIR!
+)
+
+if not "!FILES_TO_INSTALL!"=="" (
+	for %%a in (!FILES_TO_INSTALL!) do ( 
+		call:display copying the command script '%%a' into !FINAL_INSTALLATION_FOLDER!
+		copy %%a "!FINAL_INSTALLATION_FOLDER!" > nul
+	)
+	goto:eof
 )
 
 if not exist "!COMMANDS_FOLDER!\cinstall.bat" (
@@ -177,14 +200,14 @@ REM End of the actual operating script
 	exit /b 0
 	
 :display_warning 
-	echo [0;33mCronux.zip:[0m %* 
+	echo [0;33mCronux.cinstall:[0m %* 
 	exit /b 0
 	
 REM S
 REM 	:copyright: 2019, Azeez Adewale
 REM 	:copyright: GNU LESSER GENERAL PUBLIC LICENSE v3 (c) 2019 Cronux
 REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
-REM 	:date: 25 August 2019
+REM 	:date: 01 September 2019
 REM 	:time: 07:14 PM
 REM 	:filename: cinstall.bat
 REM 
