@@ -94,7 +94,7 @@ Cronux elevate cmd
 ```
 
 Note that custom advertisment, hint or quote is shown when command is run to silent the quote add the 
-command `noad` to your command argument at any point
+command `nb` to your command argument at any point
 
 ### Available Commands
 
@@ -114,7 +114,7 @@ All the command are listed below with it alias(es)
 
 ```bash
 clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, removecommand, 
-noadmin-install, install, rmlong, help, echocolor, colorlist, getenv, setenv, delenv, delenv, 
+noadmininstall, install, rmlong, help, echocolor, colorlist, getenv, setenv, delenv, delenv, 
 cat, printfile, ssay, say, testlabel, compilescript, cbackup, backup, chelp, addpath, setenvf,
 delpath, zip, archive, unzip, extract, listzip, showzip, 
 

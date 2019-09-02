@@ -25,27 +25,68 @@ REM **Parameters**:
 REM 	param1 : string
 REM 		the command to view it help file
 
-SET FILE_PATH=%1.bat
-
+if "%1"=="all" (
+	call:allhelp
+	exit /b 0
+)
 if "%1"=="" (
-	call:display_error The command cannot be empty, specify the command to view it help
-	goto:eof
-)
+	call:allhelp
+	exit /b 0
+) 
 
-if not exist "!FILE_PATH!" (
-	SET FILE_PATH=.\commands\%1.bat
+for %%x in (%*) do (
+	SET FILE_PATH=%%x.bat
 	if not exist "!FILE_PATH!" (
-		call:display_error The command batch script '%1' cannot be found 
-		goto:eof
+		SET FILE_PATH=.\commands\%%x.bat
+		if not exist "!FILE_PATH!" (
+			call:display_error The command batch script '%%x' cannot be found 
+			goto:eof
+		)
 	)
+	echo.
+	call:display %%x
+	echo.
+	powershell -Command "& { $is_within_main_script = $False; foreach($line in Get-Content !FILE_PATH!) { if($line -match $regex){ if ($line.StartsWith(\"REM START_OFFSET_FOR_MERGE\")) { $is_within_main_script = $True; continue; } if ($line.StartsWith(\"REM END_OFFSET_FOR_MERGE\")) { $is_within_main_script = $False; continue; } if ($is_within_main_script -eq $True) { if ($line.StartsWith(\"REM\") -and $line -ne \"REM P\" -and $line -ne \"REM Prefix\" -and $line -ne \"REM S\" -and $line -ne \"REM Sufix\") { $line.Replace(\"REM \", \"\").Replace(\"REM	\", \"\"); } } } } }"
 )
-
-call:display %1
-echo.
-
-powershell -Command "& { $is_within_main_script = $False; foreach($line in Get-Content !FILE_PATH!) { if($line -match $regex){ if ($line.StartsWith(\"REM START_OFFSET_FOR_MERGE\")) { $is_within_main_script = $True; continue; } if ($line.StartsWith(\"REM END_OFFSET_FOR_MERGE\")) { $is_within_main_script = $False; continue; } if ($is_within_main_script -eq $True) { if ($line.StartsWith(\"REM\") -and $line -ne \"REM P\" -and $line -ne \"REM Prefix\" -and $line -ne \"REM S\" -and $line -ne \"REM Sufix\") { $line.Replace(\"REM \", \"\").Replace(\"REM	\", \"\"); } } } } }"
 
 exit /b 0
+
+REM DO not run the blocks below directly 
+REM Write each command to independent batch 
+REM script that can be executed individually 
+REM from the command line without prepending
+REM `Cronux`. 
+:allhelp
+	echo Usage: Cronux [COMMAND] [COMMAND_PARAMS]
+	echo For more information on a specific command, type `Cronux HELP command-name`
+	echo [COMMAND]: the system or supplementary system command to execute
+	echo [COMMAND_PARAMS]: the parameters or arguments to send to the command
+	echo.
+	echo The COMMANDS include:
+	echo  HELP,CHELP                        print this help message and if command is appended show the command help 
+	echo  ECHOCOLOR                         print in the command prompt with custom background and foreground color
+	echo  INSTALL                           install all the available command in the Script (admin)
+	echo  NOADMIN-INSTALL                   install all the available command in the Script
+	echo  DIR,LS                            list all the files and folder in a directory
+	echo  CLEAR,CLS                         clear the command prompt 
+	echo  DOWNLOAD,WGET,IRS                 download file from the internet into a folder widget style
+	echo  ELEVATE 'PROGRAM' 'PARAMS...'     run a command line program as administrator
+	echo  REMOVE,UNINSTALL,REMOVECOMMAND    delete a file, script or command in the the search paths
+	echo  COLORLIST                         print all the console color that can be used with `echocolor` command
+	echo  BACKDEL                           backup a file before deleting it
+	echo  GETENV                            get an environment variable from either Machine, User or Process
+	echo  SETENV                            set an environment variable for either Machine, User or Process
+	echo  SETENVF                           set an environment variable for either Machine, User or Processn with value from a file
+	echo  DELENV                            delete an environment variable from either Machine, User or Process environment
+	echo  SSAY                              use the speech syntensizer to speak provided text with custom speed and voice
+	echo  SAY                               use the speech syntensizer to speak provided text
+	echo  COMPILESCRIPT                     extract the sloc from each batch script in the command/ folder into the output file
+	echo  BACKUP,CBACKUP                    backup a file with time stamp
+	echo  ZIP,ARCHIVE                       archive multiple files and folder into a single zip file
+	echo  UNZIP,EXTRACT                     extract files and folder from zip file into a folder
+	echo  LISTZIP,SHOWZIP                   list all content in a zip file
+	echo.
+	exit /b 0
 
 REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script

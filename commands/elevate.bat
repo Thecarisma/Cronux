@@ -11,6 +11,7 @@ SET INSTALLATION_FOLDER=C:\Program Files\Cronux\
 SET ROAMING_FOLDER=!USER_FOLDER!\AppData\Roaming\Cronux\
 SET BACKUP_FOLDER=!ROAMING_FOLDER!backup\
 
+REM TODO: Revisit for argument error
 REM Place the operation script in the block below
 REM START_OFFSET_FOR_MERGE
 
@@ -41,6 +42,7 @@ for %%a in (%*) do (
 	)
 )
 SET OP_ARGS=!OP_ARGS! \"
+
 powershell -Command "Start-Process !OP_ARGS! -Verb RunAs"
 
 exit /b 0
