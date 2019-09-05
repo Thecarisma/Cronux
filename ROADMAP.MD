@@ -35,3 +35,4 @@
  - [ ] registry commands
  - [ ] test runner to check offsets, display warning exit code e.t.c
  - [ ] create close and sleep command
+ - [ ] treate chelp to show help for single script build

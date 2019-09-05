@@ -10,7 +10,7 @@ various task. Windows even has more powerful command line functionality but requ
 provide powerful api through the visual basic script, powershell and the .NET sdk. 
 
 Cronux simplify the use of the windows command line functionality by combining the use of visual basic script, powershell and .NET sdk 
-to execute Linux like command such as curl, grep e.t.c 
+to execute Linux like command such as curl, grep e.t.c. It makes heavey use of meta-programming to achive some functionalities.
 
 This script is most useful if you enjoy the power of linux and unix terminal or you switch between other OS and Windows often.
 
@@ -116,7 +116,7 @@ All the command are listed below with it alias(es)
 clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, removecommand, 
 cinstall, install, rmlong, help, echocolor, colorlist, getenv, setenv, delenv, delenv, close, 
 cat, printfile, ssay, say, testlabel, compilescript, cbackup, backup, chelp, addpath, setenvf, 
-delpath, zip, archive, unzip, extract, listzip, showzip, 
+delpath, zip, archive, unzip, extract, listzip, showzip, qproc, qport, qid, 
 
 ```
 

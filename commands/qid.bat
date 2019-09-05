@@ -15,28 +15,36 @@ REM Place the operation script in the block below
 REM START_OFFSET_FOR_MERGE
 
 REM P
-REM Convert a text to speech and output it through the available 
-REM sound output device. 
+REM Get the process information that is tied to an Id on the windows system 
 REM 
 REM ::
-REM 	Usage: say [all the text to say...]
+REM 	Usage: qid [id] [property]
 REM 
+REM If a property is specifeid after the Id number only the property will be 
+REM outputed and the output can be piped to another program or script. e.g to 
+REM shutdown a process using a Id, the output of this script is sent as input 
+REM to the killpid script 
+REM 
+REM ::
+REM 	Usage: killpid | qid 4
 REM 
 REM **Parameters**:	
-REM 	param1... : string
-REM 		The entire parameters is converted to speech and spoken 
+REM 	param1 : number
+REM 		the id number to find it engaged process
+REM 	param2 : string (optional)
+REM 		the specific property to print out
 
-if exist "ssay.bat" (
-	ssay.bat Zira 0 %* 
+if exist "qproc.bat" (
+	qproc.bat id %* 
 	goto:eof
 )
-if exist "!SCRIPT_DIR!\ssay.bat" (
-	!SCRIPT_DIR!\ssay.bat Zira 0 %* 
+if exist "!SCRIPT_DIR!\qproc.bat" (
+	!SCRIPT_DIR!\qproc.bat id %* 
 	goto:eof
 )
 
-if exist ".\commands\ssay.bat" (
-	!WORKING_DIR!\commands\ssay.bat Zira 0 %* 
+if exist ".\commands\qproc.bat" (
+	!WORKING_DIR!\commands\qproc.bat id %* 
 	goto:eof
 )
 
@@ -44,7 +52,7 @@ REM
 REM Default to the label ssay in assumption the scripts has been combined 
 REM if the ssay.bat file cannot be found in search path
 REM 
-call:call_command_script ssay Zira 0 %*
+call:call_command_script qproc id %*
 
 exit /b 0
 
@@ -52,20 +60,20 @@ REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
 
 :display 
-	echo [0;32mCronux.say:[0m %* 
+	echo [0;32mCronux.qid:[0m %* 
 	exit /b 0
 	
 :display_error
-	echo [0;31mCronux.say:[0m %* 
+	echo [0;31mCronux.qid:[0m %* 
 	exit /b 0
 	
 REM S
 REM 	:copyright: 2019, Azeez Adewale
 REM 	:copyright: GNU LESSER GENERAL PUBLIC LICENSE v3 (c) 2019 Cronux
 REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
-REM 	:date: 26 August 2019
-REM 	:time: 06:02 AM
-REM 	:filename: say.bat
+REM 	:date: 04 September 2019
+REM 	:time: 04:25 PM
+REM 	:filename: qid.bat
 REM 
 REM 
 REM		.. _ALink: ./ALink.html
