@@ -33,7 +33,7 @@ REM shutdown a process using a port, the output of this script is sent as input
 REM to the killpid script 
 REM 
 REM ::
-REM 	Usage: killpid | qproc port 8080 Id 
+REM 	Usage: [pipe] killpid $(qproc port 8080 Id) 
 REM 
 REM The expected properties are 
 REM 
@@ -84,11 +84,13 @@ REM 	param1 : number
 REM 		the port number to find it engaged process
 REM 	param2 : string
 REM 		the property to identify the process with it should be any 
-REM         any of the properties
-REM 	param3 : 
+REM			any of the properties
+REM 	param3 : string
 REM 		the value of the property 
 REM 	param4 : string (optional)
 REM 		another specific property of the process to print out
+REM 
+REM TODO: properlly treat error from within powershell
 
 SET WHATTOIDENTIFYPROCESSWITH=%1
 SET VALUE=%2
@@ -104,7 +106,7 @@ if "!WHATTOIDENTIFYPROCESSWITH!"=="" (
 if not "!WHATTOIDENTIFYPROCESSWITH!"=="all" (
 	if not "!WHATTOIDENTIFYPROCESSWITH!"=="list" (
 		if "!VALUE!"=="" (
-			call:display_error you have to specify the value for the process identify
+			call:display_error you have to specify the value for the process identify '!WHATTOIDENTIFYPROCESSWITH!'
 			goto:eof
 		)
 	)

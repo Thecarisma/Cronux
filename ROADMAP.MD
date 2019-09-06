@@ -36,3 +36,4 @@
  - [ ] test runner to check offsets, display warning exit code e.t.c
  - [ ] create close and sleep command
  - [ ] treate chelp to show help for single script build
+ - [ ] command to pipe result from a command to another command as params `[pipep] command [from] evaluated1 [and] evaluated2`

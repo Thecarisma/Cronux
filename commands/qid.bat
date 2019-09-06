@@ -26,7 +26,7 @@ REM shutdown a process using a Id, the output of this script is sent as input
 REM to the killpid script 
 REM 
 REM ::
-REM 	Usage: killpid | qid 4
+REM 	Usage: [pipe] killpid $(qid 4 Id)
 REM 
 REM **Parameters**:	
 REM 	param1 : number

@@ -26,7 +26,7 @@ REM shutdown a process using a port, the output of this script is sent as input
 REM to the killpid script 
 REM 
 REM ::
-REM 	Usage: killpid | qport 8080 Id 
+REM 	Usage: [pipe] killpid $(qport 8080 Id)
 REM 
 REM **Parameters**:	
 REM 	param1 : number

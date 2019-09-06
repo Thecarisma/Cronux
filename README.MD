@@ -116,7 +116,7 @@ All the command are listed below with it alias(es)
 clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, removecommand, 
 cinstall, install, rmlong, help, echocolor, colorlist, getenv, setenv, delenv, delenv, close, 
 cat, printfile, ssay, say, testlabel, compilescript, cbackup, backup, chelp, addpath, setenvf, 
-delpath, zip, archive, unzip, extract, listzip, showzip, qproc, qport, qid, 
+delpath, zip, archive, unzip, extract, listzip, showzip, qproc, qport, qid, p, $, 
 
 ```
 
