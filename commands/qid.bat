@@ -28,6 +28,9 @@ REM
 REM ::
 REM 	Usage: [pipe] killpid $(qid 4 Id)
 REM 
+REM If no id is specifeid with the command all running processes is printed in
+REM the standard output
+REM 
 REM **Parameters**:	
 REM 	param1 : number
 REM 		the id number to find it engaged process

@@ -4,15 +4,18 @@
 
 ___
 
-This script bring the power of the Linux and Unix terminal to the Windows terminal and command line. Most Linux systems comes 
+This repo contains Super useful handy commands to perform simple and complex task on the Windows command line. Most Linux systems comes 
 pre-installed with useful utilities and programs which makes working with the terminal easy, fun and provides easy api to execute 
 various task. Windows even has more powerful command line functionality but requires journey to the abysses to use, windows 
 provide powerful api through the visual basic script, powershell and the .NET sdk. 
 
 Cronux simplify the use of the windows command line functionality by combining the use of visual basic script, powershell and .NET sdk 
-to execute Linux like command such as curl, grep e.t.c. It makes heavey use of meta-programming to achive some functionalities.
+to execute command to perform operations. It makes heavey use of meta-programming to achive some functionalities.
 
 This script is most useful if you enjoy the power of linux and unix terminal or you switch between other OS and Windows often.
+
+**If you think the scripts in this project are not useful you can move your ******ed ** ****s off this project page but before 
+you go kindly star the project :wink:**
 
 ___
 
@@ -140,6 +143,8 @@ BACKUP_FOLDER: This is the main folder where a file is backed up in the followin
 BACKUP_ENVIRONMENT_FOLDER: The environment variables is backed up in this folder before manipulating it.
 
 ### Contributing
+
+Before you begin contribution please read the contribution guide at [CONTRIBUTING GUIDE](./CONTRIBUTING.MD)
 
 If you have any issue or you just want more command to be added you can file a request [issue](https://github.com/Thecarisma/Cronux/issues/new) 
 anytime and if you just add a more interesting, fun and usefull command do not hesitate to send a 

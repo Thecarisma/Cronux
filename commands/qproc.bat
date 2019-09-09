@@ -106,8 +106,12 @@ if "!WHATTOIDENTIFYPROCESSWITH!"=="" (
 if not "!WHATTOIDENTIFYPROCESSWITH!"=="all" (
 	if not "!WHATTOIDENTIFYPROCESSWITH!"=="list" (
 		if "!VALUE!"=="" (
-			call:display_error you have to specify the value for the process identify '!WHATTOIDENTIFYPROCESSWITH!'
-			goto:eof
+			if "!WHATTOIDENTIFYPROCESSWITH!"=="id" (
+				SET WHATTOIDENTIFYPROCESSWITH=all
+			) else (
+				call:display_error you have to specify the value for the process identify '!WHATTOIDENTIFYPROCESSWITH!'
+				goto:eof
+			)
 		)
 	)
 )

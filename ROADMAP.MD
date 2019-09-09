@@ -6,7 +6,7 @@
  - [x] add the cls,clear commands
  - [x] command to request elevation before running command, program <requestelevation> `sudo`
  - [ ] relay command to the actual program if installed
- - [ ] command `addpath` to add a folder to path
+ - [x] command `addpath` to add a folder to path
  - [ ] add `ifconfig` command
  - [x] add command to remove very long path name `rmlong`
  - [ ] make `rmlong` remove folder recursively by allowing multiple folder in params
@@ -16,14 +16,14 @@
  - [x] function to print out list of color value
  - [ ] add function to show about, licence, authors e.t.c
  - [x] split commands to independent file for ease addition and PRs
- - [ ] list pids of running apps
+ - [*] list pids of running apps
  - [ ] get application attributes from pid
  - [x] make help extract comment from each command
  - [x] add text to speech command
  - [ ] command to remove or set lan proxy
  - [ ] command to connect and disconnect to wifi 
- - [ ] create command to remove a folder from Path
- - [ ] command to archive and extract zipped file
+ - [x] create command to remove a folder from Path
+ - [x] command to archive and extract zipped file
  - [ ] start a server with custom port and ip from a folder
  - [x] allow pluginable such that command drop in the same folder as Cronux.bat is treated natively
  - [ ] command to create a shortcut on windows
@@ -36,4 +36,7 @@
  - [ ] test runner to check offsets, display warning exit code e.t.c
  - [ ] create close and sleep command
  - [ ] treate chelp to show help for single script build
- - [ ] command to pipe result from a command to another command as params `[pipep] command [from] evaluated1 [and] evaluated2`
+ - [x] command to pipe result from a command to another command as params `[pipep] command [from] evaluated1 [and] evaluated2`
+ - [x] create the touch command to create files
+ - [ ] group command scripts into subfolders in ./commands/ directory 
+ - [ ] PC Setup folder for command script for setting up programming environment
