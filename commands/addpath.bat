@@ -66,10 +66,12 @@ if "!TARGET!"=="" (
 )
 if "!FOLDER_FULL_PATH!"=="" (
 	call:display_error The full path of the folder to add to environment Path cannot be empty
+	SET errorlevel=677
 	goto:eof
 )
 if not exist "!FOLDER_FULL_PATH!" (
 	call:display_error The specified folder '!FOLDER_FULL_PATH!' does not exist
+	SET errorlevel=677
 	goto:eof
 )
 if not "!TARGET!"=="user" (
@@ -83,6 +85,7 @@ if not "!TARGET!"=="user" (
 								if not "!TARGET!"=="PROCESS" (
 									if not "!TARGET!"=="admiwn_awqwch__ine__esds_1212hghgg" (
 										call:display_error The target is invalid, it has to be either User, Process or Machine
+										SET errorlevel=677
 										goto:eof
 									) else ( SET TARGET=admiwn_awqwch__ine__esds_1212hghgg)
 								) else ( SET TARGET=Process)
@@ -106,6 +109,7 @@ if "!TARGET!"=="admiwn_awqwch__ine__esds_1212hghgg" (
 )
 if not exist "!BACKUP_FULL_PATH!" (
 	call:display_error backup failed
+	SET errorlevel=677
 	goto:eof
 )
 

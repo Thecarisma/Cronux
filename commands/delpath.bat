@@ -49,6 +49,7 @@ for %%a in (%*) do (
 	) else (
 		if "%%a"=="C:\" (
 			call:display_error the argument '%%a' is invalid
+			SET errorlevel=677
 			goto:eof
 		)
 		if "!FOLDER_FOR_EXPRESSION!"=="" (
@@ -72,6 +73,7 @@ if not "!TARGET!"=="user" (
 								if not "!TARGET!"=="PROCESS" (
 									if not "!TARGET!"=="admin__maqwqadsafdswqeqe__ine___1212hghgg" (
 										call:display_error The target is invalid, it has to be either User, Process or Machine
+										SET errorlevel=677
 										goto:eof
 									) else ( SET TARGET=admin__maqwqadsafdswqeqe__ine___1212hghgg)
 								) else ( SET TARGET=Process)
@@ -100,6 +102,7 @@ if "!TARGET!"=="admin__maqwqadsafdswqeqe__ine___1212hghgg" (
 )
 if not exist "!BACKUP_FULL_PATH!" (
 	call:display_error cannot modify the !TARGET! Path because backup failed
+	SET errorlevel=677
 	goto:eof
 )
 

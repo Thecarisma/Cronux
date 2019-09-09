@@ -33,8 +33,8 @@
  - [ ] brute force connect to wifi using dictionary
  - [ ] make a folder accessible over ftp on the same network
  - [ ] registry commands
- - [ ] test runner to check offsets, display warning exit code e.t.c
- - [ ] create close and sleep command
+ - [x] test runner to check offsets, display warning exit code e.t.c
+ - [x] create close and sleep command
  - [ ] treate chelp to show help for single script build
  - [x] command to pipe result from a command to another command as params `[pipep] command [from] evaluated1 [and] evaluated2`
  - [x] create the touch command to create files

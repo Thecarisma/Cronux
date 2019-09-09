@@ -30,10 +30,12 @@ REM 		the full url of the file to download
 
 if "%1"=="" (
 	call:display_error the full path to save file to cannot be empty
+	SET errorlevel=677
 	goto:eof		
 )
 if "%2"=="" (
 	call:display_error the url to download from cannot be empty
+	SET errorlevel=677
 	goto:eof		
 )
 

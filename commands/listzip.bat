@@ -33,6 +33,7 @@ SET ZIP_FILE_NAME=%1
 
 if not exist "!ZIP_FILE_NAME!" (
 	call:display_error the zip archive '!ZIP_FILE_NAME!' does not exist 
+	SET errorlevel=677
 	goto:eof
 )
 

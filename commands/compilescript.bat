@@ -44,6 +44,7 @@ if not exist "!MAIN_CRONUX_PATH!" (
 	SET MAIN_CRONUX_PATH=..\Cronux.bat
 	if not exist "!MAIN_CRONUX_PATH!" (
 		call:display_error cannot find the main Cronux.bat file 
+		SET errorlevel=677
 		goto:eof
 	)
 )

@@ -34,6 +34,7 @@ SET REAL_BACKUP_FOLDER=%2
 
 if "!FULL_FILE_NAME!"=="" (
 	call:display_error file to backup cannot be empty
+	SET errorlevel=677
 	goto:eof		
 )
 if "!REAL_BACKUP_FOLDER!"=="" (
@@ -41,6 +42,7 @@ if "!REAL_BACKUP_FOLDER!"=="" (
 )
 if not exist "!FULL_FILE_NAME!" (
 	call:display_error backup failed cannot find '!FULL_FILE_NAME!'
+	SET errorlevel=677
 	goto:eof		
 )
 SET HOUR=%time:~0,2%

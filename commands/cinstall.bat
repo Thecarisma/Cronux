@@ -91,6 +91,7 @@ if %IS_TEST%==true (
 	if !ADMIN_REQUESTED!==false (
 		call:display_warning requesting administration for Cronux installation 
 		call:call_command_script_____cinstall elevate !SCRIPT_DIR!cinstall.bat hfgjsghfgf__SF_S_FS_FSfskhfjfdjksgajkg !FILES_TO_INSTALL!
+		SET errorlevel=677
 		goto:eof
 	)
 	
@@ -109,6 +110,7 @@ if not "!FILES_TO_INSTALL!"=="" (
 		call:display copying the command script '%%a' into !FINAL_INSTALLATION_FOLDER!
 		copy %%a "!FINAL_INSTALLATION_FOLDER!" > nul
 	)
+	SET errorlevel=677
 	goto:eof
 )
 
@@ -117,6 +119,7 @@ if not exist "!COMMANDS_FOLDER!\cinstall.bat" (
 	if not exist "!COMMANDS_FOLDER!\cinstall.bat" (
 		REM TODO: Accept the folder by parameter here
 		call:display_error cannot find the folder where the commands are 
+		SET errorlevel=677
 		goto:eof
 	)
 )
@@ -169,6 +172,7 @@ exit /b 0
 	)
 	if "!SCRIPT_PATH!"=="" (
 		call:display_error the script name or path cannot be empty
+		SET errorlevel=677
 		goto:eof
 	)
 	if not exist "!SCRIPT_PATH!" (
@@ -177,6 +181,8 @@ exit /b 0
 			REM call:display_error cannot find the script '%1'
 			call:%1 !ARGS__! 2> nul && SET LABEL_EXECUTED=true
 			if !LABEL_EXECUTED!==true (
+				SET errorlevel=677
+				SET errorlevel=677
 				goto:eof
 			) else (
 				call:display_warning Cronux cannot find the batch label specified - %1. Delegating to system

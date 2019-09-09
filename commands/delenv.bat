@@ -59,10 +59,12 @@ for %%a in (%*) do (
 )
 if "!TARGET!"=="" (
 	call:display_error The target name cannot be empty
+	SET errorlevel=677
 	goto:eof
 )
 if "!NAME!"=="" (
 	call:display_error The name of the environment to set or create cannot be empty
+	SET errorlevel=677
 	goto:eof
 )
 if not "!TARGET!"=="user" (
@@ -76,6 +78,7 @@ if not "!TARGET!"=="user" (
 								if not "!TARGET!"=="PROCESS" (
 									if not "!TARGET!"=="admin__maqwqwch__ine___1212hghgg" (
 										call:display_error The target is invalid, it has to be either User, Process or Machine
+										SET errorlevel=677
 										goto:eof
 									) else ( SET TARGET=admin__maqwqwch__ine___1212hghgg)
 								) else ( SET TARGET=Process)

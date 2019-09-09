@@ -40,6 +40,7 @@ for %%x in (%*) do (
 		SET FILE_PATH=.\commands\%%x.bat
 		if not exist "!FILE_PATH!" (
 			call:display_error The command batch script '%%x' cannot be found 
+			SET errorlevel=677
 			goto:eof
 		)
 	)
