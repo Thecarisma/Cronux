@@ -1,3 +1,4 @@
+SET errorlevel=0
 @echo off
 setlocal enabledelayedexpansion
 

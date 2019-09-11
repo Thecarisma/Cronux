@@ -1,3 +1,4 @@
+SET errorlevel=0
 @echo off
 setlocal enabledelayedexpansion
 
@@ -36,15 +37,18 @@ REM 		the specific property to print out
 
 if exist "qproc.bat" (
 	qproc.bat port %* 
+	SET errorlevel=677
 	goto:eof
 )
 if exist "!SCRIPT_DIR!\qproc.bat" (
 	!SCRIPT_DIR!\qproc.bat port %* 
+	SET errorlevel=677
 	goto:eof
 )
 
 if exist ".\commands\qproc.bat" (
 	!WORKING_DIR!\commands\qproc.bat port %* 
+	SET errorlevel=677
 	goto:eof
 )
 

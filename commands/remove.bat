@@ -1,3 +1,4 @@
+SET errorlevel=0
 @echo off
 setlocal enabledelayedexpansion
 
@@ -90,6 +91,7 @@ if %IS_TEST%==true (
 	if !ADMIN_REQUESTED!==false (
 		call:display_warning requesting administration for Cronux installation 
 		call:call_command_script_____remove elevate !SCRIPT_DIR!remove.bat hfgjsghfgf__aassSF_S_FS_FSfskhfjfdjksgajkg !COMMAND_TO_REMOVE!
+		SET errorlevel=677
 		goto:eof
 	)
 	
@@ -121,7 +123,7 @@ if not "!COMMAND_TO_REMOVE!"=="" (
 	if !FROM_DELETE_ALL!==true (
 		goto:delete_parent_folder_hddhhf
 	) else (
-		goto:eof
+		exit /b 0
 	)
 )
 
@@ -169,6 +171,7 @@ exit /b 0
 	)
 	if "!SCRIPT_PATH!"=="" (
 		call:display_error the script name or path cannot be empty
+		SET errorlevel=677
 		goto:eof
 	)
 	if not exist "!SCRIPT_PATH!" (
@@ -177,7 +180,7 @@ exit /b 0
 			REM call:display_error cannot find the script '%1'
 			call:%1 !ARGS__! 2> nul && SET LABEL_EXECUTED=true
 			if !LABEL_EXECUTED!==true (
-				goto:eof
+				exit /b 0
 			) else (
 				call:display_warning Cronux cannot find the batch label specified - %1. Delegating to system
 				SET SCRIPT_PATH=%1

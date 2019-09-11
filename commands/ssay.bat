@@ -1,3 +1,4 @@
+SET errorlevel=0
 @echo off
 setlocal enabledelayedexpansion
 
@@ -61,14 +62,17 @@ if "!SPEED!"=="" (
 )
 if !SPEED! gtr 10 (
 	call:display_error Speed '!SPEED!' out of bound. The speed cannot be greater than 10 
+	SET errorlevel=677
 	goto:eof
 )
 if !SPEED! lss -10 (
 	call:display_error Speed '!SPEED!' out of bound. The speed cannot be lesser than -10 
+	SET errorlevel=677
 	goto:eof
 )
 if "!TEXT!"=="" (
 	call:display_error The text to speak cannot be empty
+	SET errorlevel=677
 	goto:eof
 )
 if not "!VOICE!"=="zira" (

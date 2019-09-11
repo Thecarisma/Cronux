@@ -1,3 +1,4 @@
+SET errorlevel=0
 @echo off
 setlocal enabledelayedexpansion
 
@@ -28,15 +29,18 @@ REM 		The entire parameters is converted to speech and spoken
 
 if exist "ssay.bat" (
 	ssay.bat Zira 0 %* 
+	SET errorlevel=677
 	goto:eof
 )
 if exist "!SCRIPT_DIR!\ssay.bat" (
 	!SCRIPT_DIR!\ssay.bat Zira 0 %* 
+	SET errorlevel=677
 	goto:eof
 )
 
 if exist ".\commands\ssay.bat" (
 	!WORKING_DIR!\commands\ssay.bat Zira 0 %* 
+	SET errorlevel=677
 	goto:eof
 )
 

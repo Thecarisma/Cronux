@@ -1,3 +1,4 @@
+SET errorlevel=0
 @echo off
 setlocal enabledelayedexpansion
 
@@ -36,6 +37,7 @@ SET TARGET=%2
 SET WRITE_FILE=%3
 if "!ENV!"=="" (
 	call:display_error the getenv command expect at least one parameter 
+	SET errorlevel=677
 	goto:eof
 )
 if "!TARGET!"=="" (

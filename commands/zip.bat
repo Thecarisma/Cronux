@@ -12,6 +12,9 @@ SET INSTALLATION_FOLDER=C:\Program Files\Cronux\
 SET ROAMING_FOLDER=!USER_FOLDER!\AppData\Roaming\Cronux\
 SET BACKUP_FOLDER=!ROAMING_FOLDER!backup\
 
+REM Place the operation script in the block below
+REM START_OFFSET_FOR_MERGE
+
 REM P
 REM Create a zip archive using the .NET Compression library
 REM Add the content of a folder or a single file to the archive. 
@@ -46,10 +49,12 @@ for %%a in (%*) do (
 	) else (
 		if "%%a"=="C:\" (
 			call:display_error the argument '%%a' is invalid
+			SET errorlevel=677
 			goto:eof
 		)
 		if not exist "%%a" (
 			call:display_error the file or folder to archive '%%a' does not exist
+			SET errorlevel=677
 			goto:eof
 		)
 		FOR %%i IN (%%a) DO ( 
@@ -91,11 +96,13 @@ for %%a in (%*) do (
 
 if "!ZIP_FILE_NAME!"=="" (
 	call:display_error the name of the archive must be specified and must ends in .zip
+	SET errorlevel=677
 	goto:eof
 )
 
 if "!POWERSHELL_COMMAND!"=="" (
 	call:display_error no file or folder is specified to add into archive
+	SET errorlevel=677
 	goto:eof
 )
 

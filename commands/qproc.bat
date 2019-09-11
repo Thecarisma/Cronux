@@ -1,3 +1,4 @@
+SET errorlevel=0
 @echo off
 setlocal enabledelayedexpansion
 
@@ -101,6 +102,7 @@ SET OUTPUT_SHELL_CODE=$res
 if "!WHATTOIDENTIFYPROCESSWITH!"=="" (
 	call:display_error you have to specify how you want to identify the process 
 	call:display_error do `chelp qproc` to view the identity list
+	SET errorlevel=677
 	goto:eof
 )
 if not "!WHATTOIDENTIFYPROCESSWITH!"=="all" (
@@ -110,6 +112,7 @@ if not "!WHATTOIDENTIFYPROCESSWITH!"=="all" (
 				SET WHATTOIDENTIFYPROCESSWITH=all
 			) else (
 				call:display_error you have to specify the value for the process identify '!WHATTOIDENTIFYPROCESSWITH!'
+				SET errorlevel=677
 				goto:eof
 			)
 		)

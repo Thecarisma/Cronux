@@ -34,7 +34,7 @@ SET BACKUP_FOLDER=!ROAMING_FOLDER!backup\
 SET ROAMING_TEMP_FILE=!ROAMING_FOLDER!\CronuxTestRunner.CurrentBatchSource.bat.txt
 
 SET ALREADY_TESTED_SCRIPT=tests
-SET BLACKLISTED_NAMES=cls CronuxTestRunner Cronux tests zip
+SET BLACKLISTED_NAMES=cls CronuxTestRunner Cronux tests
 SET DEAFULT_VARIABLES=OP_ARGS SCRIPT_DIR WORKING_DIR USER_FOLDER INSTALLATION_FOLDER ROAMING_FOLDER BACKUP_FOLDER
 
 for /f %%A in ('"prompt $H &echo on &for %%B in (1) do rem"') do SET BACKSPACE=%%A
@@ -257,12 +257,11 @@ REM Check the expected default variables
 		SET A_ARG=%%x
 		for %%b in (!DEAFULT_VARIABLES!) do (
 			if not "x!A_ARG:%%b=!"=="x!A_ARG!" (
-				REM echo found %%b in !A_ARG!
 				SET /a FOUND_VARIABLE_COUNTS=!FOUND_VARIABLE_COUNTS!+1
 			)
 		)
 	)
-	if not !FOUND_VARIABLE_COUNTS!==7 (
+	if !FOUND_VARIABLE_COUNTS! lss 7 (
 		SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
 		SET ERROR_MESSAGE=one or more constant is not defined
 		SET UNIT_TEST_FAILED=true

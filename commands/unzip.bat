@@ -1,3 +1,4 @@
+SET errorlevel=0
 @echo off
 setlocal enabledelayedexpansion
 
@@ -37,6 +38,7 @@ for %%a in (%*) do (
 	) else (
 		if "%%a"=="C:\" (
 			call:display_error the argument '%%a' is invalid
+			SET errorlevel=677
 			goto:eof
 		)
 		if "!EXTRACT_FOLDER!"=="" (
@@ -49,6 +51,7 @@ for %%a in (%*) do (
 
 if not exist "!ZIP_FILE_NAME!" (
 	call:display_error the zip archive '!ZIP_FILE_NAME!' does not exist 
+	SET errorlevel=677
 	goto:eof
 )
 
