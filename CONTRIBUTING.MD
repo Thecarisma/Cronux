@@ -22,3 +22,8 @@ checked to confirm if the program execute succesfully.
 
 Cronux uses 677 as the errorlevel. So always set the errorlevel to 677 to indicate 
 an error occur from within your code before exiting. 
+
+Always ensure you set the errorlevel to 0 at the top of your file before any other 
+operation at all. Note that `goto:eof` is exclusive for ending the script after an error 
+occur, if you want to stop the script for other reason apart from fault or error use 
+`exit /b 0`

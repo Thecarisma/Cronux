@@ -150,6 +150,11 @@ If you have any issue or you just want more command to be added you can file a r
 anytime and if you just add a more interesting, fun and usefull command do not hesitate to send a 
 [pull request](https://github.com/Thecarisma/Cronux/compare) 
 
+Please and please and please and please do not modify the **CronuxTestRunner.bat** Script if you do not understand how 
+it works. **DO NOT TOUCH IT. IT FREAKING WORKS**, but if you think the scripts should pass a test raise an issue for 
+it before sending a PR for modified **CronuxTestRunner.bat**. if a PR modified **CronuxTestRunner.bat** without opening an 
+issue first it is closed immediately. **DON'T FREAKING TOUCH IT IF YOU DON'T UNDERSTAND IT**.
+
 ### License
 
 GNU Lesser General Public License v3.0 Copyright (c) 2019 Azeez Adewale Built with :heart:

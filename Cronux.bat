@@ -193,7 +193,12 @@ REM Display error message and title in the console
 	
 REM Display warning message and title in the console
 :display_warning 
-	echo [0;33mCronux.zip:[0m %* 
+	echo [0;33mCronux:[0m %* 
 	
 	exit /b 0
 
+:close 
+
+	exit
+
+	exit /b 0

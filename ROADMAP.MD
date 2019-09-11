@@ -40,3 +40,6 @@
  - [x] create the touch command to create files
  - [ ] group command scripts into subfolders in ./commands/ directory 
  - [ ] PC Setup folder for command script for setting up programming environment
+ - [ ] git command to commit all file except specified file 
+ - [ ] git command to commit all file except specified file accept wild card
+ - [ ] create a wildcard resolver command
