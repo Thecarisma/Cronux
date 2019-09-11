@@ -129,10 +129,11 @@ exit /b !EXIT_CODE!
 	SET FULL_SCRIPT_NAME=!filedrive!!filepath!!filename!!fileextension!
 	
 	call:check_file_existence !FULL_SCRIPT_NAME! !filename! !fileextension!
+	call:check_file_name !FULL_SCRIPT_NAME! !filename! !fileextension!
 	call:read_the_current_batch_file !FULL_SCRIPT_NAME! !filename! !fileextension!
 	call:check_default_variables
-	call:check_file_name !FULL_SCRIPT_NAME! !filename! !fileextension!
 	call:checkerrorlevel
+	call:check_merge_comments
 	REM if !UNIT_TEST_FAILED!==true ( goto:test_fails )
 	
 	SET /a SUB_TOTAL_TEST=!SUB_FAILED_TEST_COUNT!+!SUB_PASSED_TEST_COUNT!
@@ -325,6 +326,47 @@ REM ensure it goto:eof after error occur (figure that out)
 
 	:checkerrorlevel__end
 	exit /b 0
+	
+REM Check the merge variables for compilation
+:check_merge_comments
+	SET UNIT_TEST_FAILED=false
+	SET FOUND_START_OFFSET_FOR_MERGE=false
+	SET FOUND_END_OFFSET_FOR_MERGE=false
+	
+	call:a_display %BACKSPACE%    check compilation\build offsets    - 
+	for /f "delims=" %%x in (!ROAMING_TEMP_FILE!) do (
+		SET A_ARG=%%x
+		if not "x!A_ARG:START_OFFSET_FOR_MERGE=!"=="x!A_ARG!" (
+			SET FOUND_START_OFFSET_FOR_MERGE=true
+		)
+		if not "x!A_ARG:END_OFFSET_FOR_MERGE=!"=="x!A_ARG!" (
+			SET FOUND_END_OFFSET_FOR_MERGE=true
+		)
+	)
+	
+	if !FOUND_START_OFFSET_FOR_MERGE!==false (
+		goto:check_merge_comments__not_found
+	)	
+	if !FOUND_END_OFFSET_FOR_MERGE!==false (
+		goto:check_merge_comments__not_found
+	)
+	
+	goto:check_merge_comments__passed
+	:check_merge_comments__not_found
+		SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
+		SET ERROR_MESSAGE=the script is not marked for compilation and build
+		SET UNIT_TEST_FAILED=true
+		call:printerror_value !ERROR_MESSAGE!
+		goto:checkerrorlevel__end
+	
+	:check_merge_comments__passed
+		echo [0;32m [passed][0m
+		SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
+
+	:check_merge_comments__end
+	exit /b 0
+
+	
 	
 REM print error
 :printerror_value
