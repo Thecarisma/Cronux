@@ -14,8 +14,8 @@ to execute command to perform operations. It makes heavey use of meta-programmin
 
 This script is most useful if you enjoy the power of linux and unix terminal or you switch between other OS and Windows often.
 
-**If you think the scripts in this project are not useful you can move your ******ed ** ****s off this project page but before 
-you go kindly star the project :wink:**
+If you think the scripts in this project are not useful you can move your ************ed ** ******s off this project page but before 
+you go kindly star the project :wink:
 
 ___
 
