@@ -136,6 +136,7 @@ exit /b !EXIT_CODE!
 	call:check_merge_comments
 	call:checkechooff
 	call:check_attributes
+	call:check_call_command_script
 	REM if !UNIT_TEST_FAILED!==true ( goto:test_fails )
 	
 	SET /a SUB_TOTAL_TEST=!SUB_FAILED_TEST_COUNT!+!SUB_PASSED_TEST_COUNT!
@@ -471,6 +472,40 @@ REM '@echo off' statement at begining of a script
 	SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
 
 	:check_attributes__end
+	exit /b 0
+	
+REM Check the function label `:call_command_script` position
+:check_call_command_script
+	SET UNIT_TEST_FAILED=false
+	SET FOUND_END_SEGMENT=false
+
+	call:a_display %BACKSPACE%    check :call_command_script positon - 
+	echo !CURRENT_SCRIPT_SOURCE! > !ROAMING_TEMP_FILE!
+	for /f "delims=" %%x in (!ROAMING_TEMP_FILE!) do (
+		SET A_ARG=%%x
+		if not "x!A_ARG:END_OFFSET_FOR_MERGE=!"=="x!A_ARG!" (
+			SET FOUND_END_SEGMENT=true
+		)
+		if not "x!A_ARG:call_command_script=!"=="x!A_ARG!" (
+			if !FOUND_END_SEGMENT!==false (
+				goto:check_call_command_script__error
+			)
+		)
+	)
+	
+	goto:check_call_command_script__passed
+	:check_call_command_script__error
+		SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
+		SET ERROR_MESSAGE=expecting function label `:call_command_script` after compilable segment
+		SET UNIT_TEST_FAILED=true
+		call:printerror_value !ERROR_MESSAGE!
+		goto:check_call_command_script__end
+	
+	:check_call_command_script__passed
+		echo [0;32m [passed][0m
+		SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
+	
+	:check_call_command_script__end
 	exit /b 0
 	
 REM print error

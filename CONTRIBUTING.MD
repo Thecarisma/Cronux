@@ -1,4 +1,13 @@
 
+## Calling Commands
+
+If you want your command to reference another Cronux command copy the entire function label 
+`:call_command_script` into the batch script then you can use `call:call_command_script command` 
+in your batch script. This allow the script to function independent of Cronux.
+
+Ensure that the function label `:call_command_script` is pasted after the *REM END_OFFSET_FOR_MERGE* 
+offset to prevent it from being compiled into the Cronux script again during build.
+
 ## Filename Extension 
 
 
@@ -40,4 +49,5 @@ occur, if you want to stop the script for other reason apart from fault or error
  5. The `errorlevel` variable must be properly treated
  6. Check if the two comment needed to compile is defined
  7. `@echo off` statement must be at the top of the file
+ 8. function label `:call_command_script` must be after compilable segment
  
