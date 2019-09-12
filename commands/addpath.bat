@@ -1,5 +1,5 @@
-SET errorlevel=0
 @echo off
+SET errorlevel=0
 setlocal enabledelayedexpansion
 
 SET OPERATION="none"
@@ -114,6 +114,9 @@ if not exist "!BACKUP_FULL_PATH!" (
 	goto:eof
 )
 
+for %%i in ("!FOLDER_FULL_PATH!") do (
+	SET FOLDER_FULL_PATH=%%~si
+)
 call:display adding !FOLDER_FULL_PATH! to path
 if "!TARGET!"=="Process" (
 	powershell -Command "& { $path = [environment]::GetEnvironmentVariable(\"Path\",\"!TARGET!\") + \";!FOLDER_FULL_PATH!\"; $env:Path = \"$path\" }"

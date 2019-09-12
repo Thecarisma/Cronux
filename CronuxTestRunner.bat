@@ -134,6 +134,8 @@ exit /b !EXIT_CODE!
 	call:check_default_variables
 	call:checkerrorlevel
 	call:check_merge_comments
+	call:checkechooff
+	call:check_attributes
 	REM if !UNIT_TEST_FAILED!==true ( goto:test_fails )
 	
 	SET /a SUB_TOTAL_TEST=!SUB_FAILED_TEST_COUNT!+!SUB_PASSED_TEST_COUNT!
@@ -284,18 +286,25 @@ REM ensure it goto:eof after error occur (figure that out)
 	SET LINE_NUMBER=1
 		
 	call:a_display %BACKSPACE%    confirm error level has been reset - 
-	echo !CURRENT_SCRIPT_SOURCE! > !ROAMING_TEMP_FILE!
 	for /f "delims=" %%x in (!ROAMING_TEMP_FILE!) do (
-		SET FIRST_SCRIPT_LINE=%%x
-		if "x!FIRST_SCRIPT_LINE:errorlevel=!"=="x!FIRST_SCRIPT_LINE!" (
-			SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
-			SET ERROR_MESSAGE=the errorlevel has must set to 0 at the beginning of the file
-			SET UNIT_TEST_FAILED=true
-			call:printerror_value !ERROR_MESSAGE!
-			goto:checkerrorlevel_exit
+		if not "!PREVIOUS_LINE!"=="" (
+			SET FIRST_SCRIPT_LINE=%%x
+		) else (
+			SET PREVIOUS_LINE=%%x
 		)
 		if not "!FIRST_SCRIPT_LINE!"=="" (
-			goto:continue_reset_errorlevel
+			if "x!FIRST_SCRIPT_LINE:errorlevel=!"=="x!FIRST_SCRIPT_LINE!" (
+				SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
+				SET ERROR_MESSAGE=the errorlevel has must set to 0 at the beginning of the file
+				SET UNIT_TEST_FAILED=true
+				call:printerror_value !ERROR_MESSAGE!
+				goto:checkerrorlevel_exit
+			)
+		)
+		if not "!FIRST_SCRIPT_LINE!"=="" (
+			if not "!PREVIOUS_LINE!"=="" (
+				goto:continue_reset_errorlevel
+			)
 		)
 	)
 	
@@ -324,6 +333,41 @@ REM ensure it goto:eof after error occur (figure that out)
 	SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
 
 	:checkerrorlevel__end
+	exit /b 0
+
+REM '@echo off' statement at begining of a script
+:checkechooff
+	SET UNIT_TEST_FAILED=false
+	SET FIRST_SCRIPT_LINE=
+	SET LINE_NUMBER=1
+		
+	call:a_display %BACKSPACE%    checking the '@echo off' statement - 
+	for /f "delims=" %%x in (!ROAMING_TEMP_FILE!) do (
+		SET FIRST_SCRIPT_LINE=%%x
+		if "x!FIRST_SCRIPT_LINE:@echo=!"=="x!FIRST_SCRIPT_LINE!" (
+			goto:checkechooff_error_occur
+		)
+		if "x!FIRST_SCRIPT_LINE:off=!"=="x!FIRST_SCRIPT_LINE!" (
+			goto:checkechooff_error_occur
+		)
+		if not "!FIRST_SCRIPT_LINE!"=="" (
+			goto:checkechooff_passed
+		)
+	)
+	
+	goto:checkechooff_passed
+	:checkechooff_error_occur
+		SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
+		SET ERROR_MESSAGE=the statement '@echo off' is expected on the first line
+		SET UNIT_TEST_FAILED=true
+		call:printerror_value !ERROR_MESSAGE!
+		goto:checkerrorlevel_exit
+	
+	:checkechooff_passed
+	echo [0;32m [passed][0m
+	SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
+	
+	:checkechooff_end
 	exit /b 0
 	
 REM Check the merge variables for compilation
@@ -365,7 +409,69 @@ REM Check the merge variables for compilation
 	:check_merge_comments__end
 	exit /b 0
 
+REM '@echo off' statement at begining of a script
+:check_attributes
+	SET UNIT_TEST_FAILED=false
+	SET FOUND_ATTRIBUTES=
+	SET CURRENT_ATTR=
 	
+	call:a_display %BACKSPACE%    create the script attributes       - 
+	for /f "delims=" %%x in (!ROAMING_TEMP_FILE!) do (
+		SET LINE_VALUE=%%x
+		if not "x!LINE_VALUE:REM=!"=="x!LINE_VALUE!" (
+			if not "x!LINE_VALUE:author=!"=="x!LINE_VALUE!" (
+				SET FOUND_ATTRIBUTES=!FOUND_ATTRIBUTES! author
+			)
+			if not "x!LINE_VALUE:copyright=!"=="x!LINE_VALUE!" (
+				SET FOUND_ATTRIBUTES=!FOUND_ATTRIBUTES! copyright
+			)
+			if not "x!LINE_VALUE:date=!"=="x!LINE_VALUE!" (
+				SET FOUND_ATTRIBUTES=!FOUND_ATTRIBUTES! date
+			)
+			if not "x!LINE_VALUE:time=!"=="x!LINE_VALUE!" (
+				SET FOUND_ATTRIBUTES=!FOUND_ATTRIBUTES! time
+			)
+			if not "x!LINE_VALUE:filename=!"=="x!LINE_VALUE!" (
+				SET FOUND_ATTRIBUTES=!FOUND_ATTRIBUTES! filename
+			)
+		)
+	)
+	
+	if "x!FOUND_ATTRIBUTES:author=!"=="x!FOUND_ATTRIBUTES!" (
+		SET CURRENT_ATTR=author
+		goto:check_attributes_error_occur 
+	)
+	if "x!FOUND_ATTRIBUTES:copyright=!"=="x!FOUND_ATTRIBUTES!" (
+		SET CURRENT_ATTR=copyright
+		goto:check_attributes_error_occur 
+	)
+	if "x!FOUND_ATTRIBUTES:date=!"=="x!FOUND_ATTRIBUTES!" (
+		SET CURRENT_ATTR=date
+		goto:check_attributes_error_occur 
+	)
+	if "x!FOUND_ATTRIBUTES:time=!"=="x!FOUND_ATTRIBUTES!" (
+		SET CURRENT_ATTR=time
+		goto:check_attributes_error_occur 
+	)
+	if "x!FOUND_ATTRIBUTES:filename=!"=="x!FOUND_ATTRIBUTES!" (
+		SET CURRENT_ATTR=filename
+		goto:check_attributes_error_occur 
+	)
+	
+	goto:check_attributes_passed
+	:check_attributes_error_occur
+		SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
+		SET ERROR_MESSAGE=you need to define the attribute '!CURRENT_ATTR!' in the footer
+		SET UNIT_TEST_FAILED=true
+		call:printerror_value !ERROR_MESSAGE!
+		goto:check_attributes__end
+	
+	:check_attributes_passed
+	echo [0;32m [passed][0m
+	SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
+
+	:check_attributes__end
+	exit /b 0
 	
 REM print error
 :printerror_value

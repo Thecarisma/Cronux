@@ -1,6 +1,6 @@
 # <p style="text-align: center;" align="center">Cronux</p>
 
-<p style="text-align: center;" align="center">Super useful handy commands to perform simple and complex task on the Windows command line</p>
+<p style="text-align: center;" align="center">Super useful handy, hacky and wacky commands to perform simple and complex task on the Windows command line</p>
 
 ___
 
@@ -54,11 +54,13 @@ echocolor
 ```
 
 If you want Cronux to be available in your system path use the command below to add the folder into the **PATH** variable.
-You should only add Cronux directory to path is you did not install it. 
+You should only add Cronux directory to path if you did not install it. 
 
 ```bash
-Cronux addtopath C:/the/full/path/to/where/cronux.bat/is/
+Cronux addtopath ./
 ```
+
+The addpath converts path to absolute windows compatible short pathname.
 
 #### Uninstall
 
