@@ -131,7 +131,7 @@ if exist "!COMMANDS_FOLDER!" (
 	for %%a in (*) do ( 
 		call:display copying the command script '%%a' into !FINAL_INSTALLATION_FOLDER!
 		copy %%a "!FINAL_INSTALLATION_FOLDER!" > nul
-		FOR %%i IN ("%%a") DO (
+		for %%i in ("%%a") do (
 			SET filedrive=%%~di
 			SET filepath=%%~pi
 			SET filename=%%~ni

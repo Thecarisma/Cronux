@@ -133,6 +133,8 @@ REM
 :call_command_script
 	SET LABEL_EXECUTED=false
 	SET SCRIPT_PATH=
+	SET COMMANDS_FOLDER__=!COMMANDS_FOLDER!
+	SET FOLDERS_TO_VISIT__=
 	SET ARGS__=
 	for %%a in (%*) do (
 		if "!SCRIPT_PATH!"=="" (
@@ -150,20 +152,59 @@ REM
 		goto:eof
 	)
 	if not exist "!SCRIPT_PATH!" (
-		SET SCRIPT_PATH=commands\%1.bat
-		if not exist "!SCRIPT_PATH!" (
-			REM call:display_error cannot find the script '%1'
-			call:%1 !ARGS__! 2> nul && SET LABEL_EXECUTED=true
-			if !LABEL_EXECUTED!==true (
-				goto:eof
+		goto:call_command_script_loop	
+	) 
+	:call_command_script__search_complete
+	cd !SCRIPT_DIR!
+	if not exist "!SCRIPT_PATH!" (
+		call:display_error cannot find the script '%1'
+		call:%1 !ARGS__! 2> nul && SET LABEL_EXECUTED=true
+		if !LABEL_EXECUTED!==true (
+			goto:eof
+		) else (
+			call:display_warning Cronux cannot find the batch label specified - %1. Delegating to system
+			SET SCRIPT_PATH=%1
+		)
+	)	
+	!SCRIPT_PATH! !ARGS__!
+	goto:call_command_script__end
+	
+	:call_command_script_loop
+		cd !COMMANDS_FOLDER__!
+		for /d %%d in (*.*) do (
+			for %%i in ("%%d") do (
+				SET shortfullname=%%~si
+			) 
+			REM echo !shortfullname!\%1.bat
+			if not exist "!shortfullname!\%1.bat" (
+				if "!FOLDERS_TO_VISIT__!"=="" (
+					SET FOLDERS_TO_VISIT__=!shortfullname!\
+				) else (
+					SET FOLDERS_TO_VISIT__=!FOLDERS_TO_VISIT__! !shortfullname!\
+				)
 			) else (
-				call:display_warning Cronux cannot find the batch label specified - %1. Delegating to system
-				SET SCRIPT_PATH=%1
+				SET SCRIPT_PATH=!shortfullname!\%1.bat
+				goto:call_command_script__search_complete
 			)
 		)
-	) 
-	!SCRIPT_PATH! !ARGS__!
+		for %%g in (!FOLDERS_TO_VISIT__!) do (
+			SET COMMANDS_FOLDER__=%%g
+			SET FOLDERS_TO_VISIT__HOLDER=!FOLDERS_TO_VISIT__!
+			SET FOLDERS_TO_VISIT__=
+			for %%f in (!FOLDERS_TO_VISIT__HOLDER!) do (
+				if not "%%f"=="%%g" (
+					if "!FOLDERS_TO_VISIT__!"=="" (
+						SET FOLDERS_TO_VISIT__=%%f
+					) else (
+						SET FOLDERS_TO_VISIT__=!FOLDERS_TO_VISIT__! %%f
+					)
+				)
+			)
+			goto:call_command_script_loop
+		)
+		goto:call_command_script__search_complete
 	
+	:call_command_script__end
 	exit /b 0
 	
 :testlabel
