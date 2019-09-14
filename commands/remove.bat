@@ -242,7 +242,7 @@ REM End of the actual operating script
 	:call_command_script__end
 	exit /b 0
 
-:display 
+:display
 	echo [0;32mCronux.remove:[0m %* 
 	exit /b 0
 	
@@ -250,7 +250,7 @@ REM End of the actual operating script
 	echo [0;31mCronux.remove:[0m %* 
 	exit /b 0
 	
-:display_warning 
+:display_warning
 	echo [0;33mCronux.remove:[0m %* 
 	exit /b 0
 	

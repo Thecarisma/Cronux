@@ -148,12 +148,17 @@ REM End of the actual operating script
 	:call_command_script__end
 	exit /b 0
 
-:display 
+:display
 	echo [0;32mCronux.qport:[0m %* 
 	exit /b 0
 	
 :display_error
 	echo [0;31mCronux.qport:[0m %* 
+	exit /b 0
+	
+:display_warning
+	echo [0;33mCronux:[0m %* 
+	
 	exit /b 0
 	
 REM S

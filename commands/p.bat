@@ -125,7 +125,7 @@ REM  2 = Other commands
 REM -3 = To set to 3 and for skipping
 REM  3 = More Other commands
 
-:display 
+:display
 	echo [0;32mCronux.p:[0m %* 
 	exit /b 0
 	

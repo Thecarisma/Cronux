@@ -41,7 +41,7 @@ exit /b 0
 REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
 
-:display 
+:display
 	echo [0;32mCronux.rmlong:[0m %* 
 	exit /b 0
 	

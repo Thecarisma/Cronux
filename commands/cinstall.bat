@@ -156,6 +156,9 @@ call:call_command_script addpath !FINAL_INSTALLATION_FOLDER! Machine
 
 exit /b 0
 
+REM END_OFFSET_FOR_MERGE
+REM End of the actual operating script
+
 :call_command_script
 	SET LABEL_EXECUTED=false
 	SET SCRIPT_PATH=
@@ -241,10 +244,7 @@ exit /b 0
 	:call_command_script__end
 	exit /b 0
 
-REM END_OFFSET_FOR_MERGE
-REM End of the actual operating script
-
-:display 
+:display
 	echo [0;32mCronux.cinstall:[0m %* 
 	exit /b 0
 	
@@ -252,7 +252,7 @@ REM End of the actual operating script
 	echo [0;31mCronux.cinstall:[0m %* 
 	exit /b 0
 	
-:display_warning 
+:display_warning
 	echo [0;33mCronux.cinstall:[0m %* 
 	exit /b 0
 	

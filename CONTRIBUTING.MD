@@ -42,14 +42,18 @@ occur, if you want to stop the script for other reason apart from fault or error
 
 ## Expected Test To Be Passed
 
- 1. The File must Exist 
- 2. Ensure the filename, extension conform with Cronux 
- 3. The Script must be Readable
- 4. Ensure a script has the expected variable defined
- 5. The `errorlevel` variable must be properly treated
- 6. Check if the two comment needed to compile is defined
- 7. `@echo off` statement must be at the top of the file
- 8. function label `:call_command_script` must be after compilable segment
- 9. check to ensure function label `:call_command_script` is defined if used 
- 9. if function label `:call_command_script` is defined check `display_warning` label  
+ 1.  The File must Exist 
+ 2.  Ensure the filename, extension conform with Cronux 
+ 3.  The Script must be Readable
+ 4.  Ensure a script has the expected variable defined
+ 5.  The `errorlevel` variable must be properly treated
+ 6.  Check if the two comment needed to compile is defined
+ 7.  `@echo off` statement must be at the top of the file
+ 8.  function label `:call_command_script` must be after compilable segment
+ 9.  check to ensure function label `:call_command_script` is defined if used 
+ 9.  if function label `:call_command_script` is defined check `display_warning` label  
+ 10. check :display function is defined if used
+ 11. check :display_error function is defined if used
+ 12. check :display_warning function is defined if used
+ 12. Confirm the check administrator function is defined
  

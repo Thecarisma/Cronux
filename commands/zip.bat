@@ -115,7 +115,7 @@ exit /b 0
 REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
 
-:display 
+:display
 	echo [0;32mCronux.zip:[0m %* 
 	exit /b 0
 	
@@ -123,7 +123,7 @@ REM End of the actual operating script
 	echo [0;31mCronux.zip:[0m %* 
 	exit /b 0
 
-:display_warning 
+:display_warning
 	echo [0;33mCronux.zip:[0m %* 
 	exit /b 0
 	

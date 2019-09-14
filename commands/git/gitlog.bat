@@ -117,7 +117,7 @@ REM End of the actual operating script
 	:call_command_script__end
 	exit /b 0
 
-:display 
+:display
 	echo [0;32mCronux.gitlog:[0m %* 
 	exit /b 0
 	

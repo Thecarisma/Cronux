@@ -137,6 +137,7 @@ exit /b !EXIT_CODE!
 	call:checkechooff
 	call:check_attributes
 	call:check_call_command_script
+	call:check_display_functions
 	REM if !UNIT_TEST_FAILED!==true ( goto:test_fails )
 	
 	SET /a SUB_TOTAL_TEST=!SUB_FAILED_TEST_COUNT!+!SUB_PASSED_TEST_COUNT!
@@ -482,7 +483,6 @@ REM Check the function label `:call_command_script` position
 	SET FOUND_CALL_COMMAND=false
 
 	call:a_display %BACKSPACE%    check :call_command_script positon - 
-	echo !CURRENT_SCRIPT_SOURCE! > !ROAMING_TEMP_FILE!
 	for /f "delims=" %%x in (!ROAMING_TEMP_FILE!) do (
 		SET A_ARG=%%x
 		if not "x!A_ARG:END_OFFSET_FOR_MERGE=!"=="x!A_ARG!" (
@@ -530,6 +530,98 @@ REM Check the function label `:call_command_script` position
 	SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
 	
 	:check_call_command_script__end
+	exit /b 0
+	
+REM Check display_* function label if defined 
+REM display_error is compulsory if used
+REM display is compulsory if used
+REM display_warning is compulsory if used
+:check_display_functions
+	SET UNIT_TEST_FAILED=false
+	SET USED_DISPLAY_FUNCTION=false
+	SET USED_DISPLAY_ERROR_FUNCTION=false
+	SET USED_DISPLAY_WARNING_FUNCTION=false
+	SET FOUND_DISPLAY_FUNCTION=false
+	SET FOUND_DISPLAY_ERROR_FUNCTION=false
+	SET FOUND_DISPLAY_WARNING_FUNCTION=false
+	
+	for /f "delims=" %%x in (!ROAMING_TEMP_FILE!) do (
+		SET A_ARG=%%x
+		if not "x!A_ARG:display=!"=="x!A_ARG!" (
+			if "!A_ARG!"==":display" (
+				SET FOUND_DISPLAY_FUNCTION=true
+			)
+			if not "x!A_ARG:call:=!"=="x!A_ARG!" (
+				SET USED_DISPLAY_FUNCTION=true
+			)
+		)
+		if not "x!A_ARG:display_error=!"=="x!A_ARG!" (
+			if "!A_ARG!"==":display_error" (
+				SET FOUND_DISPLAY_ERROR_FUNCTION=true
+			)
+			if not "x!A_ARG:call:=!"=="x!A_ARG!" (
+				SET USED_DISPLAY_ERROR_FUNCTION=true
+			)
+		)
+		if not "x!A_ARG:display_warning=!"=="x!A_ARG!" (
+			if "!A_ARG!"==":display_warning" (
+				SET FOUND_DISPLAY_WARNING_FUNCTION=true
+			)
+			if not "x!A_ARG:call:=!"=="x!A_ARG!" (
+				SET USED_DISPLAY_WARNING_FUNCTION=true
+			)
+		)
+	)
+	
+	call:a_display %BACKSPACE%    check :display function            - 
+	if !USED_DISPLAY_FUNCTION!==true (
+		if !FOUND_DISPLAY_FUNCTION!==true (
+			echo [0;32m [passed][0m
+			SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
+		) else (
+			SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
+			SET ERROR_MESSAGE=the 'display' function is used but not defined
+			SET UNIT_TEST_FAILED=true
+			call:printerror_value !ERROR_MESSAGE!
+		)
+	) else (
+		echo [0;32m [passed][0m
+		SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
+	)
+	
+	call:a_display %BACKSPACE%    check :display_error function      - 
+	if !USED_DISPLAY_ERROR_FUNCTION!==true (
+		if !FOUND_DISPLAY_ERROR_FUNCTION!==true (
+			echo [0;32m [passed][0m
+			SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
+		) else (
+			SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
+			SET ERROR_MESSAGE=the 'display_error' function is used but not defined
+			SET UNIT_TEST_FAILED=true
+			call:printerror_value !ERROR_MESSAGE!
+		)
+	) else (
+		echo [0;32m [passed][0m
+		SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
+	)
+	
+	call:a_display %BACKSPACE%    check :display_warning function    - 
+	if !USED_DISPLAY_WARNING_FUNCTION!==true (
+		if !FOUND_DISPLAY_WARNING_FUNCTION!==true (
+			echo [0;32m [passed][0m
+			SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
+		) else (
+			SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
+			SET ERROR_MESSAGE=the 'display_warning' function is used but not defined
+			SET UNIT_TEST_FAILED=true
+			call:printerror_value !ERROR_MESSAGE!
+		)
+	) else (
+		echo [0;32m [passed][0m
+		SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
+	)
+
+	:check_merge_comments__end
 	exit /b 0
 	
 REM print error

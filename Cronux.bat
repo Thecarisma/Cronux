@@ -229,7 +229,7 @@ REM
 	exit /b 0
 	
 REM Display message and title in the console
-:display 
+:display
 	echo [0;32mCronux:[0m %* 
 
 	exit /b 0
@@ -241,7 +241,7 @@ REM Display error message and title in the console
 	exit /b 0
 	
 REM Display warning message and title in the console
-:display_warning 
+:display_warning
 	echo [0;33mCronux:[0m %* 
 	
 	exit /b 0
