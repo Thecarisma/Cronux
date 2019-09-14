@@ -45,4 +45,4 @@
  - [ ] create a wildcard resolver command
  - [ ] git command to create release note from commit from last release or a commit hash, issue and pull request
  - [ ] command to printout aboutn and all contributor of the scripts (treat in cinstall)
- - [ ] create subfolder for script alias
+ - [x] create subfolder for script alias

@@ -195,6 +195,7 @@ REM End of the actual operating script
 			)
 		)
 		call:display_error cannot find the script '%1'
+		cd !WORKING_DIR!
 		call:%1 !ARGS__! 2> nul && SET LABEL_EXECUTED=true
 		if !LABEL_EXECUTED!==true (
 			exit /b 0
@@ -203,6 +204,10 @@ REM End of the actual operating script
 			SET SCRIPT_PATH=%1
 		)
 	)	
+	for %%i in ("!SCRIPT_PATH!") do (
+		SET SCRIPT_PATH=%%~si
+	) 
+	cd !WORKING_DIR!
 	!SCRIPT_PATH! !ARGS__!
 	goto:call_command_script__end
 	

@@ -47,26 +47,6 @@ if not exist !ROAMING_FOLDER! (
 	mkdir !ROAMING_FOLDER!
 )
 
-REM Alias is another keyword for a bacth command in 
-REM the ./command/ or ./ path. 
-REM E.g if the command is `Cronux clear`
-REM since clear.bat is located in ./command or in ./
-REM after installtion it is properly executed but for the 
-REM command `Cronux cls` **cls** is the alias for clear 
-REM therefor The operation should be changed from cls to clear
-REM Treat the aliases here 
-
-REM install aliases
-if !OPERATION!==install (
-	SET OPERATION=cinstall
-)
-REM ls aliases
-if !OPERATION!==listdir (
-	SET OPERATION=ls
-)
-if !OPERATION!==dir (
-	SET OPERATION=ls
-)
 REM clear aliases
 if !OPERATION!==clear (
 	SET AD=""
@@ -74,51 +54,6 @@ if !OPERATION!==clear (
 if !OPERATION!==cls (
 	SET OPERATION=clear
 	SET AD=""
-)
-REM elevate aliases
-if !OPERATION!==sudo (
-	SET OPERATION=elevate
-)
-if !OPERATION!==su (
-	SET OPERATION=elevate
-)
-REM download aliases
-if !OPERATION!==wget (
-	SET OPERATION=download
-)
-if !OPERATION!==irs (
-	SET OPERATION=download
-)
-REM remove aliases
-if !OPERATION!==uninstall (
-	SET OPERATION=remove
-)
-if !OPERATION!==removecommand (
-	SET OPERATION=remove
-)
-REM printfile aliases
-if !OPERATION!==cat (
-	SET OPERATION=printfile
-)
-REM cbackup aliases
-if !OPERATION!==backup (
-	SET OPERATION=cbackup
-)
-REM zip aliases
-if !OPERATION!==archive (
-	SET OPERATION=zip
-)
-REM unzip aliases
-if !OPERATION!==extract (
-	SET OPERATION=unzip
-)
-REM listzip aliases
-if !OPERATION!==showzip (
-	SET OPERATION=listzip
-)
-REM chelp aliases
-if %OPERATION%==help (
-	SET OPERATION=chelp
 )
 REM end alias resolution 
 
@@ -165,6 +100,7 @@ REM
 			)
 		)
 		call:display_error cannot find the script '%1'
+		cd !WORKING_DIR!
 		call:%1 !ARGS__! 2> nul && SET LABEL_EXECUTED=true
 		if !LABEL_EXECUTED!==true (
 			exit /b 0
@@ -173,6 +109,10 @@ REM
 			SET SCRIPT_PATH=%1
 		)
 	)	
+	for %%i in ("!SCRIPT_PATH!") do (
+		SET SCRIPT_PATH=%%~si
+	) 
+	cd !WORKING_DIR!
 	!SCRIPT_PATH! !ARGS__!
 	goto:call_command_script__end
 	

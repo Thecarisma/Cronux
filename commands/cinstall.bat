@@ -42,9 +42,11 @@ REM
 
 SET FINAL_INSTALLATION_FOLDER=
 SET COMMAND_SCRIPTS=
-SET ADMIN_REQUESTED=false
+SET CURRENT_FOLDER_LOOP=
+SET ADMIN_REQUESTED=!IS_ADMIN!
 SET FILES_TO_INSTALL=
 SET IS_TEST=
+SET FOLDERS_TO_VISIT__=
 
 for %%a in (%*) do (
 	if "!IS_TEST!"=="" (
@@ -128,34 +130,70 @@ if not exist "!COMMANDS_FOLDER!\cinstall.bat" (
 )
 
 if exist "!COMMANDS_FOLDER!" (
-	REM copy !COMMANDS_FOLDER! "!FINAL_INSTALLATION_FOLDER!"
-	cd !COMMANDS_FOLDER!
-	for %%a in (*) do ( 
-		call:display copying the command script '%%a' into !FINAL_INSTALLATION_FOLDER!
-		copy %%a "!FINAL_INSTALLATION_FOLDER!" > nul
-		for %%i in ("%%a") do (
-			SET filedrive=%%~di
-			SET filepath=%%~pi
-			SET filename=%%~ni
-			SET fileextension=%%~xi
-		) 
-		if "!COMMAND_SCRIPTS!"=="" (
-			SET COMMAND_SCRIPTS=!filename!
-		) else (
-			SET COMMAND_SCRIPTS=!COMMAND_SCRIPTS! !filename!
-		)
-	)
+	SET CURRENT_FOLDER_LOOP=!COMMANDS_FOLDER!
+	goto:cinstall_script_loop
+	:cinstall_script_loop_complete
 	if !ADMIN_REQUESTED!==true (
 		cd !SCRIPT_DIR!
 	) else (
 		cd !WORKING_DIR!
 	)
-	REM call:display !COMMAND_SCRIPTS!
+	call:display !COMMAND_SCRIPTS!
 )
 call:call_command_script compilescript "!FINAL_INSTALLATION_FOLDER!\Cronux.bat" !COMMAND_SCRIPTS!
 call:call_command_script delpath Machine Cronux
 call:call_command_script addpath !FINAL_INSTALLATION_FOLDER! Machine
+goto:cinstall_script_end
 
+:cinstall_script_loop
+cd !CURRENT_FOLDER_LOOP!
+for /d %%d in (*.*) do (
+	for %%i in ("%%d") do (
+		SET shortfullname=%%~si
+	) 
+	if "!FOLDERS_TO_VISIT__!"=="" (
+		SET FOLDERS_TO_VISIT__=!shortfullname!\
+	) else (
+		SET FOLDERS_TO_VISIT__=!FOLDERS_TO_VISIT__! !shortfullname!\
+	)
+)
+for %%d in (*.*) do (
+	for %%i in ("%%d") do (
+		SET shortfullname=%%~si
+	) 	
+	for %%i in ("!shortfullname!") do (
+		SET filedrive=%%~di
+		SET filepath=%%~pi
+		SET filename=%%~ni
+		SET fileextension=%%~xi
+	) 
+	call:display copying the command script '!filename!!fileextension!' into !FINAL_INSTALLATION_FOLDER!
+	copy !shortfullname! "!FINAL_INSTALLATION_FOLDER!" > nul
+	if "!COMMAND_SCRIPTS!"=="" (
+		SET COMMAND_SCRIPTS=!shortfullname!
+	) else (
+		SET COMMAND_SCRIPTS=!COMMAND_SCRIPTS! !shortfullname!
+	)
+)
+
+for %%g in (!FOLDERS_TO_VISIT__!) do (
+	SET CURRENT_FOLDER_LOOP=%%g
+	SET FOLDERS_TO_VISIT__HOLDER=!FOLDERS_TO_VISIT__!
+	SET FOLDERS_TO_VISIT__=
+	for %%f in (!FOLDERS_TO_VISIT__HOLDER!) do (
+		if not "%%f"=="%%g" (
+			if "!FOLDERS_TO_VISIT__!"=="" (
+				SET FOLDERS_TO_VISIT__=%%f
+			) else (
+				SET FOLDERS_TO_VISIT__=!FOLDERS_TO_VISIT__! %%f
+			)
+		)
+	)
+	goto:cinstall_script_loop
+)
+goto:cinstall_script_loop_complete
+
+:cinstall_script_end
 exit /b 0
 
 REM END_OFFSET_FOR_MERGE
@@ -197,6 +235,7 @@ REM End of the actual operating script
 			)
 		)
 		call:display_error cannot find the script '%1'
+		cd !WORKING_DIR!
 		call:%1 !ARGS__! 2> nul && SET LABEL_EXECUTED=true
 		if !LABEL_EXECUTED!==true (
 			exit /b 0
@@ -205,6 +244,10 @@ REM End of the actual operating script
 			SET SCRIPT_PATH=%1
 		)
 	)	
+	for %%i in ("!SCRIPT_PATH!") do (
+		SET SCRIPT_PATH=%%~si
+	) 
+	cd !WORKING_DIR!
 	!SCRIPT_PATH! !ARGS__!
 	goto:call_command_script__end
 	
