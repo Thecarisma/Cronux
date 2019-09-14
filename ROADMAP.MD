@@ -38,7 +38,7 @@
  - [ ] treate chelp to show help for single script build
  - [x] command to pipe result from a command to another command as params `[pipep] command [from] evaluated1 [and] evaluated2`
  - [x] create the touch command to create files
- - [ ] group command scripts into subfolders in ./commands/ directory 
+ - [x] group command scripts into subfolders in ./commands/ directory 
  - [ ] PC Setup folder for command script for setting up programming environment
  - [ ] git command to commit all file except specified file 
  - [ ] git command to commit all file except specified file accept wild card

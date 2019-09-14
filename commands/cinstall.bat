@@ -202,7 +202,7 @@ REM End of the actual operating script
 :call_command_script
 	SET LABEL_EXECUTED=false
 	SET SCRIPT_PATH=
-	SET COMMANDS_FOLDER__=!COMMANDS_FOLDER!
+	SET COMMANDS_FOLDER__=.\ 
 	SET FOLDERS_TO_VISIT__=
 	SET ARGS__=
 	SET BACKWARD_SEARCH_PATHS=..\ ..\..\ ..\..\..\
