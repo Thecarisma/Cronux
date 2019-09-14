@@ -35,7 +35,7 @@ SET ROAMING_TEMP_FILE=!ROAMING_FOLDER!\CronuxTestRunner.CurrentBatchSource.bat.t
 
 SET ALREADY_TESTED_SCRIPT=tests
 SET BLACKLISTED_NAMES=cls CronuxTestRunner Cronux tests
-SET DEAFULT_VARIABLES=OP_ARGS SCRIPT_DIR WORKING_DIR USER_FOLDER INSTALLATION_FOLDER ROAMING_FOLDER BACKUP_FOLDER
+SET DEAFULT_VARIABLES=OP_ARGS SCRIPT_DIR WORKING_DIR USER_FOLDER INSTALLATION_FOLDER ROAMING_FOLDER BACKUP_FOLDER IS_ADMIN
 
 for /f %%A in ('"prompt $H &echo on &for %%B in (1) do rem"') do SET BACKSPACE=%%A
 
@@ -138,7 +138,7 @@ exit /b !EXIT_CODE!
 	call:check_attributes
 	call:check_call_command_script
 	call:check_display_functions
-	call:confirm_check_permission_attributes
+	call:confirm_is_administrator_attributes
 	REM if !UNIT_TEST_FAILED!==true ( goto:test_fails )
 	
 	SET /a SUB_TOTAL_TEST=!SUB_FAILED_TEST_COUNT!+!SUB_PASSED_TEST_COUNT!
@@ -625,6 +625,68 @@ REM display_warning is compulsory if used
 	:check_merge_comments__end
 	exit /b 0
 	
+REM confirm the is_administrator variable and function is defined and called
+:confirm_is_administrator_attributes
+	SET UNIT_TEST_FAILED=false
+	SET IS_IS_ADMIN_DEFINED=false
+	SET IS_IS_ADMINISTRATOR_CALLED=false
+	SET IS_IS_ADMINISTRATOR_DEFINED=false
+	
+	for /f "delims=" %%x in (!ROAMING_TEMP_FILE!) do (
+		SET A_ARG=%%x
+		if not "x!A_ARG:is_administrator=!"=="x!A_ARG!" (
+			if "!A_ARG!"==":is_administrator" (
+				SET IS_IS_ADMINISTRATOR_DEFINED=true
+			)
+			if not "x!A_ARG:call:=!"=="x!A_ARG!" (
+				SET IS_IS_ADMINISTRATOR_CALLED=true
+			)
+		)
+		if not "x!A_ARG:IS_ADMIN=!"=="x!A_ARG!" (
+			if not "x!A_ARG:SET=!"=="x!A_ARG!" (				
+				if not "x!A_ARG:false=!"=="x!A_ARG!" (
+					SET IS_IS_ADMIN_DEFINED=true
+				)
+			)
+		)
+	)
+	
+	call:a_display %BACKSPACE%    is IS_ADMIN variable declared      - 
+	if !IS_IS_ADMIN_DEFINED!==true (
+		echo [0;32m [passed][0m
+		SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
+	) else (
+		SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
+		SET ERROR_MESSAGE=the variable 'IS_ADMIN' is not defined
+		SET UNIT_TEST_FAILED=true
+		call:printerror_value !ERROR_MESSAGE!
+	)
+	
+	call:a_display %BACKSPACE%    is :is_administrator defined       - 
+	if !IS_IS_ADMINISTRATOR_DEFINED!==true (
+		echo [0;32m [passed][0m
+		SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
+	) else (
+		SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
+		SET ERROR_MESSAGE=the 'is_administrator' function is not defined
+		SET UNIT_TEST_FAILED=true
+		call:printerror_value !ERROR_MESSAGE!
+	)
+	
+	call:a_display %BACKSPACE%    is :is_administrator called        - 
+	if !IS_IS_ADMINISTRATOR_CALLED!==true (
+		echo [0;32m [passed][0m
+		SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
+	) else (
+		SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
+		SET ERROR_MESSAGE=the 'is_administrator' function is not called
+		SET UNIT_TEST_FAILED=true
+		call:printerror_value !ERROR_MESSAGE!
+	)
+	
+	:confirm_is_administrator_attributes_end
+	exit /b 0
+		
 REM print error
 :printerror_value
 	if !VERBOSE!==true (

@@ -6,6 +6,8 @@ SET OPERATION="none"
 SET OP_ARGS=
 SET SCRIPT_DIR=%~dp0
 SET WORKING_DIR=%cd%
+SET IS_ADMIN=false
+call:is_administrator
 
 SET USER_FOLDER=%HOMEDRIVE%%HOMEPATH%
 SET INSTALLATION_FOLDER=C:\Program Files\Cronux\
@@ -102,6 +104,12 @@ REM End of the actual operating script
 	
 :display_error
 	echo [0;31mCronux.say:[0m %* 
+	exit /b 0
+	
+:is_administrator
+	SET is_administrator_var=
+	for /F "tokens=* USEBACKQ" %%F in (`fsutil dirty query %systemdrive%`) do SET is_administrator_var=%%F
+	if "x!is_administrator_var:denied=!"=="x!is_administrator_var!" ( SET IS_ADMIN=true) 
 	exit /b 0
 	
 REM S
