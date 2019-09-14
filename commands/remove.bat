@@ -86,7 +86,7 @@ if "!IS_TEST!"=="" (
 	call:display_error you need to specify the target as first parameter. prod or test
 )
 
-if %IS_TEST%==true (
+if !IS_TEST!==true (
 	SET FINAL_INSTALLATION_FOLDER=!TEST_FOLDER!\installation\
 ) else (
 	SET FINAL_INSTALLATION_FOLDER=!INSTALLATION_FOLDER!

@@ -46,6 +46,7 @@ SET CURRENT_FOLDER_LOOP=
 SET ADMIN_REQUESTED=!IS_ADMIN!
 SET FILES_TO_INSTALL=
 SET IS_TEST=
+SET TREAT_SYSTEM_PATH=false
 SET FOLDERS_TO_VISIT__=
 
 for %%a in (%*) do (
@@ -88,6 +89,10 @@ for %%a in (%*) do (
 		)
 	)
 )
+if not !IS_TEST!==false (
+	SET TREAT_SYSTEM_PATH=false
+)
+
 call:display  Preparing to install all Cronux command
 if %IS_TEST%==true (
 	SET FINAL_INSTALLATION_FOLDER=!TEST_FOLDER!\installation\
@@ -141,8 +146,10 @@ if exist "!COMMANDS_FOLDER!" (
 	call:display !COMMAND_SCRIPTS!
 )
 call:call_command_script compilescript "!FINAL_INSTALLATION_FOLDER!\Cronux.bat" !COMMAND_SCRIPTS!
-call:call_command_script delpath Machine Cronux
-call:call_command_script addpath !FINAL_INSTALLATION_FOLDER! Machine
+if !TREAT_SYSTEM_PATH!==true (
+	call:call_command_script delpath Machine Cronux
+	call:call_command_script addpath !FINAL_INSTALLATION_FOLDER! Machine
+)
 goto:cinstall_script_end
 
 :cinstall_script_loop

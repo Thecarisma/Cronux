@@ -1,4 +1,5 @@
 
 /test/
+/build/
 *.txt
 t.bat

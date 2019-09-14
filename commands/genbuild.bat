@@ -1,70 +1,58 @@
 @echo off
-REM START_OFFSET_FOR_MERGE
-@echo off
-REM bad thing `setlocal enabledelayedexpansion` can make your current session bloated
-REM but good because it sure better than using %?%
+SET errorlevel=0
 setlocal enabledelayedexpansion
 
-SET OPERATION=none
+SET OPERATION="none"
 SET OP_ARGS=
 SET SCRIPT_DIR=%~dp0
 SET WORKING_DIR=%cd%
 SET IS_ADMIN=false
 call:is_administrator
 
-SET COMMANDS_FOLDER=commands\
 SET USER_FOLDER=%HOMEDRIVE%%HOMEPATH%
-SET TEST_FOLDER=!SCRIPT_DIR!\test\
 SET INSTALLATION_FOLDER=C:\Program Files\Cronux\
 SET ROAMING_FOLDER=!USER_FOLDER!\AppData\Roaming\Cronux\
 SET BACKUP_FOLDER=!ROAMING_FOLDER!backup\
 
-SET AD="Heal the world, make it a better place"
-SET VERSION=1.1
+REM Place the operation script in the block below
+REM START_OFFSET_FOR_MERGE
 
+REM P
+REM Generate Distributable archive for Cronux
+REM 
+REM ::
+REM 	Usage: genbuild [version-number]
+REM 
+REM 
+REM **Parameters**:	
+REM 	param1 : string
+REM 		the version number
+
+SET VERSION=%1
+if "!VERSION!"=="" (
+	call:display_error you need to specify a valid version number
+	SET errorlevel=677
+	goto:eof
+)
+SET BUILD_FULL_PATH=.\build\!VERSION!\
+for %%i in ("!BUILD_FULL_PATH!") do (
+	SET BUILD_FULL_PATH=%%~si
+) 
+
+REM call:call_command_script cinstall test
 cd !SCRIPT_DIR!
-
-
-for %%x in (%*) do (
-
-	if "%%x"=="nb" (
-		SET AD=""
-	) else (
-		if "!OPERATION!"=="none" (
-			SET OPERATION=%%x
-		) else (
-			if "!OP_ARGS!"=="" (
-				SET OP_ARGS=%%x
-			) else (
-				SET OP_ARGS=!OP_ARGS! %%x
-			)
-		)
-	)
-)
-
-REM Create the roaming folder in %user_dir\AppData\Roaming\Cronux\
-REM if it does not exist
-if not exist !ROAMING_FOLDER! (
-	mkdir !ROAMING_FOLDER!
-)
-
-REM clear aliases
-if !OPERATION!==clear (
-	SET AD=""
-)
-if !OPERATION!==cls (
-	SET OPERATION=clear
-	SET AD=""
-)
-REM end alias resolution 
-
-call:showad
-call:call_command_script !OPERATION! !OP_ARGS!
-call:showad
+if not exist "!BUILD_FULL_PATH!" ( mkdir !BUILD_FULL_PATH!)
+call:display moving Cronux.bat into !BUILD_FULL_PATH!
+copy ..\test\installation\Cronux.bat !BUILD_FULL_PATH! 2> nul
+call:display generating zip archive Cronux.!VERSION!.zip
+call:call_command_script zip !BUILD_FULL_PATH!\Cronux.!VERSION!.zip .\test\installation\
+cd !WORKING_DIR!
 
 exit /b 0
-	
-REM 
+
+REM END_OFFSET_FOR_MERGE
+REM End of the actual operating script
+
 :call_command_script
 	SET LABEL_EXECUTED=false
 	SET SCRIPT_PATH=
@@ -154,47 +142,32 @@ REM
 	
 	:call_command_script__end
 	exit /b 0
-	
-:testlabel
-	echo this is it
 
-	exit /b 0
-
-:showad 
-	if not !AD!=="" (
-		@echo ``````````````````````````````````````````````
-		echo !AD!
-		@echo ..............................................
-	)
-	exit /b 0
-	
-REM Display message and title in the console
 :display
-	echo [0;32mCronux:[0m %* 
-
+	echo [0;32mCronux.genbuild:[0m %* 
 	exit /b 0
 	
-REM Display error message and title in the console
 :display_error
-	echo [0;31mCronux:[0m %* 
-
+	echo [0;31mCronux.genbuild:[0m %* 
 	exit /b 0
 	
-REM Display warning message and title in the console
 :display_warning
-	echo [0;33mCronux:[0m %* 
-	
+	echo [0;33mCronux.cinstall:[0m %* 
 	exit /b 0
 	
-REM Check if command prompt is open as administrator
 :is_administrator
 	SET is_administrator_var=
 	for /F "tokens=* USEBACKQ" %%F in (`fsutil dirty query %systemdrive%`) do SET is_administrator_var=%%F
 	if "x!is_administrator_var:denied=!"=="x!is_administrator_var!" ( SET IS_ADMIN=true) 
 	exit /b 0
-
-:close 
-
-	exit
-
-	exit /b 0
+	
+REM S
+REM 	:copyright: 2019, Azeez Adewale
+REM 	:copyright: GNU LESSER GENERAL PUBLIC LICENSE v3 (c) 2019 Cronux
+REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
+REM 	:date: 15 September 2019
+REM 	:time: 12:18 PM
+REM 	:filename: genbuild.bat
+REM 
+REM 
+REM		.. _ALink: ./ALink.html

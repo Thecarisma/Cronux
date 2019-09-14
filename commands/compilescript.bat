@@ -63,8 +63,14 @@ call:display main script Cronux.bat file generated at !MAIN_CRONUX_PATH!
 for %%a in (%*) do (
 	if not "%%a"=="!PARAM1!" (
 		call:display compiling '%%a' script into !OUTPUT_PATH! 
-	
 		SET SCRIPT_PATH=%%a
+		
+		for %%i in ("!SCRIPT_PATH!") do (
+			SET filedrive=%%~di
+			SET filepath=%%~pi
+			SET filename=%%~ni
+			SET fileextension=%%~xi
+		) 
 		if not exist "!SCRIPT_PATH!" (
 			SET SCRIPT_PATH=%%a.bat
 			if not exist "!SCRIPT_PATH!" (
@@ -73,10 +79,10 @@ for %%a in (%*) do (
 					SET SCRIPT_PATH=..\%%a.bat
 					if not exist "!SCRIPT_PATH!" (
 						call:display_error cannot find the script for the command '%%a' 
-					) else ( call:compile_single_script %%a !SCRIPT_PATH! !OUTPUT_PATH! )
-				) else ( call:compile_single_script %%a !SCRIPT_PATH! !OUTPUT_PATH! )
-			) else ( call:compile_single_script %%a !SCRIPT_PATH! !OUTPUT_PATH! )
-		) else ( call:compile_single_script %%a !SCRIPT_PATH! !OUTPUT_PATH!)
+					) else ( call:compile_single_script !filename! !SCRIPT_PATH! !OUTPUT_PATH! )
+				) else ( call:compile_single_script !filename! !SCRIPT_PATH! !OUTPUT_PATH! )
+			) else ( call:compile_single_script !filename! !SCRIPT_PATH! !OUTPUT_PATH! )
+		) else ( call:compile_single_script !filename! !SCRIPT_PATH! !OUTPUT_PATH!)
 	)
 )
 call:display compilation and build completed successfully. 
