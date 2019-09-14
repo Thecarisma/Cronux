@@ -136,6 +136,7 @@ REM
 	SET COMMANDS_FOLDER__=!COMMANDS_FOLDER!
 	SET FOLDERS_TO_VISIT__=
 	SET ARGS__=
+	SET BACKWARD_SEARCH_PATHS=..\ ..\..\ ..\..\..\
 	for %%a in (%*) do (
 		if "!SCRIPT_PATH!"=="" (
 			SET SCRIPT_PATH=%%a.bat
@@ -149,6 +150,7 @@ REM
 	)
 	if "!SCRIPT_PATH!"=="" (
 		call:display_error the script name or path cannot be empty
+		SET errorlevel=677
 		goto:eof
 	)
 	if not exist "!SCRIPT_PATH!" (
@@ -157,10 +159,16 @@ REM
 	:call_command_script__search_complete
 	cd !SCRIPT_DIR!
 	if not exist "!SCRIPT_PATH!" (
+		for %%b in (!BACKWARD_SEARCH_PATHS!) do (
+			if exist "%%b\%1.bat" (
+				SET SCRIPT_PATH=%%b\%1.bat
+				goto:call_command_script__search_complete
+			)
+		)
 		call:display_error cannot find the script '%1'
 		call:%1 !ARGS__! 2> nul && SET LABEL_EXECUTED=true
 		if !LABEL_EXECUTED!==true (
-			goto:eof
+			exit /b 0
 		) else (
 			call:display_warning Cronux cannot find the batch label specified - %1. Delegating to system
 			SET SCRIPT_PATH=%1

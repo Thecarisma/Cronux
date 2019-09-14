@@ -478,6 +478,8 @@ REM Check the function label `:call_command_script` position
 :check_call_command_script
 	SET UNIT_TEST_FAILED=false
 	SET FOUND_END_SEGMENT=false
+	SET CALL_COMMAND_USED=false
+	SET FOUND_CALL_COMMAND=false
 
 	call:a_display %BACKSPACE%    check :call_command_script positon - 
 	echo !CURRENT_SCRIPT_SOURCE! > !ROAMING_TEMP_FILE!
@@ -487,8 +489,15 @@ REM Check the function label `:call_command_script` position
 			SET FOUND_END_SEGMENT=true
 		)
 		if not "x!A_ARG:call_command_script=!"=="x!A_ARG!" (
-			if !FOUND_END_SEGMENT!==false (
-				goto:check_call_command_script__error
+			if "!A_ARG!"==":call_command_script" (
+				SET FOUND_CALL_COMMAND=true
+				if !FOUND_END_SEGMENT!==false (
+					goto:check_call_command_script__error
+				)
+			) else (
+				if not "x!A_ARG:call:=!"=="x!A_ARG!" (
+					SET CALL_COMMAND_USED=true
+				)
 			)
 		)
 	)
@@ -499,11 +508,26 @@ REM Check the function label `:call_command_script` position
 		SET ERROR_MESSAGE=expecting function label `:call_command_script` after compilable segment
 		SET UNIT_TEST_FAILED=true
 		call:printerror_value !ERROR_MESSAGE!
-		goto:check_call_command_script__end
+		goto:check_call_command_script__if_used
 	
 	:check_call_command_script__passed
 		echo [0;32m [passed][0m
 		SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
+		
+	:check_call_command_script__if_used
+	call:a_display %BACKSPACE%    check call_command_ is defined iu  - 
+	if !CALL_COMMAND_USED!==true (
+		if !FOUND_CALL_COMMAND!==false (
+			SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
+			SET ERROR_MESSAGE=function label `:call_command_script` is used but not defined
+			SET UNIT_TEST_FAILED=true
+			call:printerror_value !ERROR_MESSAGE!
+			goto:check_call_command_script__end
+		)
+	)
+	
+	echo [0;32m [passed][0m
+	SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
 	
 	:check_call_command_script__end
 	exit /b 0

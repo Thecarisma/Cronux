@@ -90,7 +90,7 @@ if %IS_TEST%==true (
 	SET FINAL_INSTALLATION_FOLDER=!INSTALLATION_FOLDER!
 	if !ADMIN_REQUESTED!==false (
 		call:display_warning requesting administration for Cronux installation 
-		call:call_command_script_____remove elevate !SCRIPT_DIR!remove.bat hfgjsghfgf__aassSF_S_FS_FSfskhfjfdjksgajkg !COMMAND_TO_REMOVE!
+		call:call_command_script elevate !SCRIPT_DIR!remove.bat hfgjsghfgf__aassSF_S_FS_FSfskhfjfdjksgajkg !COMMAND_TO_REMOVE!
 		SET errorlevel=677
 		goto:eof
 	)
@@ -110,11 +110,11 @@ if not "!COMMAND_TO_REMOVE!"=="" (
 	for %%a in (!COMMAND_TO_REMOVE!) do ( 
 		if exist "%%a" (
 			call:display removing the command script '%%a' 
-			call:call_command_script_____remove backdel "%%a"
+			call:call_command_script backdel "%%a"
 		) else (
 			if exist "%%a.bat" (
 				call:display removing the command script '%%a.bat' from !FINAL_INSTALLATION_FOLDER!
-				call:call_command_script_____remove backdel "%%a.bat"
+				call:call_command_script backdel "%%a.bat"
 			) else (
 				call:display_warning the script '%%a' does not exist in !FINAL_INSTALLATION_FOLDER!
 			)
@@ -150,14 +150,20 @@ if !ADMIN_REQUESTED!==true (
 	cd !WORKING_DIR!
 )
 rmdir !FINAL_INSTALLATION_FOLDER!
-call:call_command_script_____remove delpath Machine Cronux
+call:call_command_script delpath Machine Cronux
 
 exit /b 0
 
-:call_command_script_____remove
+REM END_OFFSET_FOR_MERGE
+REM End of the actual operating script
+
+:call_command_script
 	SET LABEL_EXECUTED=false
 	SET SCRIPT_PATH=
+	SET COMMANDS_FOLDER__=!COMMANDS_FOLDER!
+	SET FOLDERS_TO_VISIT__=
 	SET ARGS__=
+	SET BACKWARD_SEARCH_PATHS=..\ ..\..\ ..\..\..\
 	for %%a in (%*) do (
 		if "!SCRIPT_PATH!"=="" (
 			SET SCRIPT_PATH=%%a.bat
@@ -175,24 +181,66 @@ exit /b 0
 		goto:eof
 	)
 	if not exist "!SCRIPT_PATH!" (
-		SET SCRIPT_PATH=commands\%1.bat
-		if not exist "!SCRIPT_PATH!" (
-			REM call:display_error cannot find the script '%1'
-			call:%1 !ARGS__! 2> nul && SET LABEL_EXECUTED=true
-			if !LABEL_EXECUTED!==true (
-				exit /b 0
-			) else (
-				call:display_warning Cronux cannot find the batch label specified - %1. Delegating to system
-				SET SCRIPT_PATH=%1
+		goto:call_command_script_loop	
+	) 
+	:call_command_script__search_complete
+	cd !SCRIPT_DIR!
+	if not exist "!SCRIPT_PATH!" (
+		for %%b in (!BACKWARD_SEARCH_PATHS!) do (
+			if exist "%%b\%1.bat" (
+				SET SCRIPT_PATH=%%b\%1.bat
+				goto:call_command_script__search_complete
 			)
 		)
-	) 
+		call:display_error cannot find the script '%1'
+		call:%1 !ARGS__! 2> nul && SET LABEL_EXECUTED=true
+		if !LABEL_EXECUTED!==true (
+			exit /b 0
+		) else (
+			call:display_warning Cronux cannot find the batch label specified - %1. Delegating to system
+			SET SCRIPT_PATH=%1
+		)
+	)	
 	!SCRIPT_PATH! !ARGS__!
+	goto:call_command_script__end
 	
+	:call_command_script_loop
+		cd !COMMANDS_FOLDER__!
+		for /d %%d in (*.*) do (
+			for %%i in ("%%d") do (
+				SET shortfullname=%%~si
+			) 
+			REM echo !shortfullname!\%1.bat
+			if not exist "!shortfullname!\%1.bat" (
+				if "!FOLDERS_TO_VISIT__!"=="" (
+					SET FOLDERS_TO_VISIT__=!shortfullname!\
+				) else (
+					SET FOLDERS_TO_VISIT__=!FOLDERS_TO_VISIT__! !shortfullname!\
+				)
+			) else (
+				SET SCRIPT_PATH=!shortfullname!\%1.bat
+				goto:call_command_script__search_complete
+			)
+		)
+		for %%g in (!FOLDERS_TO_VISIT__!) do (
+			SET COMMANDS_FOLDER__=%%g
+			SET FOLDERS_TO_VISIT__HOLDER=!FOLDERS_TO_VISIT__!
+			SET FOLDERS_TO_VISIT__=
+			for %%f in (!FOLDERS_TO_VISIT__HOLDER!) do (
+				if not "%%f"=="%%g" (
+					if "!FOLDERS_TO_VISIT__!"=="" (
+						SET FOLDERS_TO_VISIT__=%%f
+					) else (
+						SET FOLDERS_TO_VISIT__=!FOLDERS_TO_VISIT__! %%f
+					)
+				)
+			)
+			goto:call_command_script_loop
+		)
+		goto:call_command_script__search_complete
+	
+	:call_command_script__end
 	exit /b 0
-
-REM END_OFFSET_FOR_MERGE
-REM End of the actual operating script
 
 :display 
 	echo [0;32mCronux.remove:[0m %* 

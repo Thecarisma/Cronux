@@ -50,4 +50,6 @@ occur, if you want to stop the script for other reason apart from fault or error
  6. Check if the two comment needed to compile is defined
  7. `@echo off` statement must be at the top of the file
  8. function label `:call_command_script` must be after compilable segment
+ 9. check to ensure function label `:call_command_script` is defined if used 
+ 9. if function label `:call_command_script` is defined check `display_warning` label  
  
