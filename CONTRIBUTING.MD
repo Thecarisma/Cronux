@@ -8,7 +8,46 @@ in your batch script. This allow the script to function independent of Cronux.
 Ensure that the function label `:call_command_script` is pasted after the *REM END_OFFSET_FOR_MERGE* 
 offset to prevent it from being compiled into the Cronux script again during build.
 
-## Filename Extension 
+## Check if Administrator
+
+There is no straight way to check if the command prompt is opened as Administrator therefore 
+hacky method can be used to check if it open as Admin. 
+
+A method is to execute a command that requires Admin access and check for the `errorlevel` value after 
+execution if `errorlevel` is zero then it open as admin, but the method in Cronux context does not work 
+and is breaking structure as the global variable `errorlevel` is heavily used. 
+
+The method used is to read the output of an Admin level command and check if it contains the keyword `denied` 
+if it does not contain `denied` the commnd is open as admin. The system command used to check is `fsutil` which 
+is used to check if the system drive is dirty (i have no idea what it usefulness is)
+
+The batch function snippet below should be in your script after the OFFSET MERGE line 
+
+```batch
+:is_administrator
+	SET is_administrator_var=
+	for /F "tokens=* USEBACKQ" %%F in (`fsutil dirty query %systemdrive%`) do SET is_administrator_var=%%F
+	if "x!is_administrator_var:denied=!"=="x!is_administrator_var!" ( SET IS_ADMIN=true) 
+	exit /b 0
+```
+
+and the following statement should be declared at the top of your script before START MERGE line 
+
+```batch
+SET IS_ADMIN=false
+call:is_administrator
+```
+
+if a command requires elevation from within your script you can first check if the command prompt is open as 
+administrator before you send the commands to `elevate`
+
+```
+if !IS_ADMIN!==true (
+	REM do whatever as admin 
+) else (
+	call:call_command_script elevate [your command here]
+)
+```
 
 
 ## Debuging Script Execution
@@ -55,5 +94,8 @@ occur, if you want to stop the script for other reason apart from fault or error
  10. check :display function is defined if used
  11. check :display_error function is defined if used
  12. check :display_warning function is defined if used
- 12. Confirm the check administrator function is defined
+ 13. Check for IS_ADMIN variable and check permission call
+ 13. Confirm the check administrator function is defined
+ 
+Looking forward to your contribution.
  

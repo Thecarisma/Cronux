@@ -138,6 +138,7 @@ exit /b !EXIT_CODE!
 	call:check_attributes
 	call:check_call_command_script
 	call:check_display_functions
+	call:confirm_check_permission_attributes
 	REM if !UNIT_TEST_FAILED!==true ( goto:test_fails )
 	
 	SET /a SUB_TOTAL_TEST=!SUB_FAILED_TEST_COUNT!+!SUB_PASSED_TEST_COUNT!

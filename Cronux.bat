@@ -9,9 +9,8 @@ SET OPERATION=none
 SET OP_ARGS=
 SET SCRIPT_DIR=%~dp0
 SET WORKING_DIR=%cd%
-SET FIRST_PARAM=%0
-SET IS_TEST=true
-SET CLEARED=false
+SET IS_ADMIN=false
+call:is_administrator
 
 SET COMMANDS_FOLDER=commands\
 SET USER_FOLDER=%HOMEDRIVE%%HOMEPATH%
@@ -244,6 +243,13 @@ REM Display warning message and title in the console
 :display_warning
 	echo [0;33mCronux:[0m %* 
 	
+	exit /b 0
+	
+REM Check if command prompt is open as administrator
+:is_administrator
+	SET is_administrator_var=
+	for /F "tokens=* USEBACKQ" %%F in (`fsutil dirty query %systemdrive%`) do SET is_administrator_var=%%F
+	if "x!is_administrator_var:denied=!"=="x!is_administrator_var!" ( SET IS_ADMIN=true) 
 	exit /b 0
 
 :close 
