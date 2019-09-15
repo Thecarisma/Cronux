@@ -19,11 +19,11 @@ before_script:
   #is windows and will come prebuilt with powershell, .NET platform, VBS and Batch
 
 script:
-  - CronuxTestRunner.bat
-  - cd .\commands\
-  - $ ..\Cronux.bat genbuild ${..\Cronux.bat version}
-  - $ dir ..\build\1.1\
-  - #.\$.bat ls ..\build\${.\Cronux.bat version}\
+  - ./CronuxTestRunner.bat
+  - cd ./commands/
+  - ./$.bat ../Cronux.bat genbuild ${../Cronux.bat version}
+  - ./$.bat dir ../build/1.1/
+  - #./$.bat ls ../build/${../Cronux.bat version}/
   
 
   
