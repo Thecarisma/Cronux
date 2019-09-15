@@ -2,11 +2,6 @@ language: c
   
 os:
   - windows
-  
-# branches:
-#   only:
-#     - master
-#     - deploy
 
 compiler:
   - gcc
@@ -23,5 +18,12 @@ script:
   - ./Cronux.bat genbuild $(./Cronux.bat version)
   - ls ./build/$(./Cronux.bat version)/
   
-
-  
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key: $GITHUB_TOKEN
+  file_glob: true
+  file:
+    - "build/Cronux*"
+  on:
+    tags: true
