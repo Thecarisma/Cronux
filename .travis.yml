@@ -21,7 +21,7 @@ before_script:
 script:
   - ./CronuxTestRunner.bat
   - ./Cronux.bat genbuild $(./Cronux.bat version)
-  - ls ../build/$(./Cronux.bat version)/
+  - ls ./build/$(./Cronux.bat version)/
   
 
   

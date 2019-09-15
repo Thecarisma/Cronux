@@ -1,4 +1,5 @@
 @echo off
+SET errorlevel=0
 setlocal enabledelayedexpansion
 
 SET OPERATION="none"
