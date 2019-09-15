@@ -14,8 +14,5 @@ before_script:
   #is windows and will come prebuilt with powershell, .NET platform, VBS and Batch
 
 script:
-  - cd build/
-  
-  #build for windows 
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then ./CronuxTestRunner.bat; fi
   
