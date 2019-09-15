@@ -1,0 +1,18 @@
+language: batch
+  
+os:
+  - windows
+  
+before_install:
+  #- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install -y mingw; export PATH=/c/tools/mingw64/bin:"$PATH"; fi
+  
+before_script:
+  #there is no need to configure build toolchain since the platform on travis CI  
+  #is windows and will come prebuilt with powershell, .NET platform, VBS and Batch
+
+script:
+  - cd build/
+  
+  #build for windows 
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then ./CronuxTestRunner.bat; fi
+  
