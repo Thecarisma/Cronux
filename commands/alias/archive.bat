@@ -126,6 +126,10 @@ REM End of the actual operating script
 	echo [0;31mCronux.archive:[0m %* 
 	exit /b 0
 	
+:display_warning
+	echo [0;33mCronux.cinstall:[0m %* 
+	exit /b 0
+	
 :is_administrator
 	SET is_administrator_var=
 	for /F "tokens=* USEBACKQ" %%F in (`fsutil dirty query %systemdrive%`) do SET is_administrator_var=%%F

@@ -112,10 +112,7 @@ REM
 			call:display_warning Cronux cannot find the batch label specified - %1. Delegating to system
 			SET SCRIPT_PATH=%1
 		)
-	)	
-	for %%i in ("!SCRIPT_PATH!") do (
-		SET SCRIPT_PATH=%%~si
-	) 
+	)
 	cd !WORKING_DIR!
 	!SCRIPT_PATH! !ARGS__!
 	goto:call_command_script__end

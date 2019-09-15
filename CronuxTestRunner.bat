@@ -20,6 +20,7 @@ SET SET ERROR_MESSAGE=
 SET UNIT_TEST_FAILED=false
 SET BACKSPACE=
 SET CURRENT_SCRIPT_SOURCE=
+SET FOLDERS_TO_TEST=!COMMANDS_FOLDER!
 SET VERBOSE=true
 SET ERROR_CODE=677
 SET LF=^
@@ -37,7 +38,7 @@ SET ALREADY_TESTED_SCRIPT=tests
 SET BLACKLISTED_NAMES=cls CronuxTestRunner Cronux tests
 SET DEAFULT_VARIABLES=OP_ARGS SCRIPT_DIR WORKING_DIR USER_FOLDER INSTALLATION_FOLDER ROAMING_FOLDER BACKUP_FOLDER IS_ADMIN
 
-if not exist (".\build") (
+if not exist ".\build\" (
 	mkdir .\build\
 )
 for /f %%A in ('"prompt $H &echo on &for %%B in (1) do rem"') do SET BACKSPACE=%%A
@@ -54,25 +55,69 @@ if "!FILES_TO_RUN_TEST_ON!"=="" (
 		call:printline
 		exit /b 0
 	)
-	cd !COMMANDS_FOLDER!
-	for %%f in (*) do ( 
-		FOR %%i IN ("%%f") DO (
-			SET filedrive=%%~di
-			SET filepath=%%~pi
-			SET filename=%%~ni
-			SET fileextension=%%~xi
-		) 
-		SET SINGLE_COMMAND_SCRIPT=!filedrive!!filepath!!filename!!fileextension!
-		if "!FILES_TO_RUN_TEST_ON!"=="" (
-			SET FILES_TO_RUN_TEST_ON=!SINGLE_COMMAND_SCRIPT!
-		) else (
-			SET FILES_TO_RUN_TEST_ON=!FILES_TO_RUN_TEST_ON! !SINGLE_COMMAND_SCRIPT!
-		)
+	
+	SET COMMANDS_FOLDER__=!COMMANDS_FOLDER!
+	goto:test_scripts_loop
+) else (
+	if exist "!FILES_TO_RUN_TEST_ON!" (
+		goto:start_testing_files
+	) else (
+		call:display_error currently does not support directory as argument
+		call:display_error cd to the directory and execute `CronuxTestRunner`
+		exit /b 677
 	)
-	cd !WORKING_DIR!
-	call:printline
 )
 
+:test_scripts_complete
+cd !WORKING_DIR!
+for %%f in (!FOLDERS_TO_TEST!) do (
+	cd %%f
+	for %%g in (*.*) do (
+		for %%i in ("%%g") do (
+			SET shortfullname=%%~si
+		)
+		if "!FILES_TO_RUN_TEST_ON!"=="" (
+			SET FILES_TO_RUN_TEST_ON=!shortfullname!
+		) else (
+			SET FILES_TO_RUN_TEST_ON=!FILES_TO_RUN_TEST_ON! !shortfullname!
+		)
+	)
+)
+cd !WORKING_DIR!
+call:printline
+goto:start_testing_files
+
+:test_scripts_loop
+	cd !COMMANDS_FOLDER__!
+	for /d %%d in (*.*) do (
+		for %%i in ("%%d") do (
+			SET shortfullname=%%~si
+		) 
+		SET FOLDERS_TO_TEST=!FOLDERS_TO_TEST! !shortfullname!\
+		if "!FOLDERS_TO_VISIT__!"=="" (
+			SET FOLDERS_TO_VISIT__=!shortfullname!
+		) else (
+			SET FOLDERS_TO_VISIT__=!FOLDERS_TO_VISIT__! !shortfullname!
+		)
+	)
+	for %%g in (!FOLDERS_TO_VISIT__!) do (
+		SET COMMANDS_FOLDER__=%%g
+		SET FOLDERS_TO_VISIT__HOLDER=!FOLDERS_TO_VISIT__!
+		SET FOLDERS_TO_VISIT__=
+		for %%f in (!FOLDERS_TO_VISIT__HOLDER!) do (
+			if not "%%f"=="%%g" (
+				if "!FOLDERS_TO_VISIT__!"=="" (
+					SET FOLDERS_TO_VISIT__=%%f
+				) else (
+					SET FOLDERS_TO_VISIT__=!FOLDERS_TO_VISIT__! %%f
+				)
+			)
+		)
+		goto:test_scripts_loop
+	)
+	goto:test_scripts_complete
+
+:start_testing_files
 for %%a in (!FILES_TO_RUN_TEST_ON!) do (
 	SET /a SUB_TOTAL_TEST=!SUB_TOTAL_TEST!-!SUB_TOTAL_TEST!
 	SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!-!SUB_FAILED_TEST_COUNT!
@@ -212,11 +257,13 @@ REM Check the filename attribute for conflict and error
 	:check_file_name__extension
 	call:a_display %BACKSPACE%    checking the filename extension    - 
 	if not "%3"==".bat" (
-		SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
-		SET ERROR_MESSAGE=invalid filename extension '%3', .bat expected
-		SET UNIT_TEST_FAILED=true
-		call:printerror_value !ERROR_MESSAGE!
-		goto:check_file_name__end
+		if not "%3"==".BAT" (
+			SET /a SUB_FAILED_TEST_COUNT=!SUB_FAILED_TEST_COUNT!+1
+			SET ERROR_MESSAGE=invalid filename extension '%3', .bat expected
+			SET UNIT_TEST_FAILED=true
+			call:printerror_value !ERROR_MESSAGE!
+			goto:check_file_name__end
+		)
 	)
 	echo [0;32m [passed][0m
 	SET /a SUB_PASSED_TEST_COUNT=!SUB_PASSED_TEST_COUNT!+1
