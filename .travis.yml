@@ -1,5 +1,10 @@
+language: c
+  
 os:
   - windows
+
+compiler:
+  - gcc
   
 before_install:
   #- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install -y mingw; export PATH=/c/tools/mingw64/bin:"$PATH"; fi
