@@ -31,12 +31,15 @@ SET TEST_FOLDER=!SCRIPT_DIR!\test\
 SET INSTALLATION_FOLDER=C:\Program Files\Cronux\
 SET ROAMING_FOLDER=!USER_FOLDER!\AppData\Roaming\Cronux\
 SET BACKUP_FOLDER=!ROAMING_FOLDER!backup\
-SET ROAMING_TEMP_FILE=!ROAMING_FOLDER!\CronuxTestRunner.CurrentBatchSource.bat.txt
+SET ROAMING_TEMP_FILE=.\build\CronuxTestRunner.CurrentBatchSource.bat.txt
 
 SET ALREADY_TESTED_SCRIPT=tests
 SET BLACKLISTED_NAMES=cls CronuxTestRunner Cronux tests
 SET DEAFULT_VARIABLES=OP_ARGS SCRIPT_DIR WORKING_DIR USER_FOLDER INSTALLATION_FOLDER ROAMING_FOLDER BACKUP_FOLDER IS_ADMIN
 
+if not exist (".\build") (
+	mkdir .\build\
+)
 for /f %%A in ('"prompt $H &echo on &for %%B in (1) do rem"') do SET BACKSPACE=%%A
 
 REM if no filename is specified run test on all the scripts 
