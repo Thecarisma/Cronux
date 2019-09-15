@@ -20,10 +20,8 @@ before_script:
 
 script:
   - ./CronuxTestRunner.bat
-  - cd ./commands/
-  - ./$.bat ../Cronux.bat genbuild $(../Cronux.bat version)
-  - ./$.bat dir ../build/1.1/
-  - #./$.bat ls ../build/${../Cronux.bat version}/
+  - Cronux.bat genbuild $(Cronux.bat version)
+  - dir ../build/${Cronux.bat version}/
   
 
   
