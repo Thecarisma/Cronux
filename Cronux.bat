@@ -56,7 +56,10 @@ if !OPERATION!==cls (
 	SET OPERATION=clear
 	SET AD=""
 )
-REM end alias resolution 
+if !OPERATION!==version (
+	echo !VERSION!
+	exit /b 0
+)
 
 call:showad
 call:call_command_script !OPERATION! !OP_ARGS!

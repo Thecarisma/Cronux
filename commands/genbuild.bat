@@ -39,7 +39,7 @@ for %%i in ("!BUILD_FULL_PATH!") do (
 	SET BUILD_FULL_PATH=%%~si
 ) 
 
-REM call:call_command_script cinstall test
+call:call_command_script cinstall test
 cd !SCRIPT_DIR!
 if not exist "!BUILD_FULL_PATH!" ( mkdir !BUILD_FULL_PATH!)
 call:display moving Cronux.bat into !BUILD_FULL_PATH!

@@ -24,6 +24,7 @@ REM
 REM ::
 REM 	Usage: $ command $(evaluateexpr) $(evaluateexpr)
 REM 	Usage: $ dir $(echo C:\)
+REM     Usage: $ .\Cronux.bat say the version is ${.\Cronux.bat version}
 REM 
 REM The command is evaluated as expected. Any windows specific syntax 
 REM in the command is evaluated before parsing e.g `$ echo $(echo !PATH!)`
@@ -86,6 +87,9 @@ for %%a in (!COMMAND_LINE_ARGS!) do (
 		SET SUB_COMMANDS=
 	)
 )
+if not "x!MAIN_COMMANDS:Cronux.bat=!"=="x!MAIN_COMMANDS!" (
+	SET MAIN_COMMANDS=!MAIN_COMMANDS! nb
+)	
 !MAIN_COMMANDS!
 
 exit /b 0
@@ -97,12 +101,12 @@ exit /b 0
 	SET SUB_SUB_COMMANDS=%SUB_SUB_COMMANDS:)=%
 	SET SUB_SUB_COMMANDS=%SUB_SUB_COMMANDS:}=%
 	
-	echo before: %*	- !SUB_SUB_COMMANDS!
+	REM echo before: %*	- !SUB_SUB_COMMANDS!
 	for /F "usebackq delims=" %%S in (`!SUB_SUB_COMMANDS!`) do (
 		if "!EXECUTION_RESULT!"=="" (
-			SET EXECUTION_RESULT="%%S"
+			SET EXECUTION_RESULT=%%S
 		) else (
-			SET EXECUTION_RESULT=!EXECUTION_RESULT! "%%S"
+			SET EXECUTION_RESULT=!EXECUTION_RESULT! %%S
 		)
 	)
 
