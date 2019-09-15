@@ -5,6 +5,7 @@ os:
   
 branches:
   only:
+    - dev
     - deploy
 
 compiler:
