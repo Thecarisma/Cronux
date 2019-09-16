@@ -44,8 +44,8 @@ cd !SCRIPT_DIR!
 if not exist "!BUILD_FULL_PATH!" ( mkdir !BUILD_FULL_PATH!)
 call:display moving Cronux.bat into !BUILD_FULL_PATH!
 copy ..\test\installation\Cronux.bat !BUILD_FULL_PATH! 2> nul
-call:display generating zip archive Cronux.!VERSION!.zip
-call:call_command_script zip !BUILD_FULL_PATH!\Cronux.!VERSION!.zip .\test\installation\
+call:display generating zip archive Cronux.zip
+call:call_command_script zip !BUILD_FULL_PATH!\Cronux.zip .\test\installation\
 cd !WORKING_DIR!
 
 exit /b 0

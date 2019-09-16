@@ -20,7 +20,7 @@ SET ROAMING_FOLDER=!USER_FOLDER!\AppData\Roaming\Cronux\
 SET BACKUP_FOLDER=!ROAMING_FOLDER!backup\
 
 SET AD="Heal the world, make it a better place"
-SET VERSION=1.1
+SET VERSION=1.3
 
 cd !SCRIPT_DIR!
 

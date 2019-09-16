@@ -46,9 +46,15 @@ SET OUTPUT_PATH=%1
 if not exist "!MAIN_CRONUX_PATH!" (
 	SET MAIN_CRONUX_PATH=..\Cronux.bat
 	if not exist "!MAIN_CRONUX_PATH!" (
-		call:display_error cannot find the main Cronux.bat file 
-		SET errorlevel=677
-		goto:eof
+		SET MAIN_CRONUX_PATH=!SCRIPT_DIR!\Cronux.bat
+		if not exist "!MAIN_CRONUX_PATH!" (
+			SET MAIN_CRONUX_PATH=!SCRIPT_DIR!\..\Cronux.bat
+			if not exist "!MAIN_CRONUX_PATH!" (
+				call:display_error cannot find the main Cronux.bat file 
+				SET errorlevel=677
+				goto:eof
+			)
+		)
 	)
 )
 

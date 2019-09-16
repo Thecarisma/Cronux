@@ -47,3 +47,4 @@
  - [ ] command to printout aboutn and all contributor of the scripts (treat in cinstall)
  - [x] create subfolder for script alias
  - [ ] next release make sure to remove shortfilename before `!SCRIPT_PATH! !ARGS__!`
+ - [x] zip does not visit subfolder 
