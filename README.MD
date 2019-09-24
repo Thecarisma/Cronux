@@ -36,6 +36,12 @@ To install the script just download from the [release](https://github.com/Thecar
 
 #### Install
 
+If you have git command line or bash installed use the one line command below to install cronux 
+
+```bash
+git clone https://github.com/Thecarisma/Cronux.git && cd ./Cronux && ./Cronux.bat install prod
+```
+
 To use all the commands you will need to prefix the word **Cronux** before the command e.g `Cronux clear`, `Cronux sudo` e.t.c to make the 
 command available independent of Cronux itself install the commands with
 

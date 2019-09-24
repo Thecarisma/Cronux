@@ -42,6 +42,8 @@
  - [ ] PC Setup folder for command script for setting up programming environment
  - [ ] git command to commit all file except specified file 
  - [ ] git command to commit all file except specified file accept wild card
+ - [ ] git command to create tag `gittag [tagname]`
+ - [ ] git command to delete local tag `gitrmtag [tagname]`
  - [ ] create a wildcard resolver command
  - [ ] git command to create release note from commit from last release or a commit hash, issue and pull request
  - [ ] command to printout aboutn and all contributor of the scripts (treat in cinstall)
