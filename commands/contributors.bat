@@ -26,7 +26,6 @@ REM
 REM 
 
 call:display Azeez Adewale (azeezadewale98@gmail)
-call:display Samuel Ojo (ojosamuelolusegun@gmail.com)
 
 exit /b 0
 
