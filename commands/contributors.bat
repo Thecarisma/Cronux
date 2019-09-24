@@ -18,36 +18,15 @@ REM Place the operation script in the block below
 REM START_OFFSET_FOR_MERGE
 
 REM P
-REM view the password of a saved wifi network 
+REM View the list of contributors of Cronux
 REM 
 REM ::
-REM 	Usage: wpass [WIFI_PROFILE_NAME]
-REM 	Usage: wpass SMILE@THECARISMA
+REM 	Usage: contributors
 REM 
 REM 
-REM **Parameters**:	
-REM 	param1 : string
-REM 		the path to save the downloaded file to
-REM 
 
-SET WIFI_PROFILE_NAME=%1
-SET EXECUTION_RESULT=
-SET LF=^
-
-
-
-if "!WIFI_PROFILE_NAME!"=="" (
-	call:display_error you need to specify the password profile name
-	SET errorlevel=677
-	goto:eof
-)
-for /F "usebackq delims=" %%S in (`netsh wlan show profile name^=!WIFI_PROFILE_NAME! key^=clear`) do (
-	SET A_ARG=%%S
-	if not "x!A_ARG:Key Content=!"=="x!A_ARG!" (
-		SET EXECUTION_RESULT=!A_ARG!
-	)
-)
-echo Password:!EXECUTION_RESULT:    Key Content            :=!
+call:display Azeez Adewale (azeezadewale98@gmail)
+call:display Samuel Ojo (ojosamuelolusegun@gmail.com)
 
 exit /b 0
 
@@ -55,11 +34,11 @@ REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
 
 :display
-	echo [0;32mCronux.wpass:[0m %* 
+	echo [0;32mCronux.contributors:[0m %* 
 	exit /b 0
 	
 :display_error
-	echo [0;31mCronux.wpass:[0m %* 
+	echo [0;31mCronux.contributors:[0m %* 
 	exit /b 0
 	
 :is_administrator
@@ -73,8 +52,8 @@ REM 	:copyright: 2019, Azeez Adewale
 REM 	:copyright: GNU LESSER GENERAL PUBLIC LICENSE v3 (c) 2019 Cronux
 REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
 REM 	:date: 24 September 2019
-REM 	:time: 03:26 PM
-REM 	:filename: wpass.bat
+REM 	:time: 05:08 PM
+REM 	:filename: contributors.bat
 REM 
 REM 
 REM		.. _ALink: ./ALink.html
