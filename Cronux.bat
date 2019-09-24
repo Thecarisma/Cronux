@@ -91,6 +91,7 @@ REM
 		SET errorlevel=677
 		goto:eof
 	)
+	cd !SCRIPT_DIR!
 	if not exist "!SCRIPT_PATH!" (
 		goto:call_command_script_loop	
 	) 
