@@ -98,4 +98,9 @@ occur, if you want to stop the script for other reason apart from fault or error
  13. Confirm the check administrator function is defined
  
 Looking forward to your contribution.
+
+## Adding Your Name To Contributors 
+
+open the script ./commands/contributors.bat and add your name to the list of contributors 
+below the last line. Please follor the format
  
