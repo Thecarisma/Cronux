@@ -19,7 +19,7 @@ SET INSTALLATION_FOLDER=C:\Program Files\Cronux\
 SET ROAMING_FOLDER=!USER_FOLDER!\AppData\Roaming\Cronux\
 SET BACKUP_FOLDER=!ROAMING_FOLDER!backup\
 
-SET AD="Heal the world, make it a better place"
+SET AD=if not paying for winrar is a sin you are going to hell
 SET VERSION=1.3
 
 cd !SCRIPT_DIR!
@@ -162,9 +162,9 @@ REM
 
 :showad 
 	if not !AD!=="" (
-		@echo ``````````````````````````````````````````````
+		@echo ````````````````````````````````````````````````````````
 		echo !AD!
-		@echo ..............................................
+		@echo ........................................................
 	)
 	exit /b 0
 	

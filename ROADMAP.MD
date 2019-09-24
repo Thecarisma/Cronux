@@ -48,3 +48,4 @@
  - [x] create subfolder for script alias
  - [ ] next release make sure to remove shortfilename before `!SCRIPT_PATH! !ARGS__!`
  - [x] zip does not visit subfolder 
+ - [ ] ssh commands folder 
