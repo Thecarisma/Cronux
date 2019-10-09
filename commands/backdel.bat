@@ -88,7 +88,7 @@ REM End of the actual operating script
 	
 REM S
 REM 	:copyright: 2019, Azeez Adewale
-REM 	:copyright: GNU LESSER GENERAL PUBLIC LICENSE v3 (c) 2019 Cronux
+REM 	:copyright: The MIT License (c) 2019 Cronux
 REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
 REM 	:date: 25 August 2019
 REM 	:time: 02:24 PM

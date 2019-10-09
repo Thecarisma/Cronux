@@ -27,6 +27,7 @@ ___
 - [Available Commands](#available-commands)
 - [Drawbacks And Safety](#drawbacks-and-safety)
 - [Contributing](#contributing)
+- [Support](#support)
 - [License](#license)
 
 ### Installation
@@ -165,7 +166,16 @@ issue first it is closed immediately. *don't freaking touch it if you don't unde
 
 May the force be with you.
 
+## Support
+
+You can support some of this community as they make big impact in the developement of people to get started with software engineering and open source.
+
+- https://www.patreon.com/devcareer
+- https://opencollective.com/osca
+
+Or if you want to buy me a drink > https://patreon.com/thecarisma. Thanks!🤗
+
 ### License
 
-GNU Lesser General Public License v3.0 Copyright (c) 2019 Azeez Adewale Built with :heart:
+The MIT License Copyright (c) 2019 Azeez Adewale Built with :heart:
 
