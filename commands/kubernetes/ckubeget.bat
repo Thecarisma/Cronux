@@ -39,7 +39,7 @@ REM
 REM **Parameters**:	
 REM 	param1 : string
 REM 		the pod name or part of the pod name to get
-REM 	param2 : string
+REM 	param2 : string (optional)
 REM 		the pod status to get and show
 
 SET NAME=%1
