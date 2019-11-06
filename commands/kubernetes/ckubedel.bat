@@ -21,49 +21,46 @@ REM P
 REM This kubernetes command requires you to have configure 
 REM your environment with your kubernetes clusters to work.
 REM 
-REM The command will show all the pod which contains the 
-REM first parameter sent to the command. If non of the pod 
-REM is present nothing is printed to the console.
+REM The command will delete all the pod which contains the 
+REM first parameter sent to the command with the status specified
 REM 
 REM The second parameter is the status of the pod, the second 
-REM parameter is optional if not specified all the pods that 
-REM matches the first parameter will be listed, else all the 
-REM pods that matches the name(first parameter) and the status 
-REM (second parameter) will be listed
+REM parameter is compulsory if not specified the command will 
+REM fail
 REM 
 REM 
 REM ::
-REM 	Usage: ckubeget podname
+REM 	Usage: ckubedel podname status
 REM 
 REM 
 REM **Parameters**:	
 REM 	param1 : string
 REM 		the pod name or part of the pod name to get
-REM 	param2 : string (optional)
+REM 	param2 : string 
 REM 		the pod status to get and show
 
 SET NAME=%1
 SET STATUS=%2
 
 if "!NAME!"=="" (
-	kubectl get pods
-	exit /b 0
+	call:display_error you need to specify the pod name or part of the pod name as first parameter
+	SET errorlevel=677
+	goto:eof
+)
+
+if "!STATUS!"=="" (
+	call:display_error you need to specify the pod status as second parameter
+	SET errorlevel=677
+	goto:eof
 )
 
 for /F "tokens=* USEBACKQ" %%F in (`kubectl get pods`) do (
 	SET ___TEMP_VAR=%%F
     if not "x!___TEMP_VAR:%NAME%=!"=="x!___TEMP_VAR!" (
-		if "!STATUS!"=="" (
-			echo !___TEMP_VAR!
-		) else (
-			if not "x!___TEMP_VAR:%STATUS%=!"=="x!___TEMP_VAR!" (
-				echo !___TEMP_VAR!
+        if not "x!___TEMP_VAR:%STATUS%=!"=="x!___TEMP_VAR!" (
+			for /F %%a in ("!___TEMP_VAR!") do  (
+				kubectl delete pod %%a --now 
 			)
-		)
-    )
-    if not "x!___TEMP_VAR:RESTARTS=!"=="x!___TEMP_VAR!" (
-        if not "x!___TEMP_VAR:STATUS=!"=="x!___TEMP_VAR!" (
-			echo !___TEMP_VAR!
 		)
     )
 )
@@ -74,11 +71,11 @@ REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
 
 :display
-	echo [0;32mCronux.ckubeget:[0m %* 
+	echo [0;32mCronux.ckubedel:[0m %* 
 	exit /b 0
 	
 :display_error
-	echo [0;31mCronux.ckubeget:[0m %* 
+	echo [0;31mCronux.ckubedel:[0m %* 
 	exit /b 0
 	
 :is_administrator
@@ -91,9 +88,9 @@ REM S
 REM 	:copyright: 2019, Azeez Adewale
 REM 	:copyright: The MIT License (c) 2019 Cronux
 REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
-REM 	:date: 05 November 2019
-REM 	:time: 12:05 PM
-REM 	:filename: ckubeget.bat
+REM 	:date: 06 November 2019
+REM 	:time: 11:35 AM
+REM 	:filename: ckubedel.bat
 REM 
 REM 
 REM		.. _ALink: ./ALink.html

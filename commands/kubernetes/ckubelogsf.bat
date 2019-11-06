@@ -21,49 +21,36 @@ REM P
 REM This kubernetes command requires you to have configure 
 REM your environment with your kubernetes clusters to work.
 REM 
-REM The command will show all the pod which contains the 
-REM first parameter sent to the command. If non of the pod 
-REM is present nothing is printed to the console.
-REM 
-REM The second parameter is the status of the pod, the second 
-REM parameter is optional if not specified all the pods that 
-REM matches the first parameter will be listed, else all the 
-REM pods that matches the name(first parameter) and the status 
-REM (second parameter) will be listed
+REM The command will follow the log of a particular pod. The 
+REM first parameter is the full name or part name of the pod 
+REM to view it log, the pod must be running to follow it log 
+REM else it log is not followed
 REM 
 REM 
 REM ::
-REM 	Usage: ckubeget podname
+REM 	Usage: ckubelogs podname
 REM 
 REM 
 REM **Parameters**:	
 REM 	param1 : string
-REM 		the pod name or part of the pod name to get
-REM 	param2 : string (optional)
-REM 		the pod status to get and show
+REM 		the pod name or part of the pod name to follow it log
 
 SET NAME=%1
 SET STATUS=%2
 
 if "!NAME!"=="" (
-	kubectl get pods
-	exit /b 0
+	call:display_error you need to specify the pod name or part of the pod name as first parameter
+	SET errorlevel=677
+	goto:eof
 )
 
 for /F "tokens=* USEBACKQ" %%F in (`kubectl get pods`) do (
 	SET ___TEMP_VAR=%%F
     if not "x!___TEMP_VAR:%NAME%=!"=="x!___TEMP_VAR!" (
-		if "!STATUS!"=="" (
-			echo !___TEMP_VAR!
-		) else (
-			if not "x!___TEMP_VAR:%STATUS%=!"=="x!___TEMP_VAR!" (
-				echo !___TEMP_VAR!
+		if not "x!___TEMP_VAR:Running=!"=="x!___TEMP_VAR!" (
+			FOR /F "tokens=1" %%a in ('echo !___TEMP_VAR!') do (
+				kubectl logs -f %%a
 			)
-		)
-    )
-    if not "x!___TEMP_VAR:RESTARTS=!"=="x!___TEMP_VAR!" (
-        if not "x!___TEMP_VAR:STATUS=!"=="x!___TEMP_VAR!" (
-			echo !___TEMP_VAR!
 		)
     )
 )
@@ -74,11 +61,11 @@ REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
 
 :display
-	echo [0;32mCronux.ckubeget:[0m %* 
+	echo [0;32mCronux.ckubelogs:[0m %* 
 	exit /b 0
 	
 :display_error
-	echo [0;31mCronux.ckubeget:[0m %* 
+	echo [0;31mCronux.ckubelogs:[0m %* 
 	exit /b 0
 	
 :is_administrator
@@ -93,7 +80,7 @@ REM 	:copyright: The MIT License (c) 2019 Cronux
 REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
 REM 	:date: 05 November 2019
 REM 	:time: 12:05 PM
-REM 	:filename: ckubeget.bat
+REM 	:filename: ckubelogs.bat
 REM 
 REM 
 REM		.. _ALink: ./ALink.html

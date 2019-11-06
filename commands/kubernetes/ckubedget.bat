@@ -21,48 +21,58 @@ REM P
 REM This kubernetes command requires you to have configure 
 REM your environment with your kubernetes clusters to work.
 REM 
-REM The command will show all the pod which contains the 
-REM first parameter sent to the command. If non of the pod 
+REM The command will show all the deployment which contains the 
+REM first parameter sent to the command. If non of the deployment 
 REM is present nothing is printed to the console.
 REM 
-REM The second parameter is the status of the pod, the second 
-REM parameter is optional if not specified all the pods that 
+REM The second parameter is the availability status of the deployment, the second 
+REM parameter is optional if not specified all the deployments that 
 REM matches the first parameter will be listed, else all the 
-REM pods that matches the name(first parameter) and the status 
+REM deployments that matches the name(first parameter) and the status 
 REM (second parameter) will be listed
 REM 
 REM 
 REM ::
-REM 	Usage: ckubeget podname
+REM 	Usage: ckubeget deploymentname
 REM 
 REM 
 REM **Parameters**:	
 REM 	param1 : string
-REM 		the pod name or part of the pod name to get
-REM 	param2 : string (optional)
-REM 		the pod status to get and show
+REM 		the deployment name or part of the deployment name to get
+REM 	param2 : boolean (optional)
+REM 		the availability status to get and show (true/false)
 
 SET NAME=%1
 SET STATUS=%2
 
 if "!NAME!"=="" (
-	kubectl get pods
+	kubectl get deployments --all-namespaces
 	exit /b 0
 )
 
-for /F "tokens=* USEBACKQ" %%F in (`kubectl get pods`) do (
+if not "!STATUS!"=="" (
+	if "!STATUS!"=="true" (
+		SET STATUS=1
+	) else (
+		if not "!STATUS!"=="1" (
+			SET STATUS=0
+		)
+	)
+)
+
+for /F "tokens=* USEBACKQ" %%F in (`kubectl get deployments --all-namespaces`) do (
 	SET ___TEMP_VAR=%%F
     if not "x!___TEMP_VAR:%NAME%=!"=="x!___TEMP_VAR!" (
 		if "!STATUS!"=="" (
 			echo !___TEMP_VAR!
 		) else (
-			if not "x!___TEMP_VAR:%STATUS%=!"=="x!___TEMP_VAR!" (
+			if not "x!___TEMP_VAR:1            %STATUS%=!"=="x!___TEMP_VAR!" (
 				echo !___TEMP_VAR!
 			)
 		)
     )
-    if not "x!___TEMP_VAR:RESTARTS=!"=="x!___TEMP_VAR!" (
-        if not "x!___TEMP_VAR:STATUS=!"=="x!___TEMP_VAR!" (
+    if not "x!___TEMP_VAR:NAMESPACE=!"=="x!___TEMP_VAR!" (
+        if not "x!___TEMP_VAR:AVAILABLE=!"=="x!___TEMP_VAR!" (
 			echo !___TEMP_VAR!
 		)
     )
