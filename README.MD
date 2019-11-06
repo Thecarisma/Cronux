@@ -1,8 +1,10 @@
 # <p style="text-align: center;" align="center">Cronux</p>
 
-<p style="text-align: center;" align="center">Super useful handy, hacky and wacky commands to perform simple and complex task on the Windows command line</p>
+<p style="text-align: center;" align="center">Super useful handy, hacky and wacky commands to perform simple and complex task on the Windows command line</p>	
 
 ___
+
+![Travis (.org)](https://img.shields.io/travis/Thecarisma/Cronux?style=flat)	![GitHub repo size](https://img.shields.io/github/repo-size/Thecarisma/Cronux)	![GitHub contributors](https://img.shields.io/github/contributors/Thecarisma/Cronux)	![GitHub stars](https://img.shields.io/github/stars/Thecarisma/Cronux?style=social)	![GitHub forks](https://img.shields.io/github/forks/Thecarisma/Cronux?style=social)	[![Twitter Follow](https://img.shields.io/twitter/follow/iamthecarisma?style=social)](https://twitter.com/iamthecarisma)	![Twitter URL](https://img.shields.io/twitter/url?label=Tweet%20About%20Cronux&style=social&url=https%3A%2F%2Fgithub.com%2FThecarisma%2FCronux)
 
 This repo contains Super useful handy commands to perform simple and complex task on the Windows command line. Most Linux systems comes 
 pre-installed with useful utilities and programs which makes working with the terminal easy, fun and provides easy api to execute 
