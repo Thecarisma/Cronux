@@ -44,7 +44,7 @@ To install the script just download from the [release](https://github.com/Thecar
 
 #### Install
 
-If you have git command line or bash installed use the one line command below to install cronux 
+If you have git bash installed use the one line command below to install cronux 
 
 ```bash
 git clone https://github.com/Thecarisma/Cronux.git && cd ./Cronux && ./Cronux.bat install prod
