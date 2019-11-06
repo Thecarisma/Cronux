@@ -20,6 +20,7 @@ you go kindly star the project :wink:
 ___
 
 ## Table of content
+- [Prerequisite](#prerequisite)
 - [Installation](#installation)
 	- [Install](#install)
 	- [Uninstall](#uninstall)
@@ -29,6 +30,12 @@ ___
 - [Contributing](#contributing)
 - [Support](#support)
 - [License](#license)
+
+### Prerequisite
+
+This command is exclusive to windows OS, so you need any version of Windows OS after Windows XP. Some of the command 
+requires the app to be present but that only affect the commands. The app needed is the name of the sub folder in the commands 
+folder.
 
 ### Installation
 
@@ -129,7 +136,7 @@ clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, 
 cinstall, install, rmlong, help, echocolor, colorlist, getenv, setenv, delenv, delenv, close, 
 cat, printfile, ssay, say, testlabel, compilescript, cbackup, backup, chelp, addpath, setenvf, 
 delpath, zip, archive, unzip, extract, listzip, showzip, qproc, qport, qid, p, $, ckubeget, 
-gitlogp
+gitlogp, ckubeddel, ckubedel, ckubedget, ckubeget, ckubelogs, ckubelogsf
 
 ```
 
