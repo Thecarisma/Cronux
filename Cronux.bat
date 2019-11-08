@@ -5,7 +5,7 @@ REM bad thing `setlocal enabledelayedexpansion` can make your current session bl
 REM but good because it sure better than using %?%
 setlocal enabledelayedexpansion
 
-SET OPERATION=none
+SET OPERATION=help
 SET OP_ARGS=
 SET SCRIPT_DIR=%~dp0
 SET WORKING_DIR=%cd%
@@ -18,8 +18,10 @@ SET TEST_FOLDER=!SCRIPT_DIR!\test\
 SET INSTALLATION_FOLDER=C:\Program Files\Cronux\
 SET ROAMING_FOLDER=!USER_FOLDER!\AppData\Roaming\Cronux\
 SET BACKUP_FOLDER=!ROAMING_FOLDER!backup\
+SET LF=^
 
-SET AD=if not paying for winrar is a sin you are going to hell
+
+SET AD=if you've benefited from this project, consider supporting !LF!me on Patreon https://patreon.com/thecarisma
 SET VERSION=1.3
 
 cd !SCRIPT_DIR!
@@ -30,7 +32,7 @@ for %%x in (%*) do (
 	if "%%x"=="nb" (
 		SET AD=""
 	) else (
-		if "!OPERATION!"=="none" (
+		if "!OPERATION!"=="help" (
 			SET OPERATION=%%x
 		) else (
 			if "!OP_ARGS!"=="" (
