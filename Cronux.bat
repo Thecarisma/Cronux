@@ -5,7 +5,7 @@ REM bad thing `setlocal enabledelayedexpansion` can make your current session bl
 REM but good because it sure better than using %?%
 setlocal enabledelayedexpansion
 
-SET OPERATION=help
+SET OPERATION=none
 SET OP_ARGS=
 SET SCRIPT_DIR=%~dp0
 SET WORKING_DIR=%cd%
@@ -32,7 +32,7 @@ for %%x in (%*) do (
 	if "%%x"=="nb" (
 		SET AD=""
 	) else (
-		if "!OPERATION!"=="help" (
+		if "!OPERATION!"=="none" (
 			SET OPERATION=%%x
 		) else (
 			if "!OP_ARGS!"=="" (
@@ -48,6 +48,10 @@ REM Create the roaming folder in %user_dir\AppData\Roaming\Cronux\
 REM if it does not exist
 if not exist !ROAMING_FOLDER! (
 	mkdir !ROAMING_FOLDER!
+)
+
+if "!OPERATION!"=="none" (
+	SET OPERATION=help
 )
 
 REM clear aliases
