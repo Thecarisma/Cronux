@@ -66,29 +66,8 @@ REM `Cronux`.
 	echo [COMMAND]: the system or supplementary system command to execute
 	echo [COMMAND_PARAMS]: the parameters or arguments to send to the command
 	echo.
-	echo The COMMANDS include:
-	echo  HELP,CHELP                        print this help message and if command is appended show the command help 
-	echo  ECHOCOLOR                         print in the command prompt with custom background and foreground color
-	echo  INSTALL                           install all the available command in the Script (admin)
-	echo  NOADMIN-INSTALL                   install all the available command in the Script
-	echo  DIR,LS                            list all the files and folder in a directory
-	echo  CLEAR,CLS                         clear the command prompt 
-	echo  DOWNLOAD,WGET,IRS                 download file from the internet into a folder widget style
-	echo  ELEVATE 'PROGRAM' 'PARAMS...'     run a command line program as administrator
-	echo  REMOVE,UNINSTALL,REMOVECOMMAND    delete a file, script or command in the the search paths
-	echo  COLORLIST                         print all the console color that can be used with `echocolor` command
-	echo  BACKDEL                           backup a file before deleting it
-	echo  GETENV                            get an environment variable from either Machine, User or Process
-	echo  SETENV                            set an environment variable for either Machine, User or Process
-	echo  SETENVF                           set an environment variable for either Machine, User or Processn with value from a file
-	echo  DELENV                            delete an environment variable from either Machine, User or Process environment
-	echo  SSAY                              use the speech syntensizer to speak provided text with custom speed and voice
-	echo  SAY                               use the speech syntensizer to speak provided text
-	echo  COMPILESCRIPT                     extract the sloc from each batch script in the command/ folder into the output file
-	echo  BACKUP,CBACKUP                    backup a file with time stamp
-	echo  ZIP,ARCHIVE                       archive multiple files and folder into a single zip file
-	echo  UNZIP,EXTRACT                     extract files and folder from zip file into a folder
-	echo  LISTZIP,SHOWZIP                   list all content in a zip file
+	powershell -Command "& { function LoopFolder($folderName) {Get-ChildItem $folderName | Foreach-Object{if((Test-Path -Path $_.FullName -PathType Container) -eq $true){LoopFolder $_.FullName;}else{$NameOnly = $_.Name.replace('.bat','');Write-Host \"$NameOnly\";}}}LoopFolder '!SCRIPT_DIR!' }"
+	
 	echo.
 	exit /b 0
 
