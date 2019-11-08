@@ -38,19 +38,10 @@ if "%1"=="" (
 ) 
 
 for %%x in (%*) do (
-	SET FILE_PATH=%%x.bat
-	if not exist "!FILE_PATH!" (
-		SET FILE_PATH=.\commands\%%x.bat
-		if not exist "!FILE_PATH!" (
-			call:display_error The command batch script '%%x' cannot be found 
-			SET errorlevel=677
-			goto:eof
-		)
-	)
+	powershell -Command "& { function LoopFolder($folderName, $commandName) {Get-ChildItem $folderName | Foreach-Object{if((Test-Path -Path $_.FullName -PathType Container) -eq $true){LoopFolder $_.FullName $commandName;}else{$NameOnly = $($_.Name).replace('.bat',''); if ($NameOnly -eq $commandName){ $is_within_main_script = $False; foreach($line in Get-Content $_.FullName) { if($line -match $regex){ if ($line.StartsWith(\"REM START_OFFSET_FOR_MERGE\")) { $is_within_main_script = $True; continue; } if ($line.StartsWith(\"REM END_OFFSET_FOR_MERGE\")) { $is_within_main_script = $False; continue; } if ($is_within_main_script -eq $True) { if ($line.StartsWith(\"REM\") -and $line -ne \"REM P\" -and $line -ne \"REM Prefix\" -and $line -ne \"REM S\" -and $line -ne \"REM Sufix\") { $line.Replace(\"REM \", \"\").Replace(\"REM	\", \"\"); } } } } }}}}LoopFolder '!SCRIPT_DIR!' '%%x' }"
+	
 	echo.
-	call:display %%x
-	echo.
-	powershell -Command "& { $is_within_main_script = $False; foreach($line in Get-Content !FILE_PATH!) { if($line -match $regex){ if ($line.StartsWith(\"REM START_OFFSET_FOR_MERGE\")) { $is_within_main_script = $True; continue; } if ($line.StartsWith(\"REM END_OFFSET_FOR_MERGE\")) { $is_within_main_script = $False; continue; } if ($is_within_main_script -eq $True) { if ($line.StartsWith(\"REM\") -and $line -ne \"REM P\" -and $line -ne \"REM Prefix\" -and $line -ne \"REM S\" -and $line -ne \"REM Sufix\") { $line.Replace(\"REM \", \"\").Replace(\"REM	\", \"\"); } } } } }"
+	exit /b 0
 )
 
 exit /b 0
@@ -62,7 +53,7 @@ REM from the command line without prepending
 REM `Cronux`. 
 :allhelp
 	echo Usage: Cronux [COMMAND] [COMMAND_PARAMS]
-	echo For more information on a specific command, type `Cronux HELP command-name`
+	echo For more information on a specific command, type `Cronux help command-name`
 	echo [COMMAND]: the system or supplementary system command to execute
 	echo [COMMAND_PARAMS]: the parameters or arguments to send to the command
 	echo.
