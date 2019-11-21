@@ -18,23 +18,13 @@ REM Place the operation script in the block below
 REM START_OFFSET_FOR_MERGE
 
 REM P
-REM Create a right-click context for folder in the Windows Explorer. 
-REM This command make calls to the windows registry to register 
-REM the application and it extra arguments. Note that the first parameter 
-REM that will be sent to the application will be the full path to the 
-REM folder where the right-click was executed follow by the extra arguments 
-REM added to this script
+REM Add right click context to a set of files that match the extra 
+REM parameters/extension, When the file is right click the created 
+REm shell command is listed 
 REM 
 REM 
 REM ::
-REM 	Usage: createdircontext "DisplayName" "c:/full/path/to/command.exe" [params...]
-REM 
-REM 
-REM Ensure you put your paramters in double quote especially for Display
-REM Name with space in it and path to the application that contain space e.g. 
-REM 
-REM ::
-REM 	Usage: createdircontext "Open In Command Prompt" "c:\Windows\System32\cmd.exe" /K cd 
+REM 	Usage: createcontext "Open Simple In Notepad++"  "C:\Program Files\Notepad++\notepad++.exe" sim swp six
 REM 
 REM 
 REM the command above will create a right click context with the display 
@@ -99,16 +89,16 @@ SET dtStamp9=%date:~-4%-%date:~3,2%-%date:~0,2%_0%time:~1,1%%time:~3,2%%time:~6,
 SET dtStamp24=%date:~-4%-%date:~3,2%-%date:~0,2%_%time:~0,2%%time:~3,2%%time:~6,2%
 if "%HOUR:~0,1%" == " " (SET dtStamp=%dtStamp9%) else (SET dtStamp=%dtStamp24%)
 
-SET REGISTRY_TMP_PATH=!REGISTRY_TMP_PATH!\FolderRightClick.!dtStamp!.cronux.reg
+SET REGISTRY_TMP_PATH=!REGISTRY_TMP_PATH!\RightClickContext.!dtStamp!.cronux.reg
 
 for %%x in (%*) do (
 	SET /a INDEX=!INDEX!+1
 	if not !INDEX!==1 (
 		if not !INDEX!==2 (
 			if "!EXTRA_PARAMS!"=="" (
-				SET EXTRA_PARAMS=%%x
+				SET EXTRA_PARAMS=System.FileName:\"*.%%x\"
 			) else (
-				SET EXTRA_PARAMS=!EXTRA_PARAMS! %%x
+				SET EXTRA_PARAMS=!EXTRA_PARAMS! OR System.FileName:\"*.%%x\"
 			)
 		)
 	)
@@ -125,18 +115,19 @@ if not exist "!APPLICATION_PATH!" (
 call:display Shell Name=!SHEL_NAME!
 call:display Display Name=!DISPLAY_NAME!
 call:display Application Path=!APPLICATION_PATH!
-call:display Extra Parameters=!EXTRA_PARAMS!
+call:display Applies To=!EXTRA_PARAMS!
 
 call:display creating the registry script at !REGISTRY_TMP_PATH!
+
 echo Windows Registry Editor Version 5.00>!REGISTRY_TMP_PATH!
 echo.>>!REGISTRY_TMP_PATH!
-echo [HKEY_CLASSES_ROOT\Directory\shell\!SHEL_NAME!]>>!REGISTRY_TMP_PATH!
+echo [HKEY_CLASSES_ROOT\*\shell\!SHEL_NAME!]>>!REGISTRY_TMP_PATH!
 echo @="!DISPLAY_NAME!">>!REGISTRY_TMP_PATH!
 echo "icon"="!APPLICATION_PATH!,0">>!REGISTRY_TMP_PATH!
-echo ^">>!REGISTRY_TMP_PATH!
+echo "AppliesTo"=" !EXTRA_PARAMS! ">>!REGISTRY_TMP_PATH!
 echo.>>!REGISTRY_TMP_PATH!
-echo [HKEY_CLASSES_ROOT\Directory\shell\!SHEL_NAME!\command]>>!REGISTRY_TMP_PATH!
-echo @="!APPLICATION_PATH! !EXTRA_PARAMS! \"%%1\"">>!REGISTRY_TMP_PATH!
+echo [HKEY_CLASSES_ROOT\*\shell\!SHEL_NAME!\command]>>!REGISTRY_TMP_PATH!
+echo @="!APPLICATION_PATH! \"%%1\"">>!REGISTRY_TMP_PATH!
 echo.>>!REGISTRY_TMP_PATH!
 
 call:display preparing to install the shell script

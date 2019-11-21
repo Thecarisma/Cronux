@@ -67,9 +67,19 @@ REM     params...: string (optional)
 REM 		extra arguments to send to the command 
 
 SET DISPLAY_NAME=%1
+if "!DISPLAY_NAME!"=="" (
+	call:display_error you need to specify the display name as first parameter
+	SET errorlevel=677
+	goto:eof
+)
 SET DISPLAY_NAME=!DISPLAY_NAME:~1,-1!
 SET SHEL_NAME=!DISPLAY_NAME!
 SET APPLICATION_PATH=%2
+if "!APPLICATION_PATH!"=="" (
+	call:display_error you need to specify the application to run as second parameter
+	SET errorlevel=677
+	goto:eof
+)
 SET APPLICATION_PATH=!APPLICATION_PATH:~1,-1!
 SET REGISTRY_TMP_PATH=!ROAMING_FOLDER!registry\
 SET EXTRA_PARAMS=
@@ -104,19 +114,6 @@ for %%x in (%*) do (
 	)
 )
 
-
-
-if "!DISPLAY_NAME!"=="" (
-	call:display_error you need to specify the display name as first parameter
-	SET errorlevel=677
-	goto:eof
-)
-
-if "!APPLICATION_PATH!"=="" (
-	call:display_error you need to specify the application to run as second parameter
-	SET errorlevel=677
-	goto:eof
-)
 
 SET "APPLICATION_PATH=!APPLICATION_PATH!" & set "APPLICATION_PATH=!APPLICATION_PATH:\=\\!"
 
