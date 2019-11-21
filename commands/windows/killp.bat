@@ -18,18 +18,32 @@ REM Place the operation script in the block below
 REM START_OFFSET_FOR_MERGE
 
 REM P
+REM Kill a running process in windows using the Process 
+REM ID (PID) of the appliaction. To get the process Id you can 
+REM execute the command `qid` to show list of running 
+REM processes with it details 
 REM 
 REM ::
-REM 	Usage: download /save/file/path.full https://thefileurl.com
+REM 	Usage: killp 12390
 REM 
 REM 
 REM **Parameters**:	
-REM 	param1 : string
-REM 		the path to save the downloaded file to
-REM 	param2 : string
-REM 		the full url of the file to download
+REM 	param1 : number
+REM 		the pid of the program to kill
 
+SET PID=%1
 
+if "!PID!"=="" (
+	call:display_error you need to specify the running program pid
+	SET errorlevel=677
+	goto:eof
+)
+
+if !IS_ADMIN!==true (
+	taskkill /pid !PID! /f
+) else (
+	powershell -Command "Start-Process taskkill \" /pid !PID! /f  \" -Verb RunAs"
+)
 
 exit /b 0
 
@@ -37,11 +51,11 @@ REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
 
 :display
-	echo [0;32mCronux.:[0m %* 
+	echo [0;32mCronux.killp:[0m %* 
 	exit /b 0
 	
 :display_error
-	echo [0;31mCronux.:[0m %* 
+	echo [0;31mCronux.killp:[0m %* 
 	exit /b 0
 	
 :is_administrator
@@ -54,9 +68,9 @@ REM S
 REM 	:copyright: 2019, Azeez Adewale
 REM 	:copyright: The MIT License (c) 2019 Cronux
 REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
-REM 	:date: 25 August 2019
-REM 	:time: 02:24 PM
-REM 	:filename: name.bat
+REM 	:date: 21 November 2019
+REM 	:time: 09:11 AM
+REM 	:filename: killp.bat
 REM 
 REM 
 REM		.. _ALink: ./ALink.html

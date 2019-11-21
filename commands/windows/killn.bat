@@ -14,39 +14,36 @@ SET INSTALLATION_FOLDER=C:\Program Files\Cronux\
 SET ROAMING_FOLDER=!USER_FOLDER!\AppData\Roaming\Cronux\
 SET BACKUP_FOLDER=!ROAMING_FOLDER!backup\
 
-REM TODO: Revisit for argument error
 REM Place the operation script in the block below
 REM START_OFFSET_FOR_MERGE
 
 REM P
-REM Request elevation for a particular command 
-REM This label request for administrator username 
-REM and password then run the commands.
-REM The command comes after the **elevate** 
-REM option and the command parameter proceeds
+REM Kill a running process in windows using the Process 
+REM name of the appliaction. To get the process name you can 
+REM execute the command `qid` to show list of running 
+REM processes with it details 
 REM 
 REM ::
+REM 	Usage: killn Taskmgr.exe
 REM 
-REM 	Usage: elevate <program> <program parameters>...
 REM 
-REM
 REM **Parameters**:	
 REM 	param1 : string
-REM 		the application or command to run as administrator
-REM 	params... : string
-REM 		the arguments to pass to the application to run
+REM 		the process name of the program to kill with .exe extension
 
-SET OP_ARGS=""
-for %%a in (%*) do (
-	if !OP_ARGS!=="" (
-		SET OP_ARGS=%%a \"
-	) else ( 
-		SET OP_ARGS=!OP_ARGS! %%a
-	)
+SET APPNAME=%1
+
+if "!APPNAME!"=="" (
+	call:display_error you need to specify the running program name.exe
+	SET errorlevel=677
+	goto:eof
 )
-SET OP_ARGS=!OP_ARGS! \"
 
-powershell -Command "Start-Process !OP_ARGS! -Verb RunAs"
+if !IS_ADMIN!==true (
+	taskkill /im !APPNAME! /f
+) else (
+	powershell -Command "Start-Process taskkill \" /im !APPNAME! /f  \" -Verb RunAs"
+)
 
 exit /b 0
 
@@ -54,11 +51,11 @@ REM END_OFFSET_FOR_MERGE
 REM End of the actual operating script
 
 :display
-	echo [0;32mCronux.elevate:[0m %* 
+	echo [0;32mCronux.killn:[0m %* 
 	exit /b 0
 	
 :display_error
-	echo [0;31mCronux.elevate:[0m %* 
+	echo [0;31mCronux.killn:[0m %* 
 	exit /b 0
 	
 :is_administrator
@@ -71,9 +68,9 @@ REM S
 REM 	:copyright: 2019, Azeez Adewale
 REM 	:copyright: The MIT License (c) 2019 Cronux
 REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
-REM 	:date: 25 August 2019
-REM 	:time: 02:24 PM
-REM 	:filename: elevate.bat
+REM 	:date: 21 November 2019
+REM 	:time: 09:55 AM
+REM 	:filename: killn.bat
 REM 
 REM 
 REM		.. _ALink: ./ALink.html
