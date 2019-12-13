@@ -142,9 +142,9 @@ REM  3 = More Other commands
 	exit /b 0
 	
 REM S
-REM 	:copyright: 2019, Azeez Adewale
+REM 	:copyright: 2019, Adewale Azeez
 REM 	:copyright: The MIT License (c) 2019 Cronux
-REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
+REM 	:author: Adewale Azeez <azeezadewale98@gmail.com>
 REM 	:date: 05 September 2019
 REM 	:time: 05:10 PM
 REM 	:filename: p.bat
