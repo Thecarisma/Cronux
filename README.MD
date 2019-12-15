@@ -188,5 +188,5 @@ Or if you want to buy me a drink > https://patreon.com/thecarisma. Thanks!🤗
 
 ### License
 
-The MIT License Copyright (c) 2019 Azeez Adewale Built with :heart:
+The MIT License Copyright (c) 2019 Adewale Azeez Built with :heart:
 

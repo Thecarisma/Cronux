@@ -163,9 +163,9 @@ REM End of the actual operating script
 	exit /b 0
 	
 REM S
-REM 	:copyright: 2019, Azeez Adewale
+REM 	:copyright: 2019, Adewale Azeez
 REM 	:copyright: The MIT License (c) 2019 Cronux
-REM 	:author: Azeez Adewale <azeezadewale98@gmail.com>
+REM 	:author: Adewale Azeez <azeezadewale98@gmail.com>
 REM 	:date: 18 November 2019
 REM 	:time: 11:48 PM
 REM 	:filename: createdirbgcontext.bat
