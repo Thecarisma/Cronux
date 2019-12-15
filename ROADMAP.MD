@@ -35,7 +35,7 @@
  - [ ] registry commands
  - [x] test runner to check offsets, display warning exit code e.t.c
  - [x] create close and sleep command
- - [ ] treate chelp to show help for single script build
+ - [x] treate chelp to show help for single script build
  - [x] command to pipe result from a command to another command as params `[pipep] command [from] evaluated1 [and] evaluated2`
  - [x] create the touch command to create files
  - [x] group command scripts into subfolders in ./commands/ directory 
@@ -55,3 +55,5 @@
  - [ ] compile the batch script to powershell function in case(God Forbid) Windows put terminal and powershell as defaults 
  - [ ] command to generate shell entry for right click context without run
  - [ ] command to kill a running app on command line
+ - [ ] command to download update for cronux
+ - [ ] add to chocolatey regostry
