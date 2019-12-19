@@ -57,3 +57,4 @@
  - [ ] command to kill a running app on command line
  - [ ] command to download update for cronux
  - [ ] add to chocolatey regostry
+ - [ ] command to install a batch script as powershell cmdlet
