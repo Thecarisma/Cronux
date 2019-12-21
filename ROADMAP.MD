@@ -16,7 +16,7 @@
  - [x] function to print out list of color value
  - [ ] add function to show about, licence, authors e.t.c
  - [x] split commands to independent file for ease addition and PRs
- - [*] list pids of running apps
+ - [x] list pids of running apps
  - [ ] get application attributes from pid
  - [x] make help extract comment from each command
  - [x] add text to speech command
