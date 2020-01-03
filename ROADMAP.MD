@@ -58,3 +58,4 @@
  - [ ] command to download update for cronux
  - [ ] add to chocolatey regostry
  - [ ] command to install a batch script as powershell cmdlet
+ - [ ] create command to create empty file
