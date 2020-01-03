@@ -3,11 +3,12 @@
     Add and commit all the edited file to git with the commit 
     message as the variadic arguments without quotes 
 .DESCRIPTION
-    A more in depth description of the script
-    Should give script developer more things to talk about
-    Hopefully this can help the community too
-    Becomes: "DETAILED DESCRIPTION"
-    Appears in basic, -full and -detailed
+    A short compact command to quickly add all edited files to a 
+    commit with the commit messages and push the changes to the 
+    currently active branch. 
+    
+    This command does not force push to remote, to force a push to 
+    remote regardless of remote changes, use the 'gitfpush' command.
 .INPUTS 
     System.String[]
 .OUTPUTS 
