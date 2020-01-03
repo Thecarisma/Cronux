@@ -1,5 +1,6 @@
 
 $annoyance = "if you've benefited from this project, consider supporting `nme on Patreon https://patreon.com/thecarisma this is it we are here am the light of the world`nand I know it"
+$command_folder = "./commands/"
 
 Function main {
     Print-Advert $annoyance
@@ -9,7 +10,10 @@ Function main {
 
 Function Execute-Command {    
     Param($params)
-    
+    Get-ChildItem $command_folder -Filter *.ps1 | Foreach-Object {
+        #$content = Get-Content $_.FullName
+        $_.FullName
+    }
     $params[0]
 }
 
