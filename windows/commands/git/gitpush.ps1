@@ -8,6 +8,10 @@
     Hopefully this can help the community too
     Becomes: "DETAILED DESCRIPTION"
     Appears in basic, -full and -detailed
+.INPUTS 
+    System.String[]
+.OUTPUTS 
+    git status
 .NOTES
     File Name  : gitpush.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
