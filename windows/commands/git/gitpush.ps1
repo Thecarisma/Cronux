@@ -1,8 +1,7 @@
 <#
 .SYNOPSIS
-    A summary of what this script does
-    In this case, this script documents the auto-help text in PSH CTP 3
-    Appears in all basic, -detailed, -full, -examples
+    Add and commit all the edited file to git with the commit 
+    message as the variadic arguments without quotes 
 .DESCRIPTION
     A more in depth description of the script
     Should give script developer more things to talk about
@@ -10,27 +9,30 @@
     Becomes: "DETAILED DESCRIPTION"
     Appears in basic, -full and -detailed
 .NOTES
-    Additional Notes, eg
-    File Name  : Get-AutoHelp.ps1
-    Author     : Thomas Lee - tfl@psp.co.uk
-    Appears in -full
+    File Name  : gitpush.ps1
+    Author     : Adewale Azeez - azeezadewale98@gmail.com
+    Date       : Jan-03-2019
 .LINK
-    A hyper link, eg
-    http://www.pshscripts.blogspot.com
-    Becomes: "RELATED LINKS"
-    Appears in basic and -Full
+    https://thecarisma.github.io/Cronux
+    https://git-scm.com/docs/git-add
+    https://git-scm.com/docs/git-commit
+    https://git-scm.com/docs/git-push
 .EXAMPLE
-    The first example - just text documentation
-    You should provide a way of calling the script, plus expected output
-    Appears in -detailed and -full
+    gitpush from here is the commit message
+    your changes will be commit with the message 
+    "from here is the commit message". The command is 
+    equivalent to 
+    git add .; git commit -m "from here is the commit message"; git push origin HEAD
 .EXAMPLE
-    The second example - more text documentation
-    This would be an example calling the script differently. You can have lots
-    and lots, and lots of examples if this is useful.
-    Appears in -detailed and -full
-.COMPONENT
-    Thsi
+    gitpush
+    This will commit your changes without any messages. 
+    git add .; git commit -m ""; git push origin HEAD
 #>
+
+Param(
+    [parameter(ValueFromRemainingArguments = $true)]
+    [string[]]$args
+)
 git add .
 git commit -m "$args"
 git push origin HEAD
