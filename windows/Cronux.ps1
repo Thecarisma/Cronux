@@ -1,6 +1,7 @@
 
 $annoyance = "if you've benefited from this project, consider supporting `nme on Patreon https://patreon.com/thecarisma"
 $command_folder = "./commands/"
+$Global:found_command = $false
 
 Function main {
     Print-Advert $annoyance
@@ -10,25 +11,31 @@ Function main {
 
 Function Execute-Command {   
     $params = $args[0][0]
-    Iterate-Folder $command_folder $params
-    
+    $command, $sub_params = $params
+    Iterate-Folder $command_folder $command $sub_params
+    If ($Global:found_command -eq $false) {
+        iex "$command $sub_params"
+    }
 }
 
 Function Iterate-Folder {
-    Param([string]$foldername, $params)
-    $first, $sub_params = $params
+    Param([string]$foldername, $command, $params)
     
     Get-ChildItem $foldername | Foreach-Object {
-        if ( -not $_.PSIsContainer) {
+        If ( -not $_.PSIsContainer) {
             #$content = Get-Content $_.FullName
             $NameOnly = $_.Name.Substring(0, $_.Name.LastIndexOf("."))
-            if ($NameOnly -eq $params[0]) {
-                powershell $_.FullName $sub_params
-                return
+            If ($NameOnly -eq $command) {
+                powershell $_.FullName $params
+                $Global:found_command = $true
+                Return
             }
-        } else {
-            Iterate-Folder $_.FullName $params
+        } Else {
+            Iterate-Folder $_.FullName $command $params
         }
+    }
+    if ($Global:found_command -ne $true) {
+        $Global:found_command = $false
     }
 }
 

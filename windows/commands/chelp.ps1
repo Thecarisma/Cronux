@@ -1,25 +1,33 @@
 
 $command_folder = "./commands/"
+$Global:found_help = 0
 
 Function main {
     ForEach ($arg in $args) {
         Iterate-Folder $command_folder $arg
-    }
+        If ($found_help -eq 0) {
+            powershell help $arg -full
+        }
+    }   
 }
 
 Function Iterate-Folder {
     Param([string]$foldername, $param)
     
     Get-ChildItem $foldername | Foreach-Object {
-        if ( -not $_.PSIsContainer) {
+        If ( -not $_.PSIsContainer) {
             $NameOnly = $_.Name.Substring(0, $_.Name.LastIndexOf("."))
-            if ($NameOnly -eq $param) {
+            If ($NameOnly -eq $param) {
                 powershell help $_.FullName -full
-                return
+                $Global:found_help = $true
+                Return
             }
-        } else {
+        } Else {
             Iterate-Folder $_.FullName $param
         }
+    }
+    if ($Global:found_help -ne $true) {
+        $Global:found_help = $false
     }
 }
 
