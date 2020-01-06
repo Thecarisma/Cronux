@@ -39,11 +39,12 @@ Param(
     [string]$powershell_script_path,
     [Parameter(Position=1,mandatory=$true)]
     [string]$output_folder_path,
-    [switch]$Relative
+    [switch]$Absolute
 )
 
 $powershell_script_path = [System.IO.Path]::GetFullPath($powershell_script_path)
 $output_folder_path = [System.IO.Path]::GetFullPath($output_folder_path)
+$script_name = [System.IO.Path]::GetFileName($powershell_script_path)
 $name_only = [System.IO.Path]::GetFileNameWithoutExtension($powershell_script_path)
 
 If ( -not [System.IO.File]::Exists($powershell_script_path)) {
@@ -56,12 +57,18 @@ If ( -not [System.IO.Directory]::Exists($output_folder_path)) {
         Return
     }
 }
-If ($Relative) {
-    $powershell_script_path_write = "%~dp0\" + [System.IO.Path]::GetFileName($powershell_script_path)
-} else {
+If ($Absolute) {
     $powershell_script_path_write = $powershell_script_path
+} else {
+    $powershell_script_path_write = "%~dp0\" + [System.IO.Path]::GetFileName($powershell_script_path)
 }
 
-
-"`npowershell -noprofile -executionpolicy bypass -file `"$powershell_script_path_write`"" | out-file -Encoding utf8 -filepath "$output_folder_path\$name_only.bat"
+[System.IO.File]::Copy($powershell_script_path, "$output_folder_path\$script_name", $true)
+[System.IO.File]::WriteAllLines("$output_folder_path\$name_only.bat", 
+"@echo off
+if `"%1`" == `"help`" (
+    powershell -noprofile -executionpolicy bypass help `"$powershell_script_path_write`"`
+) else (
+    powershell -noprofile -executionpolicy bypass -file `"$powershell_script_path_write`"
+)")
 
