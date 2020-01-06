@@ -28,6 +28,7 @@ ___
 - [Drawbacks And Safety](#drawbacks-and-safety)
 - [Contributing](#contributing)
 - [Support](#support)
+- [Related Links](#related-links)
 - [License](#license)
 
 ### Prerequisite
@@ -182,6 +183,10 @@ You can support some of this community as they make big impact in the developeme
 - https://opencollective.com/osca
 
 Or if you want to buy me a drink > https://patreon.com/thecarisma. Thanks!🤗
+
+## Related Links
+
+[.NET Documentation](https://docs.microsoft.com/en-us/dotnet/)
 
 ### License
 
