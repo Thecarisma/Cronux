@@ -38,10 +38,30 @@ Param(
     [Parameter(Position=0,mandatory=$true)]
     [string]$powershell_script_path,
     [Parameter(Position=1,mandatory=$true)]
-    [string]$output_folder_path, #This is ump
-    [boolean]$is_relative
+    [string]$output_folder_path,
+    [switch]$Relative
 )
 
+$powershell_script_path = [System.IO.Path]::GetFullPath($powershell_script_path)
+$output_folder_path = [System.IO.Path]::GetFullPath($output_folder_path)
+$name_only = [System.IO.Path]::GetFileNameWithoutExtension($powershell_script_path)
 
-$powershell_script_path
-$is_relative
+If ( -not [System.IO.File]::Exists($powershell_script_path)) {
+    Write-Error "$powershell_script_path does not exist"
+    Return
+}
+If ( -not [System.IO.Directory]::Exists($output_folder_path)) {
+    [System.IO.Directory]::CreateDirectory($output_folder_path) > $null
+    If ( -not $?) {
+        Return
+    }
+}
+If ($Relative) {
+    $powershell_script_path_write = "%~dp0\" + [System.IO.Path]::GetFileName($powershell_script_path)
+} else {
+    $powershell_script_path_write = $powershell_script_path
+}
+
+
+"`npowershell -noprofile -executionpolicy bypass -file `"$powershell_script_path_write`"" | out-file -Encoding utf8 -filepath "$output_folder_path\$name_only.bat"
+
