@@ -49,7 +49,7 @@ Function Generate-Command-Wrapper {
 If ($File) {
     $command_list_file_path = [System.IO.Path]::GetFullPath($command_list_file_path) 
     foreach($line in Get-Content $command_list_file_path) {
-        if( -not $line.StartsWith("//")){
+        if( -not $line.StartsWith("//") -and $line.Trim() -ne ""){
             Generate-Command-Wrapper $line
         }
     }
