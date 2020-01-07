@@ -20,7 +20,7 @@
 #>
 
 $support = "if you`'ve benefited from this project, consider supporting `nme on Patreon https://patreon.com/thecarisma"
-$command_folder = "./"
+$command_folder = $PSScriptRoot
 $Global:found_command = $false
 
 Function main {
