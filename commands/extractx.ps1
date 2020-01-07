@@ -44,7 +44,7 @@ If ( -not [System.IO.Directory]::Exists($export_list_path_dir)) {
 //<https://thecarisma.github.io/Cronux>
 ")
 
-Get-Command * | ? { -not $_.Name.Contains("?") -and $_.CommandType -eq "Alias" -or $_.CommandType -eq "Function" -or $_.CommandType -eq "Cmdlet" -or ($Application -and $_.CommandType -eq "Application")} | Foreach-Object {
+Get-Command * | ? { -not $_.Name.Contains("\") -and  -not $_.Name.Contains("/") -and  -not $_.Name.Contains(":") -and  -not $_.Name.Contains("*") -and  -not $_.Name.Contains("`"") -and  -not $_.Name.Contains("<") -and  -not $_.Name.Contains(">")  -and  -not $_.Name.Contains("|") -and $_.CommandType -eq "Alias" -or $_.CommandType -eq "Function" -or $_.CommandType -eq "Cmdlet" -or ($Application -and $_.CommandType -eq "Application")} | Foreach-Object {
     [System.IO.File]::AppendAllText("$export_list_path", "$($_.Name)`n")
     $count++
 }
