@@ -16,6 +16,8 @@ to execute command to perform operations. It makes heavey use of meta-programmin
 
 This script is most useful if you enjoy the power of linux and unix terminal or you switch between other OS and Windows often.
 
+Powershell 3+
+
 ___
 
 ## Table of content
