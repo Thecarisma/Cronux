@@ -1,5 +1,25 @@
+<#
+.SYNOPSIS
+    
+.DESCRIPTION
+    
+.INPUTS 
+    
+.OUTPUTS 
+    
+.NOTES
+    File Name  : Cronux.ps1
+    Author     : Adewale Azeez - azeezadewale98@gmail.com
+    Date       : Jan-06-2019
+.LINK
+    https://thecarisma.github.io/Cronux
+.EXAMPLE
+    
+.EXAMPLE
+    
+#>
 
-$annoyance = "if you`'ve benefited from this project, consider supporting `nme on Patreon https://patreon.com/thecarisma"
+$support = "if you`'ve benefited from this project, consider supporting `nme on Patreon https://patreon.com/thecarisma"
 $command_folder = "./"
 $Global:found_command = $false
 
