@@ -71,3 +71,12 @@ If ( -not [System.IO.Directory]::Exists($output_folder_path)) {
 Iterate-Folder $cronux_path
 iex "$wrapcommand_script_path -File $export_list_path $output_folder_path"
 
+Get-ChildItem $output_folder_path | Foreach-Object {
+    If ( -not $_.PSIsContainer) {
+        If ( -not $_.Name.EndsWith(".ps1")) {
+            Return
+        }
+        $_.FullName
+    } 
+}
+
