@@ -8,13 +8,13 @@
 .OUTPUTS 
     
 .NOTES
-    File Name  : bat4ps1.ps1
+    File Name  : batforps1.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
     Date       : Jan-06-2019
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE
-    bat4ps1 ./commands/printhead.ps1 ./dist/
+    batforps1 ./commands/printhead.ps1 ./dist/
     
 .EXAMPLE
     
