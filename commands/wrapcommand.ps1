@@ -40,6 +40,7 @@ Function Generate-Command-Wrapper {
     Param (
         [string]$command
     )
+    "Wrapping the installed command '$command' to '$output_folder_path\$command.ps1'"
     [System.IO.File]::WriteAllLines("$output_folder_path\$command.ps1", 
     "$command `$args")
 }
