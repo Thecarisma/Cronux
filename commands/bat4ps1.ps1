@@ -14,6 +14,7 @@
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE
+    bat4ps1 ./commands/printhead.ps1 ./dist/
     
 .EXAMPLE
     
