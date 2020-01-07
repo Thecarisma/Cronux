@@ -15,6 +15,7 @@
 .OUTPUTS 
     The sentence with line printed above and below it
 .NOTES
+    Version    : 1.0
     File Name  : printhead.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
     Date       : Jan-07-2019

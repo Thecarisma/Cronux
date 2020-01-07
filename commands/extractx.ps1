@@ -8,6 +8,7 @@
 .OUTPUTS 
     
 .NOTES
+    Version    : 1.0
     File Name  : extractx.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
     Date       : Jan-06-2019
@@ -36,3 +37,7 @@ If ( -not [System.IO.Directory]::Exists($export_list_path_dir)) {
 }
 $export_list_path
 $export_list_path_dir
+
+Get-Command * | Foreach-Object {
+    $_.CommandType
+}
