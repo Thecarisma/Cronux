@@ -41,7 +41,6 @@ Function Iterate-Folder {
     
     Get-ChildItem $foldername | Where-Object {$Global:found_command -eq $false} | Foreach-Object {
         If ( -not $_.PSIsContainer) {
-            #$content = Get-Content $_.FullName
             If ( -not $_.Name.EndsWith(".ps1")) {
                 Return
             }

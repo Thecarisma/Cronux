@@ -17,6 +17,7 @@
     batforps1 ./commands/printhead.ps1 ./dist/
     
 .EXAMPLE
+    batforps1 ./dist/ls.ps1 ./dist/
     
 #>
 
