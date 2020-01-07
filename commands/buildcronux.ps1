@@ -32,6 +32,7 @@ Param(
 $cronux_path = [System.IO.Path]::GetFullPath($cronux_path)
 $output_folder_path = [System.IO.Path]::GetFullPath($output_folder_path) + "\$version\"
 $wrapcommand_script_path = "$cronux_path\wrapcommand.ps1"
+$batforps1_script_path = "$cronux_path\batforps1.ps1"
 $export_list_path = "$cronux_path\ExportList.txt"
 
 Function Iterate-Folder {
@@ -52,6 +53,10 @@ Function Iterate-Folder {
 
 If ( -not [System.IO.Directory]::Exists($cronux_path)) {
     Write-Error "Specified Cronux path '$cronux_path' does not exist"
+    Return
+}
+If ( -not [System.IO.File]::Exists($batforps1_script_path)) {
+    Write-Error "batforps1.ps1 script not found in Specified Cronux path '$cronux_path'"
     Return
 }
 If ( -not [System.IO.File]::Exists($wrapcommand_script_path)) {
@@ -76,7 +81,7 @@ Get-ChildItem $output_folder_path | Foreach-Object {
         If ( -not $_.Name.EndsWith(".ps1")) {
             Return
         }
-        $_.FullName
+        iex "$batforps1_script_path $($_.FullName) $output_folder_path"
     } 
 }
 
