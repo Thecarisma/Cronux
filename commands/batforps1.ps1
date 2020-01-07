@@ -50,7 +50,9 @@ If ($Absolute) {
     $powershell_script_path_write = "%~dp0\" + [System.IO.Path]::GetFileName($powershell_script_path)
 }
 
-[System.IO.File]::Copy($powershell_script_path, "$output_folder_path\$script_name", $true)
+If ( -not [System.IO.File]::Exists("$output_folder_path\$script_name")) {
+    [System.IO.File]::Copy($powershell_script_path, "$output_folder_path\$script_name", $true)
+}
 [System.IO.File]::WriteAllLines("$output_folder_path\$name_only.bat", 
 "@echo off
 if `"%1`" == `"help`" (
