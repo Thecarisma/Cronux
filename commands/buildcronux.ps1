@@ -32,6 +32,21 @@ Param(
 $cronux_path = [System.IO.Path]::GetFullPath($cronux_path)
 $output_folder_path = [System.IO.Path]::GetFullPath($output_folder_path) + "\$version\"
 
+Function Iterate-Folder {
+    Param([string]$foldername)
+    
+    Get-ChildItem $foldername | Foreach-Object {
+        If ( -not $_.PSIsContainer) {
+            If ( -not $_.Name.EndsWith(".ps1")) {
+                Return
+            }
+            $_.FullName
+        } Else {
+            Iterate-Folder $_.FullName
+        }
+    }
+}
+
 If ( -not [System.IO.Directory]::Exists($cronux_path)) {
     Write-Error "Specified Cronux path '$cronux_path' does not exist"
     Return
@@ -42,4 +57,5 @@ If ( -not [System.IO.Directory]::Exists($output_folder_path)) {
         Return
     }
 }
+Iterate-Folder $cronux_path
 
