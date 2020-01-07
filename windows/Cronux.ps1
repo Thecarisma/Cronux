@@ -1,6 +1,6 @@
 
 $annoyance = "if you've benefited from this project, consider supporting `nme on Patreon https://patreon.com/thecarisma"
-$command_folder = "./commands/"
+$command_folder = "./"
 $Global:found_command = $false
 
 Function main {
@@ -21,9 +21,12 @@ Function Execute-Command {
 Function Iterate-Folder {
     Param([string]$foldername, $command, $params)
     
-    Get-ChildItem $foldername | Foreach-Object {
+    Get-ChildItem $foldername | Where-Object {$Global:found_command -eq $false} | Foreach-Object {
         If ( -not $_.PSIsContainer) {
             #$content = Get-Content $_.FullName
+            If ( -not $_.Name.EndsWith(".ps1")) {
+                Return
+            }
             $NameOnly = $_.Name.Substring(0, $_.Name.LastIndexOf("."))
             If ($NameOnly -eq $command) {
                 powershell $_.FullName $params

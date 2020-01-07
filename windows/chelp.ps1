@@ -1,5 +1,5 @@
 
-$command_folder = "./commands/"
+$command_folder = "./"
 $Global:found_help = 0
 
 Function main {
