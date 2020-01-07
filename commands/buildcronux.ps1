@@ -30,6 +30,8 @@ Param(
 )
 
 $cronux_path = [System.IO.Path]::GetFullPath($cronux_path)
+$output_folder_path = [System.IO.Path]::GetFullPath($output_folder_path) + "\$version\"
+
 If ( -not [System.IO.Directory]::Exists($cronux_path)) {
     Write-Error "Specified Cronux path '$cronux_path' does not exist"
     Return
