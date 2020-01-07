@@ -51,8 +51,10 @@ If ($Absolute) {
 }
 
 If ( -not [System.IO.File]::Exists("$output_folder_path\$script_name")) {
+    "Copying the Powershell Script '$script_name' to $output_folder_path"
     [System.IO.File]::Copy($powershell_script_path, "$output_folder_path\$script_name", $true)
 }
+"Creating the caller batch file '$name_only.bat' in $output_folder_path"
 [System.IO.File]::WriteAllLines("$output_folder_path\$name_only.bat", 
 "@echo off
 if `"%1`" == `"help`" (
