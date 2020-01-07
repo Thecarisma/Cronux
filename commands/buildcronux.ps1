@@ -14,7 +14,7 @@
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE
-    
+    Cronux buildcronux  1.0 ./commands/ ./dist/
     
 .EXAMPLE
     
@@ -31,6 +31,8 @@ Param(
 
 $cronux_path = [System.IO.Path]::GetFullPath($cronux_path)
 $output_folder_path = [System.IO.Path]::GetFullPath($output_folder_path) + "\$version\"
+$wrapcommand_script_path = "$cronux_path\wrapcommand.ps1"
+$export_list_path = "$cronux_path\ExportList.txt"
 
 Function Iterate-Folder {
     Param([string]$foldername)
@@ -40,7 +42,8 @@ Function Iterate-Folder {
             If ( -not $_.Name.EndsWith(".ps1")) {
                 Return
             }
-            $_.FullName
+            "Copying and Generating Batch wrapper for $_.Name"
+            [System.IO.File]::Copy($_.FullName, "$output_folder_path\$($_.Name)", $true)
         } Else {
             Iterate-Folder $_.FullName
         }
@@ -51,6 +54,14 @@ If ( -not [System.IO.Directory]::Exists($cronux_path)) {
     Write-Error "Specified Cronux path '$cronux_path' does not exist"
     Return
 }
+If ( -not [System.IO.File]::Exists($wrapcommand_script_path)) {
+    Write-Error "wrapcommand.ps1 script not found in Specified Cronux path '$cronux_path'"
+    Return
+}
+If ( -not [System.IO.File]::Exists($export_list_path)) {
+    Write-Error "ExportList.txt not found in Specified Cronux path '$cronux_path'"
+    Return
+}
 If ( -not [System.IO.Directory]::Exists($output_folder_path)) {
     [System.IO.Directory]::CreateDirectory($output_folder_path) > $null
     If ( -not $?) {
@@ -58,4 +69,5 @@ If ( -not [System.IO.Directory]::Exists($output_folder_path)) {
     }
 }
 Iterate-Folder $cronux_path
+iex "$wrapcommand_script_path -File $export_list_path $output_folder_path"
 
