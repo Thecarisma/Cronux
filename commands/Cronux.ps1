@@ -25,6 +25,7 @@ $command_folder = $PSScriptRoot
 $Global:found_command = $false
 
 Function main {
+    $args
     Execute-Command $args
 }
 
