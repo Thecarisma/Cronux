@@ -39,12 +39,13 @@ Function Iterate-Folder {
     Get-ChildItem $foldername | Foreach-Object {
         If ( -not $_.PSIsContainer) {
             If ( $_.Name.EndsWith(".ps1")) {
-                Write-Host -NoNewline "$($_.Name.SubString(0, $_.Name.LastIndexOf(`".ps1`"))), "
+                $name = $($_.Name.SubString(0, $_.Name.LastIndexOf(".ps1")))
                 if ($Global:count -ge 100) {
                     $Global:count = 0
                     ""
                 }
-                $Global:count += 1
+                Write-Host -NoNewline "$($name), "
+                $Global:count += $name.Length
             }
         } Else {
             Iterate-Folder $_.FullName
@@ -57,12 +58,12 @@ Iterate-Folder $command_folder
 If ($All) {
     foreach($line in Get-Content $export_list_path) {
         if( -not $line.StartsWith("//") -and $line.Trim() -ne ""){
-            Write-Host -NoNewline "$line, "
             if ($Global:count -ge 100) {
                 $Global:count = 0
                 ""
             }
-            $Global:count += 1
+            Write-Host -NoNewline "$line, "
+            $Global:count += $line.Length
         }
     }
 }
