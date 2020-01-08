@@ -51,7 +51,9 @@ Function Add-Folder-To-Path {
 }
 
 Check-Create-Directory $TEMP
+"Downloading the app archive..."
 Download-App-Archive
 Check-Create-Directory $InstallationPath
+"Installing $AppName $Version in $InstallationPath"
 Extract-App-Archive "$TEMP\installx_package_.zip" "$InstallationPath"
 If ($AddPath -eq $true) { Add-Folder-To-Path "$InstallationPath" }
