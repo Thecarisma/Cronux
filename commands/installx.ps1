@@ -1,9 +1,10 @@
+#Requires -RunAsAdministrator
 #Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('http://localhost:8020/remoterun.ps1'))
 
 $AppName = "Cronux"
 $Version = "2.0"
 $AppArchiveUrl = "https://github.com/Thecarisma/Cronux/releases/download/v1.2/Cronux.zip"
-$InstallationPath = ""
+$InstallationPath = $env:ProgramData + "\$AppName\"
 
 $Path = [Environment]::GetEnvironmentVariable('Path')
 $TEMP = Join-Path $env:SystemDrive "temp\installx\$AppName"
@@ -34,8 +35,9 @@ Function Extract-App-Archive {
     Expand-Archive $archive_path -DestinationPath $extact_folder
 }
 
-# $Path
-# $TEMP
-Check-Create-Directory $TEMP
-Download-App-Archive
-Extract-App-Archive "$TEMP\installx_package_.zip" "$TEMP\installx_package_"
+# Check-Create-Directory $TEMP
+# Download-App-Archive
+# Check-Create-Directory $InstallationPath
+# Extract-App-Archive "$TEMP\installx_package_.zip" "$InstallationPath"
+
+$Path
