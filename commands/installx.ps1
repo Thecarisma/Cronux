@@ -5,8 +5,11 @@ $AppName = "Cronux"
 $Version = "2.0"
 $AppArchiveUrl = "https://github.com/Thecarisma/Cronux/releases/download/v1.2/Cronux.zip"
 $InstallationPath = $env:ProgramData + "\$AppName\"
+$PathEnvironment = "User"
 
-$Path = [Environment]::GetEnvironmentVariable('Path')
+$AddPath = $true
+
+$Path = [Environment]::GetEnvironmentVariable('Path', "$PathEnvironment")
 $TEMP = Join-Path $env:SystemDrive "temp\installx\$AppName"
 
 Function Check-Create-Directory {
@@ -35,9 +38,18 @@ Function Extract-App-Archive {
     Expand-Archive $archive_path -DestinationPath $extact_folder
 }
 
+Function Add-Folder-To-Path {
+    Param([string]$folder)
+    
+    ForEach ($path in $Path.Split(";")) {
+        $path
+    }
+    
+    #[Environment]::SetEnvironmentVariable("Path", "$Path;$folder", "$PathEnvironment")
+}
+
 # Check-Create-Directory $TEMP
 # Download-App-Archive
 # Check-Create-Directory $InstallationPath
 # Extract-App-Archive "$TEMP\installx_package_.zip" "$InstallationPath"
-
-$Path
+If ($AddPath -eq $true) { Add-Folder-To-Path "$InstallationPath" }
