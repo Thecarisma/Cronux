@@ -22,5 +22,5 @@
 #>
 
 $ParentProcessIds = Get-CimInstance -Class Win32_Process -Filter "ProcessId = $PID"
-$ParentProcessIds[0].Name
-#Stop-Process $ParentProcessIds[0].ParentProcessId
+$ParentProcessIds = Get-CimInstance -Class Win32_Process -Filter "ProcessId = $($ParentProcessIds[0].ParentProcessId)"
+Stop-Process $ParentProcessIds[0].ProcessId
