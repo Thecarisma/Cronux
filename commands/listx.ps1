@@ -40,7 +40,7 @@ Function Iterate-Folder {
         If ( -not $_.PSIsContainer) {
             If ( $_.Name.EndsWith(".ps1")) {
                 $name = $($_.Name.SubString(0, $_.Name.LastIndexOf(".ps1")))
-                if ($Global:count -ge 100) {
+                if ($Global:count -ge 50) {
                     $Global:count = 0
                     ""
                 }
@@ -58,7 +58,7 @@ Iterate-Folder $command_folder
 If ($All) {
     foreach($line in Get-Content $export_list_path) {
         if( -not $line.StartsWith("//") -and $line.Trim() -ne ""){
-            if ($Global:count -ge 100) {
+            if ($Global:count -ge 50) {
                 $Global:count = 0
                 ""
             }
