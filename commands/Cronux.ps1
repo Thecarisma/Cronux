@@ -25,7 +25,9 @@ $command_folder = $PSScriptRoot
 $Global:found_command = $false
 
 Function main {
-    $args
+    If ($args[0].Length -eq 0) {
+        $args[0] = @("listx")
+    }
     Execute-Command $args
 }
 

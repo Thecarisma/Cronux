@@ -18,11 +18,42 @@
     https://thecarisma.github.io/Cronux
 .EXAMPLE
     listx 
-    List all the commands over 2000 commands    
-.EXAMPLE
-    listx -NoExport
-    List all the commands excluding exported powershell built in 
+    List all the commands excluding exported powershell built in  
     commands
+.EXAMPLE
+    listx -All
+    List all the commands over 2000 commands 
 #>
 
-"hello world"
+Param(
+    [switch]$All
+)
+
+$command_folder = [System.IO.Path]::GetFullPath($PSScriptRoot)
+$export_list_path = "$command_folder\ExportList.txt"
+
+Function Iterate-Folder {
+    Param([string]$foldername)
+    
+    Get-ChildItem $foldername | Foreach-Object {
+        If ( -not $_.PSIsContainer) {
+            If ( $_.Name.EndsWith(".ps1")) {
+                Write-Host -NoNewline "$($_.Name.SubString(0, $_.Name.LastIndexOf(`".ps1`"))), "
+            }
+        } Else {
+            Iterate-Folder $_.FullName
+        }
+    }
+}
+
+Iterate-Folder $command_folder
+
+If ($All) {
+    foreach($line in Get-Content $export_list_path) {
+        if( -not $line.StartsWith("//") -and $line.Trim() -ne ""){
+            Write-Host -NoNewline "$line, "
+        }
+    }
+}
+
+"Bye."
