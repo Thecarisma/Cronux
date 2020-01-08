@@ -41,15 +41,17 @@ Function Extract-App-Archive {
 Function Add-Folder-To-Path {
     Param([string]$folder)
     
-    ForEach ($path in $Path.Split(";")) {
-        $path
+    $NewPath = ""    
+    ForEach ($_path in $Path.Split(";")) {
+        If ($_path -ne $InstallationPath -and $_path -ne "") {
+            $NewPath += "$_path;"
+        }
     }
-    
-    #[Environment]::SetEnvironmentVariable("Path", "$Path;$folder", "$PathEnvironment")
+    [Environment]::SetEnvironmentVariable("Path", "$NewPath$folder", "$PathEnvironment")
 }
 
-# Check-Create-Directory $TEMP
-# Download-App-Archive
-# Check-Create-Directory $InstallationPath
-# Extract-App-Archive "$TEMP\installx_package_.zip" "$InstallationPath"
+Check-Create-Directory $TEMP
+Download-App-Archive
+Check-Create-Directory $InstallationPath
+Extract-App-Archive "$TEMP\installx_package_.zip" "$InstallationPath"
 If ($AddPath -eq $true) { Add-Folder-To-Path "$InstallationPath" }
