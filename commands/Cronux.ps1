@@ -28,7 +28,10 @@ Function main {
     If ($args[0].Length -eq 0) {
         $args[0] = @("aboutx")        
         Execute-Command $args
-        "We great"
+        $Global:found_command = $false
+        "`nUsage: [command] [command_args...]"
+        "Execute 'listx -All' to view all commands..."
+        "The Cronux specific commands are listed below.`n"
         $args[0] = @("listx") 
     }
     Execute-Command $args
