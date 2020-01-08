@@ -134,12 +134,7 @@ chelp [command]
 All the command are listed below with it alias(es)
 
 ```bash
-clear, cls, ls, dir, elevate, sudo, su, wget, download, irs, uninstall, remove, removecommand, 
-cinstall, install, rmlong, help, echocolor, colorlist, getenv, setenv, delenv, delenv, close, 
-cat, printfile, ssay, say, testlabel, compilescript, cbackup, backup, chelp, addpath, setenvf, 
-delpath, zip, archive, unzip, extract, listzip, showzip, qproc, qport, qid, p, $, ckubeget, 
-gitlogp, ckubeddel, ckubedel, ckubedget, ckubeget, ckubelogs, ckubelogsf, createdircontext, 
-createdirbgcontext, createfilecontext, createdesktopcontext, gen.
+
 
 ```
 
