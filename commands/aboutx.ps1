@@ -28,9 +28,29 @@ Param(
     [switch]$Version
 )
 
-$version = 2.0
+$version_value = "2.0"
+$author_value = "Adewale Azeez"
+$licence_value = "MIT License"
+$year_value = "2020"
 
 if ($Version) {
-    $version
+    $version_value
     Return
 }
+if ($Year) {
+    $year_value
+    Return
+}
+if ($Author) {
+    $author_value
+    Return
+}
+if ($Licence) {
+    $licence_value
+    Return
+}
+
+"Cronux v$version_value"
+"Powershell $($Host.Version)"
+"$([System.Environment]::OSVersion)"
+"The $licence_value Copyright (c) $year_value $author_value"
