@@ -61,4 +61,4 @@ If ($AddPath -eq $true) {
     "Adding $InstallationPath to $PathEnvironment Path variable"
     Add-Folder-To-Path "$InstallationPath" 
 }
-"Installtion completes"
+"Installtion completes."
