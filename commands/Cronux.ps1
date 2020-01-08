@@ -26,7 +26,10 @@ $Global:found_command = $false
 
 Function main {
     If ($args[0].Length -eq 0) {
-        $args[0] = @("listx")
+        $args[0] = @("aboutx")        
+        Execute-Command $args
+        "We great"
+        $args[0] = @("listx") 
     }
     Execute-Command $args
 }

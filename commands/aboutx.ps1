@@ -25,7 +25,10 @@
 #>
 
 Param(
-    [switch]$Version
+    [switch]$Version,
+    [switch]$Year,
+    [switch]$Author,
+    [switch]$Licence
 )
 
 $version_value = "2.0"
