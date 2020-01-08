@@ -35,7 +35,7 @@ Function Extract-App-Archive {
         Return
     }
     Check-Create-Directory $extact_folder
-    Expand-Archive $archive_path -DestinationPath $extact_folder
+    Expand-Archive $archive_path -DestinationPath $extact_folder -Force
 }
 
 Function Add-Folder-To-Path {
@@ -50,10 +50,15 @@ Function Add-Folder-To-Path {
     [Environment]::SetEnvironmentVariable("Path", "$NewPath$folder", "$PathEnvironment")
 }
 
+"Preparing to install $AppName $Version"
 Check-Create-Directory $TEMP
-"Downloading the app archive..."
+"Downloading the program archive..."
 Download-App-Archive
 Check-Create-Directory $InstallationPath
 "Installing $AppName $Version in $InstallationPath"
 Extract-App-Archive "$TEMP\installx_package_.zip" "$InstallationPath"
-If ($AddPath -eq $true) { Add-Folder-To-Path "$InstallationPath" }
+If ($AddPath -eq $true) { 
+    "Adding $InstallationPath to $PathEnvironment Path variable"
+    Add-Folder-To-Path "$InstallationPath" 
+}
+"Installtion completes"
