@@ -20,7 +20,7 @@
     
 #>
 
-$command_folder = "./"
+$command_folder = $PSScriptRoot
 $Global:found_help = $false
 
 Function main {
