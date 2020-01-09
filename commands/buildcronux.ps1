@@ -43,7 +43,9 @@ Function Iterate-Folder {
                 Return
             }
             "Copying and Generating Batch wrapper for $_.Name"
-            [System.IO.File]::Copy($_.FullName, "$output_folder_path\$($_.Name)", $true)
+            If ( -not [System.IO.File]::Exists("$output_folder_path\$($_.Name)")) {
+                [System.IO.File]::Copy($_.FullName, "$output_folder_path\$($_.Name)", $true)
+            }
         } Else {
             Iterate-Folder $_.FullName
         }
