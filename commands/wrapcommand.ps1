@@ -41,9 +41,14 @@ Function Generate-Command-Wrapper {
     Param (
         [string]$command
     )
-    "Wrapping the command '$command' into '$output_folder_path\$command.ps1'"
-    [System.IO.File]::WriteAllLines("$output_folder_path\$command.ps1", 
-    "$command `$args")
+    "Wrapping the command '$command' into '$output_folder_path\$command.bat'"
+    [System.IO.File]::WriteAllLines("$output_folder_path\$command.bat", 
+    "@echo off
+    if `"%1`" == `"help`" (
+        powershell -noprofile -executionpolicy bypass help $command -full
+    ) else (
+        powershell -noprofile -executionpolicy bypass $command %*
+    )")
 }
 
 If ($File) {
