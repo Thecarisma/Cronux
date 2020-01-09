@@ -1,22 +1,16 @@
 <#
 .SYNOPSIS
-    Generate a code signing certificate.
+    Generate a secure code signing certificate.
 .DESCRIPTION
     Generate a code signing certificate to sign your application, 
-    powershell script e.t.c. The certificate is generated into the 
-    'cert:\LocalMachine\My' certificate store location and moved to 
-    and moved to 'Cert:\LocalMachine\Root' to mark it as a trusted 
-    certificate. Always put the first argument which is the name of 
-    the certificate in a single quote e.g. `'Cronux Certificate'`.
-    
-    After generating the certificate, it is exported into the output 
-    folder specified in the third parameter. 
+    powershell script e.t.c. After generating the certificate, 
+    it is exported into the output folder specified in the third parameter. 
     
     If a certificate already exist with the same Subject name the old 
     certificate is removed and replaced with the new certificate that 
     is generated.
 .INPUTS 
-    System.String[]
+    System.String System.int32 System.String System.String
 .OUTPUTS 
     System.String
 .NOTES
@@ -91,5 +85,3 @@ $cert = New-SelfSignedCertificate -Subject "$cert_name" -notafter $expiry_year -
 "Exporting the certificate to $output_folder_path\$cert_name.pfx"
 Export-PfxCertificate -Cert "$store_location\My\$($cert.Thumbprint)" -FilePath "$output_folder_path\$cert_name.pfx" -Password $password
 Find-Delete-Certificate $cert_name
-# "Adding certificate to trusted path..."
-# Move-Item -Path $cert.PSPath -Destination "$store_location\Root"
