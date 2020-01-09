@@ -15,7 +15,7 @@
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE
-    Cronux buildcronux  1.0 ./commands/ ./dist/
+    Cronux buildcronux  ./commands/ ./dist/build/
     
 .EXAMPLE
     
@@ -23,15 +23,13 @@
 
 Param(
     [Parameter(mandatory=$true)]
-    [string]$version,
-    [Parameter(mandatory=$true)]
     [string]$cronux_path,
     [Parameter(mandatory=$true)]
     [string]$output_folder_path
 )
 
 $cronux_path = [System.IO.Path]::GetFullPath($cronux_path)
-$output_folder_path = [System.IO.Path]::GetFullPath($output_folder_path) + "\$version\"
+$output_folder_path = [System.IO.Path]::GetFullPath($output_folder_path)
 $wrapcommand_script_path = "$cronux_path\wrapcommand.ps1"
 $batforps1_script_path = "$cronux_path\batforps1.ps1"
 $export_list_path = "$cronux_path\ExportList.txt"

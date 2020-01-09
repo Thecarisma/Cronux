@@ -6,6 +6,8 @@ $Version = "2.0"
 $AppArchiveUrl = "https://github.com/Thecarisma/Cronux/releases/download/v1.2/Cronux.zip"
 $InstallationPath = $env:ProgramData + "\$AppName\"
 $PathEnvironment = "User"
+$BeforeScript = ""
+$AfterScript = "ls"
 
 $AddPath = $true
 
@@ -52,6 +54,10 @@ Function Add-Folder-To-Path {
 
 "Preparing to install $AppName $Version"
 Check-Create-Directory $TEMP
+If ($BeforeScript -ne "") {
+    "Executing the BeforeScript..."
+    iex "$BeforeScript"
+}
 "Downloading the program archive..."
 Download-App-Archive
 Check-Create-Directory $InstallationPath
@@ -60,5 +66,9 @@ Extract-App-Archive "$TEMP\installx_package_.zip" "$InstallationPath"
 If ($AddPath -eq $true) { 
     "Adding $InstallationPath to $PathEnvironment Path variable"
     Add-Folder-To-Path "$InstallationPath" 
+}
+If ($AfterScript -ne "") {
+    "Executing the AfterScript..."
+    iex "$AfterScript"
 }
 "Installtion completes."
