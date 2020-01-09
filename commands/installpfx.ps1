@@ -46,7 +46,7 @@ Param(
     [string]$password_
 )
 
-$password = ConvertTo-SecureString -String "mypasssword" -Force -AsPlainText
+$password = ConvertTo-SecureString -String "$($password_)" -Force -AsPlainText
 $cert_path = [System.IO.Path]::GetFullPath($cert_path)
 
 If ( -not [System.IO.File]::Exists($cert_path)) {
