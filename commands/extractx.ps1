@@ -15,7 +15,7 @@
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE
-    Cronux buildcronux  1.0 ./commands/ ./dist/
+    extractx ./ExportList.txt
     
 .EXAMPLE
     

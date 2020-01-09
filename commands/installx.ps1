@@ -7,7 +7,10 @@ $AppArchiveUrl = "https://github.com/Thecarisma/Cronux/releases/download/v1.2/Cr
 $InstallationPath = $env:ProgramData + "\$AppName\"
 $PathEnvironment = "User"
 $BeforeScript = ""
-$AfterScript = "ls"
+$AfterScript = "
+    powershell -noprofile -executionpolicy bypass -file ./extractx.ps1 ./ExportList.txt
+    powershell -noprofile -executionpolicy bypass -file ./buildcronux.ps1  ./ ./
+"
 
 $AddPath = $true
 
@@ -67,6 +70,7 @@ If ($AddPath -eq $true) {
     "Adding $InstallationPath to $PathEnvironment Path variable"
     Add-Folder-To-Path "$InstallationPath" 
 }
+Set-Location -Path $InstallationPath
 If ($AfterScript -ne "") {
     "Executing the AfterScript..."
     iex "$AfterScript"
