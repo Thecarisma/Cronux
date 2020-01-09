@@ -43,7 +43,7 @@ Param(
     [Parameter(mandatory=$true)]
     [string]$cert_path,
     [Parameter(mandatory=$true)]
-    [string]$password_
+    $password_
 )
 
 $password = ConvertTo-SecureString -String "$($password_)" -Force -AsPlainText
