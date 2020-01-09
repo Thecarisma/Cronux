@@ -134,7 +134,7 @@ chelp [command]
 All the command are listed below with it alias(es)
 
 ```bash
-gitpush, batforps1, buildcronux, chelp, close, Cronux, extractx, listx, printhead, ps1tobat, wrapcommand
+gitpush, batforps, buildcronux, chelp, close, Cronux, extractx, listx, printhead, ps1tobat, wrapcommand
 
 ```
 

@@ -9,16 +9,16 @@
     
 .NOTES
     Version    : 1.0
-    File Name  : batforps1.ps1
+    File Name  : batforps.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
     Date       : Jan-06-2019
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE
-    batforps1 ./commands/printhead.ps1 ./dist/
+    batforps ./commands/printhead.ps1 ./dist/
     
 .EXAMPLE
-    batforps1 -Command Set-Location ./dist/
+    batforps -Command Set-Location ./dist/
     The commands above creates a batch script wrapper for 
     the powershell `Set-Location` command
     
