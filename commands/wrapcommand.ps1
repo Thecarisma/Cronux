@@ -44,11 +44,11 @@ Function Generate-Command-Wrapper {
     "Wrapping the command '$command' into '$output_folder_path\$command.bat'"
     [System.IO.File]::WriteAllLines("$output_folder_path\$command.bat", 
     "@echo off
-    if `"%1`" == `"help`" (
-        powershell -noprofile -executionpolicy bypass help $command -full
-    ) else (
-        powershell -noprofile -executionpolicy bypass $command %*
-    )")
+if `"%1`" == `"help`" (
+    powershell -noprofile -executionpolicy bypass help $command -full
+) else (
+    powershell -noprofile -executionpolicy bypass $command %*
+)")
 }
 
 If ($File) {
