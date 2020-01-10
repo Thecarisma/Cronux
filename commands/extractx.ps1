@@ -2,7 +2,7 @@
 .SYNOPSIS
     
 .DESCRIPTION
-    
+    Only Alias and Application is exported
 .INPUTS 
     
 .OUTPUTS 
@@ -44,7 +44,7 @@ If ( -not [System.IO.Directory]::Exists($export_list_path_dir)) {
 //<https://thecarisma.github.io/Cronux>
 ")
 
-Get-Command * | ? { $_.CommandType -eq "Alias" -or $_.CommandType -eq "Function" -or ($Application -and $_.CommandType -eq "Application")} | Foreach-Object {
+Get-Command * | ? { $_.CommandType -eq "Alias" -or ($Application -and $_.CommandType -eq "Application")} | Foreach-Object {
     If (-not $_.Name.Contains("\") -and -not $_.Name.Contains("/") -and -not $_.Name.Contains(":") -and -not $_.Name.Contains("*") -and -not $_.Name.Contains("?") -and -not $_.Name.Contains("`"") -and -not $_.Name.Contains("<") -and -not $_.Name.Contains(">") -and  -not $_.Name.Contains("|")) {
         [System.IO.File]::AppendAllText("$export_list_path", "$($_.Name)`n")
         $count++
