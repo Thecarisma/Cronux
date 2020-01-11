@@ -46,8 +46,6 @@ Param(
     $password_
 )
 
-"'$($password_)'"
-
 $password = ConvertTo-SecureString -String "mypassword" -Force -AsPlainText
 $cert_path = [System.IO.Path]::GetFullPath($cert_path)
 
@@ -56,4 +54,4 @@ If ( -not [System.IO.File]::Exists($cert_path)) {
     Return
 }
 
-Import-PfxCertificate -FilePath "$cert_path" -CertStoreLocation Cert:\LocalMachine\Root -Password $password
+Import-PfxCertificate -FilePath "$cert_path" -CertStoreLocation Cert:\LocalMachine\My -Password $password
