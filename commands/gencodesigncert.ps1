@@ -21,12 +21,12 @@
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE
-    gencodesigncert 'Cronux' 3 ./dist/ mypasssword
+    gencodesigncert 'Cronux' 3 ./dist/ mypassword
     This generates the Cronux certificate in 'cert:\LocalMachine\My' 
     and exports Cronux.pfx to ./dist/ folder. The generated certificate 
     expires after 3 years.
 .EXAMPLE
-    gencodesigncert 'My Code Signer' 1 ./dist/ mypasssword
+    gencodesigncert 'My Code Signer' 1 ./dist/ mypassword
     This generates the Cronux certificate in 'cert:\LocalMachine\My' 
     and exports Cronux.pfx to ./dist/ folder. The generated certificate 
     expires after 1 years.
@@ -44,6 +44,7 @@ Param(
     [string]$password_
 )
 
+"'$($password_)'"
 $password = ConvertTo-SecureString -String "$($password_)" -Force -AsPlainText
 $store_location = "Cert:\LocalMachine"
 $expiry_year = (Get-Date).AddYears($expiry_year_)

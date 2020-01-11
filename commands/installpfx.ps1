@@ -27,12 +27,12 @@
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE
-    installpfx 'Cronux' 3 ./dist/ mypasssword
+    installpfx 'Cronux' 3 ./dist/ mypassword
     This generates the Cronux certificate in 'cert:\LocalMachine\My' 
     and exports Cronux.pfx to ./dist/ folder. The generated certificate 
     expires after 3 years.
 .EXAMPLE
-    installpfx 'My Code Signer' 1 ./dist/ mypasssword
+    installpfx 'My Code Signer' 1 ./dist/ mypassword
     This generates the Cronux certificate in 'cert:\LocalMachine\My' 
     and exports Cronux.pfx to ./dist/ folder. The generated certificate 
     expires after 1 years.
@@ -46,7 +46,9 @@ Param(
     $password_
 )
 
-$password = ConvertTo-SecureString -String "$($password_)" -Force -AsPlainText
+"'$($password_)'"
+
+$password = ConvertTo-SecureString -String "mypassword" -Force -AsPlainText
 $cert_path = [System.IO.Path]::GetFullPath($cert_path)
 
 If ( -not [System.IO.File]::Exists($cert_path)) {
