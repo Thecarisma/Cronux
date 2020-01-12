@@ -11,6 +11,11 @@
     
     If the store location is not specified the pfx certificate is installed 
     into Cert:\CurrentUser\My store which wioll make the certificate untrusted.
+    
+    Installing into the Cert:\CurrentUser\Root store prompts a dialog to confirm 
+    adding the certificate while installing into Cert:\LocalMachine\Root store 
+    does not prompt a dialog, therefore it advisable to install into 
+    Cert:\LocalMachine\Root when working from CLI only.
 .INPUTS 
     System.String[]
 .OUTPUTS 
@@ -49,7 +54,7 @@ Param(
 )
 
 If (-not $store_location) {
-    $store_location = "Cert:\LocalMachine\My"
+    $store_location = "Cert:\CurrentUser\My"
 }
 $password = ConvertTo-SecureString -String $password_ -Force -AsPlainText
 $cert_path = [System.IO.Path]::GetFullPath($cert_path)
