@@ -37,12 +37,4 @@ Param(
     $password_
 )
 
-$password = ConvertTo-SecureString -String $password_ -Force -AsPlainText
-$cert_path = [System.IO.Path]::GetFullPath($cert_path)
-
-If ( -not [System.IO.File]::Exists($cert_path)) {
-    Write-Error "$cert_path does not exist"
-    Return
-}
-
-Import-PfxCertificate -FilePath "$cert_path" -CertStoreLocation Cert:\LocalMachine\My -Password $password
+iex "$PSScriptRoot\installpfxx.ps1 $cert_path $password_ Cert:\LocalMachine\Root"
