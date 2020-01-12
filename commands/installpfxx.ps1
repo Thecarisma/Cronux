@@ -7,6 +7,8 @@
     be specified as the second parameter and the store location as the store 
     location.
     
+    The third parameter `$store_location` is not mandatory. 
+    
     If the store location is not specified the pfx certificate is installed 
     into Cert:\CurrentUser\My store which wioll make the certificate untrusted.
 .INPUTS 
@@ -49,10 +51,6 @@ Param(
 If (-not $store_location) {
     $store_location = "Cert:\LocalMachine\My"
 }
-
-$store_location
-Return
-
 $password = ConvertTo-SecureString -String $password_ -Force -AsPlainText
 $cert_path = [System.IO.Path]::GetFullPath($cert_path)
 
@@ -61,4 +59,4 @@ If ( -not [System.IO.File]::Exists($cert_path)) {
     Return
 }
 
-Import-PfxCertificate -FilePath "$cert_path" -CertStoreLocation Cert:\LocalMachine\My -Password $password
+Import-PfxCertificate -FilePath "$cert_path" -CertStoreLocation $store_location -Password $password
