@@ -1,8 +1,14 @@
 <#
 .SYNOPSIS
-    
+    Install a pfx certificate to specified location.
 .DESCRIPTION
+    Install a pfx certificate to a specified store location on the system. 
+    PFX certificate is expected to have a password hence the password should 
+    be specified as the second parameter and the store location as the store 
+    location.
     
+    If the store location is not specified the pfx certificate is installed 
+    into Cert:\CurrentUser\My store which wioll make the certificate untrusted.
 .INPUTS 
     System.String[]
 .OUTPUTS 
