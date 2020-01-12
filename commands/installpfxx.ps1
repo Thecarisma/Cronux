@@ -9,18 +9,17 @@
     System.String
 .NOTES
     Version    : 1.0
-    File Name  : installpfx.ps1
+    File Name  : installpfxx.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
-    Date       : Jan-09-2019
+    Date       : Jan-12-2019
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE
-    installpfx ./dist/Cronux.pfx mypassword Cert:\LocalMachine\My
+    installpfx ./Certificate.pfx password
 .EXAMPLE
-    installpfx 'My Code Signer' 1 ./dist/ mypassword
-    This generates the Cronux certificate in 'cert:\LocalMachine\Root' 
-    and exports Cronux.pfx to ./dist/ folder. The generated certificate 
-    expires after 1 years.
+    installpfx ./Certificate.pfx password Cert:\LocalMachine\My
+.EXAMPLE
+    installpfx ./Certificate.pfx password Cert:\LocalMachine\Root
     
 #>
 
@@ -28,6 +27,8 @@ Param(
     [Parameter(mandatory=$true)]
     [string]$cert_path,
     [Parameter(mandatory=$true)]
+    $password_,
+    [Parameter(mandatory=$false)]
     $password_
 )
 
