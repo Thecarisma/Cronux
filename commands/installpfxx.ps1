@@ -29,16 +29,16 @@
     https://thecarisma.github.io/Cronux
     https://dev.to/iamthecarisma/managing-certificates-through-powershell-2ok0
 .EXAMPLE
-    installpfx ./Certificate.pfx password
+    installpfxx ./Certificate.pfx password
     If the location store to install the certificate to is not specified 
     the pfx certificate is installed into the Cert:\CurrentUser\My store 
     which makes the certificate untrusted.
 .EXAMPLE
-    installpfx ./Certificate.pfx password Cert:\CurrentUser\Root
+    installpfxx ./Certificate.pfx password Cert:\CurrentUser\Root
     Install the pfx certificate into the Cert:\CurrentUser\Root store 
     location which is a path for secure certificate for the current user.
 .EXAMPLE
-    installpfx ./Certificate.pfx password Cert:\LocalMachine\Root
+    installpfxx ./Certificate.pfx password Cert:\LocalMachine\Root
     Install the pfx certificate into the Cert:\LocalMachine\Root store 
     location which is a path for secure certificate for computer.
     
@@ -48,9 +48,9 @@ Param(
     [Parameter(mandatory=$true)]
     [string]$cert_path,
     [Parameter(mandatory=$true)]
-    $password_,
+    [string]$password_,
     [Parameter(mandatory=$false)]
-    $store_location
+    [string]$store_location
 )
 
 If (-not $store_location) {
