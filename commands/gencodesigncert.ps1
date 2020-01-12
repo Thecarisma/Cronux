@@ -44,7 +44,7 @@ Param(
     [string]$password_
 )
 
-$password = ConvertTo-SecureString -String "$($password_)" -Force -AsPlainText
+$password = ConvertTo-SecureString -String $password_ -Force -AsPlainText
 $store_location = "Cert:\LocalMachine"
 $expiry_year = (Get-Date).AddYears($expiry_year_)
 $output_folder_path = [System.IO.Path]::GetFullPath($output_folder_path)
