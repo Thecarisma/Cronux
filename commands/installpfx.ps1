@@ -21,6 +21,8 @@
 .LINK
     https://thecarisma.github.io/Cronux
     https://dev.to/iamthecarisma/managing-certificates-through-powershell-2ok0
+    https://docs.microsoft.com/en-us/windows/win32/seccrypto/system-store-locations
+    https://docs.microsoft.com/en-us/windows/win32/seccrypto/digital-certificates
 .EXAMPLE
     installpfx ./Certificate.pfx password
     Install the pfx Certificate into the system trusted location Cert:\LocalMachine\Root
