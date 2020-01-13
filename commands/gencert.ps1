@@ -72,9 +72,10 @@ Function Find-Delete-Certificate {
 
 Find-Delete-Certificate $cert_name
 "Generating and installing certificate"
-$cert = New-SelfSignedCertificate -Subject $cert_name -notafter $expiry_year -Type $type -CertStoreLocation $store_location
+$cert = New-SelfSignedCertificate -Subject $cert_name -FriendlyName $cert_name -notafter $expiry_year -Type $type -CertStoreLocation $store_location
 If ( -not $DontExport) {
     "Exporting the certificate to $output_folder_path\$cert_name.cer"
     Export-Certificate -FilePath "$output_folder_path\$cert_name.cer" -Cert $cert
     Find-Delete-Certificate $cert_name
 }
+Return $cert

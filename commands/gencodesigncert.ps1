@@ -49,7 +49,6 @@ Param(
 
 $password = ConvertTo-SecureString -String $password_ -Force -AsPlainText
 
-$result = iex "$PSScriptRoot\gencert.ps1 $cert_name $expiry_year_ CodeSigningCert $output_folder_path pfx -DontExport"
-$result
-#Export-PfxCertificate -Cert "$store_location\My\$($cert.Thumbprint)" -FilePath "$output_folder_path\$cert_name.pfx" -Password $password
-#iex "$PSScriptRoot\delcert.ps1 $cert_name"
+$cert = iex "$PSScriptRoot\gencert.ps1 $cert_name $expiry_year_ CodeSigningCert $output_folder_path -DontExport"
+Export-PfxCertificate -Cert "Cert:\LocalMachine\My\$($cert.Thumbprint)" -FilePath "$output_folder_path\$cert_name.pfx" -Password $password
+iex "$PSScriptRoot\delcert.ps1 $cert_name"
