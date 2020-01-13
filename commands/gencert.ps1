@@ -41,11 +41,11 @@ Param(
     [Parameter(mandatory=$true)]
     [string]$type,
     [Parameter(mandatory=$true)]
-    [string]$store_location,
-    [Parameter(mandatory=$true)]
-    [string]$output_folder_path
+    [string]$output_folder_path,
+    [switch]$DontRemove
 )
 
+$store_location = "Cert:\LocalMachine\My"
 $expiry_year = (Get-Date).AddYears($expiry_year_)
 $output_folder_path = [System.IO.Path]::GetFullPath($output_folder_path)
 
@@ -61,7 +61,7 @@ Function Find-Delete-Certificate {
 
     ForEach ($cert in (ls "$store_location")) {
         If ($cert.Subject -eq "CN=$cert_subject_name") {
-            "Removing already existing certificate $store_location"
+            "Removing already existing certificate $store_location\My"
             $cert | Remove-Item
             If ( -not $?) {
                 Return
@@ -72,6 +72,9 @@ Function Find-Delete-Certificate {
 
 Find-Delete-Certificate $cert_name
 "Generating and installing certificate"
-$cert = New-SelfSignedCertificate -Subject "$cert_name" -notafter $expiry_year -Type $type -CertStoreLocation "$store_location"
-"Exporting the certificate to $output_folder_path\$cert_name.pfx"
-Find-Delete-Certificate $cert_name
+$cert = New-SelfSignedCertificate -Subject $cert_name -notafter $expiry_year -Type $type -CertStoreLocation $store_location
+"Exporting the certificate to $output_folder_path\$cert_name.cer"
+Export-Certificate -FilePath "$output_folder_path\$cert_name.cer" -Cert $cert
+If ( -not $DontRemove) {
+    Find-Delete-Certificate $cert_name
+}
