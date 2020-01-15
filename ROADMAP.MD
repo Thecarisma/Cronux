@@ -52,10 +52,12 @@
  - [x] zip does not visit subfolder 
  - [ ] ssh commands folder 
  - [ ] powershell script to run the commands from powershell 
- - [ ] compile the batch script to powershell function in case(God Forbid) Windows put terminal and powershell as defaults 
+ - [x] compile the batch script to powershell function in case(God Forbid) Windows put terminal and powershell as defaults 
  - [ ] command to generate shell entry for right click context without run
  - [ ] command to kill a running app on command line
  - [ ] command to download update for cronux
  - [ ] add to chocolatey regostry
  - [ ] command to install a batch script as powershell cmdlet
  - [ ] create command to create empty file
+ 
+ - [ ] alias command for windows to create commands alias
