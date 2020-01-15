@@ -59,5 +59,7 @@
  - [ ] add to chocolatey regostry
  - [ ] command to install a batch script as powershell cmdlet
  - [ ] create command to create empty file
- 
  - [ ] alias command for windows to create commands alias
+ - [ ] command to delete certificate in store location
+ - [x] command to install a pfx certificate in store location 
+ - [ ] command to find a certificate by subject from all store location
