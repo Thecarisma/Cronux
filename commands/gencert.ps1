@@ -12,7 +12,7 @@
 .INPUTS 
     System.String System.int32 System.String System.String
 .OUTPUTS 
-    System.String
+    System.Security.Cryptography.X509Certificates.X509Certificate2
 .NOTES
     Version    : 1.0
     File Name  : gencodesigncert.ps1

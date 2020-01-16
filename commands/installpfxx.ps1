@@ -19,7 +19,7 @@
 .INPUTS 
     System.String[]
 .OUTPUTS 
-    System.String
+    System.Security.Cryptography.X509Certificates.X509Certificate2
 .NOTES
     Version    : 1.0
     File Name  : installpfxx.ps1
