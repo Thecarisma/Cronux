@@ -66,4 +66,4 @@ If ( -not [System.IO.File]::Exists($cert_path)) {
     Return
 }
 
-Import-PfxCertificate -FilePath "$cert_path" -CertStoreLocation $store_location -Password $password
+Import-PfxCertificate  -Exportable -FilePath "$cert_path" -CertStoreLocation $store_location -Password $password
