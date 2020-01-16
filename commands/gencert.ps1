@@ -29,7 +29,7 @@
     gencodesigncert 'My Code Signer' 1 ./dist/ mypassword
     This generates the Cronux certificate in 'cert:\LocalMachine\My' 
     and exports Cronux.pfx to ./dist/ folder. The generated certificate 
-    expires after 1 years.
+    expires after 1 years. 
     
 #>
 
