@@ -6,32 +6,32 @@ ___
 
 <span style="display:block;text-align:center"> ![Travis (.org)](https://img.shields.io/travis/Thecarisma/Cronux?style=flat)	![GitHub repo size](https://img.shields.io/github/repo-size/Thecarisma/Cronux)	![GitHub contributors](https://img.shields.io/github/contributors/Thecarisma/Cronux) [![Twitter Follow](https://img.shields.io/twitter/follow/iamthecarisma?style=social)](https://twitter.com/iamthecarisma)	 [![Support on Patreon](https://img.shields.io/static/v1?label=Support%20Devcareer%20on%20Patreon&message=$10&color=brightgreen)](https://www.patreon.com/join/devcareer/checkout?rid=3922862)</span>
 
-This repo contains Super useful handy commands to perform simple and complex task on the Windows command line. Most Linux systems comes 
-pre-installed with useful utilities and programs which makes working with the terminal easy, fun and provides easy api to execute 
-various task. Windows also has more powerful command line functionality, windows 
-provide powerful api through the visual basic script, powershell and the .NET sdk interopability. 
+This repo contains Super useful handy commands to perform simple and complex task on the command line. Powershell has powerful command line functionality due to it interopability with visual basic script, the .NET sdk and installed apps. 
 
-Cronux simplify the use of the windows command line functionality by combining the use of visual basic script, powershell and .NET sdk to execute command to perform operations. It makes heavy use of meta-programming to achive some functionalities.
+Most powershell only commands are wrapped into batch and bash to make them available on windows command prompt and linux shell. This script is most useful if you enjoy the power of linux and unix terminal or you switch between other OSes and Windows often.
 
-This script is most useful if you enjoy the power of linux and unix terminal or you switch between other OS and Windows often.
-
+Do not heisitate to send in a PR with your awesome powershell script.
 
 ___
 
 ## Table of content
-- [Prerequisite](#prerequisite)
+- [Requirements](#requirements)
 - [Installation](#installation)
 	- [Install](#install)
+		- [Powershell](#powershell)
+		- [Chocolatey](#chocolatey)
+		- [Git Bash](#git-bash)
+		- [Download Zip and Extract](#download-zip-and-extract)
 	- [Uninstall](#uninstall)
 - [Usage](#usage)
+	- [Powershell Exeception](#powershell-exeception)
 - [Available Commands](#available-commands)
-- [Drawbacks And Safety](#drawbacks-and-safety)
 - [Contributing](#contributing)
 - [Support](#support)
-- [Related Links](#related-links)
+- [Useful Links](#useful-links)
 - [License](#license)
 
-## Prerequisite
+## Requirements
 
 - Powershell 2+
 - Windows Command Prompt on Microsoft Windows
@@ -43,14 +43,29 @@ The script provides wrapper commands for various application e.g git, kubectl. T
 
 ### Install
 
+#### Powershell
+
+Run your powershell as admin and eexecute:
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://thecarisma.github.io/installx.ps1'))
+```
+
+#### Chocolatey
+
+#### Git Bash
+
 If you have git bash installed use the one line command below to install cronux 
 
 ```bash
-git clone https://github.com/Thecarisma/Cronux.git && cd ./Cronux && ./Cronux.bat install prod
+git clone https://github.com/Thecarisma/Cronux.git && cd ./Cronux && ./Cronux.bat install
 ```
 
-To use all the commands you will need to prefix the word **Cronux** before the command e.g `Cronux clear`, `Cronux sudo` e.t.c to make the 
-command available independent of Cronux itself install the commands with
+#### Download Zip and Extract
+
+Download the zip archive from the repo or release page, extract it to any folder on your disk and execute Cronux from within the folder.
+
+To use all the commands you will need to prefix the word **Cronux** before the command e.g `Cronux clear`, `Cronux sudo` e.t.c to make the command available independent of Cronux itself install Cronux with:
 
 ```
 Cronux.bat install
@@ -92,46 +107,57 @@ To use, extract Cronux.bat to a folder of your choice, a sample use to open cmd 
 Cronux elevate cmd
 ```
 
+### Powershell Exeception
+
+If you try to execute the commands from powershell you will have to set the Execution Policy to RemoteSigned else you should call the .bat command directly e.g instead of `gitpush` use `gitpush.bat`. Top allow the scripts to execute natively change the execution policy for your powershell to remotesigned:
+
+```powershell
+Set-ExecutionPolicy RemoteSigned
+```
+
+or use the command in Cronux:
+
+```powershell
+makepsunsafe.bat
+```
+
+After you are done with the session or when you want the Execution policy to be secure again execute
+
+```powershell
+Set-ExecutionPolicy Restricted
+```
+
+or use the command in Cronux:
+
+```powershell
+makepssafeagain.bat
+```
+
+It advisable to make the Execution policy restrictede for safety reasons.
+
 ## Available Commands
-
-To view the detail help message for each commands 
-
-```bash
-Cronux help [command]
-```
-
-or if Cronux is installed
-
-```bash
-chelp [command]
-```
 
 All the command are listed below with it alias(es)
 
 ```bash
-gitpush, aboutx, batforps, buildcronux, chelp, close, Cronux, extractx,
-gencodesigncert, installpfx, installpfxx, installx, listx, printhead,
-pstobat, wrapcommand
+$, aboutx, base64, base64s, batforps, buildcronux, chelp, close, Cronux,
+extractx, gencert, gencodesigncert, gitpush, installpfx, installpfxx,
+installx, listx, printhead, pstobat, wrapcommand, Bye.
 ```
 
-## Drawbacks And Safety
+To view all the Cronux native command and exported command:
 
-The commands are not full programs and might not behave as expected completely. Also the command that comes with Cronux 
-should be remove after the actual program has been installed.
+```shell
+listx -All
+```
 
-Most of the operation requires a lot of care as it can damage the system in some instance e.g such as the entire 
-environment variable commands. Executing such command in Cronux will first backup sensitive and important files to it 
-backup folder before executing the commands. If the command causes un foreseen damages the backed up files can be used to 
-revert back to previous environment. Below are neccesary format for backups.
+To view the detail help message for a commands 
 
 ```bash
-ROAMING_FOLDER=%HOMEDRIVE%%HOMEPATH%\AppData\Roaming\Cronux\
-BACKUP_FOLDER=%HOMEDRIVE%%HOMEPATH%\AppData\Roaming\Cronux\backup\
-BACKUP_ENVIRONMENT_FOLDER=%HOMEDRIVE%%HOMEPATH%\AppData\Roaming\Cronux\environment\
+Cronux chelp [command]
+#or
+[command] help
 ```
-ROAMING_FOLDER: The Cronux roaming folder for backup, configuration and other datas.
-BACKUP_FOLDER: This is the main folder where a file is backed up in the following format before deletion `!BACKUP_FOLDER!\!filename!!fileextension!.!time_stamp!`.cronux.backup
-BACKUP_ENVIRONMENT_FOLDER: The environment variables is backed up in this folder before manipulating it.
 
 ## Contributing
 
@@ -141,10 +167,8 @@ If you have any issue or you just want more command to be added you can file a r
 anytime and if you just add a more interesting, fun and usefull command do not hesitate to send a 
 [pull request](https://github.com/Thecarisma/Cronux/compare) 
 
-Please and please and please and please do not modify the *CronuxTestRunner.bat* Script if you do not understand how 
-it works. *do not touch it. it freaking works*, but if you think the scripts should pass a test raise an issue for 
-it before sending a PR for modified *CronuxTestRunner.bat*. if a PR modified *CronuxTestRunner.bat* without opening an 
-issue first it is closed immediately. *don't freaking touch it if you don't understand it*.
+Please and please and please and please do not modify the *CronuxTestRunner.ps1* Script if you do not understand how it works. *do not touch it. it freaking works*, but if you think the scripts should pass a test raise an issue for it before sending a PR for modified *CronuxTestRunner.bat*. if a PR modified *CronuxTestRunner.ps1* without opening an 
+issue first the PR will closed. *don't freaking touch it if you don't understand it*.
 
 May the force be with you.
 
@@ -154,11 +178,14 @@ You can support some of this community as they make big impact in the developeme
 
 - https://www.patreon.com/devcareer
 
-## Related Links
+## Useful Links
 
-[.NET Documentation](https://docs.microsoft.com/en-us/dotnet/)
+ - [Powershell](https://docs.microsoft.com/en-us/powershell/scripting/overview)
+ - [.NET Documentation](https://docs.microsoft.com/en-us/dotnet/)
+ - [cmd.exe](https://en.wikipedia.org/wiki/Cmd.exe)
+ - [Unix Shell](https://en.wikipedia.org/wiki/Unix_shell)
 
 ## License
 
-The MIT License Copyright (c) 2019 Adewale Azeez Built with :heart:
+The MIT License Copyright (c) 2019 Adewale Azeez
 
