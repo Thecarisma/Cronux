@@ -56,7 +56,15 @@ Function Iterate-Folder {
             }
             $NameOnly = $_.Name.Substring(0, $_.Name.LastIndexOf("."))
             If ($NameOnly -eq $command) {
-                powershell $_.FullName $params
+                $escaped_params  = New-Object System.Collections.Generic.List[string]
+                ForEach($param in $params) {
+                    if ($param.StartsWith('-')) {
+                        $escaped_params.Add($param)
+                    } else {
+                        $escaped_params.Add("'$($param)'")
+                    }
+                }
+                powershell $_.FullName  @($escaped_params)
                 $Global:found_command = $true
                 Return
             }

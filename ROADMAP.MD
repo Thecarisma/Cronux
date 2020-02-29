@@ -63,3 +63,5 @@
  - [ ] command to delete certificate in store location
  - [x] command to install a pfx certificate in store location 
  - [ ] command to find a certificate by subject from all store location
+ - [ ] show list of program that run at startup
+ - [ ] disable and enable a program to run at startup
