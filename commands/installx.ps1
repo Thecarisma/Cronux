@@ -3,13 +3,21 @@
 
 $AppName = "Cronux"
 $Version = "2.0"
-$AppArchiveUrl = "https://github.com/Thecarisma/Cronux/releases/download/v1.2/Cronux.zip"
+$AppArchiveUrl = "https://github.com/Thecarisma/Cronux/archive/master.zip"
 $InstallationPath = $env:ProgramData + "\$AppName\"
 $PathEnvironment = "User"
 $BeforeScript = ""
 $AfterScript = "
+    cp ./Cronux-master/commands/extractx.ps1 $InstallationPath
+    cp ./Cronux-master/commands/buildcronux.ps1 $InstallationPath
+    cp ./Cronux-master/commands/batforps.ps1 $InstallationPath
+    cp ./Cronux-master/commands/wrapcommand.ps1 $InstallationPath
+    cp ./Cronux-master/*.bat $InstallationPath
+    cp ./Cronux-master/*.sh $InstallationPath
+    cp ./Cronux-master/LICENSE $InstallationPath
     powershell -noprofile -executionpolicy bypass -file ./extractx.ps1 ./ExportList.txt
     powershell -noprofile -executionpolicy bypass -file ./buildcronux.ps1  ./ ./
+    Remove-Item -path Cronux-master -recurse
 "
 
 $AddPath = $true
