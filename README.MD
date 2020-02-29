@@ -1,22 +1,20 @@
 # <p style="text-align: center;" align="center">Cronux</p>
 
-<p style="text-align: center;" align="center">Super useful handy, hacky and wacky commands to perform simple and complex task on the Windows command line</p>	
+<p style="text-align: center;" align="center">Super useful handy, hacky and wacky commands to perform simple and complex task on the command line</p>	
 
 ___
 
-<span style="display:block;text-align:center"> ![Travis (.org)](https://img.shields.io/travis/Thecarisma/Cronux?style=flat)	![GitHub repo size](https://img.shields.io/github/repo-size/Thecarisma/Cronux)	![GitHub contributors](https://img.shields.io/github/contributors/Thecarisma/Cronux) [![Twitter Follow](https://img.shields.io/twitter/follow/iamthecarisma?style=social)](https://twitter.com/iamthecarisma)	 [![Support on Patreon](https://img.shields.io/static/v1?label=Support%20on%20Patreon&message=$5&color=brightgreen)](https://www.patreon.com/join/thecarisma/checkout?rid=3556842)</span>
+<span style="display:block;text-align:center"> ![Travis (.org)](https://img.shields.io/travis/Thecarisma/Cronux?style=flat)	![GitHub repo size](https://img.shields.io/github/repo-size/Thecarisma/Cronux)	![GitHub contributors](https://img.shields.io/github/contributors/Thecarisma/Cronux) [![Twitter Follow](https://img.shields.io/twitter/follow/iamthecarisma?style=social)](https://twitter.com/iamthecarisma)	 [![Support on Patreon](https://img.shields.io/static/v1?label=Support%20Devcareer%20on%20Patreon&message=$10&color=brightgreen)](https://www.patreon.com/join/devcareer/checkout?rid=3922862)</span>
 
 This repo contains Super useful handy commands to perform simple and complex task on the Windows command line. Most Linux systems comes 
 pre-installed with useful utilities and programs which makes working with the terminal easy, fun and provides easy api to execute 
-various task. Windows even has more powerful command line functionality but requires journey to the abysses to use, windows 
-provide powerful api through the visual basic script, powershell and the .NET sdk. 
+various task. Windows also has more powerful command line functionality, windows 
+provide powerful api through the visual basic script, powershell and the .NET sdk interopability. 
 
-Cronux simplify the use of the windows command line functionality by combining the use of visual basic script, powershell and .NET sdk 
-to execute command to perform operations. It makes heavey use of meta-programming to achive some functionalities.
+Cronux simplify the use of the windows command line functionality by combining the use of visual basic script, powershell and .NET sdk to execute command to perform operations. It makes heavy use of meta-programming to achive some functionalities.
 
 This script is most useful if you enjoy the power of linux and unix terminal or you switch between other OS and Windows often.
 
-Powershell 3+
 
 ___
 
@@ -33,18 +31,17 @@ ___
 - [Related Links](#related-links)
 - [License](#license)
 
-### Prerequisite
+## Prerequisite
 
-This command is exclusive to windows OS, so you need any version of Windows OS after Windows XP. Some of the command 
-requires the app to be present but that only affect the commands. The app needed is the name of the sub folder in the commands 
-folder.
+- Powershell 2+
+- Windows Command Prompt on Microsoft Windows
+- Any shell on Linux and unix
 
-### Installation
+## Installation
 
-The script is completely independent as it relies on Windows OS api and infrastructure all the logic is native to the platform. 
-To install the script just download from the [release](https://github.com/Thecarisma/Cronux/releases). 
+The script provides wrapper commands for various application e.g git, kubectl. The main requirement for Cronux is powershell 3 and above.
 
-#### Install
+### Install
 
 If you have git bash installed use the one line command below to install cronux 
 
@@ -56,34 +53,15 @@ To use all the commands you will need to prefix the word **Cronux** before the c
 command available independent of Cronux itself install the commands with
 
 ```
-Cronux install
+Cronux.bat install
 ```
 
-All the commands will be installed in the Program files folder `C:\Program Files\Cronux` and the folder will be added to path. The command 
-can then be executed without prefixing **Cronux** e.g.
-
-```
-clear
-elevate 
-echocolor
-...
-```
-
-If you want Cronux to be available in your system path use the command below to add the folder into the **PATH** variable.
-You should only add Cronux directory to path if you did not install it. 
-
-```bash
-Cronux addtopath ./
-```
-
-The addpath converts path to absolute windows compatible short pathname.
-
-#### Uninstall
+### Uninstall
 
 To uninstall the Entrie Cronux and it sub commands Scripts use the command below
 
 ```
-Cronux uninstall all
+Cronux uninstall
 ```
 
 To remove a single command for example when an actual program with the same full functionality 
@@ -94,7 +72,7 @@ should be removed when the real program **ls.exe** is installed (e.g from the mi
 Cronux removecommand ls
 ```
 
-### Usage
+## Usage
 
 After installation you can use the commands independently as each batch script 
 will be generated for each command. Note that not all the command will have it 
@@ -114,10 +92,7 @@ To use, extract Cronux.bat to a folder of your choice, a sample use to open cmd 
 Cronux elevate cmd
 ```
 
-Note that custom advertisment, hint or quote is shown when command is run to silent the quote add the 
-command `nb` to your command argument at any point
-
-### Available Commands
+## Available Commands
 
 To view the detail help message for each commands 
 
@@ -139,7 +114,7 @@ gencodesigncert, installpfx, installpfxx, installx, listx, printhead,
 pstobat, wrapcommand
 ```
 
-### Drawbacks And Safety
+## Drawbacks And Safety
 
 The commands are not full programs and might not behave as expected completely. Also the command that comes with Cronux 
 should be remove after the actual program has been installed.
@@ -158,7 +133,7 @@ ROAMING_FOLDER: The Cronux roaming folder for backup, configuration and other da
 BACKUP_FOLDER: This is the main folder where a file is backed up in the following format before deletion `!BACKUP_FOLDER!\!filename!!fileextension!.!time_stamp!`.cronux.backup
 BACKUP_ENVIRONMENT_FOLDER: The environment variables is backed up in this folder before manipulating it.
 
-### Contributing
+## Contributing
 
 Before you begin contribution please read the contribution guide at [CONTRIBUTING GUIDE](./CONTRIBUTING.MD)
 
@@ -175,18 +150,15 @@ May the force be with you.
 
 ## Support
 
-You can support some of this community as they make big impact in the developement of people to get started with software engineering and open source.
+You can support some of this community as they make big impact in the developement of people to get started with software engineering.
 
 - https://www.patreon.com/devcareer
-- https://opencollective.com/osca
-
-Or if you want to buy me a drink > https://patreon.com/thecarisma. Thanks!🤗
 
 ## Related Links
 
 [.NET Documentation](https://docs.microsoft.com/en-us/dotnet/)
 
-### License
+## License
 
 The MIT License Copyright (c) 2019 Adewale Azeez Built with :heart:
 
