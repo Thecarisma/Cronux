@@ -45,7 +45,7 @@ The script provides wrapper commands for various application e.g git, kubectl. T
 
 #### Powershell
 
-Run your powershell as admin and eexecute:
+Run your powershell as admin and execute:
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://thecarisma.github.io/installx.ps1'))
@@ -133,7 +133,7 @@ or use the command in Cronux:
 makepssafeagain.bat
 ```
 
-It advisable to make the Execution policy restrictede for safety reasons.
+It advisable to make the Execution policy restricted for safety reasons.
 
 ## Available Commands
 
@@ -145,18 +145,20 @@ extractx, gencert, gencodesigncert, gitpush, installpfx, installpfxx,
 installx, listx, printhead, pstobat, wrapcommand, Bye.
 ```
 
-To view all the Cronux native command and exported command:
+To view all the Cronux native and exported commands:
 
 ```shell
 listx -All
 ```
 
-To view the detail help message for a commands 
+To view the detail help message for a command:
 
 ```bash
 Cronux chelp [command]
 #or
 [command] help
+
+#e.g. base64 help
 ```
 
 ## Contributing
