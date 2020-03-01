@@ -1,18 +1,19 @@
 <#
 .SYNOPSIS
-    Add and commit all the edited file to git with the commit 
-    message as the variadic arguments without quotes 
+    Add and commit all the edited file to git with the 
+    commit message as the variadic arguments without quotes 
 .DESCRIPTION
-    A short compact command to quickly add all edited files to a 
-    commit with the commit messages and push the changes to the 
-    currently active branch. 
+    A short compact command to quickly add all edited files 
+    to a commit with the commit messages and push the changes 
+    to the currently active branch. 
     
-    This command does not force push to remote, to force a push to 
-    remote regardless of remote changes, use the 'gitfpush' command.
+    This command does not force push to remote, to force a 
+    push to remote regardless of remote changes, use the 
+    'gitfpush' command.
 .INPUTS 
     System.String[]
 .OUTPUTS 
-    git status
+    some text and analysis I don't need
 .NOTES
     File Name  : gitpush.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com

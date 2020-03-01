@@ -1,5 +1,4 @@
 @echo off
 SET WD=%cd%
-cd %~dp0
-powershell -noprofile -executionpolicy bypass -file ./commands/Cronux.ps1 %*
+powershell -noprofile -executionpolicy bypass -file %~dp0/commands/Cronux.ps1 %*
 cd %WD%

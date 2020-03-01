@@ -109,10 +109,10 @@ Cronux elevate cmd
 
 ### Powershell Exeception
 
-If you try to execute the commands from powershell you will have to set the Execution Policy to RemoteSigned else you should call the .bat command directly e.g instead of `gitpush` use `gitpush.bat`. Top allow the scripts to execute natively change the execution policy for your powershell to remotesigned:
+If you try to execute the commands from powershell you will have to set the Execution Policy to Bypass else you should call the .bat command directly e.g instead of `gitpush` use `gitpush.bat`. Top allow the scripts to execute natively change the execution policy for your powershell to bypass:
 
 ```powershell
-Set-ExecutionPolicy RemoteSigned
+Set-ExecutionPolicy Bypass
 ```
 
 or use the command in Cronux:
@@ -140,9 +140,9 @@ It advisable to make the Execution policy restricted for safety reasons.
 All the command are listed below with it alias(es)
 
 ```bash
-$, aboutx, base64, base64s, batforps, buildcronux, chelp, close, Cronux,
-extractx, gencert, gencodesigncert, gitpush, installpfx, installpfxx,
-installx, listx, printhead, pstobat, wrapcommand, Bye.
+gitclone, gitpush, $, aboutx, base64, base64s, batforps, buildcronux,
+chelp, close, Cronux, extractx, gencert, gencodesigncert, installpfx,
+installpfxx, installx, listx, printhead, pstobat, wrapcommand, Bye.
 ```
 
 To view all the Cronux native and exported commands:
