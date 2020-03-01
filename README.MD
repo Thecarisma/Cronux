@@ -140,9 +140,10 @@ It advisable to make the Execution policy restricted for safety reasons.
 All the command are listed below with it alias(es)
 
 ```bash
-gitclone, gitpush, $, aboutx, base64, base64s, batforps, buildcronux,
-chelp, close, Cronux, extractx, gencert, gencodesigncert, installpfx,
-installpfxx, installx, listx, printhead, pstobat, wrapcommand, Bye.
+gitclone, gitfpush, gitpush, $, aboutx, base64, base64s, batforps,
+buildcronux, chelp, close, Cronux, extractx, gencert, gencodesigncert,
+installpfx, installpfxx, installx, listx, printhead, pstobat,
+wrapcommand, Bye.
 ```
 
 To view all the Cronux native and exported commands:
