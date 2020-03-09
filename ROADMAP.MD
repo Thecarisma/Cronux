@@ -65,3 +65,7 @@
  - [ ] command to find a certificate by subject from all store location
  - [ ] show list of program that run at startup
  - [ ] disable and enable a program to run at startup
+ - [ ] command to arrange media in a folder according to artist
+ - [ ] add monitorpod command and command monitorallpod to track all pod
+ - [ ] seeproxy command to show the system proxy configuration and extractable with specific param, extract from winregistry
+
