@@ -23,6 +23,7 @@ ___
 		- [Git Bash](#git-bash)
 		- [Download Zip and Extract](#download-zip-and-extract)
 	- [Uninstall](#uninstall)
+	- [Update](#update)
 - [Usage](#usage)
 	- [Powershell Exeception](#powershell-exeception)
 - [Available Commands](#available-commands)
@@ -87,6 +88,20 @@ should be removed when the real program **ls.exe** is installed (e.g from the mi
 Cronux removecommand ls
 ```
 
+### Update
+
+If you already have Cronux installed you can execute the `updatex` command to update to the latest version.
+
+```powershell
+updatex
+```
+
+or 
+
+```powershell
+Cronux updatex
+```
+
 ## Usage
 
 After installation you can use the commands independently as each batch script 
@@ -143,7 +158,7 @@ All the command are listed below with it alias(es)
 gitclone, gitfpush, gitpull, gitpush, gitstatus, $, aboutx, base64,
 base64s, batforps, buildcronux, chelp, close, Cronux, extractx,
 gencert, gencodesigncert, installpfx, installpfxx, installx,
-listx, printhead, pstobat, wrapcommand, Bye.
+listx, printhead, pstobat, updatex, wrapcommand, Bye.
 ```
 
 To view all the Cronux native and exported commands:

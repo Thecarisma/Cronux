@@ -7,7 +7,7 @@
 .INPUTS 
     System.String[]
 .OUTPUTS 
-    git pull INFO
+    git status INFO
 .NOTES
     File Name  : gitstatus.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
