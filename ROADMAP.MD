@@ -68,4 +68,5 @@
  - [ ] command to arrange media in a folder according to artist
  - [ ] add monitorpod command and command monitorallpod to track all pod
  - [ ] seeproxy command to show the system proxy configuration and extractable with specific param, extract from winregistry
+ - [ ] a command that delete all Cronux command and delete some
 
