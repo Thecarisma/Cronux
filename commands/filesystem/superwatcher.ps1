@@ -78,8 +78,18 @@ Param(
     [int]$KeyboardTimeout = -1
 )
 
+# In cases where on change occur a file keep updating itself
+# like a index database, git.lock file, this will causes endless
+# call to the DoAction scriptblock, hence we cache the last 
+# action and file name so we simply ignore the second call with 
+# the same action and file name.
+$Global:last_event_name = $ChangedAction
+$Global:last_file_name = ""
+
 # Helper function to set up variables $_, $eventArgs and $e
 Function DoAction(
+    # The name of the even that occur 
+    [string]$event_name,
     # The action to execute. Is one of the script arguments $ChangedAction, $CreateAction, etc.
     [scriptblock]$action,
     # The name of the file, local to the path being watched
@@ -92,16 +102,31 @@ Function DoAction(
     $e
 )
 {
+    "Old=$Global:last_file_name"
+    "New=$_"
+    # TODO: ensure multiple file changes happen for files not frequented, 
+    # add exception to skip hidden folder or file filter e.g for lock file 
+    # *.lock
+    if ($Global:last_event_name -eq $event_name -and $Global:last_file_name -eq $_) {
+        return
+    }
+    $Global:last_event_name = $event_name
+    $Global:last_file_name = $_
+    
+    # event action get called over 20 times for just a file name change
     # Execute the action and catch its output
-    $output = Invoke-Command $action
-
-    if ($output) {
+    
+    if ($output) { 
+        $output = & $action       
+    
         # Write to output
         Write-Output $output
         # And to log file if we have to
         if ($LogFile -ne '') {
             Write-Output $output >> $LogFile
         }
+    } else {
+        & $action 
     }
 }
 
@@ -167,14 +192,7 @@ do {
                 $exitRequested = $true
             }
         }
-    } else {
-        if ([System.IO.FileInfo]::new($e.SourceEventArgs.FullPath).Attributes -band $hidden_or_system) {
-            if ($SkipHiddenFolder) {
-                $e.SourceEventArgs.FullPath
-                continue
-            }
-        }
-        
+    } else {        
         # A real event! Handle it:
         # Get the name of the file
         [string]$name = $e.SourceEventArgs.Name
@@ -186,10 +204,10 @@ do {
         Write-Verbose "--- START [$($e.EventIdentifier)] $changeType $name $timeStamp"
 
         switch ($changeType) {
-            Changed { DoAction $ChangedAction $name $e $($e.SourceEventArgs) }
-            Deleted { DoAction $DeletedAction $name $e $($e.SourceEventArgs) }
-            Created { DoAction $CreatedAction $name $e $($e.SourceEventArgs) }
-            Renamed { DoAction $RenamedAction $name $e $($e.SourceEventArgs) }
+            Changed { DoAction "Changed" $ChangedAction $name $e $($e.SourceEventArgs) }
+            Deleted { DoAction "Deleted" $DeletedAction $name $e $($e.SourceEventArgs) }
+            Created { DoAction "Created" $CreatedAction $name $e $($e.SourceEventArgs) }
+            Renamed { DoAction "Renamed" $RenamedAction $name $e $($e.SourceEventArgs) }
         }
 
         # Remove the event because we handled it

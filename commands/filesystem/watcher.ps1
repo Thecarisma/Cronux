@@ -26,35 +26,41 @@ Param(
     [string]$FolderPath,
     [switch]$Create,
     [switch]$Delete,
-    [switch]$Changed,
+    [switch]$Change,
     [switch]$Rename,
     [Parameter(mandatory=$true)]
     [string]$CommandToExecute
 )
 
 Set-Location -Path $FolderPath
-$Object  =  $CommandToExecute -f $e.Name, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.FullPath
 $CreateBlock = {}
+$DeleteBlock = {}
+$ChangeBlock = {}
+$RenameBlock = {}
 if ($Create) {
     $CreateBlock = {
+        $Object = $CommandToExecute -f $e.Name, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.FullPath
+        iex $Object
+    }
+} 
+if ($Delete) {
+    $DeleteBlock = {
+        $Object = $CommandToExecute -f $e.Name, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.FullPath
+        iex $Object
+    }
+} 
+if ($Change) {
+    $ChangeBlock = {
+        $Object = $CommandToExecute -f $e.Name, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.FullPath
+        iex $Object
+    }
+} 
+if ($Rename) {
+    $RenameBlock = {
+        $Object = $CommandToExecute -f $e.Name, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.FullPath
         iex $Object
     }
 } 
 
-& "$PSScriptRoot\superwatcher.ps1" $FolderPath -Recurse -SkipHiddenFolder -CreatedAction $CreateBlock
-    
- # -ChangedAction {
-    # Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.FullPath)' was changed"
-# } -DeletedAction {
-    # Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.FullPath)' was deleted"
-# } -RenamedAction {
-    # Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.OldFullPath)' was renamed to '$($e.FullPath)'"
-# }
-
+& "$PSScriptRoot\superwatcher.ps1" $FolderPath -Recurse -SkipHiddenFolder -CreatedAction $CreateBlock -DeletedAction $DeleteBlock -ChangedAction $ChangeBlock -RenamedAction $RenameBlock
   
-
-
-
-
-#dirwatcher C:\Users\azeez\Documents\OPEN_SOURCE\THECARISMA\Cronux Creates,Delete 'git commit -m "${0}ed ${1}: fix low fortify issues '
-
