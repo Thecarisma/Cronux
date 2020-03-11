@@ -39,9 +39,9 @@ if ($Create) {
     $CreateBlock = {
         iex $Object
     }
-}
+} 
 
-& "$PSScriptRoot\superwatcher.ps1" $FolderPath -Recurse -CreatedAction $CreateBlock
+& "$PSScriptRoot\superwatcher.ps1" $FolderPath -Recurse -SkipHiddenFolder -CreatedAction $CreateBlock
     
  # -ChangedAction {
     # Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.FullPath)' was changed"

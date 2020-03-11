@@ -64,6 +64,8 @@ Param(
     [string]$Filter = "*.*",
     # Monitor subdirectories?
     [switch]$Recurse,
+    # Monitor hidden folder, true by default
+    [switch]$SkipHiddenFolder,
     # Execute ths block on Created
     [scriptblock]$CreatedAction,
     # Execute ths block on Deleted
@@ -166,6 +168,13 @@ do {
             }
         }
     } else {
+        if ([System.IO.FileInfo]::new($e.SourceEventArgs.FullPath).Attributes -band $hidden_or_system) {
+            if ($SkipHiddenFolder) {
+                $e.SourceEventArgs.FullPath
+                continue
+            }
+        }
+        
         # A real event! Handle it:
         # Get the name of the file
         [string]$name = $e.SourceEventArgs.Name
