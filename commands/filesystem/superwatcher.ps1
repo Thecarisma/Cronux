@@ -1,7 +1,23 @@
 <#
 .SYNOPSIS
-    a
+    A PowerShell Script Server. Basically, it monitors a folder and 
+    when files appear in it, it takes some action on them.
 .DESCRIPTION
+    A PowerShell Script Server. Basically, it monitors a folder and 
+    when files appear in it, it takes some action on them, in this 
+    case: execute them. I've written servers like that before, 
+    but always in C#, using the System.IO.FileSystemWatcher class. 
+    Once again, it's not rocket science: the main challenge is in 
+    error handling and logging. The heavy lifting is done by the 
+    FileSystemWatcher, which lives up to its name: it watches a 
+    (single) folder, with or without it subfolders, and raises 
+    event when files are Created, Changed, Deleted or Renamed. 
+    (Those are also the names of the events). Each event gets an 
+    argument specifying which file was afffected; the Renamed event 
+    also receives the previous name of the file. So after setting up 
+    the FileSystemWatcher, all there's left to do is to implement 
+    the event handlers.
+    
     Start-FileSystemWatcher.ps1 - File System Watcher in Powershell.
     Brought to you by MOBZystems, Home of Tools
     https://www.mobzystems.com/code/using-a-filesystemwatcher-from-powershell/
@@ -18,9 +34,20 @@
     https://thecarisma.github.io/Cronux
     https://thecarisma.github.io/Cronux/commands/filesystem/superwatcher.html
 .EXAMPLE
-    
+    superwatcher.ps1 $Path -Recurse -CreatedAction {
+        Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.FullPath)' was created"
+    } -ChangedAction {
+        Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.FullPath)' was changed"
+    } -DeletedAction {
+        Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.FullPath)' was deleted"
+    } -RenamedAction {
+        Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.OldFullPath)' was renamed to '$($e.FullPath)'"
+    }
 .EXAMPLE
-    
+    superwatcher.ps1 $Path -Recurse -DeletedAction {
+        Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.FullPath)' was created"
+    }
+    The command prints out 
 #>
 
 [CmdletBinding()]
@@ -174,10 +201,4 @@ if ($RenamedAction) {
 
 Write-Host "Exited."
 
-  
-
-
-
-
-#dirwatcher C:\Users\azeez\Documents\OPEN_SOURCE\THECARISMA\Cronux Creates,Delete 'git commit -m "${0}ed ${1}: fix low fortify issues '
 
