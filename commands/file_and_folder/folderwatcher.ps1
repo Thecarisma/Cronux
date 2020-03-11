@@ -22,3 +22,5 @@ $FileSystemWatcher.Path  = "C:\Users\adewale.azeez\Documents\OPEN_SOURCE\THECARI
   Write-Host @WriteHostParams
 
 } 
+
+#dirwatcher C:\Users\azeez\Documents\OPEN_SOURCE\THECARISMA\Cronux Creates,Delete 'git commit -m "${0}ed ${1}: fix low fortify issues '
