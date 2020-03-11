@@ -34,11 +34,15 @@ Param(
 
 Set-Location -Path $FolderPath
 $Object  =  $CommandToExecute -f $e.Name, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.FullPath
+$CreateBlock = {}
 if ($Create) {
-    & "$PSScriptRoot\superwatcher.ps1" $FolderPath -Recurse -CreatedAction {
+    $CreateBlock = {
         iex $Object
     }
 }
+
+& "$PSScriptRoot\superwatcher.ps1" $FolderPath -Recurse -CreatedAction $CreateBlock
+    
  # -ChangedAction {
     # Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.FullPath)' was changed"
 # } -DeletedAction {
