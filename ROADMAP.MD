@@ -47,7 +47,7 @@
  - [ ] create a wildcard resolver command
  - [ ] git command to create release note from commit from last release or a commit hash, issue and pull request
  - [ ] command to printout aboutn and all contributor of the scripts (treat in cinstall)
- - [x] create subfolder for script alias
+ - [ ] create subfolder for script alias
  - [ ] next release make sure to remove shortfilename before `!SCRIPT_PATH! !ARGS__!`
  - [x] zip does not visit subfolder 
  - [ ] ssh commands folder 
@@ -69,4 +69,6 @@
  - [ ] add monitorpod command and command monitorallpod to track all pod
  - [ ] seeproxy command to show the system proxy configuration and extractable with specific param, extract from winregistry
  - [ ] a command that delete all Cronux command and delete some
+ - [ ] Add task scheduler that run command every x time, also start at startup
+ - [ ] command to display proxy settings on the platform
 

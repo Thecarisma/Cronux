@@ -24,8 +24,6 @@
     https://docs.microsoft.com/en-us/windows/win32/seccrypto/system-store-locations
     https://docs.microsoft.com/en-us/windows/win32/seccrypto/digital-certificates
 .EXAMPLE
-    CodeSigningCert
-.EXAMPLE
     gencodesigncert 'My Code Signer' 1 ./dist/ mypassword
     This generates the Cronux certificate in 'cert:\LocalMachine\My' 
     and exports Cronux.pfx to ./dist/ folder. The generated certificate 
