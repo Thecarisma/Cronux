@@ -34,7 +34,7 @@
     https://thecarisma.github.io/Cronux
     https://thecarisma.github.io/Cronux/commands/filesystem/superwatcher.html
 .EXAMPLE
-    superwatcher.ps1 $Path -Recurse -CreatedAction {
+    superwatcher.ps1 C:\test\ -Recurse -CreatedAction {
         Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.FullPath)' was created"
     } -ChangedAction {
         Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.FullPath)' was changed"
@@ -43,11 +43,15 @@
     } -RenamedAction {
         Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.OldFullPath)' was renamed to '$($e.FullPath)'"
     }
+    The command will prints out the date and file name 
+    anytime a file get deleted, created, changes or renamed 
+    in the folder C:\test\
 .EXAMPLE
-    superwatcher.ps1 $Path -Recurse -DeletedAction {
-        Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.FullPath)' was created"
+    superwatcher.ps1 C:\test\ -Recurse -DeletedAction {
+        Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.FullPath)' was deleted"
     }
-    The command prints out 
+    The command will prints out the date and file name 
+    anytime a file get deleted in the folder C:\test\
 #>
 
 [CmdletBinding()]
