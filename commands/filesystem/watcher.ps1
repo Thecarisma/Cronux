@@ -24,53 +24,28 @@
 Param(
     [Parameter(mandatory=$true)]
     [string]$FolderPath,
-    [scriptblock]$CreatedAction,
+    [switch]$Create,
+    [switch]$Delete,
+    [switch]$Changed,
+    [switch]$Rename,
     [Parameter(mandatory=$true)]
     [string]$CommandToExecute
 )
 
-
-Function Iterate-Folder {
-    Param([string]$foldername)
-    $_.FullName
-    
-    Get-ChildItem $foldername | Foreach-Object {
-        If ( -not $_.PSIsContainer) {
-            $NameOnly = $_.Name.Substring(0, $_.Name.LastIndexOf("."))
-            $_.FullName
-        } Else {
-            Iterate-Folder $_.FullName
-        }
+Set-Location -Path $FolderPath
+$Object  =  $CommandToExecute -f $e.Name, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.FullPath
+if ($Create) {
+    & "$PSScriptRoot\superwatcher.ps1" $FolderPath -Recurse -CreatedAction {
+        iex $Object
     }
 }
-
-Function Watch-Path {
-    Param(
-        [string]$_Path
-        [string]$_EventNames
-    )
-    $FileSystemWatcher = New-Object System.IO.FileSystemWatcher
-    $FileSystemWatcher.Path  = $_Path
-    Register-ObjectEvent -InputObject $FileSystemWatcher  -EventName Created  -Action {
-        $Object  =  $CommandToExecute -f 
-                    $Event.SourceEventArgs.FullPath,
-                    $Event.SourceEventArgs.ChangeType,
-                    $Event.TimeGenerated
-        
-        iex $Object
-    } 
-}
-
-$FolderPath
-$CommandToExecute
-
-Iterate-Folder $FolderPath
-
-return;
-
-
-$FileSystemWatcher = New-Object System.IO.FileSystemWatcher
-$FileSystemWatcher.Path  = $FolderPath
+ # -ChangedAction {
+    # Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.FullPath)' was changed"
+# } -DeletedAction {
+    # Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.FullPath)' was deleted"
+# } -RenamedAction {
+    # Write-Output "$(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '$($e.OldFullPath)' was renamed to '$($e.FullPath)'"
+# }
 
   
 
