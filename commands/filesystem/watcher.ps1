@@ -29,7 +29,10 @@ Param(
     # the command accepted is powershell for batch 
     # command watcher call 'watcherb'
     # you following variables index are set for the command 
-    # 
+    # 0 - file name only
+    # 1 - the event name
+    # 2 - formated date
+    # 3 - the file path relative to the monitored folder
     [Parameter(mandatory=$true)]
     [string]$CommandToExecute,
     #The swicth that indicate whether to fire the command on create
