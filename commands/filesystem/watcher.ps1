@@ -44,7 +44,13 @@
     renamed, deleted, changed or created the name of the file or 
     folder will be printed in the terminal.
 .EXAMPLE
-    watcher "." "git add .; git commit -m `"{0} was {1}, working on the watcher(s) commands`"" -Rename -Delete -Change -Create
+    watcher "." "git add .; git commit -m `"{0} was {1}, fixing issues`"" -Rename -Delete -Change -Create
+    Executing this command in powershell will add the changed 
+    files and commit then in the git repository. Everytime a file 
+    or folder status changed, the changes is automatically commited. 
+    e.g. if a file Test.txt is saved the command will be executed 
+    
+    'git add .; git commit -m "Test.txt was Changed, fixing issues"'
 #>
 
 [CmdletBinding()]
