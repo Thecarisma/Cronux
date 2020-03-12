@@ -28,6 +28,8 @@ Param(
     # the command to execute when an event occur
     # the command accepted is powershell for batch 
     # command watcher call 'watcherb'
+    # you following variables index are set for the command 
+    # 
     [Parameter(mandatory=$true)]
     [string]$CommandToExecute,
     #The swicth that indicate whether to fire the command on create
