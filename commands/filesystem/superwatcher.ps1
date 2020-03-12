@@ -198,14 +198,14 @@ do {
         # The time and date of the event
         [string]$timeStamp = $e.TimeGenerated.ToString("yyyy-MM-dd HH:mm:ss")
         
-        if (([System.IO.File]::GetAttributes($e.SourceEventArgs.FullPath)) -band [System.IO.FileAttributes]::Hidden) {
-            if ($SkipHiddenFolder) { 
-                #$e = $null
-                #"Yes hidden and skip"
-                #continue
-                #failing
-            }
-        }
+        # if (([System.IO.File]::GetAttributes($e.SourceEventArgs.FullPath)) -band [System.IO.FileAttributes]::Hidden) {
+            # if ($SkipHiddenFolder) { 
+                # $e = $null
+                # "Yes hidden and skip"
+                # continue
+                # failing
+            # }
+        # }
 
         Write-Verbose "--- START [$($e.EventIdentifier)] $changeType $name $timeStamp"
 
