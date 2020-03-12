@@ -25,6 +25,9 @@ Param(
     # the folder to monitor
     [Parameter(mandatory=$true)]
     [string]$FolderPath,
+    # the command to execute when an event occur
+    # the command accepted is powershell for batch 
+    # command watcher call 'watcherb'
     [Parameter(mandatory=$true)]
     [string]$CommandToExecute,
     #The swicth that indicate whether to fire the command on create
