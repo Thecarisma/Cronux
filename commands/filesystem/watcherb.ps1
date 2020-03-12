@@ -47,7 +47,7 @@
     renamed, deleted, changed or created the name of the file or 
     folder will be printed in the terminal.
 .EXAMPLE 
-    watcherb "." "git add . && git commit -m \"{0} was {1}, fixing issues\"" -Rename -Delete -Change -Create
+    watcherb "." "git add . && git commit -m \"\"{0} was {1}, writing watcherb command\"\"" -Rename -Delete -Change -Create
     Executing this command in Windows Command prompt will add the changed 
     files and commit then in the git repository. Everytime a file 
     or folder status changed, the changes is automatically commited. 
