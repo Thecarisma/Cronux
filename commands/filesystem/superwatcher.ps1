@@ -106,7 +106,7 @@ Function DoAction(
     if ($Global:last_event_name -ne "Changed" -and $Global:last_file_name -eq $_ -or 
         (($Global:last_file_name.StartsWith($_) -and $Global:last_file_name -ne $_) -and $event_name -ne "Renamed")) {
         return
-    }
+    } #not working still git.lock still keep firing events
     $Global:last_event_name = $event_name
     $Global:last_file_name = $_
     
