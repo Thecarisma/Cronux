@@ -38,7 +38,7 @@ Param(
     # e.g to print out the name of the file that change
     # Write-Output {0}
     # e.g to print out the name and date of the file that change
-    # Write-Output {0}
+    # Write-Output Name={0}, Date={2}
     [Parameter(mandatory=$true)]
     [string]$CommandToExecute,
     #The swicth that indicate whether to fire the command on create
