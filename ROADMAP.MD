@@ -71,6 +71,7 @@
  - [ ] a command that delete all Cronux command and delete some
  - [ ] Add task scheduler that run command every x time, also start at startup
  - [ ] command to display proxy settings on the platform
+ - [ ] command to export powershell documentation to a .psdoc file 
  - [ ] command to convert powershell documentation to Markdown 
  - [ ] command to convert powershell documentation to reStructured Text
  - [ ] write a small example to use watcherb command with external batch script 
