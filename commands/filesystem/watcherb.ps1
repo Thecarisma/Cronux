@@ -56,7 +56,12 @@
     
     'git add .; git commit -m "Test.txt was Changed, fixing issues"'
     String index of {0} and {1} has been substituted with the respective 
-    values    
+    values 
+.EXAMPLE
+    watcherb -Rename -Delete -Change -Create
+    The command above is best executed in all cases as the FolderPath and 
+    CommandToExecute parameters will be requested and there will be no need 
+    to escape the CommandToExecute.   
 #>
 
 [CmdletBinding()]
