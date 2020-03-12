@@ -1,8 +1,28 @@
 <#
 .SYNOPSIS
     Execute powershell command when an event occur in 
-    a directory
+    a directory.
 .DESCRIPTION
+    Execute powershell command when an event occur in a 
+    directory. The command is called with the name of 
+    the event that occur and the attribute of the file 
+    that changes. 
+    
+    The command accept four swicth to indicate the type of 
+    event that should trigger the powershell command. The 
+    events switch are: 
+    -Create : triggers the command when a file/folder is created
+    -Delete : triggers the command when a file/folder id deleted
+    -Change : triggers the command when a file/folder changes
+    -Rename : triggers the command when a file/folder name changes
+    
+    One or the combination or all the of the event switch can be 
+    specified. 
+    
+    The CommandToExecute parameter must be a valid powershell command 
+    and not batch. To execute batch command call the **watcherb** 
+    command. Execute chelp watcher to view all the positional variable 
+    available for the command.
     
 .INPUTS 
     System.String[]
@@ -14,11 +34,17 @@
     Date       : Mar-11-2020
 .LINK
     https://thecarisma.github.io/Cronux
-    https://git-scm.com/docs/git-clone
+    https://www.mobzystems.com/code/using-a-filesystemwatcher-from-powershell/
+    https://thecarisma.github.io/Cronux/commands/filesystem/superwatcher.html
+    https://thecarisma.github.io/Cronux/commands/filesystem/watcher.html
 .EXAMPLE
-    
+    watcher "." "Write-Output {0}" -Rename -Delete -Change -Create
+    The command above monitor the current folder and prints 
+    the name of the file that changes. If a file or folder is 
+    renamed, deleted, changed or created the name of the file or 
+    folder will be printed in the terminal.
 .EXAMPLE
-    
+    watcher "." "git add .; git commit -m "{0} was {1}, working on the watcher(s) commands" -Rename -Delete -Change -Create
 #>
 
 [CmdletBinding()]
