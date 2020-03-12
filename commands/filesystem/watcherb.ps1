@@ -24,6 +24,8 @@
     command. Execute chelp watcherb to view all the positional variable 
     available for the command.
     
+    The command is executed in the monitored folder.
+    
 .INPUTS 
     System.String[]
 .OUTPUTS 
@@ -39,13 +41,13 @@
     https://thecarisma.github.io/Cronux/commands/filesystem/watcher.html
     https://thecarisma.github.io/Cronux/commands/filesystem/watcherb.html
 .EXAMPLE
-    watcherb "." "Write-Output {0}" -Rename -Delete -Change -Create
+    watcherb "." "echo {0}" -Rename -Delete -Change -Create
     The command above monitor the current folder and prints 
     the name of the file that changes. If a file or folder is 
     renamed, deleted, changed or created the name of the file or 
     folder will be printed in the terminal.
-.EXAMPLE
-    watcherb "." "git add .; git commit -m `"{0} was {1}, fixing issues`"" -Rename -Delete -Change -Create
+.EXAMPLE 
+    watcherb "." "git add . && git commit -m \"{0} was {1}, fixing issues\"" -Rename -Delete -Change -Create
     Executing this command in Windows Command prompt will add the changed 
     files and commit then in the git repository. Everytime a file 
     or folder status changed, the changes is automatically commited. 

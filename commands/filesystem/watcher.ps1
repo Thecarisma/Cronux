@@ -24,6 +24,8 @@
     command. Execute chelp watcher to view all the positional variable 
     available for the command.
     
+    The command is executed in the monitored folder.
+    
 .INPUTS 
     System.String[]
 .OUTPUTS 
