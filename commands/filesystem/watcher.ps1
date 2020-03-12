@@ -51,6 +51,8 @@
     e.g. if a file Test.txt is saved the command will be executed 
     
     'git add .; git commit -m "Test.txt was Changed, fixing issues"'
+    String index of {0} and {1} has been substituted with the respective 
+    values    
 #>
 
 [CmdletBinding()]
