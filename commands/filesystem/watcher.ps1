@@ -44,7 +44,7 @@
     renamed, deleted, changed or created the name of the file or 
     folder will be printed in the terminal.
 .EXAMPLE
-    watcher "." "git add .; git commit -m "{0} was {1}, working on the watcher(s) commands" -Rename -Delete -Change -Create
+    watcher "." "git add .; git commit -m `"{0} was {1}, working on the watcher(s) commands`"" -Rename -Delete -Change -Create
 #>
 
 [CmdletBinding()]
