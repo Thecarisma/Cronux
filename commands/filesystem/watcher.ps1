@@ -31,7 +31,7 @@ Param(
     [switch]$Create,
     [switch]$Delete,
     [switch]$Change,
-    [switch]$Rename,
+    [switch]$Rename
 )
 
 Set-Location -Path $FolderPath
