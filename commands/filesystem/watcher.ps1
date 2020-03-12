@@ -1,12 +1,13 @@
 <#
 .SYNOPSIS
-    
+    Execute powershell command when an event occur in 
+    a directory
 .DESCRIPTION
     
 .INPUTS 
     System.String[]
 .OUTPUTS 
-    git clone INFO
+    $CommandToExecute execution result
 .NOTES
     File Name  : watcher.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
