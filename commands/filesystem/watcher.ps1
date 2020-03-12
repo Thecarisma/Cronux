@@ -29,8 +29,11 @@ Param(
     [string]$CommandToExecute,
     #The swicth that indicate whether to fire the command on create
     [switch]$Create,
+    #The swicth that indicate whether to fire the command on delete
     [switch]$Delete,
+    #The swicth that indicate whether to fire the command on change
     [switch]$Change,
+    #The swicth that indicate whether to fire the command on rename
     [switch]$Rename
 )
 
