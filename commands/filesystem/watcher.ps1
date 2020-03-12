@@ -22,14 +22,16 @@
 
 [CmdletBinding()]
 Param(
+    # the folder to monitor
     [Parameter(mandatory=$true)]
     [string]$FolderPath,
+    [Parameter(mandatory=$true)]
+    [string]$CommandToExecute,
+    #The swicth that indicate whether to fire the command on create
     [switch]$Create,
     [switch]$Delete,
     [switch]$Change,
     [switch]$Rename,
-    [Parameter(mandatory=$true)]
-    [string]$CommandToExecute
 )
 
 Set-Location -Path $FolderPath

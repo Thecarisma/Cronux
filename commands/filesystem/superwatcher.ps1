@@ -83,7 +83,10 @@ Param(
 # call to the DoAction scriptblock, hence we cache the last 
 # action and file name so we simply ignore the second call with 
 # the same action and file name.
-$Global:last_event_name = $ChangedAction
+# typical example is a git repository which frequently update ref 
+# files delete and create .lock file which will cause the event to 
+# keep firing and cause endless loop
+$Global:last_event_name = "None"
 $Global:last_file_name = ""
 
 # Helper function to set up variables $_, $eventArgs and $e
@@ -102,9 +105,13 @@ Function DoAction(
     $e
 )
 {
-    #"Old=$Global:last_file_name,New=$_,Event=$event_name,StartsWith=$($Global:last_file_name.StartsWith($_) -and $event_name -ne `"Renamed`")"
+    # TODO: on linux change path seperator
+    $parent_folder = $_ -replace '\\.*'
+    # "Old=$Global:last_file_name,New=$_,Event=$event_name,OldEvent=$Global:last_event_name,ParentFolder=$parent_folder" 
     if ($Global:last_event_name -ne "Changed" -and $Global:last_file_name -eq $_ -or 
-        (($Global:last_file_name.StartsWith($_) -and $Global:last_file_name -ne $_) -and $event_name -ne "Renamed")) {
+        ((($parent_folder -ne "" -and $Global:last_file_name.StartsWith($parent_folder)) -and 
+          $Global:last_file_name -ne $_) -and 
+          $event_name -ne "Renamed")) {
         return
     } #not working still git.lock still keep firing events
     $Global:last_event_name = $event_name
@@ -123,8 +130,8 @@ Function DoAction(
             Write-Output $output >> $LogFile
         }
     } else {
-        & $action
-    } 
+        & $action 
+    }
 }
 
 # Sanity check: you have to provide at least one action
