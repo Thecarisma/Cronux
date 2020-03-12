@@ -22,7 +22,8 @@
     The CommandToExecute parameter must be a valid Windows Command prompt 
     command and not batch. To execute powershell command call the **watcher** 
     command. Execute chelp watcherb to view all the positional variable 
-    available for the command.
+    available for the command. Specifying the CommandToExecute as argument 
+    will require escaping the command for command prompt.
     
     The command is executed in the monitored folder.
     
