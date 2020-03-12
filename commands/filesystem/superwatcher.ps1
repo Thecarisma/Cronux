@@ -102,9 +102,9 @@ Function DoAction(
     $e
 )
 {
-    # "Old=$Global:last_file_name,New=$_,Event=$event_name,StartsWith=$($Global:last_file_name.StartsWith($_) -and $event_name -ne `"Renamed`")"
-    if ($Global:last_event_name -eq $event_name -and $Global:last_file_name -eq $_ -or 
-        ($Global:last_file_name.StartsWith($_) -and $event_name -ne "Renamed")) {
+    #"Old=$Global:last_file_name,New=$_,Event=$event_name,StartsWith=$($Global:last_file_name.StartsWith($_) -and $event_name -ne `"Renamed`")"
+    if ($Global:last_event_name -ne "Changed" -and $Global:last_file_name -eq $_ -or 
+        (($Global:last_file_name.StartsWith($_) -and $Global:last_file_name -ne $_) -and $event_name -ne "Renamed")) {
         return
     }
     $Global:last_event_name = $event_name
@@ -123,8 +123,8 @@ Function DoAction(
             Write-Output $output >> $LogFile
         }
     } else {
-        & $action 
-    }
+        & $action
+    } 
 }
 
 # Sanity check: you have to provide at least one action
@@ -189,7 +189,7 @@ do {
                 $exitRequested = $true
             }
         }
-    } else {        
+    } else {
         # A real event! Handle it:
         # Get the name of the file
         [string]$name = $e.SourceEventArgs.Name
@@ -197,6 +197,15 @@ do {
         [System.IO.WatcherChangeTypes]$changeType = $e.SourceEventArgs.ChangeType
         # The time and date of the event
         [string]$timeStamp = $e.TimeGenerated.ToString("yyyy-MM-dd HH:mm:ss")
+        
+        if (([System.IO.File]::GetAttributes($e.SourceEventArgs.FullPath)) -band [System.IO.FileAttributes]::Hidden) {
+            if ($SkipHiddenFolder) { 
+                #$e = $null
+                #"Yes hidden and skip"
+                #continue
+                #failing
+            }
+        }
 
         Write-Verbose "--- START [$($e.EventIdentifier)] $changeType $name $timeStamp"
 
@@ -215,12 +224,12 @@ do {
 } while (!$exitRequested)
 
 if ($CreatedAction) {
-    Unregister-Event FileCreated
+    Unregister-Event FileCreated 
 }
 if ($DeletedAction) {
     Unregister-Event FileDeleted
 }
-if ($ChangedAction) {
+if ($ChangedAction) { 
     Unregister-Event FileChanged
 }
 if ($RenamedAction) {
