@@ -102,12 +102,9 @@ Function DoAction(
     $e
 )
 {
-    "Old=$Global:last_file_name"
-    "New=$_"
-    # TODO: ensure multiple file changes happen for files not frequented, 
-    # add exception to skip hidden folder or file filter e.g for lock file 
-    # *.lock
-    if ($Global:last_event_name -eq $event_name -and $Global:last_file_name -eq $_) {
+    # "Old=$Global:last_file_name,New=$_,Event=$event_name,StartsWith=$($Global:last_file_name.StartsWith($_) -and $event_name -ne `"Renamed`")"
+    if ($Global:last_event_name -eq $event_name -and $Global:last_file_name -eq $_ -or 
+        ($Global:last_file_name.StartsWith($_) -and $event_name -ne "Renamed")) {
         return
     }
     $Global:last_event_name = $event_name

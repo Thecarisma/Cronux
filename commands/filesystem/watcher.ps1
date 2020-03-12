@@ -39,25 +39,29 @@ $ChangeBlock = {}
 $RenameBlock = {}
 if ($Create) {
     $CreateBlock = {
-        $Object = $CommandToExecute -f $e.Name, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.FullPath
+        $NameOnly = $e.Name -replace '.*\\'
+        $Object = $CommandToExecute -f $NameOnly, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.Name, $e.FullPath
         iex $Object
     }
 } 
 if ($Delete) {
     $DeleteBlock = {
-        $Object = $CommandToExecute -f $e.Name, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.FullPath
+        $NameOnly = $e.Name -replace '.*\\'
+        $Object = $CommandToExecute -f $NameOnly, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.Name, $e.FullPath
         iex $Object
     }
 } 
 if ($Change) {
     $ChangeBlock = {
-        $Object = $CommandToExecute -f $e.Name, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.FullPath
+        $NameOnly = $e.Name -replace '.*\\'
+        $Object = $CommandToExecute -f $NameOnly, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.Name, $e.FullPath
         iex $Object
     }
 } 
 if ($Rename) {
-    $RenameBlock = {
-        $Object = $CommandToExecute -f $e.Name, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.FullPath
+    $RenameBlock = { 
+        $NameOnly = $e.Name -replace '.*\\'
+        $Object = $CommandToExecute -f $NameOnly, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.Name, $e.FullPath
         iex $Object
     }
 } 
