@@ -33,6 +33,9 @@ Param(
     # 1 - the event name
     # 2 - formated date
     # 3 - the file path relative to the monitored folder
+    # 4 - the full file path
+    # e.g to print out the name of the file that change
+    # Write-Output 
     [Parameter(mandatory=$true)]
     [string]$CommandToExecute,
     #The swicth that indicate whether to fire the command on create
