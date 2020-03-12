@@ -1,16 +1,16 @@
 <#
 .SYNOPSIS
-    Execute powershell command when an event occur in 
+    Execute Windows Command prompt command when an event occur in 
     a directory.
 .DESCRIPTION
-    Execute powershell command when an event occur in a 
+    Execute Windows Command prompt command when an event occur in a 
     directory. The command is called with the name of 
     the event that occur and the attribute of the file 
     that changes. 
     
     The command accept four swicth to indicate the type of 
-    event that should trigger the powershell command. The 
-    events switch are: 
+    event that should trigger the Windows Command prompt command. 
+    The events switch are: 
     -Create : triggers the command when a file/folder is created
     -Delete : triggers the command when a file/folder id deleted
     -Change : triggers the command when a file/folder changes
@@ -19,9 +19,9 @@
     One or the combination or all the of the event switch can be 
     specified. 
     
-    The CommandToExecute parameter must be a valid powershell command 
-    and not batch. To execute batch command call the **watcherb** 
-    command. Execute chelp watcher to view all the positional variable 
+    The CommandToExecute parameter must be a valid Windows Command prompt 
+    command and not batch. To execute powershell command call the **watcher** 
+    command. Execute chelp watcherb to view all the positional variable 
     available for the command.
     
 .INPUTS 
@@ -29,23 +29,24 @@
 .OUTPUTS 
     $CommandToExecute execution result
 .NOTES
-    File Name  : watcher.ps1
+    File Name  : watcherb.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
-    Date       : Mar-11-2020
+    Date       : Mar-12-2020
 .LINK
     https://thecarisma.github.io/Cronux
     https://www.mobzystems.com/code/using-a-filesystemwatcher-from-powershell/
     https://thecarisma.github.io/Cronux/commands/filesystem/superwatcher.html
     https://thecarisma.github.io/Cronux/commands/filesystem/watcher.html
+    https://thecarisma.github.io/Cronux/commands/filesystem/watcherb.html
 .EXAMPLE
-    watcher "." "Write-Output {0}" -Rename -Delete -Change -Create
+    watcherb "." "Write-Output {0}" -Rename -Delete -Change -Create
     The command above monitor the current folder and prints 
     the name of the file that changes. If a file or folder is 
     renamed, deleted, changed or created the name of the file or 
     folder will be printed in the terminal.
 .EXAMPLE
-    watcher "." "git add .; git commit -m `"{0} was {1}, fixing issues`"" -Rename -Delete -Change -Create
-    Executing this command in powershell will add the changed 
+    watcherb "." "git add .; git commit -m `"{0} was {1}, fixing issues`"" -Rename -Delete -Change -Create
+    Executing this command in Windows Command prompt will add the changed 
     files and commit then in the git repository. Everytime a file 
     or folder status changed, the changes is automatically commited. 
     e.g. if a file Test.txt is saved the command will be executed 
@@ -61,8 +62,8 @@ Param(
     [Parameter(mandatory=$true)]
     [string]$FolderPath,
     # the command to execute when an event occur
-    # the command accepted is powershell for batch 
-    # command call 'watcherb'
+    # the command accepted is Windows Command prompt for 
+    # powershell command call 'watcher'
     # you following variables index are set for the command 
     # 0 - file name only
     # 1 - the event name
@@ -95,28 +96,28 @@ if ($Create) {
     $CreateBlock = {
         $NameOnly = $e.Name -replace '.*\\'
         $Object = $CommandToExecute -f $NameOnly, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.Name, $e.FullPath
-        iex $Object
+        cmd.exe /c $Object
     }
 } 
 if ($Delete) {
     $DeleteBlock = {
         $NameOnly = $e.Name -replace '.*\\'
         $Object = $CommandToExecute -f $NameOnly, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.Name, $e.FullPath
-        iex $Object
+        cmd.exe /c $Object
     }
 } 
 if ($Change) {
     $ChangeBlock = {
         $NameOnly = $e.Name -replace '.*\\'
         $Object = $CommandToExecute -f $NameOnly, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.Name, $e.FullPath
-        iex $Object
+        cmd.exe /c $Object
     }
 } 
 if ($Rename) {
     $RenameBlock = { 
         $NameOnly = $e.Name -replace '.*\\'
         $Object = $CommandToExecute -f $NameOnly, $e.ChangeType, $(Get-Date -format 'yyyy-MM-dd HH:mm:ss'), $e.Name, $e.FullPath
-        iex $Object
+        cmd.exe /c $Object
     }
 } 
 
