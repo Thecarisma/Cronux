@@ -1,17 +1,18 @@
 <#
 .SYNOPSIS
-    A robust command delegate for Windows Command Prompt
+   
 .DESCRIPTION
-    Support inline execution, command history
+    Add the -Verbose switch to see more output in the 
+    shell
 .INPUTS 
     None
 .OUTPUTS 
     System.String
 .NOTES
     Version    : 1.0
-    File Name  : aboutx.ps1
+    File Name  : psdoc.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
-    Date       : Jan-08-2019
+    Date       : March-12-2019
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE
@@ -70,10 +71,15 @@ Function Iterate-Folder {
             If ( $_.Name.EndsWith(".ps1")) {
                 $NameOnly = $_.Name.SubString(0, $_.Name.LastIndexOf('.'))
                 & $CHelpPath $_.FullName | Out-File "$OutputName\$NameOnly.psdoc"
+                if ($Verbose) {
+                    "Exported $RelName\$NameOnly documentation to $OutputName\$NameOnly.psdoc"
+                }
                 $Global:count += 1
             }
         } Else {
-            Iterate-Folder $_.FullName
+            if ($Recurse) {
+                Iterate-Folder $_.FullName
+            }
         }
     }
     Write-Host "$Global:count scripts documented in $RelName"
