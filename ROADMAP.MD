@@ -77,4 +77,5 @@
  - [ ] command to convert powershell documentation to reStructured Text
  - [ ] write a small example to use watcherb command with external batch script 
  - [ ] write a small example to use watcher command with external powershell script 
+ - [ ] validate objects with https://microsoft.github.io/PSRule/. Urgent
 
