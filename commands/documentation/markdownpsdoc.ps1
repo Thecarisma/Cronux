@@ -37,6 +37,8 @@ Param(
 
 $PsDocPath = [System.IO.Path]::GetFullPath($PsDocPath)
 $OutputFolder = [System.IO.Path]::GetFullPath($OutputFolder)
+$TocMarkdown = ""
+$ContentMarkdown = ""
 
 Function main {
     If ( -not [System.IO.Directory]::Exists($OutputFolder)) {
@@ -56,18 +58,139 @@ Function main {
     }
 }
 
+enum AreaType 
+{
+    Name
+    Synopsis
+    Syntax
+    Description
+    Parameters
+    Inputs
+    Outputs
+    Notes
+    RelatedLinks
+    Unknown
+}
+
+$Global:res = $false
+$Global:name = ""
+$Global:synopsis = ""
+$Global:description = ""
+
+Function To-Sentence-Case {
+    param(
+        [string]$argument
+    )
+    
+    return $argument.SubString(0, 1)  + $argument.SubString(1, $argument.Length - 1).ToLower()
+}
+
+Function Parse-Name {
+    param([string]$argument)
+    
+    if ($argument.Trim() -eq "") {
+        return
+    }
+    
+    $Splited = $argument.Split("\")
+    $Global:name = $Splited[$Splited.Length - 1].Split(".ps1")[0]
+}
+
+Function Parse-Synopsis {
+    param([string]$argument)
+    
+    if ($argument.Length -gt 5 -and $argument.StartsWith("   ")) {
+        $argument = $argument.SubString(4, $argument.Length - 5)
+    }
+    
+    $Global:synopsis += $argument.Replace("    ", " ")
+}
+
+Function Parse-Description {
+    param([string]$argument)
+    
+    if ($argument.Length -gt 5 -and $argument.StartsWith("   ")) {
+        $argument = $argument.SubString(4, $argument.Length - 5)
+    }
+    $Global:description += $argument + "`r`n"
+}
+
 Function PsDoc-to-Markdown {
     Param(
         [string]$SinglePsDocPath
     )
     
-    "Do $SinglePsDocPath"
+    [AreaType]$area_type = "Unknown"
+    
+    ForEach($line in Get-Content $SinglePsDocPath) {
+        If ($line -ne "" -and -not $line.StartsWith("  ")) {
+            $header = $line.Trim()
+            if ($header -eq "NAME") {
+                $area_type = "Name"
+                continue
+                
+            } elseif ($header -eq "SYNOPSIS") {
+                $area_type = "Synopsis"
+                continue
+                
+            } elseif ($header -eq "DESCRIPTION") {
+                $area_type = "Description"
+                continue
+                
+            } else {
+                $area_type = "Unknown"
+            }
+            # set the TOC here and header
+            $ContentMarkdown += "## " + (To-Sentence-Case $line) + "`r`n`r`n"
+        }
+        
+        switch ($area_type) {
+            Name {
+                Parse-Name $line 
+            }
+            Synopsis {
+                Parse-Synopsis $line 
+            }
+            Description {
+                Parse-Description $line 
+            }
+            Unknown {
+                
+            }
+        }
+    }
+    
+    $title_part = $Global:name
+    if (-not $SkipHtml) {
+        $title_part = "<p style=`"text-align: center;`" align=`"center`">{0}</p>" -f $Global:name
+    }
+    
+    $brief_part = $Global:synopsis
+    if (-not $SkipHtml) {
+        $brief_part = "<p style=`"text-align: center;`" align=`"center`">{0}</p>" -f $Global:synopsis
+    }
+    
+    $ContentMarkdown = "
+# {0}
+
+{1}
+
+---
+
+{2}    
+    " -f 
+      $title_part,
+      $brief_part,
+      $Global:description
+        
+    $ContentMarkdown
 }
 
-
-
-
 main
+
+
+
+
 
 
 
