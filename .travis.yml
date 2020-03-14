@@ -17,7 +17,7 @@ script:
   # - ./CronuxTestRunner.bat
   # - ./Cronux.bat genbuild $(./Cronux.bat version)
   # - ls ./build/$(./Cronux.bat version)/
-  - ./Cronux.bat psdoc .\ .\build\documentation\psdoc\ -Recurse 
+  - ./Cronux.bat psdoc .\commands\ .\build\documentation\psdoc\ -Recurse 
   
 deploy:
   provider: pages
