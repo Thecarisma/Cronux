@@ -14,17 +14,25 @@ before_script:
   #is windows and will come prebuilt with powershell, .NET platform, VBS and Batch
 
 script:
-  - ./CronuxTestRunner.bat
-  - ./Cronux.bat genbuild $(./Cronux.bat version)
-  - ls ./build/$(./Cronux.bat version)/
+  # - ./CronuxTestRunner.bat
+  # - ./Cronux.bat genbuild $(./Cronux.bat version)
+  # - ls ./build/$(./Cronux.bat version)/
+  - ./Cronux.bat psdoc .\ .\build\documentation\psdoc\ -Recurse 
   
 deploy:
-  provider: releases
+  provider: pages
   skip_cleanup: true
-  api_key: $GITHUB_TOKEN
-  file_glob: true
-  file:
-    - "build/$(./Cronux.bat version)/Cronux.bat"
-    - "build/$(./Cronux.bat version)/Cronux.$(./Cronux.bat version).zip"
+  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  local_dir: ./build/documentation/
   on:
-    tags: true
+    branch: master
+  # provider: releases
+  # skip_cleanup: true
+  # api_key: $GITHUB_TOKEN
+  # file_glob: true
+  # file:
+    # - "build/$(./Cronux.bat version)/Cronux.bat"
+    # - "build/$(./Cronux.bat version)/Cronux.$(./Cronux.bat version).zip"
+  # on:
+    # tags: true
