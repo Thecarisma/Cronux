@@ -11,14 +11,8 @@ before_script:
   #is windows and will come prebuilt with powershell, .NET platform, VBS and Batch
 
 script:
-  # - ./CronuxTestRunner.bat
-  # - ./Cronux.bat genbuild $(./Cronux.bat version)
-  # - ls ./build/$(./Cronux.bat version)/
-  # - ./Cronux.bat psdoc .\commands\ .\build\documentation\psdoc\ -Recurse 
-  - ls ./commands/
-  - ./Cronux.bat
-  - ./Cronux.bat ps12markdown
-  - ./Cronux.bat ps12markdown .\commands\ .\dist\cronux_doc\ -Recurse
+  - Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://thecarisma.github.io/installx.ps1'))
+  - ps12markdown .\commands\ .\dist\cronux_doc\ -Recurse
   - ls ./dist/cronux_doc/
   
 deploy:
