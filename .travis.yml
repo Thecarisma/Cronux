@@ -2,9 +2,6 @@ language: c
   
 os:
   - windows
-
-compiler:
-  - gcc
   
 before_install:
   #- 
