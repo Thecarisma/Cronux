@@ -41,7 +41,8 @@ Param(
     [switch]$Keep
 )
 
-powershell "$PSScriptRoot\psdoc.ps1" $Path "$OutputFolder" -Recurse:$Recurse -Silent:$Silent 
+powershell
+& "$PSScriptRoot\psdoc.ps1" $Path "$OutputFolder" -Recurse:$Recurse -Silent:$Silent 
 & "$PSScriptRoot\psdoc2markdown.ps1" $OutputFolder $OutputFolder -SkipHtml:$SkipHtml -SkipNotes:$SkipNotes -Silent:$Silent -Recurse:$Recurse
 
 If (-not $Keep) {
