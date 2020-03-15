@@ -19,6 +19,8 @@ script:
   # - ls ./build/$(./Cronux.bat version)/
   # - ./Cronux.bat psdoc .\commands\ .\build\documentation\psdoc\ -Recurse 
   - ls
+  - ./Cronux.bat
+  - ./Cronux.bat ps12markdown
   - ./Cronux.bat ps12markdown .\commands\ .\dist\cronux_doc\ -Recurse
   - ls ./dist/cronux_doc/
   
