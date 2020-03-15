@@ -64,6 +64,8 @@ Function Iterate-Folder {
                         $escaped_params.Add("'$($param)'")
                     }
                 }
+                powershell
+                powershell $_.FullName
                 powershell $_.FullName  @($escaped_params)
                 $Global:found_command = $true
                 Return

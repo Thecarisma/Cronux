@@ -26,6 +26,7 @@
 #>
 
 #TODO: Show command then the synopsis by it side
+[CmdletBinding()]
 Param(
     [switch]$All
 )
