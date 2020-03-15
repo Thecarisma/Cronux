@@ -64,7 +64,7 @@ Function Iterate-Folder {
                         $escaped_params.Add("'$($param)'")
                     }
                 }
-                powershell "$($_.FullName)"  @($escaped_params)
+                powershell -noprofile -executionpolicy bypass -file "$($_.FullName)"  @($escaped_params)
                 $Global:found_command = $true
                 Return
             }
