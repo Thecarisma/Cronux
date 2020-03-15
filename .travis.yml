@@ -12,6 +12,9 @@ before_script:
 
 script:
   - echo $(pwd)
+  - ./Cronux.bat listx -All
+  - ./Cronux.bat chelp psdoc2markdown
+  - ./Cronux.bat chelp ps12markdown
   - ./Cronux.bat ps12markdown $(pwd)\commands\ $(pwd)\dist\cronux_doc\ -Recurse
   - ls $(pwd)/dist/cronux_doc/
   
