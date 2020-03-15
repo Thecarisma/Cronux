@@ -40,7 +40,6 @@ Function main {
 Function Execute-Command {   
     $params = $args[0][0]
     $command, $sub_params = $params
-    $params
     Iterate-Folder $command_folder $command $sub_params
     If ($Global:found_command -eq $false) {
         iex "$command $sub_params"
@@ -49,7 +48,6 @@ Function Execute-Command {
 
 Function Iterate-Folder {
     Param([string]$foldername, $command, $params)
-    $foldername
     
     Get-ChildItem $foldername | Where-Object {$Global:found_command -eq $false} | Foreach-Object {
         If ( -not $_.PSIsContainer) {
@@ -66,11 +64,8 @@ Function Iterate-Folder {
                         $escaped_params.Add("'$($param)'")
                     }
                 }
-                "Found: $($_.FullName)" 
-                @($escaped_params)
-                & "$_.FullName"  @($escaped_params)
+                powershell $_.FullName  @($escaped_params)
                 $Global:found_command = $true
-                "Done with : $($_.FullName)"
                 Return
             }
         } Else {
