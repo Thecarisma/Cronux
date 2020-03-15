@@ -20,8 +20,8 @@ script:
   # - ./Cronux.bat psdoc .\commands\ .\build\documentation\psdoc\ -Recurse 
   - ls ./commands/
   - ./Cronux.bat
-  - ./Cronux.bat ps12markdown  -ExecutionPolicy Bypass
-  - ./Cronux.bat ps12markdown .\commands\ .\dist\cronux_doc\ -Recurse -ExecutionPolicy Bypass
+  - ./Cronux.bat ps12markdown
+  - ./Cronux.bat ps12markdown .\commands\ .\dist\cronux_doc\ -Recurse
   - ls ./dist/cronux_doc/
   
 deploy:
