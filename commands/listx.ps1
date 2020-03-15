@@ -25,7 +25,7 @@
     List all the commands over 2000 commands 
 #>
 
-TODO: Show command then the synopsis by it side
+#TODO: Show command then the synopsis by it side
 Param(
     [switch]$All
 )
