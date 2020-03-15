@@ -41,7 +41,11 @@ Param(
     # do not add notes detail before description
     [switch]$SkipNotes,
     # convert psdoc to markdown for markdown2rst
-    [switch]$ForRST
+    [switch]$ForRST,
+    # whether to print anythin to the console
+    [switch]$Silent,
+    # generate markdown in subfolders?
+    [switch]$Recurse
 )
 
 $PsDocPath = [System.IO.Path]::GetFullPath($PsDocPath)
@@ -58,12 +62,33 @@ Function main {
     }
     
     if (Test-Path -Path $PsDocPath -PathType Container) {
-        
+        Iterate-Folder $PsDocPath
     } else {
         If ( -not [System.IO.File]::Exists($PsDocPath)) {
             Return
         }
         PsDoc-to-Markdown $PsDocPath $OutputFolder
+    }
+}
+
+Function Iterate-Folder {
+    Param([string]$FolderName)
+    
+    $RelName = $FolderName.SubString($PsDocPath.Length, $FolderName.Length - $PsDocPath.Length)
+    $OutputName = $OutputFolder + $RelName
+    Create-Directory $OutputName
+    
+    Get-ChildItem $FolderName | Foreach-Object {
+        If ( -not $_.PSIsContainer) {
+            If ( -not $_.Name.EndsWith(".psdoc")) {
+                Return
+            }
+            PsDoc-to-Markdown $_.FullName $OutputName
+        } Else {
+            If ($Recurse) {
+                Iterate-Folder $_.FullName
+            }
+        }
     }
 }
 
@@ -95,135 +120,7 @@ $Global:notes = ""
 $Global:parsing_examples = $false
 $Global:examples = ""
 $Global:prev_single_empty = $false
-
-Function To-Sentence-Case {
-    param(
-        [string]$argument
-    )
-    
-    return $argument.SubString(0, 1)  + $argument.SubString(1, $argument.Length - 1).ToLower()
-}
-
-Function Parse-Name {
-    param([string]$argument)
-    
-    if ($argument.Trim() -eq "") {
-        return
-    }
-    
-    $Global:long_name = $argument
-    $Splited = $argument.Split("\")
-    $Global:name = $Splited[$Splited.Length - 1].Split(".ps1")[0]
-}
-
-Function Parse-Synopsis {
-    param([string]$argument)
-    
-    if ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
-        $argument = $argument.SubString(4, $argument.Length - 4)
-    }
-    
-    $Global:synopsis += $argument.Replace("    ", " ")
-}
-
-Function Parse-Notes {
-    param([string]$argument)
-    
-    while ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
-        $argument = $argument.SubString(4, $argument.Length - 4)
-    }
-    if ($argument.Contains("------- EXAMPLE")) {
-        $Global:parsing_examples = $true
-    }
-    if (-not $Global:parsing_examples -and -not [string]::IsNullOrWhitespace($argument)) {
-        if ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
-            $argument = $argument.SubString(4, $argument.Length - 4)
-        }
-        $Global:notes += "$argument`r`n"
-        return
-    }
-    Parse-Any $argument
-    $Global:body += $Global:current
-}
-
-Function Parse-Parameters {
-    param([string]$argument)
-    
-    if ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
-        $argument = $argument.SubString(4, $argument.Length - 4)
-         if ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
-            $argument = $argument.SubString(4, $argument.Length - 4)
-            if ($argument.StartsWith("Required?")) {
-                $Global:parameters += "```````powershell`r`n"
-            }
-            Parse-Any $argument
-            $Global:parameters += $Global:current
-            $Global:current = ""
-        } else {
-            if (-not [string]::IsNullOrWhitespace($Global:parameters) -and $argument.StartsWith("-")) {
-                $Global:parameters += "```````r`n`r`n"
-            }
-            if ($argument.StartsWith("<") -and $argument.EndsWith(">")) {
-                $argument = $argument.SubString(1, $argument.Length - 2);
-                $Global:parameters += "```````r`n`r`n"
-                $Global:parameters += "### $argument`r`n`r`n"
-                $Global:has_commonparams = $true
-                return
-            }
-            if (-not [string]::IsNullOrWhitespace($argument)) {
-                $Global:parameters += "### $argument`r`n"
-            }
-            $Global:parameters += "`r`n"
-        }
-    }
-    
-    #$Global:parameters += $argument
-}
-
-
-Function Parse-Any {
-    param([string]$argument)
-    
-    $found_single_word = $false
-    $Global:current = ""
-    if ($Global:long_name) {
-        $argument = $argument.Replace($Global:long_name, $Global:name)
-    }
-    while ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
-        $argument = $argument.SubString(4, $argument.Length - 4)
-    }
-    if ($argument.StartsWith("--------------------------")) {
-        $argument = "### " + $argument.Replace("--------------------------", "") + "`r`n"
-    }
-    if ($argument.StartsWith("PS")) {
-        $index = $argument.IndexOf("\>") + 2
-        $argument = $argument.SubString($index, $argument.Length - $index)
-        $argument = "```````powershell
-$argument
-``````"
-    }
-    if ($argument[0] -eq '-' -and -not [string]::IsNullOrWhitespace("$($argument[1])") -or 
-        ($argument.StartsWith("http"))) {
-        $argument = " - " + $argument
-    }
-    if (-not [string]::IsNullOrWhitespace($argument) -and 
-        $argument.Split(" ").Length -eq 1 -and 
-        $argument -match '^[a-z0-9]+$' -and 
-        $Global:prev_single_empty -eq $true) {
-        $argument = " - " + $argument
-        $Global:prev_single_empty = $true
-        $found_single_word = $true
-    }
-    if ([string]::IsNullOrWhitespace($argument)) {
-        $Global:prev_single_empty = $true
-    } else {
-        if (-not $found_single_word) {
-            $Global:prev_single_empty = $false
-        }
-    }
-    
-    $Global:current += $argument + "`r`n"
-}
+$Global:body = ""
 
 Function PsDoc-to-Markdown {
     Param(
@@ -231,7 +128,11 @@ Function PsDoc-to-Markdown {
         [string]$SavePath
     )
     
+    Reset-Global
     $name_only = [System.IO.Path]::GetFileNameWithoutExtension($SinglePsDocPath)
+    if (-not $Silent) {
+        Write-Host "Generating markdown for $name_only.psdoc -> " -NoNewLine
+    }
     [AreaType]$area_type = "Unknown"
     
     ForEach($line in Get-Content $SinglePsDocPath) {
@@ -343,6 +244,132 @@ Function PsDoc-to-Markdown {
       $Global:body
         
     [System.IO.File]::WriteAllLines("$SavePath\$name_only.md",  $ContentMarkdown)
+    
+    $relative_path = Resolve-Path -relative $SavePath
+    if (-not $Silent) {
+        "$relative_path\$name_only.md"
+    }
+}
+
+Function Parse-Name {
+    param([string]$argument)
+    
+    if ($argument.Trim() -eq "") {
+        return
+    }
+    
+    $Global:long_name = $argument
+    $Splited = $argument.Split("\")
+    $tmp = $Splited[$Splited.Length - 1]
+    $Global:name = $tmp.SubString(0, $tmp.LastIndexOf("."))
+}
+
+Function Parse-Synopsis {
+    param([string]$argument)
+    
+    if ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
+        $argument = $argument.SubString(4, $argument.Length - 4)
+    }
+    
+    $Global:synopsis += $argument.Replace("    ", " ")
+}
+
+Function Parse-Notes {
+    param([string]$argument)
+    
+    while ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
+        $argument = $argument.SubString(4, $argument.Length - 4)
+    }
+    if ($argument.Contains("------- EXAMPLE")) {
+        $Global:parsing_examples = $true
+    }
+    if (-not $Global:parsing_examples -and -not [string]::IsNullOrWhitespace($argument)) {
+        if ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
+            $argument = $argument.SubString(4, $argument.Length - 4)
+        }
+        $Global:notes += "$argument`r`n"
+        return
+    }
+    Parse-Any $argument
+    $Global:body += $Global:current
+}
+
+Function Parse-Parameters {
+    param([string]$argument)
+    
+    if ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
+        $argument = $argument.SubString(4, $argument.Length - 4)
+         if ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
+            $argument = $argument.SubString(4, $argument.Length - 4)
+            if ($argument.StartsWith("Required?")) {
+                $Global:parameters += "```````powershell`r`n"
+            }
+            Parse-Any $argument
+            $Global:parameters += $Global:current
+            $Global:current = ""
+        } else {
+            if (-not [string]::IsNullOrWhitespace($Global:parameters) -and $argument.StartsWith("-")) {
+                $Global:parameters += "```````r`n`r`n"
+            }
+            if ($argument.StartsWith("<") -and $argument.EndsWith(">")) {
+                $argument = $argument.SubString(1, $argument.Length - 2);
+                $Global:parameters += "```````r`n`r`n"
+                $Global:parameters += "### $argument`r`n`r`n"
+                $Global:has_commonparams = $true
+                return
+            }
+            if (-not [string]::IsNullOrWhitespace($argument)) {
+                $Global:parameters += "### $argument`r`n"
+            }
+            $Global:parameters += "`r`n"
+        }
+    }
+    
+    #$Global:parameters += $argument
+}
+
+Function Parse-Any {
+    param([string]$argument)
+    
+    $found_single_word = $false
+    $Global:current = ""
+    if ($Global:long_name) {
+        $argument = $argument.Replace($Global:long_name, $Global:name)
+    }
+    while ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
+        $argument = $argument.SubString(4, $argument.Length - 4)
+    }
+    if ($argument.StartsWith("--------------------------")) {
+        $argument = "## " + $argument.Replace("--------------------------", "") + "`r`n"
+    }
+    if ($argument.StartsWith("PS")) {
+        $index = $argument.IndexOf("\>") + 2
+        $argument = $argument.SubString($index, $argument.Length - $index)
+        $argument = "```````powershell
+$argument
+``````"
+    }
+    if ($argument[0] -eq '-' -and -not [string]::IsNullOrWhitespace("$($argument[1])") -or 
+        ($argument.StartsWith("http"))) {
+        $argument = " - " + $argument
+    }
+    if (-not [string]::IsNullOrWhitespace($argument) -and 
+        $argument.Split(" ").Length -eq 1 -and 
+        $argument -match '^[a-z0-9]+$' -and 
+        $Global:prev_single_empty -eq $true) {
+        $argument = " - " + $argument
+        $Global:prev_single_empty = $true
+        $found_single_word = $true
+    }
+    if ([string]::IsNullOrWhitespace($argument)) {
+        $Global:prev_single_empty = $true
+    } else {
+        if (-not $found_single_word) {
+            $Global:prev_single_empty = $false
+        }
+    }
+    
+    $Global:current += $argument + "`r`n"
 }
 
 Function Format-Notes {
@@ -357,6 +384,45 @@ $($Global:notes.Trim())
 
 ---
     "
+}
+
+Function To-Sentence-Case {
+    param(
+        [string]$argument
+    )
+    
+    return $argument.SubString(0, 1)  + $argument.SubString(1, $argument.Length - 1).ToLower()
+}
+
+Function Create-Directory {
+    Param(
+        [string]$folderpath
+    )
+    
+    If ( -not [System.IO.Directory]::Exists($folderpath)) {
+        [System.IO.Directory]::CreateDirectory($folderpath) > $null
+        If ( -not $?) {
+            Return
+        }
+    }
+}
+
+Function Reset-Global {
+    $Global:res = $false
+    $Global:name = ""
+    $Global:synopsis = ""
+    $Global:description = ""
+    $Global:current = ""
+    $Global:syntax = ""
+    $Global:has_commonparams = $false
+    $Global:parameters = ""
+    $Global:any = ""
+    $Global:long_name = ""
+    $Global:notes = ""
+    $Global:parsing_examples = $false
+    $Global:examples = ""
+    $Global:prev_single_empty = $false
+    $Global:body = ""
 }
 
 main
