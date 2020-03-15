@@ -5,7 +5,7 @@
     Even though this command do a fine job in converting 
     a .psdoc file to markdown it not a proper parser, there 
     are million ways to do this better, but I go for the 
-    fastest and easiest method in this script.
+    fastest and hackiest method in this script.
     
     Add the -Verbose switch to see more output in the 
     shell
@@ -38,6 +38,8 @@ Param(
     [switch]$Toc,
     # do not use html to position and format document
     [switch]$SkipHtml,
+    # do not add notes detail before description
+    [switch]$SkipNotes,
     # convert psdoc to markdown for markdown2rst
     [switch]$ForRST
 )
@@ -85,12 +87,14 @@ $Global:synopsis = ""
 $Global:description = ""
 $Global:current = ""
 $Global:syntax = ""
-$Global:parsing_paramtype = 0
 $Global:has_commonparams = $false
 $Global:parameters = ""
 $Global:any = ""
 $Global:long_name = ""
 $Global:notes = ""
+$Global:parsing_examples = $false
+$Global:examples = ""
+$Global:prev_single_empty = $false
 
 Function To-Sentence-Case {
     param(
@@ -120,6 +124,26 @@ Function Parse-Synopsis {
     }
     
     $Global:synopsis += $argument.Replace("    ", " ")
+}
+
+Function Parse-Notes {
+    param([string]$argument)
+    
+    while ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
+        $argument = $argument.SubString(4, $argument.Length - 4)
+    }
+    if ($argument.Contains("------- EXAMPLE")) {
+        $Global:parsing_examples = $true
+    }
+    if (-not $Global:parsing_examples -and -not [string]::IsNullOrWhitespace($argument)) {
+        if ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
+            $argument = $argument.SubString(4, $argument.Length - 4)
+        }
+        $Global:notes += "$argument`r`n"
+        return
+    }
+    Parse-Any $argument
+    $Global:body += $Global:current
 }
 
 Function Parse-Parameters {
@@ -160,16 +184,44 @@ Function Parse-Parameters {
 Function Parse-Any {
     param([string]$argument)
     
+    $found_single_word = $false
+    $Global:current = ""
     if ($Global:long_name) {
         $argument = $argument.Replace($Global:long_name, $Global:name)
     }
-    if ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
+    while ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
         $argument = $argument.SubString(4, $argument.Length - 4)
+    }
+    if ($argument.StartsWith("--------------------------")) {
+        $argument = "### " + $argument.Replace("--------------------------", "") + "`r`n"
+    }
+    if ($argument.StartsWith("PS")) {
+        $index = $argument.IndexOf("\>") + 2
+        $argument = $argument.SubString($index, $argument.Length - $index)
+        $argument = "```````powershell
+$argument
+``````"
     }
     if ($argument[0] -eq '-' -and -not [string]::IsNullOrWhitespace("$($argument[1])") -or 
         ($argument.StartsWith("http"))) {
         $argument = " - " + $argument
     }
+    if (-not [string]::IsNullOrWhitespace($argument) -and 
+        $argument.Split(" ").Length -eq 1 -and 
+        $argument -match '^[a-z0-9]+$' -and 
+        $Global:prev_single_empty -eq $true) {
+        $argument = " - " + $argument
+        $Global:prev_single_empty = $true
+        $found_single_word = $true
+    }
+    if ([string]::IsNullOrWhitespace($argument)) {
+        $Global:prev_single_empty = $true
+    } else {
+        if (-not $found_single_word) {
+            $Global:prev_single_empty = $false
+        }
+    }
+    
     $Global:current += $argument + "`r`n"
 }
 
@@ -246,6 +298,8 @@ Function PsDoc-to-Markdown {
         $Global:current = ""
     }
     
+    Format-Notes 
+    
     $title_part = $Global:name
     if (-not $SkipHtml) {
         $title_part = "<p style=`"text-align: center;`" align=`"center`">{0}</p>" -f $Global:name
@@ -265,30 +319,44 @@ Function PsDoc-to-Markdown {
 {1}
 
 ---
-
-{2}  
+{2}
+{3}  
 
 ## Syntax
 
 ``````powershell
-{3}  
+{4}  
 ``````
 
 ## Parameters
 
-{4}
-
 {5}
+
+{6}
     " -f 
       $title_part,
       $brief_part,
+      $Global:notes,
       $Global:description,
       $Global:syntax.Trim(),
       $Global:parameters.Trim(),
       $Global:body
         
-    $Global:notes
     [System.IO.File]::WriteAllLines("$SavePath\$name_only.md",  $ContentMarkdown)
+}
+
+Function Format-Notes {
+    if ($SkipNotes) {
+        $Global:notes = ""
+        return
+    }
+    $Global:notes = "
+``````notes
+$($Global:notes.Trim())
+``````
+
+---
+    "
 }
 
 main
