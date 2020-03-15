@@ -25,6 +25,7 @@ $command_folder = $PSScriptRoot
 $Global:found_command = $false
 
 Function main {
+    $args
     If ($args[0].Length -eq 0) {
         $args[0] = @("aboutx")        
         Execute-Command $args
@@ -40,6 +41,7 @@ Function main {
 Function Execute-Command {   
     $params = $args[0][0]
     $command, $sub_params = $params
+    $params
     Iterate-Folder $command_folder $command $sub_params
     If ($Global:found_command -eq $false) {
         iex "$command $sub_params"
@@ -48,6 +50,7 @@ Function Execute-Command {
 
 Function Iterate-Folder {
     Param([string]$foldername, $command, $params)
+    $foldername
     
     Get-ChildItem $foldername | Where-Object {$Global:found_command -eq $false} | Foreach-Object {
         If ( -not $_.PSIsContainer) {
