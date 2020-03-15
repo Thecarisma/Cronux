@@ -34,6 +34,8 @@ Param(
     [switch]$Recurse
 )
 
+">>> 1"
+
 $Path = [System.IO.Path]::GetFullPath($Path)
 $Path
 $OutputFolder = [System.IO.Path]::GetFullPath($OutputFolder)
