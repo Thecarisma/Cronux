@@ -11,8 +11,9 @@ before_script:
   #is windows and will come prebuilt with powershell, .NET platform, VBS and Batch
 
 script:
+  - ls
   - echo $(pwd)
-  - ./Cronux.bat ps12markdown $(pwd)\commands\ $(pwd)\dist\cronux_doc\ -Recurse
+  - powershell -noprofile -executionpolicy bypass -file $(pwd)/commands/ps12markdown.ps1 $(pwd)\commands\ $(pwd)\dist\cronux_doc\ -Recurse
   - ls $(pwd)/dist/cronux_doc/
   
 deploy:
