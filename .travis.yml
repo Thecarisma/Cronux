@@ -1,5 +1,4 @@
-language: c
-  
+
 os:
   - windows
   
@@ -11,8 +10,9 @@ before_script:
   #is windows and will come prebuilt with powershell, .NET platform, VBS and Batch
 
 script:
-  - ./Cronux.bat ps12markdown .\commands\ .\dist\cronux_doc\ -Recurse
-  - ls ./dist/cronux_doc/
+  - echo $(pwd)
+  - ./Cronux.bat ps12markdown $(pwd)\commands\ $(pwd)\dist\cronux_doc\ -Recurse
+  - ls $(pwd)/dist/cronux_doc/
   
 deploy:
   provider: pages
