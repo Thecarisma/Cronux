@@ -21,7 +21,6 @@
     
 #>
 
-[CmdletBinding()]
 Param(
     # The path to the powershell scri[t to extract documentation
     [Parameter(Mandatory=$true, Position=0)]

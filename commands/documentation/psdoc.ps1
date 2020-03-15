@@ -21,7 +21,6 @@
     
 #>
 
-[CmdletBinding()]
 Param(
     # The path to the powershell scri[t to extract documentation
     [Parameter(Mandatory=$true, Position=0)]
@@ -35,15 +34,12 @@ Param(
     [switch]$Recurse
 )
 
-"-2"
 $Path = [System.IO.Path]::GetFullPath($Path)
 $OutputFolder = [System.IO.Path]::GetFullPath($OutputFolder)
 $CHelpPath = "$PSScriptRoot\chelp.ps1"
 $Global:count = 0
 
-"-1"
 If ( -not [System.IO.File]::Exists($CHelpPath)) {
-    "0"
     $CHelpPath = "$PSScriptRoot\..\chelp.ps1"
 }
 
@@ -64,17 +60,14 @@ Function Iterate-Folder {
     Param(
         [string]$FolderName
     )
-    "2"
     if (($FolderName + '\') -eq $OutputFolder) {
         return
     }
-    "3"
     $RelName = $FolderName.SubString($Path.Length, $FolderName.Length - $Path.Length)
     $OutputName = $OutputFolder + $RelName
     Create-Directory $OutputName
     $Global:count = 0
     
-    "4"
     Get-ChildItem $FolderName | Foreach-Object {
         If ( -not $_.PSIsContainer) {
             If ( $_.Name.EndsWith(".ps1")) {
@@ -99,6 +92,4 @@ if (-not $Silent) {
     Write-Host "Preparing to extract documenations in $Path" 
 }
 
-"1"
 Iterate-Folder $Path
-
