@@ -11,8 +11,7 @@ before_script:
   #is windows and will come prebuilt with powershell, .NET platform, VBS and Batch
 
 script:
-  - ./Cronux.bat installx
-  - ps12markdown .\commands\ .\dist\cronux_doc\ -Recurse
+  - ./Cronux.bat ps12markdown .\commands\ .\dist\cronux_doc\ -Recurse
   - ls ./dist/cronux_doc/
   
 deploy:

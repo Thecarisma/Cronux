@@ -35,6 +35,7 @@ Param(
 )
 
 $Path = [System.IO.Path]::GetFullPath($Path)
+$Path
 $OutputFolder = [System.IO.Path]::GetFullPath($OutputFolder)
 $CHelpPath = "$PSScriptRoot\chelp.ps1"
 $Global:count = 0
