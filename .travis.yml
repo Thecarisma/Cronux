@@ -11,7 +11,7 @@ before_script:
   #is windows and will come prebuilt with powershell, .NET platform, VBS and Batch
 
 script:
-  - Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://thecarisma.github.io/installx.ps1'))
+  - ./Cronux.bat installx
   - ps12markdown .\commands\ .\dist\cronux_doc\ -Recurse
   - ls ./dist/cronux_doc/
   
