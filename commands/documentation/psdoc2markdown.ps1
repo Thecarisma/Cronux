@@ -34,15 +34,11 @@ Param(
     # the folder to put generated markdown
     [Parameter(Mandatory=$true, Position=1)]
     [string]$OutputFolder,
-    # whether to generate table of content
-    [switch]$Toc,
     # do not use html to position and format document
     [switch]$SkipHtml,
     # do not add notes detail before description
     [switch]$SkipNotes,
-    # convert psdoc to markdown for markdown2rst
-    [switch]$ForRST,
-    # whether to print anythin to the console
+    # whether to print anything to the console
     [switch]$Silent,
     # generate markdown in subfolders?
     [switch]$Recurse
@@ -319,6 +315,12 @@ Function Parse-Parameters {
                 return
             }
             if (-not [string]::IsNullOrWhitespace($argument)) {
+                if ($argument.Contains("<")) {
+                    $argument = $argument.Replace("<", ":")
+                }
+                if ($argument.Contains(">")) {
+                    $argument = $argument.Replace(">", "")
+                }
                 $Global:parameters += "### $argument`r`n"
             }
             $Global:parameters += "`r`n"

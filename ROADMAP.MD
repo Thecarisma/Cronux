@@ -73,7 +73,7 @@
  - [ ] command to display proxy settings on the platform
  - [ ] command to export powershell documentation to a .psdoc file 
  - [ ] a full detail page about the .psdoc file and the command that works with it
- - [ ] command to convert powershell documentation to Markdown 
+ - [x] command to convert powershell documentation to Markdown 
  - [ ] command to convert powershell documentation to reStructured Text
  - [ ] write a small example to use watcherb command with external batch script 
  - [ ] write a small example to use watcher command with external powershell script 

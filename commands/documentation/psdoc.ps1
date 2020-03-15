@@ -29,6 +29,8 @@ Param(
     # the folder to put generated exported documenation
     [Parameter(Mandatory=$true, Position=1)]
     [string]$OutputFolder,
+    # whether to print anything to the console
+    [switch]$Silent,
     # generate psdoc in subfolders?
     [switch]$Recurse
 )
@@ -83,8 +85,12 @@ Function Iterate-Folder {
             }
         }
     }
-    Write-Host "$Global:count scripts documented in $RelName"
+    if (-not $Silent) {
+        Write-Host "$Global:count scripts documented in $RelName"
+    }
 }
-Write-Host "Preparing to extract documenations in $Path" 
+if (-not $Silent) {
+    Write-Host "Preparing to extract documenations in $Path" 
+}
 
 Iterate-Folder $Path
