@@ -38,6 +38,8 @@ Param(
     [switch]$SkipHtml,
     # do not add notes detail before description
     [switch]$SkipNotes,
+    # do not generate index.md for each folder
+    [switch]$SkipIndex,
     # whether to print anything to the console
     [switch]$Silent,
     # generate markdown in subfolders?
@@ -74,21 +76,57 @@ Function Iterate-Folder {
         return
     }
     
+    $index_toc = @{}
     $RelName = $FolderName.SubString($PsDocPath.Length, $FolderName.Length - $PsDocPath.Length)
     $OutputName = $OutputFolder + $RelName
     Create-Directory $OutputName
     
     Get-ChildItem $FolderName | Foreach-Object {
+        $NameOnly = $_.Name
+        if ($_.Name.Contains(".")) {
+            $NameOnly = $_.Name.SubString(0, $_.Name.LastIndexOf('.'))
+        }
         If ( -not $_.PSIsContainer) {
             If ( -not $_.Name.EndsWith(".psdoc")) {
                 Return
             }
+            $index_toc[$NameOnly] = "$NameOnly.md"
             PsDoc-to-Markdown $_.FullName $OutputName
         } Else {
             If ($Recurse) {
+                $index_toc[$_.Name] = "$($_.Name)/index.md"
                 Iterate-Folder $_.FullName
             }
         }
+    }
+    if (-not $SkipIndex) {
+        $RelName = ".\$RelName "
+        if ($SkipHtml) {
+            $IndexMarkdown = "
+# {0}
+
+Content of {0}
+
+---
+
+" -f $RelName
+        } else {
+            $IndexMarkdown = "
+# <p style=`"text-align: center;`" align=`"center`">{0}</p>
+
+<p style=`"text-align: center;`" align=`"center`">Content of {0}</p>
+
+---
+
+" -f $RelName
+        }
+
+        $keys = $index_toc.Keys
+        ForEach ($key in $keys) {
+           $IndexMarkdown += $index_pointer = "- [{0}](./{1})`r`n" -f $key, $index_toc[$key]
+        }
+        
+        [System.IO.File]::WriteAllLines("$OutputName\index.md",  $IndexMarkdown)
     }
 }
 
@@ -356,7 +394,8 @@ $argument
 ``````"
     }
     if ($argument[0] -eq '-' -and -not [string]::IsNullOrWhitespace("$($argument[1])") -or 
-        ($argument.StartsWith("http"))) {
+        ($argument.StartsWith("http")) -or
+        ($argument[0] -match '^[0-9]+$')) {
         $argument = " - " + $argument
     }
     if (-not [string]::IsNullOrWhitespace($argument) -and 
