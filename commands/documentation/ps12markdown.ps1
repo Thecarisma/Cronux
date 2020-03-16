@@ -21,22 +21,16 @@
     
 #>
 
+[CmdletBinding()]
 Param(
-    # The path to the powershell scri[t to extract documentation
     [Parameter(Mandatory=$true, Position=0)]
     [string]$Path,
-    # the folder to put generated exported documenation
     [Parameter(Mandatory=$true, Position=1)]
     [string]$OutputFolder,
-    # do not use html to position and format document
     [switch]$SkipHtml,
-    # do not add notes detail before description
     [switch]$SkipNotes,
-    # whether to print anythin to the console
     [switch]$Silent,
-    # generate markdown in subfolders?
     [switch]$Recurse,
-    # do not delete the generated .psdoc files in OutputFolder
     [switch]$Keep
 )
 
