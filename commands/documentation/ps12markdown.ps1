@@ -16,18 +16,18 @@
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE
-    ps12markdown .\commands\ .\dist\cronux_doc\ -Recurse
+    ps12markdown .\ .\dist\Cronux.wiki\ -Recurse
 .EXAMPLE
     
 #>
 
-Get-Location
-
 [CmdletBinding()]
 Param(
     # The path to the powershell scri[t to extract documentation
+    [Parameter(Mandatory=$true, Position=0)]
     [string]$Path,
     # the folder to put generated exported documenation
+    [Parameter(Mandatory=$true, Position=1)]
     [string]$OutputFolder,
     # do not use html to position and format document
     [switch]$SkipHtml,

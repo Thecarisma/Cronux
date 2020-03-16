@@ -70,6 +70,10 @@ Function main {
 Function Iterate-Folder {
     Param([string]$FolderName)
     
+    if (($FolderName + '\') -eq $OutputFolder) {
+        return
+    }
+    
     $RelName = $FolderName.SubString($PsDocPath.Length, $FolderName.Length - $PsDocPath.Length)
     $OutputName = $OutputFolder + $RelName
     Create-Directory $OutputName
