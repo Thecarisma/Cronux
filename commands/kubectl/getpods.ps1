@@ -13,72 +13,18 @@
     Pod Object
     ----------
     {
-        Name,
-        Ready,
-        Status,
-        Restarts,
-        Age,
-        Namespace,
-        Node,
-        StartTime,
-        Labels [
-            
-        ]
-        Anotations,
-        IP,
-        ControlledBy,
-        Containers [
-            [index] {
-                Name,
-                ContainerId,
-                Port,
-                HostPort,
-                State,
-                Started,
-                Image,
-                ImageId,
-                FileSystem,
-                Limit {
-                    Cpu,
-                    Memory
-                },
-                Requests {
-                    Cpu,
-                    Memory
-                },
-                Liveliness,
-                Readiness,
-                Environments {
-                    'key': 'value'
-                    ....
-                },
-                Mounts [
-                    "/data ..",
-                    "/var/..."
-                ],
-            }
-        ]
-        Conditions {
-            Type,
-            Initialized,
-            Ready,
-            PodScheduled
-        },
-        Volumes [
-            [index] {
-                Name,
-                Type,
-                Fields {
-                    'key': 'value'
-                }
-            }
-        ],
-        QosClass,
-        Node-Selectors,
-        Tolerations,
-        Events [
-        
-        ]        
+        Name
+        Ready
+        Status
+        Restarts
+        Age
+        Namespace
+        Priority
+        PriorityClassName
+        Node
+        StartTime
+        IP
+        Image      
     }
     
 .INPUTS 
@@ -112,5 +58,95 @@ Param(
     # get only the first pod that matches the name
     [switch]$Single
 )
-$
+
+Function main {
+    $(kubectl get pods | findstr $PodName) | ForEach-Object {
+        $Result = Parse-Pod-Detail $($_ -replace '\s+', ' ')
+        $Result
+        if ($Single) {
+            break
+        }
+    }
+}
+
+Class Pod {
+    [string]$Name
+    [string]$Ready
+    [string]$Status
+    [string]$Restarts
+    [string]$Age
+    [string]$Namespace
+    [string]$Priority
+    [string]$PriorityClassName
+    [string]$Node
+    [string]$StartTime
+    [string]$IP
+    [string]$Image
+}
+
+Function Parse-Pod-Detail {
+    Param(
+        [string]$Pod_Line
+    )
+    
+    $APod = New-Object Pod
+    $Splited = $Pod_Line.Split(" ")
+    $Index = 0
+    
+    ForEach ($Token in $Splited) {
+        if ($Index -eq 0) {
+            $APod.Name = $Token
+            
+        } elseif($Index -eq 1) {
+            $APod.Ready = $Token
+            
+        }  elseif($Index -eq 2) {
+            $APod.Status = $Token
+            
+        }  elseif($Index -eq 3) {
+            $APod.Restarts = $Token
+            
+        }  elseif($Index -eq 4) {
+            $APod.Age = $Token
+            
+        } 
+        $Index++
+    }
+    $(kubectl describe pod $APod.Name) | ForEach-Object {
+        $Line = $_        
+        $Value = ""
+        if ($Line.Contains(":")) {
+            $Offset = $Line.IndexOf(":") + 1
+            $Value = $Line.SubString($Offset, $Line.Length - $Offset).Trim()
+        }
+        if ($Line.StartsWith("Namespace")) {
+            $APod.Namespace = $Value
+            
+        } elseif ($Line.StartsWith("PriorityClassName")) {
+            $APod.PriorityClassName = $Value
+            
+        } elseif ($Line.StartsWith("Priority")) {
+            $APod.Priority = $Value
+            
+        } elseif ($Line.StartsWith("Node")) {
+            $APod.Node = $Value
+            
+        } elseif ($Line.StartsWith("Start Time")) {
+            $APod.StartTime = $Value
+            
+        } elseif ($Line.StartsWith("IP")) {
+            $APod.IP = $Value
+            
+        }elseif ($Line.Trim().StartsWith("Image")) {
+            if (-not $APod.Image) {
+                $APod.Image = $Value
+            }
+            
+        }
+    }
+    
+    return $APod
+}
+
+main
 
