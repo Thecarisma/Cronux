@@ -16,9 +16,7 @@
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE
-    docronux
-.EXAMPLE
-    
+    docronux    
 #>
 
 [CmdletBinding()]

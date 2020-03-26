@@ -30,7 +30,7 @@
 .INPUTS 
     [System.String]
 .OUTPUTS 
-    [Pod][]
+    [Pod[]]
 .NOTES
     Version    : 1.0
     File Name  : getpods.ps1
@@ -60,13 +60,15 @@ Param(
 )
 
 Function main {
+    $Pods = New-Object System.Collections.ArrayList
     $(kubectl get pods | findstr $PodName) | ForEach-Object {
         $Result = Parse-Pod-Detail $($_ -replace '\s+', ' ')
-        $Result
+        $Pods.Add($Result)
         if ($Single) {
             break
         }
     }
+    return $Pods
 }
 
 Class Pod {
