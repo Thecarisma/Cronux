@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-   List the ip addresses of a url
+    Find pods by it name or matching part of a pod name
 .DESCRIPTION
     Find pod by it name or matching part of a pod name using 
     kubectl. Kubectl is required for this command to work, it 
