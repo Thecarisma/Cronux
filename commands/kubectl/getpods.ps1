@@ -1,14 +1,16 @@
 <#
 .SYNOPSIS
-    Find pods by it name or matching part of a pod name
+    Find all pods in the current context or pods 
+    by it name or matching part of a pod name
 .DESCRIPTION
-    Find pod by it name or matching part of a pod name using 
-    kubectl. Kubectl is required for this command to work, it 
+    Find all pods in the current context or pods 
+    by it name or matching part of a pod name kubectl. 
+    Kubectl is required for this command to work, it 
     can be downloaded from https://kubernetes.io/docs/tasks/tools/install-kubectl/
     
-    If more than one pod is found that matches the specified 
-    name, they will be printed. This command returns an iterabele 
-    array of the Pod Object.
+    If more than one pod is found that matches the 
+    specified name, they will be printed. This command 
+    returns an iterabele array of the Pod Object.
     
     Pod Object
     ----------
@@ -40,32 +42,62 @@
     https://thecarisma.github.io/Cronux
     https://kubernetes.io/docs/reference/kubectl
 .EXAMPLE
+    getpods
+    This will print out all the pod detail 
+    in the current context
+.EXAMPLE
     getpods mypod-service-5d94df45ff-pnnn
-    This will print out the pod detail of that specific pod 
-    if found else nothin is printed out
+    This will print out the pod detail of that 
+    specific pod if found else nothin is printed 
+    out
 .EXAMPLE
     getpods mypod
-    If more than one pod has the name 'mypod' all the pod 
-    with the name 'mypod' will be printed in the terminal
+    If more than one pod has the name 'mypod' 
+    all the pod with the name 'mypod' will be 
+    printed in the terminal
 #>
 
 [CmdletBinding()]
 Param(
     # the full pod name or matching part of name
+    [Parameter(Position=0)]
     [string]$PodName,
-    # this only fetch the basic info of a pod, name, ready, status. restarts, age
-    [switch]$BasicInfo,
+    # this returns as array of the Pod class that can be iterated
+    [switch]$Detail,
     # get only the first pod that matches the name
     [switch]$Single
 )
 
 Function main {
+    if (-not $Detail) {
+        if ($PodName) {
+            kubectl get pods | findstr $PodName
+        } else {
+            kubectl get pods
+        }
+        return
+    }
     $Pods = New-Object System.Collections.ArrayList
-    $(kubectl get pods | findstr $PodName) | ForEach-Object {
-        $Result = Parse-Pod-Detail $($_ -replace '\s+', ' ')
-        $Pods.Add($Result)
-        if ($Single) {
-            break
+    if ($PodName) {
+        $(kubectl get pods | findstr $PodName) | ForEach-Object {
+            $Result = Parse-Pod-Detail $($_ -replace '\s+', ' ')
+            $Pods.Add($Result) > $null
+            if ($Single) {
+                break
+            }
+        }
+    } else {
+        $DoneWithHeader = $False
+        $(kubectl get pods) | ForEach-Object {
+            if ($DoneWithHeader) {
+                $Result = Parse-Pod-Detail $($_ -replace '\s+', ' ')
+                $Pods.Add($Result) > $null
+                if ($Single) {
+                    break
+                }
+            } else {
+                $DoneWithHeader = $True
+            }
         }
     }
     return $Pods
