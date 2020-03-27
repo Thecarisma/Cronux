@@ -37,11 +37,11 @@ Param(
 
 $Path = [System.IO.Path]::GetFullPath($Path)
 $OutputFolder = [System.IO.Path]::GetFullPath($OutputFolder)
-$CHelpPath = "$PSScriptRoot\chelp.ps1"
+$CHelpPath = "$PSScriptRoot\xhelp.ps1"
 $Global:count = 0
 
 If ( -not [System.IO.File]::Exists($CHelpPath)) {
-    $CHelpPath = "$PSScriptRoot\..\chelp.ps1"
+    $CHelpPath = "$PSScriptRoot\..\xhelp.ps1"
 }
 
 Function Create-Directory {
