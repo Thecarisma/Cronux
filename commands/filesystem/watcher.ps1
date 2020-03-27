@@ -21,7 +21,7 @@
     
     The CommandToExecute parameter must be a valid powershell command 
     and not batch. To execute batch command call the **watcherb** 
-    command. Execute xhelp watcher to view all the positional variable 
+    command. Execute helpx watcher to view all the positional variable 
     available for the command. Specifying the CommandToExecute as argument 
     will require escaping the command for powershell.
     

@@ -9,7 +9,7 @@
     
 .NOTES
     Version    : 1.0
-    File Name  : xhelp.ps1
+    File Name  : helpx.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
     Date       : Jan-03-2019
 .LINK
