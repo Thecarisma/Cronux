@@ -6,8 +6,8 @@
     kubernetes and also switch the context also if an 
     extra parameter is specified.
 
-    Adding the switch -Current withoput any other parameter 
-    shows the current context.
+    Adding the switch -All without any other parameter 
+    shows the all the context in the configuration.
 .INPUTS 
     System.String
 .NOTES
@@ -19,10 +19,10 @@
     https://thecarisma.github.io/Cronux
 .EXAMPLE
     kubecontext
-    List all the context in the configuration
-.EXAMPLE
-    kubecontext -Current
     View the current context
+.EXAMPLE
+    kubecontext -All
+    List all the context in the configuration
 .EXAMPLE
     kubecontext test
     Switch your kubernetes context to 'test'
@@ -36,16 +36,16 @@ Param(
     # the name of the context to switch to
     [Parameter(Mandatory=$false)]
     [string]$ContextName,
-    # view the current context
-    [switch]$Current
+    # view all the context in the configuration
+    [switch]$All
 )
 
 if ($ContextName) {
     kubectl config use-context $ContextName
 } else {
-    if ($Current) {
-        kubectl config current-context
-    } else {
+    if ($All) {
         kubectl config get-contexts
+    } else {
+        kubectl config current-context
     }
 }
