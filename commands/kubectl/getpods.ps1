@@ -9,8 +9,11 @@
     can be downloaded from https://kubernetes.io/docs/tasks/tools/install-kubectl/
     
     If more than one pod is found that matches the 
-    specified name, they will be printed. This command 
-    returns an iterabele array of the Pod Object.
+    specified name, they will be printed. 
+    
+    If the switch -Detail is added the output will be 
+    an instance of the Pod Object below for each of the 
+    pod.
     
     Pod Object
     ----------
@@ -25,8 +28,9 @@
         PriorityClassName
         Node
         StartTime
-        IP
-        Image      
+        IP  
+        Port
+        Image   
     }
     
 .INPUTS 
@@ -43,15 +47,30 @@
     https://kubernetes.io/docs/reference/kubectl
 .EXAMPLE
     getpods
-    This will print out all the pod detail 
-    in the current context
+    This will print out all the pod in the current 
+    context the same way kubectl will prints it.
 .EXAMPLE
     getpods mypod-service-5d94df45ff-pnnn
+    This will print out the pod brief of that 
+    specific pod the same way kubectl will prints it 
+    if found else nothing is printed out
+.EXAMPLE
+    getpods mypod
+    If more than one pod has the name 'mypod' 
+    all the pod with the name 'mypod' will be 
+    printed in the terminal the same way kubectl 
+    will prints it
+.EXAMPLE
+    getpods -Detail
+    This will print out all the pod detail in the form 
+    of the Pod object in the current context.
+.EXAMPLE
+    getpods -Detail mypod-service-5d94df45ff-pnnn
     This will print out the pod detail of that 
     specific pod if found else nothin is printed 
     out
 .EXAMPLE
-    getpods mypod
+    getpods -Detail mypod
     If more than one pod has the name 'mypod' 
     all the pod with the name 'mypod' will be 
     printed in the terminal
@@ -77,11 +96,11 @@ Function main {
         }
         return
     }
-    $Pods = New-Object System.Collections.ArrayList
+    $Pods = @()
     if ($PodName) {
         $(kubectl get pods | findstr $PodName) | ForEach-Object {
             $Result = Parse-Pod-Detail $($_ -replace '\s+', ' ')
-            $Pods.Add($Result) > $null
+            $Pods += $Result
             if ($Single) {
                 break
             }
@@ -91,7 +110,7 @@ Function main {
         $(kubectl get pods) | ForEach-Object {
             if ($DoneWithHeader) {
                 $Result = Parse-Pod-Detail $($_ -replace '\s+', ' ')
-                $Pods.Add($Result) > $null
+                $Pods += $Result
                 if ($Single) {
                     break
                 }
@@ -100,7 +119,8 @@ Function main {
             }
         }
     }
-    return $Pods
+    
+    return ,$Pods
 }
 
 Class Pod {
@@ -115,6 +135,7 @@ Class Pod {
     [string]$Node
     [string]$StartTime
     [string]$IP
+    [string]$Port
     [string]$Image
 }
 
@@ -171,9 +192,14 @@ Function Parse-Pod-Detail {
         } elseif ($Line.StartsWith("IP")) {
             $APod.IP = $Value
             
-        }elseif ($Line.Trim().StartsWith("Image")) {
+        } elseif ($Line.Trim().StartsWith("Image")) {
             if (-not $APod.Image) {
                 $APod.Image = $Value
+            }
+            
+        } elseif ($Line.Trim().StartsWith("Port")) {
+            if (-not $APod.Port) {
+                $APod.Port = $Value
             }
             
         }
@@ -182,5 +208,6 @@ Function Parse-Pod-Detail {
     return $APod
 }
 
-main
+$ret = main
+return (,$ret)
 

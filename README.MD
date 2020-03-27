@@ -158,9 +158,9 @@ All the command are listed below with it alias(es)
 docronux, ps12markdown, psdoc, psdoc2markdown, superwatcher,
 touch, watcher, watcherb, gitclone, gitfpush, gitpull, gitpush,
 gitstatus, getpods, kubecontext, ipof, whatami, $, aboutx, base64,
-base64s, batforps, buildcronux, helpx, close, Cronux, extractx,
-gencert, gencodesigncert, installpfx, installpfxx, installx,
-listx, printhead, pstobat, updatex, wrapcommand, Bye.
+base64s, batforps, buildcronux, chelp, close, Cronux, extractx,
+gencert, gencodesigncert, helpx, installpfx, installpfxx, installx,
+listx, printhead, pstobat, updatex, wrapcommand,
 ```
 
 To view all the Cronux native and exported commands:
