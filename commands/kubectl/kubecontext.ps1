@@ -8,6 +8,10 @@
 
     Adding the switch -All without any other parameter 
     shows the all the context in the configuration.
+    
+    The -User switch display the first user and the -Users 
+    list all the users. The switch -User and -Users should 
+    not be combined.
 .INPUTS 
     System.String
 .NOTES
@@ -37,8 +41,20 @@ Param(
     [Parameter(Mandatory=$false)]
     [string]$ContextName,
     # view all the context in the configuration
-    [switch]$All
+    [switch]$All,
+    # display the first user
+    [switch]$User,
+    # list all the users
+    [switch]$Users
 )
+
+if ($User) {
+    kubectl config view -o jsonpath='{.users[].name}'
+    return
+} elseif ($Users) {
+    kubectl config view -o jsonpath='{.users[*].name}'
+    return
+}
 
 if ($ContextName) {
     kubectl config use-context $ContextName
@@ -49,3 +65,5 @@ if ($ContextName) {
         kubectl config current-context
     }
 }
+
+    
