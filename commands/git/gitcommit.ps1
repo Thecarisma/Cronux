@@ -13,7 +13,7 @@
 .NOTES
     File Name  : gitcommit.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
-    Date       : Jan-03-2019
+    Date       : Mar-30-2019
 .LINK
     https://thecarisma.github.io/Cronux
     https://git-scm.com/docs/git-add
