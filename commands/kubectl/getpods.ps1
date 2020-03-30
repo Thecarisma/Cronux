@@ -33,6 +33,9 @@
         Image   
     }
     
+    This command requirs kubectl command line app to be 
+    installed on the syetem to function.
+    
 .INPUTS 
     [System.String]
 .OUTPUTS 

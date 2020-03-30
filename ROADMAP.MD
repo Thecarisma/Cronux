@@ -5,13 +5,13 @@
  - [x] add the `ls,dir` commands
  - [x] add the cls,clear commands
  - [x] command to request elevation before running command, program <requestelevation> `sudo`
- - [ ] relay command to the actual program if installed
+ - [x] relay command to the actual program if installed
  - [x] command `addpath` to add a folder to path
  - [ ] add `ifconfig` command
  - [x] add command to remove very long path name `rmlong`
  - [ ] make `rmlong` remove folder recursively by allowing multiple folder in params
  - [ ] enable shortcut creation 
- - [ ] expands the help message to support independent help on command
+ - [x] expands the chelp message to support independent help on command
  - [ ] possibly add another function to request elevateion on running program using PID
  - [x] function to print out list of color value
  - [ ] add function to show about, licence, authors e.t.c
@@ -29,7 +29,8 @@
  - [ ] command to create a shortcut on windows
  - [ ] command to add app shortcut to start menu, startup folder
  - [ ] create Bakefile to build to executable
- - [ ] command to calculate md5, sha1 value of string and file
+ - [x] command to calculate md5 value of string and file
+ - [ ] command to calculate sha1 value of string and file
  - [ ] brute force connect to wifi using dictionary
  - [ ] make a folder accessible over ftp on the same network
  - [ ] registry commands
@@ -46,16 +47,17 @@
  - [ ] git command to delete local tag `gitrmtag [tagname]`
  - [ ] create a wildcard resolver command
  - [ ] git command to create release note from commit from last release or a commit hash, issue and pull request
- - [ ] command to printout aboutn and all contributor of the scripts (treat in cinstall)
+ - [x] command to printout aboutx and all 
+ - [ ] command to prints contributors of the scripts (treat in cinstall)
  - [ ] create subfolder for script alias
  - [ ] next release make sure to remove shortfilename before `!SCRIPT_PATH! !ARGS__!`
  - [x] zip does not visit subfolder 
  - [ ] ssh commands folder 
- - [ ] powershell script to run the commands from powershell 
- - [x] compile the batch script to powershell function in case(God Forbid) Windows put terminal and powershell as defaults 
+ - [x] powershell script to run the commands from powershell 
+ - [x] compile the batch script to powershell function in case(God Forbid) Windows put terminal and powershell as defaults (it happens)
  - [ ] command to generate shell entry for right click context without run
  - [ ] command to kill a running app on command line
- - [ ] command to download update for cronux
+ - [x] command to download update for cronux
  - [ ] add to chocolatey regostry
  - [ ] command to install a batch script as powershell cmdlet
  - [ ] create command to create empty file
@@ -71,11 +73,11 @@
  - [ ] a command that delete all Cronux command and delete some
  - [ ] Add task scheduler that run command every x time, also start at startup
  - [ ] command to display proxy settings on the platform
- - [ ] command to export powershell documentation to a .psdoc file 
+ - [x] command to export powershell documentation to a .psdoc file 
  - [ ] a full detail page about the .psdoc file and the command that works with it
  - [x] command to convert powershell documentation to Markdown 
  - [ ] command to convert powershell documentation to reStructured Text
- - [ ] write a small example to use watcherb command with external batch script 
- - [ ] write a small example to use watcher command with external powershell script 
+ - [x] write a small example to use watcherb command with external batch script 
+ - [x] write a small example to use watcher command with external powershell script 
  - [ ] validate objects with https://microsoft.github.io/PSRule/. Urgent
 
