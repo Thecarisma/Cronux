@@ -48,8 +48,6 @@ The script provides wrapper commands for various application e.g git, kubectl. T
 Run your powershell as admin and execute:
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://301s.github.io?3'))
-#or
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://thecarisma.github.io/installx.ps1'))
 ```
 
