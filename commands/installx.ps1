@@ -104,8 +104,6 @@ If (-not [System.IO.File]::Exists("$PSScriptRoot/net/ipof.ps1")) {
     powershell -noprofile -executionpolicy bypass -file ./buildcronux.ps1  ./ ./
 }
 
-$InstallationPath
-
 If ($AddPath -eq $true) { 
     "Adding $InstallationPath to $PathEnvironment Path variable"
     Add-Folder-To-Path "$InstallationPath" 
