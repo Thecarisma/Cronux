@@ -1,8 +1,10 @@
 <#
 .SYNOPSIS
-    Tail a pod log
+    Delete a pod using it full name or select from 
+    matching pods.
 .DESCRIPTION
-    Tail and follow a pod log.
+    Delete a pod using it full name or select from 
+    matching pods.
     Kubectl is required for this command to work, 
     it can be downloaded from 
     https://kubernetes.io/docs/tasks/tools/install-kubectl/
@@ -13,36 +15,27 @@
     [System.String[]]
 .NOTES
     Version    : 1.0
-    File Name  : logpod.ps1
+    File Name  : deletepod.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
-    Date       : March-30-2019
+    Date       : March-31-2019
 .LINK
     https://thecarisma.github.io/Cronux
     https://kubernetes.io/docs/reference/kubectl
 .EXAMPLE
-    logpod mypod
+    deletepod mypod
     Find all pod that match the name 'mypod' the use 
-    the index to select which pod to tail it log.
+    the index to select which pod to delete.
 .EXAMPLE
-    logpod mypod-service-5d94df45ff-pnnn
-    Tail the log of the pod mypod-service-5d94df45ff-pnnn.
-.EXAMPLE
-    logpod mypod -NoTail
-    Find all pod that match the name 'mypod' the use 
-    the index to select which pod to prints it log.
-.EXAMPLE
-    logpod mypod-service-5d94df45ff-pnnn -NoTail
-    Prints the log of the pod mypod-service-5d94df45ff-pnnn 
-    in stdout.
+    deletepod mypod-service-5d94df45ff-pnnn
+    Delete the pod mypod-service-5d94df45ff-pnnn if found 
+    in the current context.
 #>
 
 [CmdletBinding()]
 Param(
     # the full pod name or matching part of pod name
     [Parameter(Mandatory=$true, Position=0)]
-    [string]$PodName,
-    # only print the log do not tail
-    [switch]$NoTail
+    [string]$PodName
 )
 
 Function main {
@@ -75,19 +68,15 @@ Function main {
     } else {
         $Pod_Name = $Pods[0].Name
     }
-    Log-Pod $Pod_Name
+    Delete-Pod $Pod_Name
 }
 
-Function Log-Pod {
+Function Delete-Pod {
     Param(
         [string]$Pod_Name
     )
-    if ($NoTail) {
-        kubectl logs $Pod_Name
-    } else {
-        kubectl logs -f $Pod_Name
-    }
     
+    kubectl delete pod $Pod_Name    
 }
 
 Class MinPod {
