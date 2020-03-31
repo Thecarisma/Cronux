@@ -1,4 +1,4 @@
-#Requires -RunAsAdministrator
+#-Requires -RunAsAdministrator
 #Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://thecarisma.github.io/installx.ps1'))
 
 $AppName = "Cronux"
@@ -63,24 +63,51 @@ Function Add-Folder-To-Path {
     [Environment]::SetEnvironmentVariable("Path", "$NewPath$folder", "$PathEnvironment")
 }
 
-"Preparing to install $AppName $Version"
-Check-Create-Directory $TEMP
-If ($BeforeScript -ne "") {
-    "Executing the BeforeScript..."
-    iex "$BeforeScript"
+Function Iterate-Folder {
+    Param([string]$foldername)
+    
+    Get-ChildItem $foldername | Foreach-Object {
+        If ( -not $_.PSIsContainer) {
+            If ( -not $_.Name.EndsWith(".ps1")) {
+                Return
+            }
+            cp $_.FullName $InstallationPath
+        } Else {
+            Iterate-Folder $_.FullName
+        }
+    }
 }
-"Downloading the program archive..."
-Download-App-Archive
-Check-Create-Directory $InstallationPath
-"Installing $AppName $Version in $InstallationPath"
-Extract-App-Archive "$TEMP\installx_package_.zip" "$InstallationPath"
+
+"Preparing to install $AppName $Version"
+If (-not [System.IO.File]::Exists("$PSScriptRoot/net/ipof.ps1")) {
+    Check-Create-Directory $TEMP
+    If ($BeforeScript -ne "") {
+        "Executing the BeforeScript..."
+        iex "$BeforeScript"
+    }
+    "Downloading the program archive..."
+    Download-App-Archive
+    Check-Create-Directory $InstallationPath
+    "Installing $AppName $Version in $InstallationPath"
+    Extract-App-Archive "$TEMP\installx_package_.zip" "$InstallationPath"
+    Set-Location -Path $InstallationPath
+    If ($AfterScript -ne "") {
+        "Executing the AfterScript..."
+        iex "$AfterScript"
+    }
+    "Installtion completes."
+} else {
+    Check-Create-Directory $InstallationPath
+    Iterate-Folder $PSScriptRoot
+    Set-Location -Path $InstallationPath
+    powershell -noprofile -executionpolicy bypass -file ./extractx.ps1 ./ExportList.txt
+    powershell -noprofile -executionpolicy bypass -file ./buildcronux.ps1  ./ ./
+}
+
+$InstallationPath
+
 If ($AddPath -eq $true) { 
     "Adding $InstallationPath to $PathEnvironment Path variable"
     Add-Folder-To-Path "$InstallationPath" 
 }
-Set-Location -Path $InstallationPath
-If ($AfterScript -ne "") {
-    "Executing the AfterScript..."
-    iex "$AfterScript"
-}
-"Installtion completes."
+

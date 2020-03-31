@@ -56,7 +56,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 If you have git bash installed use the one line command below to install cronux 
 
 ```bash
-git clone https://github.com/Thecarisma/Cronux.git && cd ./Cronux && ./Cronux.bat install
+git clone https://github.com/Thecarisma/Cronux.git && cd ./Cronux && ./Cronux.sh installx
 ```
 
 #### Download Zip and Extract
@@ -66,7 +66,7 @@ Download the zip archive from the repo or release page, extract it to any folder
 To use all the commands you will need to prefix the word **Cronux** before the command e.g `Cronux clear`, `Cronux sudo` e.t.c to make the command available independent of Cronux itself install Cronux with:
 
 ```
-Cronux.bat install
+Cronux.bat installx
 ```
 
 ### Uninstall
@@ -74,7 +74,7 @@ Cronux.bat install
 To uninstall the Entrie Cronux and it sub commands Scripts use the command below
 
 ```
-Cronux uninstall
+Cronux uninstallx
 ```
 
 To remove a single command for example when an actual program with the same full functionality 
