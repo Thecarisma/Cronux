@@ -34,4 +34,31 @@ if ($URL.Contains("://")) {
     $index = $URL.IndexOf("://") + 3
     $URL = $URL.SubString($index, $URL.Length - $index) 
 }
-[System.Net.Dns]::GetHostAddresses($URL) | foreach {$_.IPAddressToString }
+Try {
+    [System.Net.Dns]::GetHostAddresses($URL) | foreach {$_.IPAddressToString }
+} catch {
+    #for internal or url with no dns registered
+    $(Invoke-WebRequest $URL -Method HEAD  | Select-Object -Expand Headers) | foreach {
+        foreach ($Key in $_.Keys) {
+            $Line = $_[$Key]
+            if ($Line.Contains(":")) {
+                $Line = $Line.Split(":")[0]
+            }
+            $Splited = $Line.Split(".")
+            $IsIP = $False
+            If ($Splited.Length -gt 3) {
+                $IsIP = $True
+                For ($i = 0; $i -lt 4 -and $IsIP; $i++) {
+                    try {
+                        $x = [convert]::ToInt32($Splited[$i], 10)
+                    } catch {
+                        $IsIP = $False
+                    }
+                }
+            }
+            If ($IsIP) {
+                $Line
+            }
+        }
+    }
+}
