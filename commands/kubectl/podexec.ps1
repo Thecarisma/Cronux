@@ -82,7 +82,7 @@ Function Pod-Shell {
         [string]$Pod_Name
     )
     
-    kubectl exec $Pod_Name -- $Commands   
+    kubectl exec -it $Pod_Name -- $Commands   
 }
 
 Class MinPod {
