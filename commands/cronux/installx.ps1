@@ -102,6 +102,9 @@ If (-not [System.IO.File]::Exists("$PSScriptRoot/../net/ipof.ps1")) {
     Set-Location -Path $InstallationPath
     powershell -noprofile -executionpolicy bypass -file ./extractx.ps1 ./ExportList.txt
     powershell -noprofile -executionpolicy bypass -file ./buildcronux.ps1  ./ ./
+    If ( -not [System.IO.Directory]::Exists("Cronux-master")) {
+        Remove-Item -path "Cronux-master" -recurse
+    }
 }
 
 If ($AddPath -eq $true) { 
