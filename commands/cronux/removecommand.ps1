@@ -1,33 +1,33 @@
 <#
 .SYNOPSIS
-   List the ip addresses of a url
+    Remove a command from Cronux
 .DESCRIPTION
-    List all the host addresses of a particular url.
-    Internet connection is required to fetch the ip 
-    addresses.
+    Remove a command from Cronux. The command batch 
+    file and it powershell script are deleted also.
 .INPUTS 
     System.String
 .OUTPUTS 
     [System.String]
 .NOTES
     Version    : 1.0
-    File Name  : ipof.ps1
+    File Name  : removecommand.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
-    Date       : March-25-2020
+    Date       : April-01-2020
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE
-    ipof google.com
-    List all the ip addresses of Google url 
+    removecommand ls
+    Remove the ls.bat and ls.ps1 command.
 .EXAMPLE
-    ipof https://www.github.com
-    List all the ip addresses of Github
+    removecommand ls ipof base64
+    Remove the ls.bat, ls.ps1, ipof.bat, ipof.ps1, 
+    base64.bat and base64.ps1 commands.
 #>
 
 [CmdletBinding()]
 Param(
     # The command to remove 
-    [string]$CommandToRemove
+    [string]$CommandsToRemove
 )
 
 $AppName = "Cronux"
