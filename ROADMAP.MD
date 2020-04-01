@@ -58,7 +58,6 @@
  - [ ] command to generate shell entry for right click context without run
  - [ ] command to kill a running app on command line
  - [x] command to download update for cronux
- - [ ] add to chocolatey regostry
  - [ ] command to install a batch script as powershell cmdlet
  - [ ] create command to create empty file
  - [ ] alias command for windows to create commands alias
@@ -70,7 +69,7 @@
  - [ ] command to arrange media in a folder according to artist
  - [ ] add monitorpod command and command monitorallpod to track all pod
  - [ ] seeproxy command to show the system proxy configuration and extractable with specific param, extract from winregistry
- - [ ] a command that delete all Cronux command and delete some
+ - [x] a command that delete all Cronux command and delete some
  - [ ] Add task scheduler that run command every x time, also start at startup
  - [ ] command to display proxy settings on the platform
  - [x] command to export powershell documentation to a .psdoc file 

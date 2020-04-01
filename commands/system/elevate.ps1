@@ -34,4 +34,4 @@ Param(
     [string[]]$ExtraArguments
 )
 
-Start-Process $App \"$ExtraArguments" -Verb RunAs
+Start-Process $App "$ExtraArguments" -Verb RunAs
