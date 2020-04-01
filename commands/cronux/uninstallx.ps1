@@ -17,6 +17,7 @@ $AppName = "Cronux"
 $Version = & "$PSScriptRoot\versionx.ps1"
 
 "Uninstalling $AppName $Version"
+#use removefrompath to remove from path
 $InstallationPath = & "$PSScriptRoot\installfolderx.ps1"
 If ([System.IO.Directory]::Exists($InstallationPath)) {
     Remove-Item -path $InstallationPath -recurse
