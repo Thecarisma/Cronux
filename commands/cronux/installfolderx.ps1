@@ -12,7 +12,7 @@
     Version    : 1.0
     File Name  : installfolderx.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
-    Date       : March-25-2019
+    Date       : April-01-2020
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE

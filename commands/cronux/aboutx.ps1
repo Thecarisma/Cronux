@@ -14,7 +14,7 @@
     Version    : 1.0
     File Name  : aboutx.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
-    Date       : Jan-08-2019
+    Date       : Jan-08-2020
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE

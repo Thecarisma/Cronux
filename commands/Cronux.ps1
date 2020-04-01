@@ -11,7 +11,7 @@
     Version    : 1.0
     File Name  : Cronux.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
-    Date       : Jan-06-2019
+    Date       : Jan-06-2020
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE

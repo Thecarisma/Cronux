@@ -13,7 +13,7 @@
     Version    : 1.0
     File Name  : base64.ps1
     Author     : Philip Mateescu - https://www.reddit.com/user/philipmat/
-    Date       : 2019
+    Date       : 2020
 .LINK
     https://thecarisma.github.io/Cronux
     https://philipm.at/2018/base64_in_powershell.html

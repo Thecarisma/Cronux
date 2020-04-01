@@ -12,7 +12,7 @@
     Version    : 1.0
     File Name  : docronux.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
-    Date       : March-16-2019
+    Date       : March-16-2020
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE

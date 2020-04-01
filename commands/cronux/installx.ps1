@@ -8,10 +8,10 @@ $InstallationPath = & "$PSScriptRoot\installfolderx.ps1"
 $PathEnvironment = "User"
 $BeforeScript = ""
 $AfterScript = "
-    cp ./Cronux-master/commands/extractx.ps1 $InstallationPath
-    cp ./Cronux-master/commands/buildcronux.ps1 $InstallationPath
-    cp ./Cronux-master/commands/batforps.ps1 $InstallationPath
-    cp ./Cronux-master/commands/wrapcommand.ps1 $InstallationPath
+    cp ./Cronux-master/commands/filefolder/extractx.ps1 $InstallationPath
+    cp ./Cronux-master/commands/cronux/buildcronux.ps1 $InstallationPath
+    cp ./Cronux-master/commands/conversions/batforps.ps1 $InstallationPath
+    cp ./Cronux-master/commands/conversions/wrapcommand.ps1 $InstallationPath
     cp ./Cronux-master/*.bat $InstallationPath
     cp ./Cronux-master/*.sh $InstallationPath
     cp ./Cronux-master/LICENSE $InstallationPath
@@ -21,8 +21,6 @@ $AfterScript = "
 "
 
 $AddPath = $true
-$InstallationPath
-return
 
 $Path = [Environment]::GetEnvironmentVariable('Path', "$PathEnvironment")
 $TEMP = Join-Path $env:SystemDrive "temp\installx\$AppName"

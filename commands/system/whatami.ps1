@@ -12,7 +12,7 @@
     Version    : 1.0
     File Name  : whatami.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
-    Date       : March-26-2019
+    Date       : March-26-2020
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE

@@ -17,7 +17,7 @@
     Version    : 1.0
     File Name  : installpfx.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
-    Date       : Jan-09-2019
+    Date       : Jan-09-2020
 .LINK
     https://thecarisma.github.io/Cronux
     https://dev.to/iamthecarisma/managing-certificates-through-powershell-2ok0
