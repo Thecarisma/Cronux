@@ -2,7 +2,7 @@
 #Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://thecarisma.github.io/installx.ps1'))
 
 $AppName = "Cronux"
-$Version = "2.0"
+$Version = & "$PSScriptRoot\versionx.ps1"
 $AppArchiveUrl = "https://github.com/Thecarisma/Cronux/archive/master.zip"
 $InstallationPath = & "$PSScriptRoot\installfolderx.ps1"
 $PathEnvironment = "User"
@@ -79,7 +79,7 @@ Function Iterate-Folder {
 }
 
 "Preparing to install $AppName $Version"
-If (-not [System.IO.File]::Exists("$PSScriptRoot/net/ipof.ps1")) {
+If (-not [System.IO.File]::Exists("$PSScriptRoot/../net/ipof.ps1")) {
     Check-Create-Directory $TEMP
     If ($BeforeScript -ne "") {
         "Executing the BeforeScript..."

@@ -31,7 +31,7 @@ Param(
     [switch]$Licence
 )
 
-$version_value = "2.0"
+$version_value = & "$PSScriptRoot\versionx.ps1"
 $author_value = "Adewale Azeez"
 $licence_value = "MIT License"
 $year_value = "2020"

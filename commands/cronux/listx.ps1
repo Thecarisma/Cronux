@@ -31,7 +31,13 @@ Param(
     [switch]$All
 )
 
-$command_folder = [System.IO.Path]::GetFullPath($PSScriptRoot)
+$command_folder = $PSScriptRoot
+If ( -not [System.IO.File]::Exists("$command_folder\Cronux.ps1")) {
+    $command_folder = "..\..\"
+    If ( -not [System.IO.File]::Exists("$command_folder\Cronux.ps1")) {
+        $command_folder = ".\"
+    }
+}
 $export_list_path = "$command_folder\ExportList.txt"
 $Global:count = 0
 

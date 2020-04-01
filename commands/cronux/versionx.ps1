@@ -13,4 +13,7 @@
     Returns the folder where Cronux is installed.
 #>
 
-"2.1"
+$Major = 2
+$Min = 1
+$Build = 0000
+"$Major.$Min.$Build"
