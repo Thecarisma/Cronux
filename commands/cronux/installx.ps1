@@ -17,8 +17,18 @@ $AfterScript = "
     cp ./Cronux-master/LICENSE $InstallationPath
     powershell -noprofile -executionpolicy bypass -file ./extractx.ps1 ./ExportList.txt
     powershell -noprofile -executionpolicy bypass -file ./buildcronux.ps1  ./ ./
-    Remove-Item -path Cronux-master -recurse
+    Remove-Item -path ./Cronux-master -recurse
 "
+$CommandsFolder = $PSScriptRoot
+If ( -not [System.IO.File]::Exists("$CommandsFolder\Cronux.ps1")) {
+    $CommandsFolder = "$PSScriptRoot\..\"
+    If ( -not [System.IO.File]::Exists("$CommandsFolder\Cronux.ps1")) {
+        $CommandsFolder = "$PSScriptRoot\..\..\"
+        If ( -not [System.IO.File]::Exists("$CommandsFolder\Cronux.ps1")) {
+            $CommandsFolder = "$PSScriptRoot\..\..\..\"
+        }
+    }
+}
 
 $AddPath = $true
 
@@ -98,12 +108,13 @@ If (-not [System.IO.File]::Exists("$PSScriptRoot/../net/ipof.ps1")) {
     "Installtion completes."
 } else {
     Check-Create-Directory $InstallationPath
-    Iterate-Folder $PSScriptRoot
+    $CommandsFolder
+    Iterate-Folder $CommandsFolder
     Set-Location -Path $InstallationPath
     powershell -noprofile -executionpolicy bypass -file ./extractx.ps1 ./ExportList.txt
     powershell -noprofile -executionpolicy bypass -file ./buildcronux.ps1  ./ ./
-    If ( -not [System.IO.Directory]::Exists("Cronux-master")) {
-        Remove-Item -path "Cronux-master" -recurse
+    If ([System.IO.Directory]::Exists("./Cronux-master")) {
+        Remove-Item -path "./Cronux-master" -recurse
     }
 }
 

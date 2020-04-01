@@ -33,9 +33,12 @@ Param(
 
 $command_folder = $PSScriptRoot
 If ( -not [System.IO.File]::Exists("$command_folder\Cronux.ps1")) {
-    $command_folder = "$PSScriptRoot\..\..\"
+    $command_folder = "$PSScriptRoot\..\"
     If ( -not [System.IO.File]::Exists("$command_folder\Cronux.ps1")) {
-        $command_folder = "$PSScriptRoot\.\"
+        $command_folder = "$PSScriptRoot\..\..\"
+        If ( -not [System.IO.File]::Exists("$command_folder\Cronux.ps1")) {
+            $command_folder = "$PSScriptRoot\..\..\..\"
+        }
     }
 }
 $export_list_path = "$command_folder\ExportList.txt"
