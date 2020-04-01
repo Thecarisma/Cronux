@@ -108,7 +108,6 @@ If (-not [System.IO.File]::Exists("$PSScriptRoot/../net/ipof.ps1")) {
     "Installtion completes."
 } else {
     Check-Create-Directory $InstallationPath
-    $CommandsFolder
     Iterate-Folder $CommandsFolder
     Set-Location -Path $InstallationPath
     powershell -noprofile -executionpolicy bypass -file ./extractx.ps1 ./ExportList.txt

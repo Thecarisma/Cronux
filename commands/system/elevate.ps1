@@ -34,4 +34,8 @@ Param(
     [string[]]$ExtraArguments
 )
 
-Start-Process $App "$ExtraArguments" -Verb RunAs
+if ($ExtraArguments) {
+    Start-Process $App "$ExtraArguments" -Verb RunAs
+} else {
+    Start-Process $App -Verb RunAs
+}
