@@ -130,7 +130,7 @@ Set-ExecutionPolicy Bypass
 or use the command in Cronux:
 
 ```powershell
-makepsunsafe.bat
+elevate.bat makepsunsafe.bat
 ```
 
 After you are done with the session or when you want the Execution policy to be secure again execute
@@ -142,7 +142,7 @@ Set-ExecutionPolicy Restricted
 or use the command in Cronux:
 
 ```powershell
-makepssafeagain.bat
+elevate.bat makepssafeagain.bat
 ```
 
 It advisable to make the Execution policy restricted for safety reasons.
