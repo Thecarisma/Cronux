@@ -65,7 +65,7 @@ Function main {
             "$($Index): $($Apod.Name)"
             $Index++
         }
-        $Loc = Read-Host 'Which pod do you want to log? '
+        $Loc = Read-Host 'Which pod do you want to exec in? '
         $Pod_Name = $Pods[$Loc].Name
         if (-not $Pod_Name) {
             "Invalid index specified '$Loc'" | Write-Host -Fore red

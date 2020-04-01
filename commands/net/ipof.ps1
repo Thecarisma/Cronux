@@ -27,16 +27,28 @@
 [CmdletBinding()]
 Param(
     #the url to fetch it ip addresses
-    [string]$URL
+    [string]$URL,
+    # Use the Invoke-WebRequest with Method HEAD to find Ip
+    [switch]$Head
 )
 
-if ($URL.Contains("://")) {
-    $index = $URL.IndexOf("://") + 3
-    $URL = $URL.SubString($index, $URL.Length - $index) 
+Function main {
+    if ($URL.Contains("://")) {
+        $index = $URL.IndexOf("://") + 3
+        $URL = $URL.SubString($index, $URL.Length - $index) 
+    }
+    if ($Head) {
+        Invoke-WebRequest-Head
+    } else {
+        Try {
+            [System.Net.Dns]::GetHostAddresses($URL) | foreach {$_.IPAddressToString }
+        } catch {
+            Invoke-WebRequest-Head
+        }
+    }
 }
-Try {
-    [System.Net.Dns]::GetHostAddresses($URL) | foreach {$_.IPAddressToString }
-} catch {
+
+Function Invoke-WebRequest-Head {
     #for internal or url with no dns registered
     $(Invoke-WebRequest $URL -Method HEAD  | Select-Object -Expand Headers) | foreach {
         foreach ($Key in $_.Keys) {
@@ -62,3 +74,5 @@ Try {
         }
     }
 }
+
+main

@@ -4,7 +4,7 @@
 $AppName = "Cronux"
 $Version = "2.0"
 $AppArchiveUrl = "https://github.com/Thecarisma/Cronux/archive/master.zip"
-$InstallationPath = $env:ProgramData + "\$AppName\"
+$InstallationPath = & "$PSScriptRoot\installfolderx.ps1"
 $PathEnvironment = "User"
 $BeforeScript = ""
 $AfterScript = "
@@ -21,6 +21,8 @@ $AfterScript = "
 "
 
 $AddPath = $true
+$InstallationPath
+return
 
 $Path = [Environment]::GetEnvironmentVariable('Path', "$PathEnvironment")
 $TEMP = Join-Path $env:SystemDrive "temp\installx\$AppName"
