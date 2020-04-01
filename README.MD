@@ -23,6 +23,7 @@ ___
 		- [Download Zip and Extract](#download-zip-and-extract)
 	- [Uninstall](#uninstall)
 	- [Update](#update)
+- [Creating alias](#creating-alias)
 - [Usage](#usage)
 	- [Powershell Exeception](#powershell-exeception)
 - [Available Commands](#available-commands)
@@ -99,6 +100,33 @@ or
 Cronux updatex
 ```
 
+## Creating alias
+
+The `shorty` command can be used to create a short alias for a long command. So instead of executing 
+a long command from the CLI the alias script can be called to execute the commands e.g. the following 
+command add edited stage files then commit it with the message 'new feature'. 
+
+```powershell
+git add .
+git commit -m "new feature"
+```
+
+The shorty command can create a script to do the above operation without the need to type out all the 
+git command. To create a short script for the command above just call `shorty` and add the command when 
+prompt. On prompt AliasName enter the name for your generated script. On the Command prompt enter the commands 
+if you are done youe .exit for the command value.
+
+```powershell
+shorty
+#AliasName: gc
+#Command: git add .
+#Command: git commit -m "new feature"
+#Command: .exit
+```
+
+You command will be generated in the folder **$ProgramData/CronuxShorty/**. Then you can just call the script 
+`gc` in your terminal instead of typing the git command.
+
 ## Usage
 
 After installation you can use the commands independently as each batch script 
@@ -130,7 +158,7 @@ Set-ExecutionPolicy Bypass
 or use the command in Cronux:
 
 ```powershell
-elevate.bat makepsunsafe.bat
+makepsunsafe.bat
 ```
 
 After you are done with the session or when you want the Execution policy to be secure again execute
@@ -142,7 +170,7 @@ Set-ExecutionPolicy Restricted
 or use the command in Cronux:
 
 ```powershell
-elevate.bat makepssafeagain.bat
+makepssafeagain.bat
 ```
 
 It advisable to make the Execution policy restricted for safety reasons.
@@ -152,13 +180,14 @@ It advisable to make the Execution policy restricted for safety reasons.
 All the command are listed below with it alias(es)
 
 ```bash
-docronux, ps12markdown, psdoc, psdoc2markdown, superwatcher,
+$, gencert, gencodesigncert, installpfx, installpfxx, batforps,
+pstobat, wrapcommand, aboutx, buildcronux, chelp, helpx, installfolderx,
+installx, listx, uninstallx, updatex, versionx, base64, base64s,
+docronux, ps12markdown, psdoc, psdoc2markdown, extractx, superwatcher,
 touch, watcher, watcherb, gitclone, gitcommit, gitfpush, gitpull,
-gitpush, gitstatus, getpods, kubecontext, logpod, portforward,
-ipof, whatami, $, aboutx, base64, base64s, batforps, buildcronux,
-chelp, close, Cronux, extractx, gencert, gencodesigncert, helpx,
-installpfx, installpfxx, installx, listx, printhead, pstobat,
-updatex, wrapcommand
+gitpush, gitstatus, deletepod, getpods, kubecontext, logpod, podexec,
+podshell, portforward, ipof, printhead, close, elevate, makepssafeagain,
+makepsunsafe, whatami, Cronux
 ```
 
 To view all the Cronux native and exported commands:
