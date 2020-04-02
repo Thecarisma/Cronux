@@ -134,8 +134,13 @@ Content of {0}
         
         # lazy coding here
         $RelName = $RelName.Replace(".\", "").Replace("\", ".").Replace(".", ".").Trim()
+        $NName = $($_.Name)
+        if ($NName -eq "") {
+            $NName = $ProjectName
+        }
         [System.IO.File]::WriteAllLines("$OutputName\index.md",  $IndexMarkdown)
-        [System.IO.File]::WriteAllLines("$OutputName\index.$RelName.md",  $IndexMarkdown)
+        #[System.IO.File]::WriteAllLines("$OutputName\index.$RelName.md",  $IndexMarkdown)
+        [System.IO.File]::WriteAllLines("$OutputName\$NName.md",  $IndexMarkdown)
     }
 }
 
