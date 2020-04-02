@@ -369,7 +369,8 @@ Function Parse-Parameters {
             $Global:current = ""
         } else {
             if (-not [string]::IsNullOrWhitespace($Global:parameters) -and $argument.StartsWith("-")) {
-                $Global:parameters += "```````r`n`r`n"
+                $Global:parameters = $Global:parameters.TrimEnd()
+                $Global:parameters += "`r`n```````r`n`r`n"
             }
             if ($argument.StartsWith("<") -and $argument.EndsWith(">")) {
                 $argument = $argument.SubString(1, $argument.Length - 2);
