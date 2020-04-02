@@ -96,11 +96,11 @@ Function Iterate-Folder {
             If ( -not $_.Name.EndsWith(".psdoc")) {
                 Return
             }
-            $index_toc[$NameOnly] = "$NameOnly.md"
+            $index_toc[$NameOnly] = "$NameOnly"
             PsDoc-to-Markdown $_.FullName $OutputName
         } Else {
             If ($Recurse) {
-                $index_toc[$_.Name] = "$($_.Name)/index.md"
+                $index_toc[$_.Name] = "$($_.Name)"
                 Iterate-Folder $_.FullName
             }
         }
@@ -135,7 +135,6 @@ Content of {0}
         # lazy coding here
         $RelName = $RelName.Replace(".\", "").Replace("\", ".").Replace(".", ".").Trim()
         [System.IO.File]::WriteAllLines("$OutputName\index.md",  $IndexMarkdown)
-        [System.IO.File]::WriteAllLines("$OutputName\index.$RelName.md",  $IndexMarkdown)
     }
 }
 
