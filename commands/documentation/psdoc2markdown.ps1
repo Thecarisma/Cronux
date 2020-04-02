@@ -135,6 +135,7 @@ Content of {0}
         # lazy coding here
         $RelName = $RelName.Replace(".\", "").Replace("\", ".").Replace(".", ".").Trim()
         [System.IO.File]::WriteAllLines("$OutputName\index.md",  $IndexMarkdown)
+        [System.IO.File]::WriteAllLines("$OutputName\index.$RelName.md",  $IndexMarkdown)
     }
 }
 
