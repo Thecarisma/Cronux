@@ -108,7 +108,7 @@ Function Iterate-Folder {
         }
     }
     if (-not $SkipIndex) {
-        $RelName = ".\$RelName "
+        $RelName = $(".\$RelName ").Replace(".\", "").Replace("\", "/")
         if ($SkipHtml) {
             $IndexMarkdown = "
 # {0}
@@ -135,7 +135,7 @@ Content of {0}
         }
         
         # lazy coding here
-        $RelName = $RelName.Replace(".\", "").Replace("\", ".").Replace(".", ".").Trim()
+        $RelName = $RelName.Replace("/", ".").Trim()
         $NName = $($_.Name)
         if (-not $NName) {
             $NName = $ProjectName

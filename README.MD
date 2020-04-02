@@ -1,10 +1,10 @@
-# <p style="text-align: center;" align="center">Cronux</p>
+# Cronux
 
-<p style="text-align: center;" align="center">Handy commands to perform simple and complex tasks with Powershell</p>	
+Handy commands to perform simple and complex tasks with Powershell
 
 ___
 
-<span style="display:block;text-align:center"> ![GitHub repo size](https://img.shields.io/github/repo-size/Thecarisma/Cronux)	![GitHub contributors](https://img.shields.io/github/contributors/Thecarisma/Cronux) [![Twitter Follow](https://img.shields.io/twitter/follow/iamthecarisma?style=social)](https://twitter.com/iamthecarisma)	 [![Support on Patreon](https://img.shields.io/static/v1?label=Support%20Devcareer%20on%20Patreon&message=$10&color=brightgreen)](https://www.patreon.com/join/devcareer/checkout?rid=3922862)</span>
+![GitHub repo size](https://img.shields.io/github/repo-size/Thecarisma/Cronux)	![GitHub contributors](https://img.shields.io/github/contributors/Thecarisma/Cronux) [![Twitter Follow](https://img.shields.io/twitter/follow/iamthecarisma?style=social)](https://twitter.com/iamthecarisma)	 [![Support on Patreon](https://img.shields.io/static/v1?label=Support%20Devcareer%20on%20Patreon&message=$10&color=brightgreen)](https://www.patreon.com/join/devcareer/checkout?rid=3922862)
 
 This repo contains Super useful handy commands to perform simple and complex task on the command line. Powershell has powerful command line functionality due to it interopability with visual basic script, the .NET sdk and installed apps. This project also exports over 100 built in commands in powershell to be used from the Windows Command prompt.
 

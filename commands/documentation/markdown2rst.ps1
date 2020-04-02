@@ -41,7 +41,9 @@ Param(
     # generate reStructuredText in subfolders?
     [switch]$Recurse,
     # whether to print anything to the console
-    [switch]$Silent
+    [switch]$Silent,
+    # format relative link to properly locate file in documentation
+    [switch]$FormatInternalLink
 )
 
 $MdPath = [System.IO.Path]::GetFullPath($MdPath)
@@ -110,11 +112,15 @@ Function Markdown-To-ReStructuredText {
     if (-not $Silent) {
         Write-Host "Generating rst for $Name_Only.md -> " -NoNewLine
     }
-    pandoc $SinglePsDocPath -t rst -o "$SavePath/$Name_Only.rst"
+    if ($FormatInternalLink) {
+        pandoc $SinglePsDocPath -t rst -o "$SavePath/$Name_Only.rst" --lua-filter="`"$PSScriptRoot/convert_link_to_ref_in_rst.lua`""
+    } else {
+        pandoc $SinglePsDocPath -t rst -o "$SavePath/$Name_Only.rst"
+    }
     
     $RelativePath = Resolve-Path -relative $SavePath
     if (-not $Silent) {
-        "$RelativePath\$Name_Only.md"
+        "$RelativePath\$Name_Only.rst"
     }
     
 }
