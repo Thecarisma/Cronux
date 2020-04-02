@@ -1,10 +1,18 @@
 #-Requires -RunAsAdministrator
 #Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://thecarisma.github.io/installx.ps1'))
 
+Function Install-Folder-X {
+    if ($Env:OS.StartsWith("Windows")) {
+        return $env:ProgramData + "\Cronux\"
+    } else {
+        return "/bin/Cronux/"
+    }
+}
+
 $AppName = "Cronux"
 $Version = & "$PSScriptRoot\versionx.ps1"
 $AppArchiveUrl = "https://github.com/Thecarisma/Cronux/archive/master.zip"
-$InstallationPath = & "$PSScriptRoot\installfolderx.ps1"
+$InstallationPath = Install-Folder-X
 $PathEnvironment = "User"
 $BeforeScript = ""
 $AfterScript = "
