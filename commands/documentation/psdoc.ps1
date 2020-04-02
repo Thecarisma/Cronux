@@ -61,7 +61,10 @@ Function Iterate-Folder {
     Param(
         [string]$FolderName
     )
-    if (($FolderName + '\') -eq $OutputFolder) {
+    
+    $NN1 = [System.IO.Path]::GetFileNameWithoutExtension($FolderName)
+    $NN2 = [System.IO.Path]::GetFileNameWithoutExtension($OutputFolder)
+    if ((($FolderName + '\') -eq $OutputFolder) -or $NN1 -eq "dist") {
         return
     }
     $RelName = $FolderName.SubString($Path.Length, $FolderName.Length - $Path.Length)

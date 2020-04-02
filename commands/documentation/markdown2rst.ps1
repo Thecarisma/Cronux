@@ -70,9 +70,9 @@ Function main {
 Function Iterate-Folder {
     Param([string]$FolderName)
     
-    $NN1 = [System.IO.Path]::GetFileNameWithoutExtension($MdPath)
+    $NN1 = [System.IO.Path]::GetFileNameWithoutExtension($FolderName)
     $NN2 = [System.IO.Path]::GetFileNameWithoutExtension($OutputFolder)
-    if ((($FolderName + '\') -eq $OutputFolder) -or $NN1 -eq $NN2) {
+    if ((($FolderName + '\') -eq $OutputFolder) -or $NN1 -eq "dist") {
         return
     }
     
@@ -131,7 +131,6 @@ Function Create-Directory {
         }
     }
 }
-
 
 
 main

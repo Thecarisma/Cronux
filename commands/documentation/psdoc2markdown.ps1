@@ -75,7 +75,9 @@ Function main {
 Function Iterate-Folder {
     Param([string]$FolderName)
     
-    if (($FolderName + '\') -eq $OutputFolder) {
+    $NN1 = [System.IO.Path]::GetFileNameWithoutExtension($MdPath)
+    $NN2 = [System.IO.Path]::GetFileNameWithoutExtension($OutputFolder)
+    if ((($FolderName + '\') -eq $OutputFolder) -or $NN1 -eq "dist") {
         return
     }
     
