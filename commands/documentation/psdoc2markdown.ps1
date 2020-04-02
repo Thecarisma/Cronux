@@ -102,7 +102,7 @@ Function Iterate-Folder {
             PsDoc-to-Markdown $_.FullName $OutputName
         } Else {
             If ($Recurse) {
-                $index_toc[$_.Name] = "$($_.Name)"
+                $index_toc[$_.Name] = "/$($_.Name)"
                 Iterate-Folder $_.FullName
             }
         }
