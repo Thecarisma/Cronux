@@ -29,6 +29,9 @@ Param(
     # the folder to put generated exported documenation
     [Parameter(Mandatory=$true, Position=1)]
     [string]$OutputFolder,
+    # The project name
+    [Parameter(Mandatory=$false, Position=2)]
+    [string]$ProjectName,
     # do not use html to position and format document
     [switch]$SkipHtml,
     # do not add notes detail before description
@@ -42,7 +45,7 @@ Param(
 )
 
 & "$PSScriptRoot\psdoc.ps1" $Path "$OutputFolder" -Recurse:$Recurse -Silent:$Silent 
-& "$PSScriptRoot\psdoc2markdown.ps1" $OutputFolder $OutputFolder -SkipHtml:$SkipHtml -SkipNotes:$SkipNotes -Silent:$Silent -Recurse:$Recurse
+& "$PSScriptRoot\psdoc2markdown.ps1" $OutputFolder $OutputFolder $ProjectName -SkipHtml:$SkipHtml -SkipNotes:$SkipNotes -Silent:$Silent -Recurse:$Recurse
 
 If (-not $Keep) {
     if (-not $Silent) {

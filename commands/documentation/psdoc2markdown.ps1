@@ -34,6 +34,9 @@ Param(
     # the folder to put generated markdown
     [Parameter(Mandatory=$true, Position=1)]
     [string]$OutputFolder,
+    # The project name
+    [Parameter(Mandatory=$false, Position=2)]
+    [string]$ProjectName,
     # do not use html to position and format document
     [switch]$SkipHtml,
     # do not add notes detail before description
@@ -80,6 +83,9 @@ Function Iterate-Folder {
     $RelName = $FolderName.SubString($PsDocPath.Length, $FolderName.Length - $PsDocPath.Length)
     $OutputName = $OutputFolder + $RelName
     Create-Directory $OutputName
+    if ($RelName.Trim() -eq "") {
+        $RelName = $ProjectName
+    }
     
     Get-ChildItem $FolderName | Foreach-Object {
         $NameOnly = $_.Name
@@ -126,7 +132,11 @@ Content of {0}
            $IndexMarkdown += $index_pointer = "- [{0}](./{1})`r`n" -f $key, $index_toc[$key]
         }
         
+        # lazy coding here
+        $RelName = $RelName.Replace(".\", "").Replace("\", ".").Replace(".", ".").Trim()
+        $RelName
         [System.IO.File]::WriteAllLines("$OutputName\index.md",  $IndexMarkdown)
+        [System.IO.File]::WriteAllLines("$OutputName\index.$RelName.md",  $IndexMarkdown)
     }
 }
 
@@ -159,6 +169,7 @@ $Global:parsing_examples = $false
 $Global:examples = ""
 $Global:prev_single_empty = $false
 $Global:body = ""
+$Global:DocHasParameter = $False
 
 Function PsDoc-to-Markdown {
     Param(
@@ -189,6 +200,7 @@ Function PsDoc-to-Markdown {
                 continue
                 
             } elseif ($header -eq "PARAMETERS") {
+                $Global:DocHasParameter = $False
                 $area_type = "Parameters"
                 continue
                 
@@ -333,7 +345,7 @@ Function Parse-Notes {
 }
 
 #$ParametersCodeStack = new-object System.Collections.Stack
-$Global:DocHasParameter = $False
+
 
 Function Parse-Parameters {
     param([string]$argument)

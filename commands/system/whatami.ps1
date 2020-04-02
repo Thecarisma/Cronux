@@ -20,11 +20,6 @@
     It tell you who you really are.
 #>
 
-[CmdletBinding()]
-Param(
-    $test
-)
-
 "Really what you are? "
 "How the heck am I suppose to know what you are"
 "Whatever you are, please drink a lot of water"
