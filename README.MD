@@ -27,6 +27,7 @@ ___
 - [Usage](#usage)
 	- [Powershell Exeception](#powershell-exeception)
 - [Available Commands](#available-commands)
+- [Wikis](#wikis)
 - [Contributing](#contributing)
 - [Support](#support)
 - [Useful Links](#useful-links)
@@ -205,6 +206,23 @@ Cronux helpx [command]
 
 #e.g. base64 help
 ```
+
+## Wikis
+
+- [commands](https://github.com/Thecarisma/Cronux/wiki/commands)
+- [kubectl](https://github.com/Thecarisma/Cronux/wiki/kubectl)
+- [documentation](https://github.com/Thecarisma/Cronux/wiki/documentation)
+- [filefolder](https://github.com/Thecarisma/Cronux/wiki/filefolder)
+- [cronux](https://github.com/Thecarisma/Cronux/wiki/Cronux)
+- [archive](https://github.com/Thecarisma/Cronux/wiki/archive)
+- [alias](https://github.com/Thecarisma/Cronux/wiki/alias)
+- [crypto](https://github.com/Thecarisma/Cronux/wiki/crypto)
+- [system](https://github.com/Thecarisma/Cronux/wiki/system)
+- [git](https://github.com/Thecarisma/Cronux/wiki/git)
+- [net](https://github.com/Thecarisma/Cronux/wiki/net)
+- [certificates](https://github.com/Thecarisma/Cronux/wiki/certificates)
+- [others](https://github.com/Thecarisma/Cronux/wiki/others)
+- [conversions](https://github.com/Thecarisma/Cronux/wiki/conversions)
 
 ## Contributing
 
