@@ -34,7 +34,7 @@ If ( -not [System.IO.File]::Exists("$dir\Cronux.bat")) {
 
 #& "$PSScriptRoot\ps12markdown.ps1" "$dir" "$dir\dist\wiki\" "Cronux" -Recurse -SkipHtml
 #cp README.MD "$dir\dist\wiki\Home.md"
-& "$PSScriptRoot\markdown2rst.ps1" "$dir\dist\wiki\" "$dir\dist\gh-pages\" -Recurse
+& "$PSScriptRoot\markdown2rst.ps1" "$dir\dist\wiki\" "$dir\dist\gh-pages\" -Recurse -FormatInternalLink
 
 [System.IO.File]::WriteAllLines("$dir\dist\gh-pages\index.rst",  "
 
