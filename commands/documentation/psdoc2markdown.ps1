@@ -332,6 +332,9 @@ Function Parse-Notes {
     $Global:body += $Global:current
 }
 
+#$ParametersCodeStack = new-object System.Collections.Stack
+$Global:DocHasParameter = $False
+
 Function Parse-Parameters {
     param([string]$argument)
     
@@ -340,6 +343,7 @@ Function Parse-Parameters {
          if ($argument.Length -gt 4 -and $argument.StartsWith("   ")) {
             $argument = $argument.SubString(4, $argument.Length - 4)
             if ($argument.StartsWith("Required?")) {
+                $Global:DocHasParameter = $True
                 $Global:parameters += "```````powershell`r`n"
             }
             Parse-Any $argument
@@ -351,7 +355,10 @@ Function Parse-Parameters {
             }
             if ($argument.StartsWith("<") -and $argument.EndsWith(">")) {
                 $argument = $argument.SubString(1, $argument.Length - 2);
-                $Global:parameters += "```````r`n`r`n"
+                If ($Global:DocHasParameter -eq $True) {
+                    $Global:parameters = $Global:parameters.TrimEnd()
+                    $Global:parameters += "`r`n```````r`n`r`n"
+                }
                 $Global:parameters += "### $argument`r`n`r`n"
                 $Global:has_commonparams = $true
                 return

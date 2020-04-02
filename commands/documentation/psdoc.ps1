@@ -41,7 +41,7 @@ $CHelpPath = "$PSScriptRoot\helpx.ps1"
 $Global:count = 0
 
 If ( -not [System.IO.File]::Exists($CHelpPath)) {
-    $CHelpPath = "$PSScriptRoot\..\helpx.ps1"
+    $CHelpPath = "$PSScriptRoot\..\cronux\helpx.ps1"
 }
 
 Function Create-Directory {
