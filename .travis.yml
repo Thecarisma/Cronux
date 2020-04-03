@@ -12,6 +12,8 @@ before_script:
 
 script:
   - choco install pandoc
+  - choco install python
+  #- pip install themata
   - powershell -Command Set-ExecutionPolicy Bypass
   - powershell -Command $(pwd)/Cronux.bat docronux
   - powershell -Command ls $(pwd)/dist/wiki/
