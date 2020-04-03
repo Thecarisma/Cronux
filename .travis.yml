@@ -12,6 +12,7 @@ before_script:
 
 script:
   - echo $(pwd)
+  - Set-ExecutionPolicy Bypass
   - ./Cronux.bat ps12markdown $(pwd)\commands\ $(pwd)\dist\cronux_doc\ -Recurse
   - ls $(pwd)/dist/cronux_doc/
   
