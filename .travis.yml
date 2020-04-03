@@ -12,18 +12,18 @@ before_script:
 
 script:
   - echo $(pwd)
-  - Set-ExecutionPolicy Bypass
-  - ./Cronux.bat ps12markdown $(pwd)\commands\ $(pwd)\dist\cronux_doc\ -Recurse
-  - ls $(pwd)/dist/cronux_doc/
+  - powershell -Command Set-ExecutionPolicy Bypass
+  - powershell -Command $(pwd)/Cronux.bat ps12markdown $(pwd)\commands\ $(pwd)\dist\cronux_doc\ -Recurse
+  - powershell -Command ls $(pwd)/dist/cronux_doc/
   
 deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep_history: true
-  local_dir: ./build/documentation/
-  on:
-    branch: master
+  # provider: pages
+  # skip_cleanup: true
+  # github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  # keep_history: true
+  # local_dir: ./build/documentation/
+  # on:
+    # branch: master
   # provider: releases
   # skip_cleanup: true
   # api_key: $GITHUB_TOKEN
