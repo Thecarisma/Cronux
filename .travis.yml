@@ -16,17 +16,18 @@ script:
   #- pip install themata
   - powershell -Command Set-ExecutionPolicy Bypass
   - powershell -Command $(pwd)/Cronux.bat docronux
-  - cd $(pwd)/dist/
+  - cd dist/
   - git clone https://github.com/Thecarisma/Cronux.wiki.git
-  - cd Cronux.wiki
-  - powershell -Command pwd
-  - powershell -Command mv ../wiki/* ./ -Force 
+  - cd Cronux.wiki/
+  - ls $(pwd)
+  - ls ../wiki/
+  - mv ../wiki/* ./
   - git config --local user.email "azeezadewale98@gmail.com"
   - git config --local user.name "Travis CI"
   - git add .; git commit -m "Travis build=${TRAVIS_BUILD_NUMBER}. Update Wiki from Travis CI"
   - git push https://Thecarisma:${GITHUB_TOKEN}@github.com/Thecarisma/Cronux.wiki.git HEAD:master;
   - cd ../../
-  - powershell -Command ls $(pwd)/dist/gh-pages/
+  - ls dist/
   
 deploy:
   # provider: pages
