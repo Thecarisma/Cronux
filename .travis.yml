@@ -19,9 +19,7 @@ script:
   - cd dist/
   - git clone https://github.com/Thecarisma/Cronux.wiki.git
   - cd Cronux.wiki/
-  - ls $(pwd)
-  - ls ../wiki/
-  - mv ../wiki/* ./
+  - cp -r ../wiki/* ./
   - git config --local user.email "azeezadewale98@gmail.com"
   - git config --local user.name "Travis CI"
   - git add .; git commit -m "Travis build=${TRAVIS_BUILD_NUMBER}. Update Wiki from Travis CI"
