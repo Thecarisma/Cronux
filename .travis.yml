@@ -12,8 +12,9 @@ before_script:
 
 script:
   - echo $(pwd)
+  - powershell -Command ls
   - powershell -Command Set-ExecutionPolicy Bypass
-  - powershell -Command $(pwd)/Cronux.bat ps12markdown $(pwd)\commands\ $(pwd)\dist\cronux_doc\ -Recurse
+  - powershell -Command $(pwd)/Cronux.bat ps12markdown $(pwd)/commands/ $(pwd)/dist/cronux_doc/ -Recurse
   - powershell -Command ls $(pwd)/dist/cronux_doc/
   
 deploy:
