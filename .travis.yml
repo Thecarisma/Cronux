@@ -11,11 +11,11 @@ before_script:
   #is windows and will come prebuilt with powershell, .NET platform, VBS and Batch
 
 script:
-  - echo $(pwd)
-  - powershell -Command ls
+  - choco install pandoc
   - powershell -Command Set-ExecutionPolicy Bypass
-  - powershell -Command $(pwd)/Cronux.bat ps12markdown $(pwd)/commands/ $(pwd)/dist/cronux_doc/ -Recurse
-  - powershell -Command ls $(pwd)/dist/cronux_doc/
+  - powershell -Command $(pwd)/Cronux.bat docronux
+  - powershell -Command ls $(pwd)/dist/wiki/
+  - powershell -Command ls $(pwd)/dist/gh-pages/
   
 deploy:
   # provider: pages
