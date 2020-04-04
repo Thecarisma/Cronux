@@ -35,15 +35,12 @@ script:
   - cd dist/gh-pages/
   - C:/Python27/Scripts/sphinx-build.exe -b html -d build/doctrees  ./ build/html
   - cd ../../
-  - mkdir website
-  - cp -r dist/gh-pages/* website/
-  - ls website/
   
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep_history: true
-  local_dir: website
+  local_dir: /C/Users/travis/build/Thecarisma/Cronux/dist/gh-pages/build/html
   on:
      branch: master
