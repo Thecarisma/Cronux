@@ -15,13 +15,10 @@ before_script:
   #is windows and will come prebuilt with powershell, .NET platform, VBS and Batch
 
 script:
-  #- use cronux to add python script to path
-  - echo $PATH
   - mkdir dist/
   - cd dist/
   - git clone https://github.com/Thecarisma/themata.git
   - cd themata/
-  - ls
   - C:/Python27/Scripts/pip.exe install .
   - cd ../../
   - powershell -Command Set-ExecutionPolicy Bypass
@@ -37,14 +34,16 @@ script:
   - cd ../../
   - cd dist/gh-pages/
   - C:/Python27/Scripts/sphinx-build.exe -b html -d build/doctrees  ./ build/html
-  - ls 
   - cd ../../
+  - mkdir website
+  - cp -r dist/gh-pages/* website/
+  - ls website/
   
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep_history: true
-  local_dir: dist/gh-pages/build/html/
+  local_dir: website
   on:
      branch: master
