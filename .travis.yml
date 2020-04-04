@@ -7,7 +7,7 @@ before_install:
   - choco install pandoc
   - choco install python
   - choco install pip
-  - pip install sphinx
+  - python -m pip install sphinx
   #- pip install themata
   
 before_script:
