@@ -13,7 +13,7 @@ before_script:
 script:
   - choco install pandoc
   - choco install python
-  #- pip install themata
+  - pip install themata
   - powershell -Command Set-ExecutionPolicy Bypass
   - powershell -Command $(pwd)/Cronux.bat docronux
   - cd dist/

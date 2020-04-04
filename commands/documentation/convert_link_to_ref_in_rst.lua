@@ -5,7 +5,7 @@
 -- when exported from markdown2rst e.g it converts `File <.//file>`__
 -- to :doc:`./file/index`
 function Link(el)
-    if (string.find(el.target, "%//")) then 
+    if (string.find(el.target, "%.//")) then 
         return pandoc.RawInline("rst", ":doc:`" .. el.target .. "/index`")
     end  
     if (string.find(el.target, "%./")) then 

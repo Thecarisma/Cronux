@@ -415,7 +415,7 @@ Function Parse-Any {
     if ($argument.StartsWith("PS")) {
         $index = $argument.IndexOf("\>") + 2
         $argument = $argument.SubString($index, $argument.Length - $index)
-        $argument = "```````powershell
+        $argument = "```````
 $argument
 ``````"
     }
@@ -449,7 +449,7 @@ Function Format-Notes {
         return
     }
     $Global:notes = "
-``````notes
+``````
 $($Global:notes.Trim())
 ``````
 
