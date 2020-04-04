@@ -1,3 +1,5 @@
+|image0|
+
 Cronux
 ======
 
@@ -309,6 +311,7 @@ License
 
 The MIT License Copyright (c) 2019 Adewale Azeez
 
+.. |image0| image:: https://github.com/Thecarisma/Cronux/raw/master/docs/cronux.png
 .. |GitHub repo size| image:: https://img.shields.io/github/repo-size/Thecarisma/Cronux
 .. |GitHub contributors| image:: https://img.shields.io/github/contributors/Thecarisma/Cronux
 .. |Twitter Follow| image:: https://img.shields.io/twitter/follow/iamthecarisma?style=social
