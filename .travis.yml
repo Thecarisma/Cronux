@@ -5,7 +5,7 @@ os:
   
 before_install:
   - choco install pandoc
-  - choco install python
+  - choco install python2
   - python -m pip install sphinx
   #- pip install themata
   
