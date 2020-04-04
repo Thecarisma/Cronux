@@ -36,8 +36,7 @@ script:
   #- git push https://Thecarisma:${GITHUB_TOKEN}@github.com/Thecarisma/Cronux.wiki.git HEAD:master;
   - cd ../../
   - cd dist/gh-pages/
-  - ./make.bat html
-  - sphinx-build -b html -d build/doctrees  ./ build/html
+  - C:/Python27/Scripts/sphinx-build.exe -b html -d build/doctrees  ./ build/html
   - ls 
   - cd ../../
   
