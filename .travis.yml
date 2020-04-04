@@ -39,8 +39,9 @@ script:
   - rm -R commands/
   - rm -R docs/
   - rm *.*
+  - rm -R dist/
   - ls
-  - cp -r dist/gh-pages/* ./
+  - cp -r dist/gh-pages/build/html/* ./
   - ls
   
 # deploy:
@@ -48,6 +49,5 @@ script:
   # skip_cleanup: true
   # github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
   # keep_history: true
-  # local_dir: /C/Users/travis/build/Thecarisma/Cronux/dist/gh-pages/build/html/
   # on:
      # branch: master
