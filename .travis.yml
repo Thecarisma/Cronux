@@ -6,8 +6,7 @@ os:
 before_install:
   - choco install pandoc
   - choco install python2
-  - PATH=$PATH:C:/Python27/Scripts/
-  - pip install sphinx
+  - C:/Python27/Scripts/pip.exe install sphinx
   #- pip install themata
   
 before_script:
