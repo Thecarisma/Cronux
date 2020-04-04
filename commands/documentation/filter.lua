@@ -15,6 +15,9 @@ function Link(el)
 end
 
 -- Replace \ with \\
-function Paragraph(el)
-    print(el.content)
+function RawInline(raw)
+    if (string.find(raw.text, "\\")) then 
+        return pandoc.Str(raw.text:gsub("\\", "/"))
+    end
+    return raw
 end
