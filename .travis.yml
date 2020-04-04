@@ -6,8 +6,9 @@ os:
 before_install:
   - choco install pandoc
   - choco install python2
-  - C:/Python27/Scripts/pip.exe install sphinx
-  #- C:/Python27/Scripts/pip.exe install themata
+  - SET PATH=%PATH%;C:/Python27/Scripts/
+  - pip install sphinx
+  #- pip install themata
   
 before_script:
   #there is no need to configure build toolchain since the platform on travis CI  
@@ -19,7 +20,7 @@ script:
   - git clone https://github.com/Thecarisma/themata.git
   - cd themata/
   - ls
-  - C:/Python27/Scripts/pip.exe install .
+  - pip install .
   - cd ../../
   - powershell -Command Set-ExecutionPolicy Bypass
   - powershell -Command $(pwd)/Cronux.bat docronux
@@ -33,6 +34,7 @@ script:
   #- git push https://Thecarisma:${GITHUB_TOKEN}@github.com/Thecarisma/Cronux.wiki.git HEAD:master;
   - cd ../../
   - cd dist/gh-pages/
+  - ls C:/Python27/Scripts/
   - powershell -Command ./make.bat html
   - cd ../../
   
