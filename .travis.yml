@@ -33,19 +33,20 @@ deploy:
     script: echo "Yahoo Hello World"
     on:
        branch: master
+  # - provider: script
+    # skip_cleanup: true
+    # script: cd dist/; \
+            # git clone https://github.com/Thecarisma/Cronux.wiki.git; \
+            # cd Cronux.wiki/; \
+            # cp -r ../wiki/* ./; \
+            # git add .; git commit -m "Travis build=${TRAVIS_BUILD_NUMBER}. Update Wiki from Travis CI"; \
+            # cd ../../
+    # on:
+       # branch: master
   - provider: script
     skip_cleanup: true
     script: cd dist/; \
-            git clone https://github.com/Thecarisma/Cronux.wiki.git; \
-            cd Cronux.wiki/; \
-            cp -r ../wiki/* ./; \
-            git add .; git commit -m "Travis build=${TRAVIS_BUILD_NUMBER}. Update Wiki from Travis CI"; \
-            cd ../../
-    on:
-       branch: master
-  - provider: script
-    skip_cleanup: true
-    script: cd dist/; \
+            ls; \
             git clone -b gh-pages https://github.com/Thecarisma/Cronux.git; \
             cd Cronux/; \
             cp -r ../gh-pages/build/html/* ./; \
