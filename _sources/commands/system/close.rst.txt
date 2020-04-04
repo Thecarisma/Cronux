@@ -1,0 +1,54 @@
+close
+=====
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : close.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Jan-08-2020
+
+--------------
+
+Syntax
+------
+
+.. code:: powershell
+
+   close [<CommonParameters>]  
+
+Parameters
+----------
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+Outputs
+-------
+
+EXAMPLE 1
+---------
+
+::
+
+   close
+
+EXAMPLE 2
+---------
+
+::
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

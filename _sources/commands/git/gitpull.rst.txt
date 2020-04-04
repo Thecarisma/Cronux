@@ -1,0 +1,89 @@
+gitpull
+=======
+
+Pull the latest update from the remote repository into your local
+repository.
+
+--------------
+
+::
+
+   File Name  : gitpull.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Mar-02-2020
+
+--------------
+
+Pull the latest update from the remote repository into your local
+repository. This command requires you to be in a valig git folder.
+
+If no argument is specified the remote update on the active branch will
+be pulled but if a branch is specified the update from the branch will
+be pulled.
+
+Syntax
+------
+
+.. code:: powershell
+
+   gitpull [[-Branch] <String>] [<CommonParameters>]  
+
+Parameters
+----------
+
+-Branch :String
+~~~~~~~~~~~~~~~
+
+The optional branch to pull from
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String[]
+
+Outputs
+-------
+
+git pull INFO
+
+EXAMPLE 1
+---------
+
+::
+
+   gitpull
+
+pull a repository update from remote The command is equivalent to git
+pull HEAD
+
+EXAMPLE 2
+---------
+
+::
+
+   gitpull gh-pages
+
+clone the Cronux repository branch ‘gh-pages’ The command is equivalent
+to git clone -b gh-pages https://github.com/Thecarisma/Cronux.git
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
+-  https://git-scm.com/docs/git-pull

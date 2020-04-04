@@ -1,0 +1,95 @@
+gitclone
+========
+
+A shorthand script to clone a repository master or specified branch
+
+--------------
+
+::
+
+   File Name  : gitclone.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Mar-01-2020
+
+--------------
+
+A short compact command to quickly clone a repository. To clone a
+specific branch add the branch name as the second parameter. The master
+branch is clone by default if the branch name is not specified.
+
+Syntax
+------
+
+.. code:: powershell
+
+   gitclone [-RepoUrl] <String> [[-Branch] <String>] 
+   [<CommonParameters>]  
+
+Parameters
+----------
+
+-RepoUrl :String
+~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Branch :String
+~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    2
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String[]
+
+Outputs
+-------
+
+git clone INFO
+
+EXAMPLE 1
+---------
+
+::
+
+   gitclone https://github.com/Thecarisma/Cronux.git
+
+clone the Cronux repository The command is equivalent to git clone
+https://github.com/Thecarisma/Cronux.git
+
+EXAMPLE 2
+---------
+
+::
+
+   gitclone https://github.com/Thecarisma/Cronux.git gh-pages
+
+clone the Cronux repository branch ‘gh-pages’ The command is equivalent
+to git clone -b gh-pages https://github.com/Thecarisma/Cronux.git
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
+-  https://git-scm.com/docs/git-clone

@@ -1,0 +1,8 @@
+commands/net
+============
+
+Content of commands/net
+
+--------------
+
+-  :doc:`./ipof`

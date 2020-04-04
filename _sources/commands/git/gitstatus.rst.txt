@@ -1,0 +1,60 @@
+gitstatus
+=========
+
+Check the status of a repository.
+
+--------------
+
+::
+
+   File Name  : gitstatus.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Mar-09-2020
+
+--------------
+
+Print out the status infomation of a git repository.
+
+Syntax
+------
+
+.. code:: powershell
+
+   gitstatus [<CommonParameters>]  
+
+Parameters
+----------
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String[]
+
+Outputs
+-------
+
+git status INFO
+
+EXAMPLE 1
+---------
+
+::
+
+   gitstatus
+
+Check the status update of the current git branch The command is
+equivalent to git status
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
+-  https://git-scm.com/docs/git-status

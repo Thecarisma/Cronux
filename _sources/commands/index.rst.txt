@@ -1,0 +1,20 @@
+commands
+========
+
+Content of commands
+
+--------------
+
+-  :doc:`.//kubectl/index`
+-  :doc:`.//documentation/index`
+-  :doc:`.//filefolder/index`
+-  :doc:`./Cronux`
+-  :doc:`.//archive/index`
+-  :doc:`.//alias/index`
+-  :doc:`.//crypto/index`
+-  :doc:`.//system/index`
+-  :doc:`.//git/index`
+-  :doc:`.//net/index`
+-  :doc:`.//certificates/index`
+-  :doc:`.//others/index`
+-  :doc:`.//conversions/index`

@@ -1,0 +1,59 @@
+updatex
+=======
+
+Update Cronux installation.
+
+--------------
+
+::
+
+   File Name  : updatex.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Mar-09-2020
+
+--------------
+
+Update the installed Cronux to the latest version on the system.
+
+Syntax
+------
+
+.. code:: powershell
+
+   updatex [<CommonParameters>]  
+
+Parameters
+----------
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String[]
+
+Outputs
+-------
+
+System.String
+
+EXAMPLE 1
+---------
+
+::
+
+   updatex
+
+The command updates the installed Cronux to the latest version
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
+-  https://thecarisma.github.io/Cronux/commands/updatex.html

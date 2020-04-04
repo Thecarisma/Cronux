@@ -1,0 +1,13 @@
+commands/git
+============
+
+Content of commands/git
+
+--------------
+
+-  :doc:`./gitclone`
+-  :doc:`./gitstatus`
+-  :doc:`./gitpush`
+-  :doc:`./gitcommit`
+-  :doc:`./gitpull`
+-  :doc:`./gitfpush`

@@ -1,0 +1,118 @@
+logpod
+======
+
+Tail a pod log
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : logpod.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : March-30-2020
+
+--------------
+
+Tail and follow a pod log. Kubectl is required for this command to work,
+it can be downloaded from -
+https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+Syntax
+------
+
+.. code:: powershell
+
+   logpod [-PodName] <String> [-NoTail] 
+   [<CommonParameters>]  
+
+Parameters
+----------
+
+-PodName :String
+~~~~~~~~~~~~~~~~
+
+the full pod name or matching part of pod name
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-NoTail [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+only print the log do not tail
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+[System.String]
+
+Outputs
+-------
+
+[System.String[]]
+
+EXAMPLE 1
+---------
+
+::
+
+   logpod mypod
+
+Find all pod that match the name ‘mypod’ the use the index to select
+which pod to tail it log.
+
+EXAMPLE 2
+---------
+
+::
+
+   logpod mypod-service-5d94df45ff-pnnn
+
+Tail the log of the pod mypod-service-5d94df45ff-pnnn.
+
+EXAMPLE 3
+---------
+
+::
+
+   logpod mypod -NoTail
+
+Find all pod that match the name ‘mypod’ the use the index to select
+which pod to prints it log.
+
+EXAMPLE 4
+---------
+
+::
+
+   logpod mypod-service-5d94df45ff-pnnn -NoTail
+
+Prints the log of the pod mypod-service-5d94df45ff-pnnn in stdout.
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
+-  https://kubernetes.io/docs/reference/kubectl

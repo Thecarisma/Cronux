@@ -1,0 +1,63 @@
+makepssafeagain
+===============
+
+Allow powershell to execute safe .ps1 files
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : makepssafeagain.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : April-01-2020
+
+--------------
+
+Allow powershell to execute only safe and signed .ps1 files
+
+Set-ExecutionPolicy Restricted
+
+Also this command should be run as Administrator.
+
+Syntax
+------
+
+.. code:: powershell
+
+   makepssafeagain [<CommonParameters>]  
+
+Parameters
+----------
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String
+
+Outputs
+-------
+
+[System.String]
+
+EXAMPLE 1
+---------
+
+::
+
+   makepssafeagain
+
+Allow powershell to execute safe .ps1
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

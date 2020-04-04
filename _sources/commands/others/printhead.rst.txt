@@ -1,0 +1,96 @@
+printhead
+=========
+
+Prints a sentence with a line printed at the top and bottom
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : printhead.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Jan-07-2020
+
+--------------
+
+Prints a sentence with line printed at the top before the sentence and
+below the sentence. This script does not help in breaking a long
+sentence, a long sentence should be escaped using the powershell escape
+characters which starts with ‘``' e.g for a newline  break '``\ n’.
+
+The lines printed is one character longer than the length of the longest
+sentence in a single line.
+
+Syntax
+------
+
+.. code:: powershell
+
+   printhead [[-args] <String[]>] [<CommonParameters>]  
+
+Parameters
+----------
+
+-args :String[]
+~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String[]
+
+Outputs
+-------
+
+The sentence with line printed above and below it
+
+EXAMPLE 1
+---------
+
+::
+
+   printhead this is a sentence
+
+the output of the command is
+============================
+
+this is a sentence
+==================
+
+EXAMPLE 2
+---------
+
+::
+
+   printhead this is a very very `nlong line I can see that
+
+.. _the-output-of-the-command-is-1:
+
+the output of the command is
+============================
+
+this is a very very long line I can see that =========================
+Notice that the length of the lines is one character longer that the
+second sentence which is the longest
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

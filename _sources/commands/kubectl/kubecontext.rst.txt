@@ -1,0 +1,144 @@
+kubecontext
+===========
+
+View and change the kubernetes configuration context
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : kubecontext.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : March-27-2020
+
+--------------
+
+This command list all the context in the current kubernetes and also
+switch the context also if an extra parameter is specified.
+
+Adding the switch -All without any other parameter shows the all the
+context in the configuration.
+
+The -User switch display the first user and the -Users list all the
+users. The switch -User and -Users should not be combined.
+
+Syntax
+------
+
+.. code:: powershell
+
+   kubecontext [[-ContextName] <String>] [-All] [-User] 
+   [-Users] [<CommonParameters>]  
+
+Parameters
+----------
+
+-ContextName :String
+~~~~~~~~~~~~~~~~~~~~
+
+the name of the context to switch to
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-All [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~
+
+view all the context in the configuration
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-User [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+display the first user
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Users [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+list all the users
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String
+
+Outputs
+-------
+
+EXAMPLE 1
+---------
+
+::
+
+   kubecontext
+
+View the current context
+
+EXAMPLE 2
+---------
+
+::
+
+   kubecontext -All
+
+List all the context in the configuration
+
+EXAMPLE 3
+---------
+
+::
+
+   kubecontext test
+
+Switch your kubernetes context to ‘test’
+
+EXAMPLE 4
+---------
+
+::
+
+   kubecontext prod
+
+Switch your kubernetes context to ‘prod’
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

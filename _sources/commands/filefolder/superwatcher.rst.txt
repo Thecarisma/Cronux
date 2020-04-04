@@ -1,0 +1,215 @@
+superwatcher
+============
+
+A PowerShell Script Server. Basically, it monitors a folder and when
+files appear in it, it takes some action on them.
+
+--------------
+
+::
+
+   File Name  : superwatcher.ps1
+   Author     : MOBZystems
+   Date       : Jul-15-2017
+
+--------------
+
+A PowerShell Script Server. Basically, it monitors a folder and when
+files appear in it, it takes some action on them, in this case: execute
+them. I’ve written servers like that before, but always in C#, using the
+System.IO.FileSystemWatcher class. Once again, it’s not rocket science:
+the main challenge is in error handling and logging. The heavy lifting
+is done by the FileSystemWatcher, which lives up to its name: it watches
+a (single) folder, with or without it subfolders, and raises event when
+files are Created, Changed, Deleted or Renamed. (Those are also the
+names of the events). Each event gets an argument specifying which file
+was afffected; the Renamed event also receives the previous name of the
+file. So after setting up the FileSystemWatcher, all there’s left to do
+is to implement the event handlers.
+
+Start-FileSystemWatcher.ps1 - File System Watcher in Powershell. Brought
+to you by MOBZystems, Home of Tools -
+https://www.mobzystems.com/code/using-a-filesystemwatcher-from-powershell/
+
+Syntax
+------
+
+.. code:: powershell
+
+   superwatcher [-Path] <String> [[-Filter] <String>] 
+   [-Recurse] [-SkipHiddenFolder] [-CreatedAction <ScriptBlock>] [-DeletedAction <ScriptBlock>] [-ChangedAction 
+   <ScriptBlock>] [-RenamedAction <ScriptBlock>] [-KeyboardTimeout <Int32>] [<CommonParameters>]  
+
+Parameters
+----------
+
+-Path :String
+~~~~~~~~~~~~~
+
+The path to monitor
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Filter :String
+~~~~~~~~~~~~~~~
+
+Monitor these files (a wildcard)
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    2
+   Default value                *.*
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Recurse [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Monitor subdirectories?
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-SkipHiddenFolder [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Monitor hidden folder, true by default
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-CreatedAction :ScriptBlock
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Execute ths block on Created
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-DeletedAction :ScriptBlock
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Execute ths block on Deleted
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-ChangedAction :ScriptBlock
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Execute ths block on Changed
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-RenamedAction :ScriptBlock
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Execute ths block on Renamed
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-KeyboardTimeout :Int32
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Check for ESC every … seconds
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                -1
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String[]
+
+Outputs
+-------
+
+Events Script Blocks
+
+EXAMPLE 1
+---------
+
+::
+
+   superwatcher.ps1 C:\test\ -Recurse -CreatedAction {
+
+| Write-Output
+  “:math:`(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '`\ (:math:`e.FullPath)' was created" } -ChangedAction { Write-Output "`\ (Get-Date
+  -format ‘yyyy-MM-dd HH:mm:ss’) File ‘:math:`(`\ e.FullPath)’ was
+  changed” } -DeletedAction { Write-Output
+  “:math:`(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '`\ (:math:`e.FullPath)' was deleted" } -RenamedAction { Write-Output "`\ (Get-Date
+  -format ‘yyyy-MM-dd HH:mm:ss’) File ‘:math:`(`\ e.OldFullPath)’ was
+  renamed to ‘:math:`(`\ e.FullPath)’” } The command will prints out the
+  date and file name anytime a file get deleted, created, changes or
+  renamed in the folder C:/test
+
+EXAMPLE 2
+---------
+
+::
+
+   superwatcher.ps1 C:\test\ -Recurse -DeletedAction {
+
+| Write-Output
+  “:math:`(Get-Date -format 'yyyy-MM-dd HH:mm:ss') File '`\ ($e.FullPath)’
+  was deleted” } The command will prints out the date and file name
+  anytime a file get deleted in the folder C:/test
+
+Related links
+-------------
+
+-  https://www.mobzystems.com/code/using-a-filesystemwatcher-from-powershell/
+-  https://thecarisma.github.io/Cronux
+-  https://thecarisma.github.io/Cronux/commands/filesystem/superwatcher.html

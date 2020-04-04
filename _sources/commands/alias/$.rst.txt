@@ -1,0 +1,109 @@
+$
+=
+
+A robust command delegate for Windows Command Prompt
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : aboutx.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Jan-08-2020
+
+--------------
+
+Support inline execution, command history
+
+Syntax
+------
+
+.. code:: powershell
+
+   $ [-Version] [-Year] [-Author] [-Licence] 
+   [<CommonParameters>]  
+
+Parameters
+----------
+
+-Version [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Year [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Author [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Licence [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+None
+
+Outputs
+-------
+
+System.String
+
+EXAMPLE 1
+---------
+
+::
+
+   aboutx
+
+Show about the Cronux application
+
+EXAMPLE 2
+---------
+
+::
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

@@ -1,0 +1,102 @@
+installpfx
+==========
+
+Install a pfx certificate into Cert:/LocalMachine/Root store.
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : installpfx.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Jan-09-2020
+
+--------------
+
+Install a pfx certificate into Cert:/LocalMachine/Root store. This
+command is a shorthand for using ``installpfxx`` to install into the
+Cert:/LocalMachine/Root store.
+
+The pfx certificate is installed into the system trusted location. Only
+the pfx certificate location and password is required and this does not
+prompt a confirm dialog.
+
+Syntax
+------
+
+.. code:: powershell
+
+   installpfx [-cert_path] <String> [-password_] 
+   <Object> [<CommonParameters>]  
+
+Parameters
+----------
+
+-cert_path :String
+~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-password\_ :Object
+~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    2
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String[]
+
+Outputs
+-------
+
+System.String
+
+EXAMPLE 1
+---------
+
+::
+
+   installpfx ./Certificate.pfx password
+
+Install the pfx Certificate into the system trusted location
+Cert:/LocalMachine/Root
+
+EXAMPLE 2
+---------
+
+::
+
+   installpfx ./Certificate2.pfx youshallnotpass
+
+Install the pfx Certificate2 into the system trusted location
+Cert:/LocalMachine/Root
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
+-  https://dev.to/iamthecarisma/managing-certificates-through-powershell-2ok0
+-  https://docs.microsoft.com/en-us/windows/win32/seccrypto/system-store-locations
+-  https://docs.microsoft.com/en-us/windows/win32/seccrypto/digital-certificates

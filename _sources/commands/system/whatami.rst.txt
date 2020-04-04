@@ -1,0 +1,60 @@
+whatami
+=======
+
+Tell you what you are
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : whatami.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : March-26-2020
+
+--------------
+
+Tell you what the heck you are NOT who you are the command ‘whoami’ tell
+you who you are.
+
+Syntax
+------
+
+.. code:: powershell
+
+   whatami [<CommonParameters>]  
+
+Parameters
+----------
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+[System.String]
+
+Outputs
+-------
+
+[System.String]
+
+EXAMPLE 1
+---------
+
+::
+
+   whatami
+
+It tell you who you really are.
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

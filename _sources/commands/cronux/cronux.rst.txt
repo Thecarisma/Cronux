@@ -1,0 +1,18 @@
+commands/cronux
+===============
+
+Content of commands/cronux
+
+--------------
+
+-  :doc:`./aboutx`
+-  :doc:`./helpx`
+-  :doc:`./listx`
+-  :doc:`./uninstallx`
+-  :doc:`./versionx`
+-  :doc:`./removecommand`
+-  :doc:`./installfolderx`
+-  :doc:`./chelp`
+-  :doc:`./installx`
+-  :doc:`./buildcronux`
+-  :doc:`./updatex`

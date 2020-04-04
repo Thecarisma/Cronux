@@ -1,0 +1,170 @@
+psdoc2markdown
+==============
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : markdownpsdoc.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Jan-08-2020
+
+--------------
+
+Even though this command do a fine job in converting a .psdoc file to
+markdown it not a proper parser, there are million ways to do this
+better, but I go for the fastest and hackiest method in this script.
+
+Add the -Verbose switch to see more output in the shell
+
+Syntax
+------
+
+.. code:: powershell
+
+   psdoc2markdown [-PsDocPath] <String> 
+   [-OutputFolder] <String> [[-ProjectName] <String>] [-SkipHtml] [-SkipNotes] [-SkipIndex] [-Silent] [-Recurse] 
+   [<CommonParameters>]  
+
+Parameters
+----------
+
+-PsDocPath :String
+~~~~~~~~~~~~~~~~~~
+
+The path to the psdoc file or folder to convert to markdown
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-OutputFolder :String
+~~~~~~~~~~~~~~~~~~~~~
+
+the folder to put generated markdown
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    2
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-ProjectName :String
+~~~~~~~~~~~~~~~~~~~~
+
+The project name
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    3
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-SkipHtml [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+do not use html to position and format document
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-SkipNotes [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+do not add notes detail before description
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-SkipIndex [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+do not generate index.md for each folder
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Silent [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+whether to print anything to the console
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Recurse [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+generate markdown in subfolders?
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+None
+
+Outputs
+-------
+
+System.String
+
+EXAMPLE 1
+---------
+
+::
+
+   markdownpsdoc .\dist\cronux_doc\commands\gencert.psdoc .\dist\cronux_markdown\
+
+EXAMPLE 2
+---------
+
+::
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

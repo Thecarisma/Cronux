@@ -1,0 +1,14 @@
+commands/kubectl
+================
+
+Content of commands/kubectl
+
+--------------
+
+-  :doc:`./logpod`
+-  :doc:`./podshell`
+-  :doc:`./kubecontext`
+-  :doc:`./getpods`
+-  :doc:`./podexec`
+-  :doc:`./portforward`
+-  :doc:`./deletepod`

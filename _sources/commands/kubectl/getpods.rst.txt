@@ -1,0 +1,185 @@
+getpods
+=======
+
+Find all pods in the current context or pods by it name or matching part
+of a pod name
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : getpods.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : March-25-2020
+
+--------------
+
+Find all pods in the current context or pods by it name or matching part
+of a pod name kubectl. Kubectl is required for this command to work, it
+can be downloaded from
+https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+If more than one pod is found that matches the specified name, they will
+be printed.
+
+If the switch -Detail is added the output will be an instance of the Pod
+Object below for each of the pod.
+
+== ==============
+od Object
+== ==============
+\  
+am e
+ea dy
+ta tus
+es tarts
+ge 
+am espace
+ri ority
+ri orityClassName
+od e
+ta rtTime
+P  
+or t
+ma ge
+\  
+== ==============
+
+This command requirs kubectl command line app to be installed on the
+syetem to function.
+
+Syntax
+------
+
+.. code:: powershell
+
+   getpods [[-PodName] <String>] [-Detail] [-Single] 
+   [<CommonParameters>]  
+
+Parameters
+----------
+
+-PodName :String
+~~~~~~~~~~~~~~~~
+
+the full pod name or matching part of name
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Detail [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+this returns as array of the Pod class that can be iterated
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Single [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+get only the first pod that matches the name
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+[System.String]
+
+Outputs
+-------
+
+[Pod[]]
+
+EXAMPLE 1
+---------
+
+::
+
+   getpods
+
+This will print out all the pod in the current context the same way
+kubectl will prints it.
+
+EXAMPLE 2
+---------
+
+::
+
+   getpods mypod-service-5d94df45ff-pnnn
+
+This will print out the pod brief of that specific pod the same way
+kubectl will prints it if found else nothing is printed out
+
+EXAMPLE 3
+---------
+
+::
+
+   getpods mypod
+
+If more than one pod has the name ‘mypod’ all the pod with the name
+‘mypod’ will be printed in the terminal the same way kubectl will prints
+it
+
+EXAMPLE 4
+---------
+
+::
+
+   getpods -Detail
+
+This will print out all the pod detail in the form of the Pod object in
+the current context.
+
+EXAMPLE 5
+---------
+
+::
+
+   getpods -Detail mypod-service-5d94df45ff-pnnn
+
+This will print out the pod detail of that specific pod if found else
+nothin is printed out
+
+EXAMPLE 6
+---------
+
+::
+
+   getpods -Detail mypod
+
+If more than one pod has the name ‘mypod’ all the pod with the name
+‘mypod’ will be printed in the terminal
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
+-  https://kubernetes.io/docs/reference/kubectl

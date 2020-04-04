@@ -1,0 +1,11 @@
+commands/certificates
+=====================
+
+Content of commands/certificates
+
+--------------
+
+-  :doc:`./installpfx`
+-  :doc:`./gencodesigncert`
+-  :doc:`./gencert`
+-  :doc:`./installpfxx`

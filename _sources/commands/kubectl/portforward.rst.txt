@@ -1,0 +1,121 @@
+portforward
+===========
+
+Listen on a port on the local machine and forward to pod port
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : portforward.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : March-30-2020
+
+--------------
+
+Listen on a port on the local machine and forward to pod port. Kubectl
+is required for this command to work, it can be downloaded from -
+https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+== ==========
+in Pod Object
+== ==========
+\  
+am e
+\  
+== ==========
+
+Syntax
+------
+
+.. code:: powershell
+
+   portforward [-PodName] <String> [-PodPort] <String> 
+   [-Single] [<CommonParameters>]  
+
+Parameters
+----------
+
+-PodName :String
+~~~~~~~~~~~~~~~~
+
+the full pod name or matching part of pod name
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-PodPort :String
+~~~~~~~~~~~~~~~~
+
+the forwarded-port:podport
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    2
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Single [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+get only the first pod that matches the name
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+[System.String]
+
+Outputs
+-------
+
+[System.String[]]
+
+EXAMPLE 1
+---------
+
+::
+
+   portforward mypod 7000:80
+
+Find all pod that match the name ‘mypod’ the use the index to select
+which port to forward it port.
+
+EXAMPLE 2
+---------
+
+::
+
+   portforward mypod-service-5d94df45ff-pnnn 7000:80
+
+Forward the pod ‘mypod-service-5d94df45ff-pnnn’ port - 80 to localhost
+on port 7000.
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
+-  https://kubernetes.io/docs/reference/kubectl

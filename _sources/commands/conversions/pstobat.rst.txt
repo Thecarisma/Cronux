@@ -1,0 +1,75 @@
+pstobat
+=======
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : pstobat.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Jan-06-2020
+
+--------------
+
+Syntax
+------
+
+.. code:: powershell
+
+   pstobat [[-batch_path] <String>] [[-embed] 
+   <String>] [<CommonParameters>]  
+
+Parameters
+----------
+
+-batch_path :String
+~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-embed :String
+~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    2
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+Outputs
+-------
+
+EXAMPLE 1
+---------
+
+::
+
+EXAMPLE 2
+---------
+
+::
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

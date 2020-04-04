@@ -1,0 +1,8 @@
+commands/alias
+==============
+
+Content of commands/alias
+
+--------------
+
+-  :doc:`./$`

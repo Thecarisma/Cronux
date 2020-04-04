@@ -1,0 +1,68 @@
+makepsunsafe
+============
+
+Allow powershell to execute unsigned .ps1 files without any warning
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : makepsunsafe.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : April-01-2020
+
+--------------
+
+Allow powershell to execute unsigned .ps1 files without any warning.
+This is equivalent to executing the command:
+
+Set-ExecutionPolicy Bypass
+
+To execute the command call ‘makepsunsafe.bat’ instead of ‘makepsunsafe’
+or ‘makepsunsafe.ps1’ as the Execution policy might be restricted at the
+moment.
+
+Also this command should be run as Administrator.
+
+Syntax
+------
+
+.. code:: powershell
+
+   makepsunsafe [<CommonParameters>]  
+
+Parameters
+----------
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String
+
+Outputs
+-------
+
+[System.String]
+
+EXAMPLE 1
+---------
+
+::
+
+   makepsunsafe
+
+Allow powershell to execute unsigned .ps1
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

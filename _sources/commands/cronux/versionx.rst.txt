@@ -1,0 +1,53 @@
+versionx
+========
+
+Get the current version of Cronux.
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : versionx.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : April-01-2020
+
+--------------
+
+Syntax
+------
+
+.. code:: powershell
+
+   versionx [<CommonParameters>]  
+
+Parameters
+----------
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+Outputs
+-------
+
+EXAMPLE 1
+---------
+
+::
+
+   installfolderx
+
+Returns the folder where Cronux is installed.
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

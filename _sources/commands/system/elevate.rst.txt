@@ -1,0 +1,96 @@
+elevate
+=======
+
+Start an application as Administrator
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : elevate.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : April-01-2020
+
+--------------
+
+Start an application as Administrator, the first argument is the name of
+the app to run. The following arguments are sent to the application.
+
+Syntax
+------
+
+.. code:: powershell
+
+   elevate [[-App] <String>] [[-ExtraArguments] 
+   <String[]>] [<CommonParameters>]  
+
+Parameters
+----------
+
+-App :String
+~~~~~~~~~~~~
+
+The application to run as Administrator
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-ExtraArguments :String[]
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The arguments to pass to the application
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    2
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String
+
+Outputs
+-------
+
+[System.String]
+
+EXAMPLE 1
+---------
+
+::
+
+   elevate notepad
+
+Start the notepad app as Administrator
+
+EXAMPLE 2
+---------
+
+::
+
+   elevate cmd /k dir
+
+Start Windows command prompt as Administrator and run the command ‘dir’.
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

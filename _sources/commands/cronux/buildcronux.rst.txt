@@ -1,0 +1,77 @@
+buildcronux
+===========
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : buildcronux.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Jan-06-2020
+
+--------------
+
+Syntax
+------
+
+.. code:: powershell
+
+   buildcronux [-cronux_path] <String> 
+   [-output_folder_path] <String> [<CommonParameters>]  
+
+Parameters
+----------
+
+-cronux_path :String
+~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-output_folder_path :String
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    2
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+Outputs
+-------
+
+EXAMPLE 1
+---------
+
+::
+
+   Cronux buildcronux  ./commands/ ./dist/build/
+
+EXAMPLE 2
+---------
+
+::
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

@@ -1,0 +1,495 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Cronux &#8212; Cronux  documentation</title>
+    <link rel="stylesheet" href="_static/css/clear.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Cronux" href="Cronux.html" />
+   
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+
+    <div class="document">
+    <header>
+        <div class="topnavbar">
+            <div class="main-title">
+                
+                <a href="#" class="title">Cronux</a>
+            </div>
+            <div class="search-container">
+                <form class="search" action="search.html" method="get">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                    <input type="text" placeholder="search..." name="q">
+                </form>
+            </div>
+        </div>
+    </header>
+    <div class="documentwrapper">
+        
+            
+                
+                <div class="sidebar-left">
+                    </br>
+                    <p class="caption"><span class="caption-text">Commands</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/index.html">docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/docs.html">docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/system/whatami.html">whatami</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/system/system.html">commands/system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/system/makepsunsafe.html">makepsunsafe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/system/makepssafeagain.html">makepssafeagain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/system/index.html">commands/system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/system/elevate.html">elevate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/system/close.html">close</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/others/printhead.html">printhead</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/others/printhead.html#the-output-of-the-command-is">the output of the command is</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/others/printhead.html#this-is-a-sentence">this is a sentence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/others/printhead.html#the-output-of-the-command-is-1">the output of the command is</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/others/others.html">commands/others</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/others/index.html">commands/others</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/net/net.html">commands/net</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/net/ipof.html">ipof</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/net/index.html">commands/net</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/kubectl/portforward.html">portforward</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/kubectl/podshell.html">podshell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/kubectl/podexec.html">podexec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/kubectl/logpod.html">logpod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/kubectl/kubectl.html">commands/kubectl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/kubectl/kubecontext.html">kubecontext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/kubectl/index.html">commands/kubectl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/kubectl/getpods.html">getpods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/kubectl/deletepod.html">deletepod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/git/index.html">commands/git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/git/gitstatus.html">gitstatus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/git/gitpush.html">gitpush</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/git/gitpull.html">gitpull</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/git/gitfpush.html">gitfpush</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/git/gitcommit.html">gitcommit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/git/gitclone.html">gitclone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/git/git.html">commands/git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/filefolder/watcherb.html">watcherb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/filefolder/watcher.html">watcher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/filefolder/touch.html">touch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/filefolder/superwatcher.html">superwatcher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/filefolder/index.html">commands/filefolder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/filefolder/filefolder.html">commands/filefolder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/documentation/psdoc2markdown.html">psdoc2markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/documentation/psdoc.html">psdoc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/documentation/ps12markdown.html">ps12markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/documentation/markdown2rst.html">markdown2rst</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/documentation/index.html">commands/documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/documentation/documentation.html">commands/documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/documentation/docronux.html">docronux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/crypto/index.html">commands/crypto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/crypto/crypto.html">commands/crypto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/crypto/base64s.html">base64s</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/crypto/base64.html">base64</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/versionx.html">versionx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/updatex.html">updatex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/uninstallx.html">uninstallx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/removecommand.html">removecommand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/listx.html">listx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/installx.html">Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/installx.html#parameters">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/installx.html#installx-ps1">﻿installx.ps1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/installfolderx.html">Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/installfolderx.html#parameters">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/installfolderx.html#installfolderx-ps1">﻿installfolderx.ps1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/index.html">commands/cronux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/helpx.html">helpx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/cronux.html">commands/cronux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/chelp.html">chelp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/buildcronux.html">buildcronux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/cronux/aboutx.html">aboutx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/conversions/wrapcommand.html">wrapcommand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/conversions/pstobat.html">pstobat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/conversions/index.html">commands/conversions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/conversions/conversions.html">commands/conversions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/conversions/batforps.html">batforps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/certificates/installpfxx.html">installpfxx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/certificates/installpfx.html">installpfx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/certificates/index.html">commands/certificates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/certificates/gencodesigncert.html">gencodesigncert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/certificates/gencert.html">gencert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/certificates/certificates.html">commands/certificates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/archive/index.html">commands/archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/archive/extractx.html">extractx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/archive/archive.html">commands/archive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/alias/index.html">commands/alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/alias/alias.html">commands/alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/alias/$.html">$</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/index.html">commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/commands.html">commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/Cronux.html">Cronux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html">Cronux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cronux.html">Cronux</a></li>
+</ul>
+
+                </div>
+                
+            
+        
+        <div class="bodywrapper">
+                
+  <div class="toctree-wrapper compound" id="commands-nav">
+</div>
+<div class="section" id="cronux">
+<h1>Cronux<a class="headerlink" href="#cronux" title="Permalink to this headline">¶</a></h1>
+<p>Handy commands to perform simple and complex tasks with Powershell</p>
+<hr class="docutils" />
+<p><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/Thecarisma/Cronux" /> <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Thecarisma/Cronux" /> <a class="reference external" href="https://twitter.com/iamthecarisma"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/iamthecarisma?style=social" /></a> <a class="reference external" href="https://www.patreon.com/join/devcareer/checkout?rid=3922862"><img alt="Support on Patreon" src="https://img.shields.io/static/v1?label=Support%20Devcareer%20on%20Patreon&amp;message=$10&amp;color=brightgreen" /></a></p>
+<p>This repo contains Super useful handy commands to perform simple and
+complex task on the command line. Powershell has powerful command line
+functionality due to it interopability with visual basic script, the
+.NET sdk and installed apps. This project also exports over 100 built in
+commands in powershell to be used from the Windows Command prompt.</p>
+<p>Most powershell only commands are wrapped into batch and bash to make
+them available on windows command prompt and linux shell. This script is
+most useful if you enjoy the power of linux and unix terminal or you
+switch between other OSes and Windows often.</p>
+<p>Do not heisitate to send in a PR with your awesome powershell script.</p>
+<hr class="docutils" />
+<div class="section" id="table-of-content">
+<h2>Table of content<a class="headerlink" href="#table-of-content" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="#requirements">Requirements</a></li>
+<li><a class="reference external" href="#installation">Installation</a><ul>
+<li><a class="reference external" href="#install">Install</a><ul>
+<li><a class="reference external" href="#powershell">Powershell</a></li>
+<li><a class="reference external" href="#git-bash">Git Bash</a></li>
+<li><a class="reference external" href="#download-zip-and-extract">Download Zip and Extract</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#uninstall">Uninstall</a></li>
+<li><a class="reference external" href="#update">Update</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#creating-alias">Creating alias</a></li>
+<li><a class="reference external" href="#usage">Usage</a><ul>
+<li><a class="reference external" href="#powershell-exeception">Powershell Exeception</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#available-commands">Available Commands</a></li>
+<li><a class="reference external" href="#wikis">Wikis</a></li>
+<li><a class="reference external" href="#contributing">Contributing</a></li>
+<li><a class="reference external" href="#support">Support</a></li>
+<li><a class="reference external" href="#useful-links">Useful Links</a></li>
+<li><a class="reference external" href="#license">License</a></li>
+</ul>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Powershell 2+</li>
+<li>Windows Command Prompt on Microsoft Windows</li>
+<li>Any shell on Linux and unix</li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>The script provides wrapper commands for various application e.g git,
+kubectl. The main requirement for Cronux is powershell 3 and above.</p>
+<div class="section" id="install">
+<h3>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="powershell">
+<h4>Powershell<a class="headerlink" href="#powershell" title="Permalink to this headline">¶</a></h4>
+<p>Run your powershell as admin and execute:</p>
+<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">ExecutionPolicy</span> <span class="n">Bypass</span> <span class="o">-</span><span class="n">Scope</span> <span class="n">Process</span> <span class="o">-</span><span class="n">Force</span><span class="p">;</span> <span class="n">iex</span> <span class="p">((</span><span class="n">New</span><span class="o">-</span><span class="n">Object</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">WebClient</span><span class="p">)</span><span class="o">.</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;https://thecarisma.github.io/installx.ps1&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="git-bash">
+<h4>Git Bash<a class="headerlink" href="#git-bash" title="Permalink to this headline">¶</a></h4>
+<p>If you have git bash installed use the one line command below to install
+cronux</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Thecarisma</span><span class="o">/</span><span class="n">Cronux</span><span class="o">.</span><span class="n">git</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="o">./</span><span class="n">Cronux</span> <span class="o">&amp;&amp;</span> <span class="o">./</span><span class="n">Cronux</span><span class="o">.</span><span class="n">sh</span> <span class="n">installx</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="download-zip-and-extract">
+<h4>Download Zip and Extract<a class="headerlink" href="#download-zip-and-extract" title="Permalink to this headline">¶</a></h4>
+<p>Download the zip archive from the repo or release page, extract it to
+any folder on your disk and execute Cronux from within the folder.</p>
+<p>To use all the commands you will need to prefix the word <strong>Cronux</strong>
+before the command e.g <code class="docutils literal notranslate"><span class="pre">Cronux</span> <span class="pre">clear</span></code>, <code class="docutils literal notranslate"><span class="pre">Cronux</span> <span class="pre">sudo</span></code> e.t.c to make
+the command available independent of Cronux itself install Cronux with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cronux</span><span class="o">.</span><span class="n">bat</span> <span class="n">installx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="uninstall">
+<h3>Uninstall<a class="headerlink" href="#uninstall" title="Permalink to this headline">¶</a></h3>
+<p>To uninstall the Entrie Cronux and it sub commands Scripts use the
+command below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cronux</span> <span class="n">uninstallx</span>
+</pre></div>
+</div>
+<p>To remove a single command for example when an actual program with the
+same full functionality has been installed e.g the <strong>ls</strong> command which
+mimics the windows <strong>dir.exe</strong> program should be removed when the real
+program <strong>ls.exe</strong> is installed (e.g from the mingwn compiler
+toolchain).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cronux</span> <span class="n">removecommand</span> <span class="n">ls</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="update">
+<h3>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h3>
+<p>If you already have Cronux installed you can execute the <code class="docutils literal notranslate"><span class="pre">updatex</span></code>
+command to update to the latest version.</p>
+<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">updatex</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cronux</span> <span class="n">updatex</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-alias">
+<h2>Creating alias<a class="headerlink" href="#creating-alias" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">shorty</span></code> command can be used to create a short alias for a long
+command. So instead of executing a long command from the CLI the alias
+script can be called to execute the commands e.g.&nbsp;the following command
+add edited stage files then commit it with the message ‘new feature’.</p>
+<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;new feature&quot;</span>
+</pre></div>
+</div>
+<p>The shorty command can create a script to do the above operation without
+the need to type out all the git command. To create a short script for
+the command above just call <code class="docutils literal notranslate"><span class="pre">shorty</span></code> and add the command when prompt.
+On prompt AliasName enter the name for your generated script. On the
+Command prompt enter the commands if you are done youe .exit for the
+command value.</p>
+<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shorty</span>
+<span class="c1">#AliasName: gc</span>
+<span class="c1">#Command: git add .</span>
+<span class="c1">#Command: git commit -m &quot;new feature&quot;</span>
+<span class="c1">#Command: .exit</span>
+</pre></div>
+</div>
+<p>You command will be generated in the folder
+<strong>$ProgramData/CronuxShorty/</strong>. Then you can just call the script <code class="docutils literal notranslate"><span class="pre">gc</span></code>
+in your terminal instead of typing the git command.</p>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>After installation you can use the commands independently as each batch
+script will be generated for each command. Note that not all the command
+will have it own script such as the <strong>dir</strong> command as it will conflict
+with the installed dir program that comes pre-installed with windows.</p>
+<p>E.g to open notepad as administrator</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">elevate</span> <span class="n">notepad</span>
+</pre></div>
+</div>
+<p>If you do not choose to install Cronux.bat use below to execute commands
+from any folder. To use, extract Cronux.bat to a folder of your choice,
+a sample use to open cmd as administrator</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cronux</span> <span class="n">elevate</span> <span class="n">cmd</span>
+</pre></div>
+</div>
+<div class="section" id="powershell-exeception">
+<h3>Powershell Exeception<a class="headerlink" href="#powershell-exeception" title="Permalink to this headline">¶</a></h3>
+<p>If you try to execute the commands from powershell you will have to set
+the Execution Policy to Bypass else you should call the .bat command
+directly e.g instead of <code class="docutils literal notranslate"><span class="pre">gitpush</span></code> use <code class="docutils literal notranslate"><span class="pre">gitpush.bat</span></code>. Top allow the
+scripts to execute natively change the execution policy for your
+powershell to bypass:</p>
+<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">ExecutionPolicy</span> <span class="n">Bypass</span>
+</pre></div>
+</div>
+<p>or use the command in Cronux:</p>
+<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">makepsunsafe</span><span class="o">.</span><span class="n">bat</span>
+</pre></div>
+</div>
+<p>After you are done with the session or when you want the Execution
+policy to be secure again execute</p>
+<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">ExecutionPolicy</span> <span class="n">Restricted</span>
+</pre></div>
+</div>
+<p>or use the command in Cronux:</p>
+<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">makepssafeagain</span><span class="o">.</span><span class="n">bat</span>
+</pre></div>
+</div>
+<p>It advisable to make the Execution policy restricted for safety reasons.</p>
+</div>
+</div>
+<div class="section" id="available-commands">
+<h2>Available Commands<a class="headerlink" href="#available-commands" title="Permalink to this headline">¶</a></h2>
+<p>All the command are listed below with it alias(es)</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>$, gencert, gencodesigncert, installpfx, installpfxx, batforps,
+pstobat, wrapcommand, aboutx, buildcronux, chelp, helpx, installfolderx,
+installx, listx, uninstallx, updatex, versionx, base64, base64s,
+docronux, ps12markdown, psdoc, psdoc2markdown, extractx, superwatcher,
+touch, watcher, watcherb, gitclone, gitcommit, gitfpush, gitpull,
+gitpush, gitstatus, deletepod, getpods, kubecontext, logpod, podexec,
+podshell, portforward, ipof, printhead, close, elevate, makepssafeagain,
+makepsunsafe, whatami, Cronux
+</pre></div>
+</div>
+<p>To view all the Cronux native and exported commands:</p>
+<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">listx</span> <span class="o">-</span><span class="n">All</span>
+</pre></div>
+</div>
+<p>To view the detail help message for a command:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cronux</span> <span class="n">helpx</span> <span class="p">[</span><span class="n">command</span><span class="p">]</span>
+<span class="c1">#or</span>
+<span class="p">[</span><span class="n">command</span><span class="p">]</span> <span class="n">help</span>
+
+<span class="c1">#e.g. base64 help</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="wikis">
+<h2>Wikis<a class="headerlink" href="#wikis" title="Permalink to this headline">¶</a></h2>
+<p>The wiki and documentation website are auto generated by Travis for
+every push.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/Thecarisma/Cronux/wiki/commands">commands</a></li>
+<li><a class="reference external" href="https://github.com/Thecarisma/Cronux/wiki/kubectl">kubectl</a></li>
+<li><a class="reference external" href="https://github.com/Thecarisma/Cronux/wiki/documentation">documentation</a></li>
+<li><a class="reference external" href="https://github.com/Thecarisma/Cronux/wiki/filefolder">filefolder</a></li>
+<li><a class="reference external" href="https://github.com/Thecarisma/Cronux/wiki/Cronux">cronux</a></li>
+<li><a class="reference external" href="https://github.com/Thecarisma/Cronux/wiki/archive">archive</a></li>
+<li><a class="reference external" href="https://github.com/Thecarisma/Cronux/wiki/alias">alias</a></li>
+<li><a class="reference external" href="https://github.com/Thecarisma/Cronux/wiki/crypto">crypto</a></li>
+<li><a class="reference external" href="https://github.com/Thecarisma/Cronux/wiki/system">system</a></li>
+<li><a class="reference external" href="https://github.com/Thecarisma/Cronux/wiki/git">git</a></li>
+<li><a class="reference external" href="https://github.com/Thecarisma/Cronux/wiki/net">net</a></li>
+<li><a class="reference external" href="https://github.com/Thecarisma/Cronux/wiki/certificates">certificates</a></li>
+<li><a class="reference external" href="https://github.com/Thecarisma/Cronux/wiki/others">others</a></li>
+<li><a class="reference external" href="https://github.com/Thecarisma/Cronux/wiki/conversions">conversions</a></li>
+</ul>
+</div>
+<div class="section" id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
+<p>If you have any issue or you just want more command to be added you can
+file a request
+<a class="reference external" href="https://github.com/Thecarisma/Cronux/issues/new">issue</a> anytime and
+if you just add a more interesting, fun and usefull command do not
+hesitate to send a <a class="reference external" href="https://github.com/Thecarisma/Cronux/compare">pull
+request</a></p>
+<p>May the force be with you.</p>
+</div>
+<div class="section" id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
+<p>You can support some of this community as they make big impact in the
+developement of people to get started with software engineering.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.patreon.com/devcareer">https://www.patreon.com/devcareer</a></li>
+</ul>
+</div>
+<div class="section" id="useful-links">
+<h2>Useful Links<a class="headerlink" href="#useful-links" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/powershell/scripting/overview">Powershell</a></li>
+<li><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/">.NET Documentation</a></li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Cmd.exe">cmd.exe</a></li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Unix_shell">Unix Shell</a></li>
+</ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>The MIT License Copyright (c) 2019 Adewale Azeez</p>
+<p></p>
+</div>
+</div>
+
+
+                
+                </br>
+                 
+                    
+                
+                <div style="clear:both"></div>
+                <br/> <hr/> <br/>
+                
+                <div class="footer">
+                    <div class="social">
+                        
+                            <a href="https://twitter.com/iamthecarisma"><i class="fab fa-twitter"></i></a>
+                        
+                            <a href="https://github.com/Thecarisma/Cronux"><i class="fab fa-github"></i></a>
+                        
+                    </div>
+                    <div class="doc-sphinx-info">
+                                &copy; Copyright 2020, Adewale Azeez, MIT License.
+                            Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5
+                            with <a href="https://thecarisma.github.io/themata/clear/index.html">clear</a> theme.
+                    </div>
+                </div>
+                
+                <br/><br/>
+        </div>
+        
+            
+                
+                <div class="sidebar-right">
+                    
+                        <h2>Page Contents</h2>
+                        <ul>
+<li><a class="reference internal" href="#">Cronux</a><ul>
+<li><a class="reference internal" href="#table-of-content">Table of content</a></li>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#install">Install</a><ul>
+<li><a class="reference internal" href="#powershell">Powershell</a></li>
+<li><a class="reference internal" href="#git-bash">Git Bash</a></li>
+<li><a class="reference internal" href="#download-zip-and-extract">Download Zip and Extract</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#uninstall">Uninstall</a></li>
+<li><a class="reference internal" href="#update">Update</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-alias">Creating alias</a></li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#powershell-exeception">Powershell Exeception</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#available-commands">Available Commands</a></li>
+<li><a class="reference internal" href="#wikis">Wikis</a></li>
+<li><a class="reference internal" href="#contributing">Contributing</a></li>
+<li><a class="reference internal" href="#support">Support</a></li>
+<li><a class="reference internal" href="#useful-links">Useful Links</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+
+                        
+                        
+                            <h2>Next topic</h2>
+                            <a href="Cronux.html">Cronux</a>
+                        
+                        <h2>This Page</h2>
+                        <a href="_sources/index.rst.txt">Show source</a>
+                    
+                </div>
+                
+            
+        
+        <div style="clear:both"></div>
+    </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

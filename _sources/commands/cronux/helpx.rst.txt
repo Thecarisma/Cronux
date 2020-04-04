@@ -1,0 +1,52 @@
+helpx
+=====
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : helpx.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Jan-03-2020
+
+--------------
+
+Syntax
+------
+
+.. code:: powershell
+
+   helpx [<CommonParameters>]  
+
+Parameters
+----------
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+Outputs
+-------
+
+EXAMPLE 1
+---------
+
+::
+
+EXAMPLE 2
+---------
+
+::
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

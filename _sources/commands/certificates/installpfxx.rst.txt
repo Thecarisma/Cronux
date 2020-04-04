@@ -1,0 +1,133 @@
+installpfxx
+===========
+
+Install a pfx certificate to specified location.
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : installpfxx.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Jan-12-2020
+
+--------------
+
+Install a pfx certificate to a specified store location on the system.
+PFX certificate is expected to have a password hence the password should
+be specified as the second parameter and the store location as the store
+location.
+
+The third parameter ``$store_location`` is not mandatory.
+
+If the store location is not specified the pfx certificate is installed
+into Cert:/CurrentUser/My store which wioll make the certificate
+untrusted.
+
+Installing into the Cert:/CurrentUser/Root store prompts a dialog to
+confirm adding the certificate while installing into
+Cert:/LocalMachine/Root store does not prompt a dialog, therefore it
+advisable to install into Cert:/LocalMachine/Root when working from CLI
+only.
+
+Syntax
+------
+
+.. code:: powershell
+
+   installpfxx [-cert_path] <String> [-password_] 
+   <String> [[-store_location] <String>] [<CommonParameters>]  
+
+Parameters
+----------
+
+-cert_path :String
+~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-password\_ :String
+~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    2
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-store_location :String
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    3
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String[]
+
+Outputs
+-------
+
+System.Security.Cryptography.X509Certificates.X509Certificate2
+
+EXAMPLE 1
+---------
+
+::
+
+   installpfxx ./Certificate.pfx password
+
+If the location store to install the certificate to is not specified the
+pfx certificate is installed into the Cert:/CurrentUser/My store which
+makes the certificate untrusted.
+
+EXAMPLE 2
+---------
+
+::
+
+   installpfxx ./Certificate.pfx password Cert:\CurrentUser\Root
+
+Install the pfx certificate into the Cert:/CurrentUser/Root store
+location which is a path for secure certificate for the current user.
+
+EXAMPLE 3
+---------
+
+::
+
+   installpfxx ./Certificate.pfx password Cert:\LocalMachine\Root
+
+Install the pfx certificate into the Cert:/LocalMachine/Root store
+location which is a path for secure certificate for computer.
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
+-  https://dev.to/iamthecarisma/managing-certificates-through-powershell-2ok0
+-  https://docs.microsoft.com/en-us/windows/win32/seccrypto/system-store-locations
+-  https://docs.microsoft.com/en-us/windows/win32/seccrypto/digital-certificates

@@ -1,0 +1,128 @@
+base64
+======
+
+Convert file to base64
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : base64.ps1
+   Author     : Philip Mateescu - https://www.reddit.com/user/philipmat/
+   Date       : 2020
+
+--------------
+
+Convert a file to it base64 value, write the base64 result into a file,
+copy it to clipboard or generates a valid JSON Object.
+
+Syntax
+------
+
+.. code:: powershell
+
+   base64 [-InputFile] <String> [-ToJson] 
+   [-AndCopyToClipboard] [-WriteToFile] [<CommonParameters>]  
+
+Parameters
+----------
+
+-InputFile :String
+~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-ToJson [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-AndCopyToClipboard [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-WriteToFile [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+The path to file to get it base64 value
+
+Outputs
+-------
+
+Depends on switches
+
+EXAMPLE 1
+---------
+
+::
+
+   base64 C:/path/to/file.extension -WriteToFile
+
+The command encodes the file in base64 and writes it to file in the same
+directory as the file with the extension ‘.base64’
+
+EXAMPLE 2
+---------
+
+::
+
+   base64 C:/path/to/file.extension -AndCopyToClipboard
+
+The command encodes the file in base64 and copies the base64 value to
+clipboard
+
+EXAMPLE 3
+---------
+
+::
+
+   base64 C:/path/to/file.extension -ToJson
+
+The command encodes the file in base64 and generates a valid JSON object
+of the base64 value
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
+-  https://philipm.at/2018/base64_in_powershell.html
+-  https://www.reddit.com/r/PowerShell/comments/800jnc/converttobase64_encodes_files_to_base64/

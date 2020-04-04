@@ -1,0 +1,9 @@
+commands/crypto
+===============
+
+Content of commands/crypto
+
+--------------
+
+-  :doc:`./base64s`
+-  :doc:`./base64`

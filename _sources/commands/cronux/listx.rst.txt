@@ -1,0 +1,81 @@
+listx
+=====
+
+List all the commands exported through Cronux
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : listx.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Jan-08-2020
+
+--------------
+
+List all the commands exported through Cronux in no order. This include
+built in powershell commands exported into ExportList.txt
+
+Syntax
+------
+
+.. code:: powershell
+
+   listx [-All] [<CommonParameters>]  
+
+Parameters
+----------
+
+-All [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+None
+
+Outputs
+-------
+
+All Cronux commands
+
+EXAMPLE 1
+---------
+
+::
+
+   listx
+
+| List all the commands excluding exported powershell built in
+| commands
+
+EXAMPLE 2
+---------
+
+::
+
+   listx -All
+
+List all the commands over 2000 commands
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

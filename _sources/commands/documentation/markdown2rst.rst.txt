@@ -1,0 +1,140 @@
+markdown2rst
+============
+
+Convert a markdown to reStructuredText using pandoc
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : markdown2rst.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : April-02-2020
+
+--------------
+
+Convert a markdown to reStructuredText using pandoc. Download pandoc
+from https://pandoc.org/.
+
+To convert all the markdown file in a folder specify the first argument
+as a the folder instead of a markdown file.
+
+Syntax
+------
+
+.. code:: powershell
+
+   markdown2rst [-MdPath] <String> [-OutputFolder] 
+   <String> [-Recurse] [-Silent] [-FormatInternalLink] [<CommonParameters>]  
+
+Parameters
+----------
+
+-MdPath :String
+~~~~~~~~~~~~~~~
+
+The path to the markdown file or folder to convert to reStructuredText
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-OutputFolder :String
+~~~~~~~~~~~~~~~~~~~~~
+
+the folder to put generated reStructuredText
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    2
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Recurse [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+generate reStructuredText in subfolders?
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Silent [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+whether to print anything to the console
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-FormatInternalLink [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+format relative link to properly locate file in documentation
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+[System.String[]]
+
+Outputs
+-------
+
+[System.String[]]
+
+EXAMPLE 1
+---------
+
+::
+
+   markdown2rst file.md ./dist/
+
+This will generates file.rst in the folder ./dist relative to the
+working dir.
+
+EXAMPLE 2
+---------
+
+::
+
+   markdown2rst ./md_doc/ ./md_rst/ -Recurse
+
+Generate the reStructuredText files for all the markdown in the folder
+./md_doc/ and it sub folders into the folder ./md_rst/.
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

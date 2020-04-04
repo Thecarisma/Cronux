@@ -1,0 +1,79 @@
+extractx
+========
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : extractx.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Jan-06-2020
+
+--------------
+
+Only Alias and Application is exported
+
+Syntax
+------
+
+.. code:: powershell
+
+   extractx [-export_list_path] <String> [-Application] 
+   [<CommonParameters>]  
+
+Parameters
+----------
+
+-export_list_path :String
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Application [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+Outputs
+-------
+
+EXAMPLE 1
+---------
+
+::
+
+   extractx ./ExportList.txt
+
+EXAMPLE 2
+---------
+
+::
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

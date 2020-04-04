@@ -1,0 +1,70 @@
+touch
+=====
+
+Create a new file in the current directory
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : touch.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : March-26-2020
+
+--------------
+
+Creates an empty file in the current working directory.
+
+Syntax
+------
+
+.. code:: powershell
+
+   touch [[-FileName] <String>] [<CommonParameters>]  
+
+Parameters
+----------
+
+-FileName :String
+~~~~~~~~~~~~~~~~~
+
+the name of the file to create
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String
+
+Outputs
+-------
+
+EXAMPLE 1
+---------
+
+::
+
+   touch file.txt
+
+Creates the file file.txt in the current folder
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

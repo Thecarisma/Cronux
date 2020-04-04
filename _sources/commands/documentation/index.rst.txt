@@ -1,0 +1,12 @@
+commands/documentation
+======================
+
+Content of commands/documentation
+
+--------------
+
+-  :doc:`./markdown2rst`
+-  :doc:`./docronux`
+-  :doc:`./psdoc`
+-  :doc:`./ps12markdown`
+-  :doc:`./psdoc2markdown`

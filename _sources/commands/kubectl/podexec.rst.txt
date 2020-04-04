@@ -1,0 +1,101 @@
+podexec
+=======
+
+Execute a command in a pod using it full name or select from matching
+pods.
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : podexec.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : March-31-2020
+
+--------------
+
+Execute a command in a pod using it full name or select from matching
+pods. Kubectl is required for this command to work, it can be downloaded
+from - https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+The commands after the pod name are executed.
+
+Syntax
+------
+
+.. code:: powershell
+
+   podexec [-PodName] <String> -Commands <String[]> 
+   [<CommonParameters>]  
+
+Parameters
+----------
+
+-PodName :String
+~~~~~~~~~~~~~~~~
+
+the full pod name or matching part of pod name
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-Commands :String[]
+~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    named
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+[System.String]
+
+Outputs
+-------
+
+Commands Output
+
+EXAMPLE 1
+---------
+
+::
+
+   podexec mypod ls /
+
+Find all pod that match the name ‘mypod’ then use the index to select
+the pod. Then execute the command ‘ls /’ in pod.
+
+EXAMPLE 2
+---------
+
+::
+
+   podexec mypod-service-5d94df45ff-pnnn
+
+Execute the command ‘ls /’ in the pod mypod-service-5d94df45ff-pnnn if
+found in the current context.
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
+-  https://kubernetes.io/docs/reference/kubectl

@@ -1,0 +1,126 @@
+gencert
+=======
+
+Generate a secure code signing certificate.
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : gencodesigncert.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Jan-09-2020
+
+--------------
+
+Generate a code signing certificate to sign your application, powershell
+script e.t.c. After generating the certificate, it is exported into the
+output folder specified in the third parameter.
+
+If a certificate already exist with the same Subject name the old
+certificate is removed and replaced with the new certificate that is
+generated.
+
+Syntax
+------
+
+.. code:: powershell
+
+   gencert [-cert_name] <String> [-expiry_year_] 
+   <Int32> [-type] <String> [-output_folder_path] <String> [-DontExport] [<CommonParameters>]  
+
+Parameters
+----------
+
+-cert_name :String
+~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    1
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-expiry_year\_ :Int32
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    2
+   Default value                0
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-type :String
+~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    3
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-output_folder_path :String
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    true
+   Position?                    4
+   Default value                
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+-DontExport [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: powershell
+
+   Required?                    false
+   Position?                    named
+   Default value                False
+   Accept pipeline input?       false
+   Accept wildcard characters?  false
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String System.int32 System.String System.String
+
+Outputs
+-------
+
+System.Security.Cryptography.X509Certificates.X509Certificate2
+
+EXAMPLE 1
+---------
+
+::
+
+   gencodesigncert 'My Code Signer' 1 ./dist/ mypassword
+
+This generates the Cronux certificate in ‘cert:/LocalMachine/My’ and
+exports Cronux.pfx to ./dist/ folder. The generated certificate expires
+after 1 years.
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
+-  https://dev.to/iamthecarisma/managing-certificates-through-powershell-2ok0
+-  https://docs.microsoft.com/en-us/windows/win32/seccrypto/system-store-locations
+-  https://docs.microsoft.com/en-us/windows/win32/seccrypto/digital-certificates

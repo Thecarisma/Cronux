@@ -1,0 +1,8 @@
+commands/others
+===============
+
+Content of commands/others
+
+--------------
+
+-  :doc:`./printhead`
