@@ -8,7 +8,7 @@ author = 'Adewale Azeez'
 html_theme_path = [themata.get_html_theme_path()]
 html_theme = 'clear'
 master_doc = 'index'
-#html_favicon = '../images/themata.png'
+html_favicon = 'cronux.png'
 
 html_theme_options = {
     'index_is_single': False,

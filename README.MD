@@ -1,3 +1,6 @@
+
+![cronux-log](https://github.com/Thecarisma/Cronux/raw/master/docs/cronux.png)
+
 # Cronux
 
 Handy commands to perform simple and complex tasks with Powershell
