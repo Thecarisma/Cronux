@@ -5,7 +5,7 @@ os:
   
 before_install:
   - choco install pandoc
-  - choco install python2
+  - choco install python
   - C:/Python27/Scripts/pip.exe install sphinx
   #- pip install themata
   
@@ -14,6 +14,7 @@ before_script:
   #is windows and will come prebuilt with powershell, .NET platform, VBS and Batch
 
 script:
+  - mkdir dist/
   - cd dist/
   - git clone https://github.com/Thecarisma/themata.git
   - cd themata/
