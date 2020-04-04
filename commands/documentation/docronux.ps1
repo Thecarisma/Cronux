@@ -40,24 +40,28 @@ cp README.MD "$dir\dist\wiki\Home.md"
 
 .. toctree::
    :hidden:
+   :glob:
+   :reversed:
    :maxdepth: 1
    :caption: Commands
    :name: commands-nav
 
-   commands/index
-   commands/alias/index
-   commands/archive/index
-   commands/certificates/index
-   commands/conversions/index
-   commands/cronux/index
-   commands/crypto/index
-   commands/documentation/index
-   commands/filefolder/index
-   commands/git/index
-   commands/kubectl/index
-   commands/net/index
-   commands/others/index
-   commands/system/index
+   /*
+   commands/*
+   commands/alias/*
+   commands/archive/*
+   commands/certificates/*
+   commands/conversions/*
+   commands/cronux/*
+   commands/crypto/*
+   commands/documentation/*
+   commands/filefolder/*
+   commands/git/*
+   commands/kubectl/*
+   commands/net/*
+   commands/others/*
+   commands/system/*
+   docs/*
 
 ")
 cmd /c "copy `"$dir\dist\gh-pages\index.rst`"+`"$dir\dist\gh-pages\Home.rst`" $(Resolve-Path `"$dir\dist\gh-pages\index.rst`")"
