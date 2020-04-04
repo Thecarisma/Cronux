@@ -68,5 +68,10 @@ cp README.MD "$dir\dist\wiki\Home.md"
 
 ")
 cmd /c "copy `"$dir\dist\gh-pages\index.rst`"+`"$dir\dist\gh-pages\Home.rst`" $(Resolve-Path `"$dir\dist\gh-pages\index.rst`")"
+If ([System.IO.Directory]::Exists("$PSScriptRoot\..\..\docs\")) {
+    copy "$PSScriptRoot\..\..\docs\*" "$dir\dist\gh-pages\"
+}
+
+
 "Copy everything in $dir\dist\wiki\ to Cronux.wiki repo"
 "Copy everything in $dir\dist\gh-pages\ to Cronux gh-pages branch"
