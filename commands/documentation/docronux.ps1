@@ -41,13 +41,6 @@ cp README.MD "$dir\dist\wiki\Home.md"
 .. toctree::
    :hidden:
    :maxdepth: 1
-   :name: main-nav
-
-   download
-
-.. toctree::
-   :hidden:
-   :maxdepth: 1
    :caption: Commands
    :name: commands-nav
 
