@@ -113,7 +113,7 @@ Function Markdown-To-ReStructuredText {
         Write-Host "Generating rst for $Name_Only.md -> " -NoNewLine
     }
     if ($FormatInternalLink) {
-        pandoc $SinglePsDocPath -t rst -o "$SavePath/$Name_Only.rst" --lua-filter="`"$PSScriptRoot/convert_link_to_ref_in_rst.lua`""
+        pandoc $SinglePsDocPath -t rst -o "$SavePath/$Name_Only.rst" --lua-filter="`"$PSScriptRoot/filter.lua`""
     } else {
         pandoc $SinglePsDocPath -t rst -o "$SavePath/$Name_Only.rst"
     }

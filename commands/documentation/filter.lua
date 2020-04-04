@@ -13,3 +13,8 @@ function Link(el)
     end
     return el
 end
+
+-- Replace \ with \\
+function Paragraph(el)
+    print(el.content)
+end
