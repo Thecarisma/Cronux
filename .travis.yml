@@ -11,8 +11,8 @@ before_install:
   #- C:/Python27/Scripts/pip.exe install themata
   
 before_script:
-  #there is no need to configure build toolchain since the platform on travis CI  
-  #is windows and will come prebuilt with powershell, .NET platform, VBS and Batch
+  - git config --local user.email "azeezadewale98@gmail.com"
+  - git config --local user.name "Travis CI"
 
 script:
   - mkdir dist/
@@ -23,29 +23,32 @@ script:
   - cd ../../
   - powershell -Command Set-ExecutionPolicy Bypass
   - powershell -Command $(pwd)/Cronux.bat docronux
-  - cd dist/
-  - git clone https://github.com/Thecarisma/Cronux.wiki.git
-  - cd Cronux.wiki/
-  - cp -r ../wiki/* ./
-  - git config --local user.email "azeezadewale98@gmail.com"
-  - git config --local user.name "Travis CI"
-  - git add .; git commit -m "Travis build=${TRAVIS_BUILD_NUMBER}. Update Wiki from Travis CI"
-  #- git push https://Thecarisma:${GITHUB_TOKEN}@github.com/Thecarisma/Cronux.wiki.git HEAD:master;
-  - cd ../../
   - cd dist/gh-pages/
   - C:/Python27/Scripts/sphinx-build.exe -b html -d build/doctrees  ./ build/html
   - cd ../../
-  - rm -R commands/
-  - rm -R docs/
-  - rm *.*
-  - cp -r dist/gh-pages/build/html/* ./
-  - rm -R dist/
-  - ls
   
 deploy:
-  provider: pages
+  provider: script
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep_history: true
+  script: 
+    - cd dist/
+    - git clone https://github.com/Thecarisma/Cronux.wiki.git
+    - cd Cronux.wiki/
+    - cp -r ../wiki/* ./
+    - git add .; git commit -m "Travis build=${TRAVIS_BUILD_NUMBER}. Update Wiki from Travis CI"
+    #- git push https://Thecarisma:${GITHUB_TOKEN}@github.com/Thecarisma/Cronux.wiki.git HEAD:master;
+    - cd ../../
+  on:
+     branch: master
+  provider: script
+  skip_cleanup: true
+  script: 
+    - cd dist/
+    - git clone -b gh-pages https://github.com/Thecarisma/Cronux.git
+    - cd Cronux/
+    - cp -r ../gh-pages/build/html/* ./
+    - git add .; git commit -m "Travis build=${TRAVIS_BUILD_NUMBER}. Update Documentation from Travis CI"
+    - git push https://Thecarisma:${GITHUB_TOKEN}@github.com/Thecarisma/Cronux.git HEAD:gh-pages;
+    - cd ../../
   on:
      branch: master
