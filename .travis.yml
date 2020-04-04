@@ -28,27 +28,27 @@ script:
   - cd ../../
   
 deploy:
-  provider: script
-  skip_cleanup: true
-  script: 
-    - cd dist/
-    - git clone https://github.com/Thecarisma/Cronux.wiki.git
-    - cd Cronux.wiki/
-    - cp -r ../wiki/* ./
-    - git add .; git commit -m "Travis build=${TRAVIS_BUILD_NUMBER}. Update Wiki from Travis CI"
-    #- git push https://Thecarisma:${GITHUB_TOKEN}@github.com/Thecarisma/Cronux.wiki.git HEAD:master;
-    - cd ../../
-  on:
-     branch: master
-  provider: script
-  skip_cleanup: true
-  script: 
-    - cd dist/
-    - git clone -b gh-pages https://github.com/Thecarisma/Cronux.git
-    - cd Cronux/
-    - cp -r ../gh-pages/build/html/* ./
-    - git add .; git commit -m "Travis build=${TRAVIS_BUILD_NUMBER}. Update Documentation from Travis CI"
-    - git push https://Thecarisma:${GITHUB_TOKEN}@github.com/Thecarisma/Cronux.git HEAD:gh-pages;
-    - cd ../../
-  on:
-     branch: master
+  - provider: script
+    skip_cleanup: true
+    script: 
+      - cd dist/
+      - git clone https://github.com/Thecarisma/Cronux.wiki.git
+      - cd Cronux.wiki/
+      - cp -r ../wiki/* ./
+      - git add .; git commit -m "Travis build=${TRAVIS_BUILD_NUMBER}. Update Wiki from Travis CI"
+      #- git push https://Thecarisma:${GITHUB_TOKEN}@github.com/Thecarisma/Cronux.wiki.git HEAD:master;
+      - cd ../../
+    on:
+       branch: master
+  - provider: script
+    skip_cleanup: true
+    script: 
+      - cd dist/
+      - git clone -b gh-pages https://github.com/Thecarisma/Cronux.git
+      - cd Cronux/
+      - cp -r ../gh-pages/build/html/* ./
+      - git add .; git commit -m "Travis build=${TRAVIS_BUILD_NUMBER}. Update Documentation from Travis CI"
+      - git push https://Thecarisma:${GITHUB_TOKEN}@github.com/Thecarisma/Cronux.git HEAD:gh-pages;
+      - cd ../../
+    on:
+       branch: master
