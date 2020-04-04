@@ -1,6 +1,7 @@
 cd dist/
 git clone -b gh-pages https://github.com/Thecarisma/Cronux.git
 cd Cronux/
+cp -r ../../docs/.nojekyll ./
 cp -r ../gh-pages/build/html/* ./
 git config --local user.email "azeezadewale98@gmail.com"
 git config --local user.name "travis-ci.org"
