@@ -37,7 +37,7 @@ script:
   - cd ../../
   - cd dist/gh-pages/
   - ./make.bat html
-  - python -m sphinx.__init__ -b html build/html
+  - sphinx-build -b html -d build/doctrees  ./ build/html
   - ls 
   - cd ../../
   
