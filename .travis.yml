@@ -36,7 +36,7 @@ script:
   - C:/Python27/Scripts/sphinx-build.exe -b html -d build/doctrees  ./ build/html
   - cd ../../
   - ls
-  - rm -R command/
+  - rm -R commands/
   - rm -R docs/
   - rm *.*
   - ls
