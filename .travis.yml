@@ -36,18 +36,19 @@ script:
   #- git push https://Thecarisma:${GITHUB_TOKEN}@github.com/Thecarisma/Cronux.wiki.git HEAD:master;
   - cd ../../
   - cd dist/gh-pages/
+  - ./make.bat
   - ./make.bat html
   - ls 
   - cd ../../
   
 deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep_history: true
-  local_dir: dist/gh-pages/
-  on:
-     branch: master
+  # provider: pages
+  # skip_cleanup: true
+  # github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  # keep_history: true
+  # local_dir: dist/gh-pages/build/html/
+  # on:
+     # branch: master
   # provider: releases
   # skip_cleanup: true
   # api_key: $GITHUB_TOKEN
