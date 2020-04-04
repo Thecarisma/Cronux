@@ -36,8 +36,8 @@ script:
   #- git push https://Thecarisma:${GITHUB_TOKEN}@github.com/Thecarisma/Cronux.wiki.git HEAD:master;
   - cd ../../
   - cd dist/gh-pages/
-  - ls C:/Python27/Scripts/
-  - powershell -Command ./make.bat html
+  - ./make.bat html
+  - ls 
   - cd ../../
   
 deploy:
