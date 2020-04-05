@@ -105,13 +105,13 @@ pre {
 
 .topnavbar {
     float: none;
-    text-align:center;
+    text-align:left;
     display:block;
-    margin: 10px;
+    padding: 10px;
     height: 60px;
     line-height: 40px;
-    padding-left: 10%;
-    padding-right: 10%;
+    max-width: 58%;
+    margin: auto;
 }
 
 .topnavbar a {
