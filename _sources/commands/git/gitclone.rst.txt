@@ -1,3 +1,9 @@
+
+
+.. index::
+	single: gitclone
+
+
 gitclone
 ========
 

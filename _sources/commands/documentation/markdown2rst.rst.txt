@@ -1,3 +1,9 @@
+
+
+.. index::
+	single: markdown2rst
+
+
 markdown2rst
 ============
 
@@ -26,7 +32,7 @@ Syntax
 .. code:: powershell
 
    markdown2rst [-MdPath] <String> [-OutputFolder] 
-   <String> [-Recurse] [-Silent] [-FormatInternalLink] [<CommonParameters>]  
+   <String> [-Recurse] [-Silent] [-FilterRst] [<CommonParameters>]  
 
 Parameters
 ----------
@@ -83,8 +89,8 @@ whether to print anything to the console
    Accept pipeline input?       false
    Accept wildcard characters?  false
 
--FormatInternalLink [:SwitchParameter]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-FilterRst [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 format relative link to properly locate file in documentation
 

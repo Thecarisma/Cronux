@@ -1,3 +1,9 @@
+
+
+.. index::
+	single: base64s
+
+
 base64s
 =======
 

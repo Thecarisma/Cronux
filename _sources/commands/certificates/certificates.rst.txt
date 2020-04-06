@@ -1,3 +1,9 @@
+
+
+.. index::
+	single: certificates
+
+
 commands/certificates
 =====================
 

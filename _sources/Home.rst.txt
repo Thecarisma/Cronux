@@ -1,3 +1,9 @@
+
+
+.. index::
+	single: Home
+
+
 |image0|
 
 Cronux

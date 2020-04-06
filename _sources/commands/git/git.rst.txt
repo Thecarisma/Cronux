@@ -1,3 +1,9 @@
+
+
+.. index::
+	single: git
+
+
 commands/git
 ============
 

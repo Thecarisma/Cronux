@@ -1,3 +1,9 @@
+
+
+.. index::
+	single: kubectl
+
+
 commands/kubectl
 ================
 

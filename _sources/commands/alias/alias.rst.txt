@@ -1,3 +1,9 @@
+
+
+.. index::
+	single: alias
+
+
 commands/alias
 ==============
 

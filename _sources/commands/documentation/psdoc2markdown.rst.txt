@@ -1,3 +1,9 @@
+
+
+.. index::
+	single: psdoc2markdown
+
+
 psdoc2markdown
 ==============
 
