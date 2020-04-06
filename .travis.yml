@@ -7,16 +7,9 @@ before_install:
   - choco install pandoc
   - choco install python2
   - PATH=$PATH:C:/Python27/Scripts/
-  - C:/Python27/Scripts/pip.exe install sphinx
-  #- C:/Python27/Scripts/pip.exe install themata
+  - C:/Python27/Scripts/pip.exe install themata
 
 script:
-  - mkdir dist/
-  - cd dist/
-  - git clone https://github.com/Thecarisma/themata.git
-  - cd themata/
-  - C:/Python27/Scripts/pip.exe install .
-  - cd ../../
   - powershell -Command Set-ExecutionPolicy Bypass
   - powershell -Command $(pwd)/Cronux.bat docronux
   - cd dist/gh-pages/
@@ -26,7 +19,7 @@ script:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: echo "Yahoo Hello World"
+    script: echo "Testing deploy by script"
     on:
        branch: master
   - provider: script

@@ -21,3 +21,21 @@ function RawInline(raw)
     end
     return raw
 end
+
+function Pandoc(doc)
+    local filename = string.match(PANDOC_STATE.output_file, "/(.*)")
+    for i in string.gmatch(filename, "[^.]+") do
+      filename = i
+      break
+    end
+    local hblocks = {}
+    local el = pandoc.Para("\n\n"          ..
+                           ".. index::\n"    ..
+                           "	single: "  .. filename ..
+                           "\n\n\n\n")
+    table.insert(hblocks, el)
+    for i,el in pairs(doc.blocks) do
+        table.insert(hblocks, el)
+    end
+    return pandoc.Pandoc(hblocks, doc.meta)
+end
