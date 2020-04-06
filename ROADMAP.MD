@@ -79,4 +79,9 @@
  - [x] write a small example to use watcherb command with external batch script 
  - [x] write a small example to use watcher command with external powershell script 
  - [ ] validate objects with https://microsoft.github.io/PSRule/. Urgent
+ - [ ] replace email with website in cronux
+ - [ ] make each folder it head instead of just dumping pages in sidebar rst
+ - [ ] add the index single at the top of each file for rst
+
+
 
