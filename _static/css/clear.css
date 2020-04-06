@@ -217,12 +217,21 @@ pre {
     padding: 1px;
     list-style-type: none;
     margin: 0px;
+    display: block;
 }
 
 .sidebar-left li {
     padding-left: 10px;
     margin-top: 5px;
 }
+
+
+
+.sidebar-left .caption {
+    font-weight: bold; 
+}
+
+
 
 .sidebar-right ul {
     padding: 1px;
@@ -241,10 +250,6 @@ pre {
 
 .sidebar-left {
     -ms-overflow-style: none;
-}
-
-.sidebar-left .caption {
-    font-weight: bold;
 }
 
 .sidebar-right::-webkit-scrollbar {
