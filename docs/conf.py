@@ -21,6 +21,6 @@ html_theme_options = {
     'social_icons': [
         ('fab fa-dev', 'https://dev.to/iamthecarisma'),
         ('fab fa-twitter', 'https://twitter.com/iamthecarisma'),
-        ('fab fa-github', 'https://github.com/Thecarisma/themata/')
+        ('fab fa-github', 'https://github.com/Thecarisma/Cronux/')
     ]
 }

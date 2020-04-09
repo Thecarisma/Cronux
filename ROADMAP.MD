@@ -82,6 +82,7 @@
  - [ ] replace email with website in cronux
  - [x] make each folder it head instead of just dumping pages in sidebar rst
  - [x] add the index single at the top of each file for rst
+ - [x] command to execute file directly. use the first line shebang to run the file
 
 
 
