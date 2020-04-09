@@ -205,60 +205,53 @@
                 
   <div class="section" id="id1">
 <h1>$<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>A robust command delegate for Windows Command Prompt</p>
+<p>A robust sub shell for powershell</p>
 <hr class="docutils" />
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Version</span>    <span class="p">:</span> <span class="mf">1.0</span>
-<span class="n">File</span> <span class="n">Name</span>  <span class="p">:</span> <span class="n">aboutx</span><span class="o">.</span><span class="n">ps1</span>
-<span class="n">Author</span>     <span class="p">:</span> <span class="n">Adewale</span> <span class="n">Azeez</span> <span class="o">-</span> <span class="n">azeezadewale98</span><span class="nd">@gmail</span><span class="o">.</span><span class="n">com</span>
-<span class="n">Date</span>       <span class="p">:</span> <span class="n">Jan</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">2020</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Version    : 1.0
+File Name  : $.ps1
+Author     : Adewale Azeez - azeezadewale98@gmail.com
+Date       : Apr-09-2020
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>Support inline execution, command history</p>
+<p>Support inline execution, sub shell and shebang line execution. Hebang
+execution also :). The hebang line is similar to shebang just that
+instead of ‘#’ it expect ‘//’. The value of {0} is the full path to the
+file and can be used in the shebang and hebang line.</p>
+<p>The hebang can be used to compile a file before executing it. e.g the
+following c source file is compiled then executed, test.c</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>//!gcc {0} -o test; ./test
+#include &lt;stdio&gt;
+int main() {
+printf(&quot;hello world&quot;);
+}
+</pre></div>
+</div>
+<p>Then execute this in the CLI. The file test.c will be compile and
+executed. The hebang line will expands to
+<code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">C:/full/path/test.c</span> <span class="pre">-o</span> <span class="pre">test;</span> <span class="pre">./test</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./test.c
+</pre></div>
+</div>
+<p>will prints ‘hello world’ in the console.</p>
+<p>If no command is specified to the script it will enter a subshell where
+command can be executed line by line. The subshell is simply a
+powershell REPL which evaluates shebang and hebang line in file if
+specified.</p>
 <div class="section" id="syntax">
 <h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
-<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span>$ [-Version] [-Year] [-Author] [-Licence]
-[&lt;CommonParameters&gt;]
+<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span>$ [[-Commands] &lt;String[]&gt;] [&lt;CommonParameters&gt;]
 </pre></div>
 </div>
 </div>
 <div class="section" id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="version-switchparameter">
-<h3>-Version [:SwitchParameter]<a class="headerlink" href="#version-switchparameter" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="commands-string">
+<h3>-Commands :String[]<a class="headerlink" href="#commands-string" title="Permalink to this headline">¶</a></h3>
+<p>the commands to execute or the file to execute</p>
 <div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span>Required?                    false
-Position?                    named
-Default value                False
-Accept pipeline input?       false
-Accept wildcard characters?  false
-</pre></div>
-</div>
-</div>
-<div class="section" id="year-switchparameter">
-<h3>-Year [:SwitchParameter]<a class="headerlink" href="#year-switchparameter" title="Permalink to this headline">¶</a></h3>
-<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span>Required?                    false
-Position?                    named
-Default value                False
-Accept pipeline input?       false
-Accept wildcard characters?  false
-</pre></div>
-</div>
-</div>
-<div class="section" id="author-switchparameter">
-<h3>-Author [:SwitchParameter]<a class="headerlink" href="#author-switchparameter" title="Permalink to this headline">¶</a></h3>
-<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span>Required?                    false
-Position?                    named
-Default value                False
-Accept pipeline input?       false
-Accept wildcard characters?  false
-</pre></div>
-</div>
-</div>
-<div class="section" id="licence-switchparameter">
-<h3>-Licence [:SwitchParameter]<a class="headerlink" href="#licence-switchparameter" title="Permalink to this headline">¶</a></h3>
-<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span>Required?                    false
-Position?                    named
-Default value                False
+Position?                    1
+Default value
 Accept pipeline input?       false
 Accept wildcard characters?  false
 </pre></div>
@@ -274,7 +267,7 @@ about_CommonParameters (<a class="reference external" href="https:/go.microsoft.
 </div>
 <div class="section" id="inputs">
 <h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<p>None</p>
+<p>[System.String[]]</p>
 </div>
 <div class="section" id="outputs">
 <h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
@@ -282,13 +275,17 @@ about_CommonParameters (<a class="reference external" href="https:/go.microsoft.
 </div>
 <div class="section" id="example-1">
 <h2>EXAMPLE 1<a class="headerlink" href="#example-1" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aboutx</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$
 </pre></div>
 </div>
-<p>Show about the Cronux application</p>
+<p>Enter the powershell sub shell which evaluates shebang and hebang line.</p>
 </div>
 <div class="section" id="example-2">
 <h2>EXAMPLE 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo &#39;this is it&#39;
+</pre></div>
+</div>
+<p>Prints ‘this is it’ in the console</p>
 </div>
 <div class="section" id="related-links">
 <h2>Related links<a class="headerlink" href="#related-links" title="Permalink to this headline">¶</a></h2>
@@ -327,10 +324,7 @@ about_CommonParameters (<a class="reference external" href="https:/go.microsoft.
 <li><a class="reference internal" href="#">$</a><ul>
 <li><a class="reference internal" href="#syntax">Syntax</a></li>
 <li><a class="reference internal" href="#parameters">Parameters</a><ul>
-<li><a class="reference internal" href="#version-switchparameter">-Version [:SwitchParameter]</a></li>
-<li><a class="reference internal" href="#year-switchparameter">-Year [:SwitchParameter]</a></li>
-<li><a class="reference internal" href="#author-switchparameter">-Author [:SwitchParameter]</a></li>
-<li><a class="reference internal" href="#licence-switchparameter">-Licence [:SwitchParameter]</a></li>
+<li><a class="reference internal" href="#commands-string">-Commands :String[]</a></li>
 <li><a class="reference internal" href="#commonparameters">CommonParameters</a></li>
 </ul>
 </li>

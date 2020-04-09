@@ -7,73 +7,70 @@
 $
 =
 
-A robust command delegate for Windows Command Prompt
+A robust sub shell for powershell
 
 --------------
 
 ::
 
    Version    : 1.0
-   File Name  : aboutx.ps1
+   File Name  : $.ps1
    Author     : Adewale Azeez - azeezadewale98@gmail.com
-   Date       : Jan-08-2020
+   Date       : Apr-09-2020
 
 --------------
 
-Support inline execution, command history
+Support inline execution, sub shell and shebang line execution. Hebang
+execution also :). The hebang line is similar to shebang just that
+instead of ‘#’ it expect ‘//’. The value of {0} is the full path to the
+file and can be used in the shebang and hebang line.
+
+The hebang can be used to compile a file before executing it. e.g the
+following c source file is compiled then executed, test.c
+
+::
+
+   //!gcc {0} -o test; ./test
+   #include <stdio>
+   int main() {
+   printf("hello world");
+   }
+
+Then execute this in the CLI. The file test.c will be compile and
+executed. The hebang line will expands to
+``gcc C:/full/path/test.c -o test; ./test``
+
+::
+
+   $ ./test.c
+
+will prints ‘hello world’ in the console.
+
+If no command is specified to the script it will enter a subshell where
+command can be executed line by line. The subshell is simply a
+powershell REPL which evaluates shebang and hebang line in file if
+specified.
 
 Syntax
 ------
 
 .. code:: powershell
 
-   $ [-Version] [-Year] [-Author] [-Licence] 
-   [<CommonParameters>]  
+   $ [[-Commands] <String[]>] [<CommonParameters>]  
 
 Parameters
 ----------
 
--Version [:SwitchParameter]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-Commands :String[]
+~~~~~~~~~~~~~~~~~~~
+
+the commands to execute or the file to execute
 
 .. code:: powershell
 
    Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
-
--Year [:SwitchParameter]
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
-
--Author [:SwitchParameter]
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
-
--Licence [:SwitchParameter]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
+   Position?                    1
+   Default value                
    Accept pipeline input?       false
    Accept wildcard characters?  false
 
@@ -88,7 +85,7 @@ about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
 Inputs
 ------
 
-None
+[System.String[]]
 
 Outputs
 -------
@@ -100,14 +97,18 @@ EXAMPLE 1
 
 ::
 
-   aboutx
+   $
 
-Show about the Cronux application
+Enter the powershell sub shell which evaluates shebang and hebang line.
 
 EXAMPLE 2
 ---------
 
 ::
+
+   $ echo 'this is it'
+
+Prints ‘this is it’ in the console
 
 Related links
 -------------
