@@ -16,7 +16,7 @@ $InstallationPath = Install-Folder-X
 $PathEnvironment = "User"
 $BeforeScript = ""
 $AfterScript = "
-    cp ./Cronux-master/commands/filefolder/extractx.ps1 $InstallationPath
+    cp ./Cronux-master/commands/archive/extractx.ps1 $InstallationPath
     cp ./Cronux-master/commands/cronux/buildcronux.ps1 $InstallationPath
     cp ./Cronux-master/commands/conversions/batforps.ps1 $InstallationPath
     cp ./Cronux-master/commands/conversions/wrapcommand.ps1 $InstallationPath
