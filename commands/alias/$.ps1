@@ -1,56 +1,144 @@
 <#
 .SYNOPSIS
-    A robust command delegate for Windows Command Prompt
+    A robust sub shell for powershell
 .DESCRIPTION
-    Support inline execution, command history
+    Support inline execution, sub shell and shebang 
+    line execution. Hebang execution also :). The hebang 
+    line is similar to shebang just that instead of '#' 
+    it expect '//'. The value of {0} is the full path 
+    to the file and can be used in the shebang and hebang 
+    line. 
+    
+    The hebang can be used to compile a file 
+    before executing it. e.g the following c source 
+    file is compiled then executed, test.c
+    
+    ```
+    //!gcc {0} -o test; ./test
+    #include <stdio>
+    int main() {
+        printf("hello world");
+    }
+    ```
+    
+    Then execute this in the CLI. The file test.c will 
+    be compile and executed. The hebang line will expands 
+    to `gcc C:/full/path/test.c -o test; ./test`    
+    
+    
+    ```
+    $ ./test.c
+    ```
+    
+    will prints 'hello world' in the console. 
+    
+    If no command is specified to the script it will enter 
+    a subshell where command can be executed line by line. 
+    The subshell is simply a powershell REPL which evaluates 
+    shebang and hebang line in file if specified.
 .INPUTS 
-    None
+    [System.String[]]
 .OUTPUTS 
     System.String
 .NOTES
     Version    : 1.0
-    File Name  : aboutx.ps1
+    File Name  : $.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
-    Date       : Jan-08-2020
+    Date       : Apr-09-2020
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE
-    aboutx 
-    Show about the Cronux application
+    $ 
+    Enter the powershell sub shell which evaluates 
+    shebang and hebang line.
 .EXAMPLE
-    
+    $ echo 'this is it'
+    Prints 'this is it' in the console
 #>
 
 Param(
-    [switch]$Version,
-    [switch]$Year,
-    [switch]$Author,
-    [switch]$Licence
+    # the commands to execute or the file to execute
+    [Parameter(Mandatory=$false, ValueFromRemainingArguments = $true)]
+    [string[]]$Commands
 )
 
-$version_value = "2.0"
-$author_value = "Adewale Azeez"
-$licence_value = "MIT License"
-$year_value = "2020"
-
-if ($Version) {
-    $version_value
-    Return
-}
-if ($Year) {
-    $year_value
-    Return
-}
-if ($Author) {
-    $author_value
-    Return
-}
-if ($Licence) {
-    $licence_value
-    Return
+Function Main {
+    If ($Commands) {
+        Evalute-Line $Commands
+    } Else {
+        Enter-Shell
+    }
 }
 
-"Cronux v$version_value"
-"Powershell $($Host.Version)"
-"$([System.Environment]::OSVersion)"
-"The $licence_value Copyright (c) $year_value $author_value"
+Function Enter-Shell {
+    while ($true) {
+       $Commands = Read-Host "$"
+       Evalute-Line $Commands
+    }
+}
+
+Function Evalute-Line {
+    Param(
+        [string]$LineArgs
+    )
+    
+    $FirstCommand = ""
+        $OtherCommands = ""
+        ForEach ($Command in $Commands) {
+            If (-not $FirstCommand) {
+                $FirstCommand = $Command
+                If ($FirstCommand -eq "exit()" -or $FirstCommand -eq "exit" -or $FirstCommand -eq "close") {
+                    exit
+                }
+            } else {
+                if ($Command.Contains(" ")) {
+                    $OtherCommands += "'$Command' "
+                } else {
+                    $OtherCommands += "$Command "
+                }
+            }
+        }
+        $FirstCommand = Resolve-Shebang $FirstCommand
+        iex "$FirstCommand $OtherCommands"
+}
+
+Function Resolve-Shebang {
+    Param(
+        [string]$FirstCommand_
+    )
+    
+    If ([System.IO.File]::Exists($FirstCommand_)) {
+        foreach($Line in Get-Content $FirstCommand_) {
+            If($Line.StartsWith("#!")){
+                $Shebang = $Line.SubString(2, $Line.Length - 2)
+                $Bangs = $Shebang.Split(" ")
+                $Shebang = ""
+                ForEach ($Bang in $Bangs) {
+                    If ($Bang.StartsWith('/') -and ($Bang.EndsWith('/env') -or $Bang.EndsWith('/bin'))) {
+                    
+                    } Else {
+                        $Shebang += "$Bang "
+                    }
+                }
+                return $Shebang + ' ' + [System.IO.Path]::GetFullPath($FirstCommand_)
+            } ElseIf ($Line.StartsWith("//!")){
+                $Hebang = $Line.SubString(3, $Line.Length - 3)
+                $Bangs = $Hebang.Split(" ")
+                $Hebang = ""
+                ForEach ($Bang in $Bangs) {
+                    If ($Bang.StartsWith('/') -and ($Bang.EndsWith('/env') -or $Bang.EndsWith('/bin'))) {
+                    
+                    } Else {
+                        $Hebang += "$Bang "
+                    }
+                }
+                $Hebang = $Hebang -f [System.IO.Path]::GetFullPath($FirstCommand_)
+                return $Hebang
+            }
+            return $FirstCommand_
+        }
+    }
+    return $FirstCommand_
+}
+
+Main
