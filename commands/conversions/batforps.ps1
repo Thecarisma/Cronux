@@ -67,9 +67,9 @@ if `"%1`" == `"help`" (
     powershell -noprofile -executionpolicy bypass $powershell_script_path %*
 )")
 } Else {
-    If ( -not [System.IO.File]::Exists("$output_folder_path\$script_name")) {
+    If (-not $powershell_script_path.Equals([System.IO.Path]::GetFullPath("$output_folder_path\$script_name"))) {
         "Copying the Powershell Script '$script_name' to $output_folder_path"
-        [System.IO.File]::Copy($powershell_script_path, "$output_folder_path\$script_name", $true)
+        Copy-Item -Path $powershell_script_path -Destination "$output_folder_path\$script_name" -Force
     }
     "Creating the caller batch file '$name_only.bat' in $output_folder_path"
     [System.IO.File]::WriteAllLines("$output_folder_path\$name_only.bat", 

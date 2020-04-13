@@ -42,7 +42,7 @@ Function Iterate-Folder {
             If ( -not $_.Name.EndsWith(".ps1")) {
                 Return
             }
-            "Copying and Generating Batch wrapper for $_.Name"
+            "Copying and Generating Batch wrapper for $($_.Name)"
             If ( -not [System.IO.File]::Exists("$output_folder_path\$($_.Name)")) {
                 [System.IO.File]::Copy($_.FullName, "$output_folder_path\$($_.Name)", $true)
             }
