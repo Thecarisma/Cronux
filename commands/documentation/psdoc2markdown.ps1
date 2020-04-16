@@ -430,13 +430,13 @@ $argument
     if ($argument[0] -eq '-' -and -not [string]::IsNullOrWhitespace("$($argument[1])") -or 
         ($argument.StartsWith("http")) -or
         ($argument[0] -match '^[0-9]+$')) {
-        $argument = " - " + $argument
+        $argument = "- " + $argument
     }
     if (-not [string]::IsNullOrWhitespace($argument) -and 
         $argument.Split(" ").Length -eq 1 -and 
         $argument -match '^[a-z0-9]+$' -and 
         $Global:prev_single_empty -eq $true) {
-        $argument = " - " + $argument
+        $argument = "- " + $argument
         $Global:prev_single_empty = $true
         $found_single_word = $true
     }
