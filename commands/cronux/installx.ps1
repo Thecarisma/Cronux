@@ -17,7 +17,8 @@ $PathEnvironment = "User"
 $BeforeScript = ""
 $AfterScript = "
     Move-Item -Path ./Cronux-master/commands/archive/*.ps1 -Destination $InstallationPath -Force
-    Move-Item -Path ./Cronux-master/commands/archive/*.ps1 -Destination $InstallationPath -Force
+    Move-Item -Path ./Cronux-master/commands/conversions/*.ps1 -Destination $InstallationPath -Force
+    Move-Item -Path ./Cronux-master/commands/cronux/*.ps1 -Destination $InstallationPath -Force
     Move-Item -Path ./Cronux-master/*.bat -Destination $InstallationPath -Force
     Move-Item -Path ./Cronux-master/*.sh -Destination $InstallationPath -Force
     Move-Item -Path ./Cronux-master/LICENSE -Destination $InstallationPath -Force
@@ -87,7 +88,7 @@ Function Iterate-Folder {
             If ( -not $_.Name.EndsWith(".ps1")) {
                 Return
             }
-            cp $_.FullName $InstallationPath
+            Copy-Item -Path $_.FullName -Destination $InstallationPath -Force
         } Else {
             Iterate-Folder $_.FullName
         }
@@ -95,6 +96,10 @@ Function Iterate-Folder {
 }
 
 "Preparing to install $AppName $Version"
+If ([System.IO.Directory]::Exists("$InstallationPath")) {
+    Remove-Item -path "$InstallationPath\*.ps1" -Recurse
+    Remove-Item -path "$InstallationPath\*.bat" -Recurse
+}
 If (-not [System.IO.File]::Exists("$PSScriptRoot/../net/ipof.ps1")) {
     Check-Create-Directory $TEMP
     If ($BeforeScript -ne "") {
