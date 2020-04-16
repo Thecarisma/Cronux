@@ -362,21 +362,29 @@ Function Parse-Parameters {
             $argument = $argument.SubString(4, $argument.Length - 4)
             if ($argument.StartsWith("Required?")) {
                 $Global:DocHasParameter = $True
-                $Global:parameters += "```````powershell`r`n"
+                $Global:parameters += "attr | value`r`n"
+                $Global:parameters += "---- | -----`r`n"
             }
             Parse-Any $argument
-            $Global:parameters += $Global:current
+            If ($Global:DocHasParameter -eq $True) {
+                $LastIndex = $Global:current.LastIndexOf(' ')
+                $Global:parameters += $Global:current.SubString(0, $LastIndex) + " | " + $Global:current.SubString($LastIndex, $Global:current.Length - $LastIndex) 
+            } Else {
+                $Global:parameters += $Global:current
+            }
             $Global:current = ""
         } else {
             if (-not [string]::IsNullOrWhitespace($Global:parameters) -and $argument.StartsWith("-")) {
                 $Global:parameters = $Global:parameters.TrimEnd()
-                $Global:parameters += "`r`n```````r`n`r`n"
+                $Global:parameters += "`r`n`r`n"
+                $Global:DocHasParameter = $False
             }
             if ($argument.StartsWith("<") -and $argument.EndsWith(">")) {
                 $argument = $argument.SubString(1, $argument.Length - 2);
                 If ($Global:DocHasParameter -eq $True) {
                     $Global:parameters = $Global:parameters.TrimEnd()
-                    $Global:parameters += "`r`n```````r`n`r`n"
+                    $Global:parameters += "`r`n`r`n"
+                    $Global:DocHasParameter = $False
                 }
                 $Global:parameters += "### $argument`r`n`r`n"
                 $Global:has_commonparams = $true
