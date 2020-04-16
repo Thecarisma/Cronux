@@ -24,13 +24,13 @@ Listen on a port on the local machine and forward to pod port. Kubectl
 is required for this command to work, it can be downloaded from -
 https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
-== ==========
-in Pod Object
-== ==========
-\  
-am e
-\  
-== ==========
+== ===========
+Mi nPod Object
+== ===========
+{  
+Na me
+}  
+== ===========
 
 Syntax
 ------
@@ -48,39 +48,45 @@ Parameters
 
 the full pod name or matching part of pod name
 
-.. code:: powershell
-
-   Required?                    true
-   Position?                    1
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   true
+Position?                   1
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -PodPort :String
 ~~~~~~~~~~~~~~~~
 
 the forwarded-port:podport
 
-.. code:: powershell
-
-   Required?                    true
-   Position?                    2
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   true
+Position?                   2
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -Single [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 get only the first pod that matches the name
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 CommonParameters
 ~~~~~~~~~~~~~~~~

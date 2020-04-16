@@ -36,104 +36,120 @@ Parameters
 
 The path to the powershell scri[t to extract documentation
 
-.. code:: powershell
-
-   Required?                    true
-   Position?                    1
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   true
+Position?                   1
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -OutputFolder :String
 ~~~~~~~~~~~~~~~~~~~~~
 
 the folder to put generated exported documenation
 
-.. code:: powershell
-
-   Required?                    true
-   Position?                    2
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   true
+Position?                   2
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -ProjectName :String
 ~~~~~~~~~~~~~~~~~~~~
 
 The project name
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    3
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   3
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -SkipHtml [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 do not use html to position and format document
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -SkipNotes [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 do not add notes detail before description
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -Silent [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 whether to print anythin to the console
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -Recurse [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 generate markdown in subfolders?
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -Keep [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 do not delete the generated .psdoc files in OutputFolder
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 CommonParameters
 ~~~~~~~~~~~~~~~~

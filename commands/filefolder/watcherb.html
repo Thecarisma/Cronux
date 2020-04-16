@@ -242,13 +242,34 @@ argument will require escaping the command for command prompt.</p>
 <div class="section" id="folderpath-string">
 <h3>-FolderPath :String<a class="headerlink" href="#folderpath-string" title="Permalink to this headline">¶</a></h3>
 <p>the folder to monitor</p>
-<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span>Required?                    true
-Position?                    1
-Default value
-Accept pipeline input?       false
-Accept wildcard characters?  false
-</pre></div>
-</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="84%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">attr</th>
+<th class="head">value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Required?</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>Position?</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>Default value</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Accept pipeline input?</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>Accept wildcard characters?</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="commandtoexecute-string">
 <h3>-CommandToExecute :String<a class="headerlink" href="#commandtoexecute-string" title="Permalink to this headline">¶</a></h3>
@@ -260,57 +281,162 @@ the monitored folder - 4 - the full file path</p>
 <p>e.g to print out the name of the file that change Write-Output {0} e.g
 to print out the name and date of the file that change Write-Output
 Name={0}, Date={2}</p>
-<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span>Required?                    true
-Position?                    2
-Default value
-Accept pipeline input?       false
-Accept wildcard characters?  false
-</pre></div>
-</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="84%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">attr</th>
+<th class="head">value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Required?</td>
+<td>true</td>
+</tr>
+<tr class="row-odd"><td>Position?</td>
+<td>2</td>
+</tr>
+<tr class="row-even"><td>Default value</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Accept pipeline input?</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>Accept wildcard characters?</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="create-switchparameter">
 <h3>-Create [:SwitchParameter]<a class="headerlink" href="#create-switchparameter" title="Permalink to this headline">¶</a></h3>
 <p>The swicth that indicate whether to fire the command on create</p>
-<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span>Required?                    false
-Position?                    named
-Default value                False
-Accept pipeline input?       false
-Accept wildcard characters?  false
-</pre></div>
-</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="84%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">attr</th>
+<th class="head">value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Required?</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>Position?</td>
+<td>named</td>
+</tr>
+<tr class="row-even"><td>Default value</td>
+<td>False</td>
+</tr>
+<tr class="row-odd"><td>Accept pipeline input?</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>Accept wildcard characters?</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="delete-switchparameter">
 <h3>-Delete [:SwitchParameter]<a class="headerlink" href="#delete-switchparameter" title="Permalink to this headline">¶</a></h3>
 <p>The swicth that indicate whether to fire the command on delete</p>
-<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span>Required?                    false
-Position?                    named
-Default value                False
-Accept pipeline input?       false
-Accept wildcard characters?  false
-</pre></div>
-</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="84%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">attr</th>
+<th class="head">value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Required?</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>Position?</td>
+<td>named</td>
+</tr>
+<tr class="row-even"><td>Default value</td>
+<td>False</td>
+</tr>
+<tr class="row-odd"><td>Accept pipeline input?</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>Accept wildcard characters?</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="change-switchparameter">
 <h3>-Change [:SwitchParameter]<a class="headerlink" href="#change-switchparameter" title="Permalink to this headline">¶</a></h3>
 <p>The swicth that indicate whether to fire the command on change</p>
-<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span>Required?                    false
-Position?                    named
-Default value                False
-Accept pipeline input?       false
-Accept wildcard characters?  false
-</pre></div>
-</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="84%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">attr</th>
+<th class="head">value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Required?</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>Position?</td>
+<td>named</td>
+</tr>
+<tr class="row-even"><td>Default value</td>
+<td>False</td>
+</tr>
+<tr class="row-odd"><td>Accept pipeline input?</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>Accept wildcard characters?</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="rename-switchparameter">
 <h3>-Rename [:SwitchParameter]<a class="headerlink" href="#rename-switchparameter" title="Permalink to this headline">¶</a></h3>
 <p>The swicth that indicate whether to fire the command on rename</p>
-<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span>Required?                    false
-Position?                    named
-Default value                False
-Accept pipeline input?       false
-Accept wildcard characters?  false
-</pre></div>
-</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="84%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">attr</th>
+<th class="head">value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Required?</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>Position?</td>
+<td>named</td>
+</tr>
+<tr class="row-even"><td>Default value</td>
+<td>False</td>
+</tr>
+<tr class="row-odd"><td>Accept pipeline input?</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>Accept wildcard characters?</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="commonparameters">
 <h3>CommonParameters<a class="headerlink" href="#commonparameters" title="Permalink to this headline">¶</a></h3>

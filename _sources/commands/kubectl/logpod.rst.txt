@@ -40,26 +40,30 @@ Parameters
 
 the full pod name or matching part of pod name
 
-.. code:: powershell
-
-   Required?                    true
-   Position?                    1
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   true
+Position?                   1
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -NoTail [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 only print the log do not tail
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 CommonParameters
 ~~~~~~~~~~~~~~~~

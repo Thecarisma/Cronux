@@ -38,26 +38,30 @@ Parameters
 
 the url to fetch it ip addresses
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    1
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   1
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -Head [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the Invoke-WebRequest with Method HEAD to find Ip
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 CommonParameters
 ~~~~~~~~~~~~~~~~

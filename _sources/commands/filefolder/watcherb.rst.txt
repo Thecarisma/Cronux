@@ -57,13 +57,15 @@ Parameters
 
 the folder to monitor
 
-.. code:: powershell
-
-   Required?                    true
-   Position?                    1
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   true
+Position?                   1
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -CommandToExecute :String
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -78,65 +80,75 @@ e.g to print out the name of the file that change Write-Output {0} e.g
 to print out the name and date of the file that change Write-Output
 Name={0}, Date={2}
 
-.. code:: powershell
-
-   Required?                    true
-   Position?                    2
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   true
+Position?                   2
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -Create [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The swicth that indicate whether to fire the command on create
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -Delete [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The swicth that indicate whether to fire the command on delete
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -Change [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The swicth that indicate whether to fire the command on change
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -Rename [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The swicth that indicate whether to fire the command on rename
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 CommonParameters
 ~~~~~~~~~~~~~~~~

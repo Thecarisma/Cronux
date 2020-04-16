@@ -54,117 +54,135 @@ Parameters
 
 The path to monitor
 
-.. code:: powershell
-
-   Required?                    true
-   Position?                    1
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   true
+Position?                   1
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -Filter :String
 ~~~~~~~~~~~~~~~
 
 Monitor these files (a wildcard)
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    2
-   Default value                *.*
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   2
+Default value               *.*
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -Recurse [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Monitor subdirectories?
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -SkipHiddenFolder [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Monitor hidden folder, true by default
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -CreatedAction :ScriptBlock
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Execute ths block on Created
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -DeletedAction :ScriptBlock
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Execute ths block on Deleted
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -ChangedAction :ScriptBlock
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Execute ths block on Changed
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -RenamedAction :ScriptBlock
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Execute ths block on Renamed
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -KeyboardTimeout :Int32
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Check for ESC every … seconds
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                -1
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               -1
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 CommonParameters
 ~~~~~~~~~~~~~~~~

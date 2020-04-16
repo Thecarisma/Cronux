@@ -225,58 +225,58 @@ be printed.</p>
 Object below for each of the pod.</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="13%" />
+<col width="12%" />
 <col width="88%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">od</th>
-<th class="head">Object</th>
+<tr class="row-odd"><th class="head">Po</th>
+<th class="head">d Object</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td></td>
+<tr class="row-even"><td>{</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td>am</td>
+<tr class="row-odd"><td>Na</td>
+<td>me</td>
+</tr>
+<tr class="row-even"><td>Re</td>
+<td>ady</td>
+</tr>
+<tr class="row-odd"><td>St</td>
+<td>atus</td>
+</tr>
+<tr class="row-even"><td>Re</td>
+<td>starts</td>
+</tr>
+<tr class="row-odd"><td>Ag</td>
 <td>e</td>
 </tr>
-<tr class="row-even"><td>ea</td>
-<td>dy</td>
+<tr class="row-even"><td>Na</td>
+<td>mespace</td>
 </tr>
-<tr class="row-odd"><td>ta</td>
-<td>tus</td>
+<tr class="row-odd"><td>Pr</td>
+<td>iority</td>
 </tr>
-<tr class="row-even"><td>es</td>
-<td>tarts</td>
+<tr class="row-even"><td>Pr</td>
+<td>iorityClassName</td>
 </tr>
-<tr class="row-odd"><td>ge</td>
+<tr class="row-odd"><td>No</td>
+<td>de</td>
+</tr>
+<tr class="row-even"><td>St</td>
+<td>artTime</td>
+</tr>
+<tr class="row-odd"><td>IP</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td>am</td>
-<td>espace</td>
+<tr class="row-even"><td>Po</td>
+<td>rt</td>
 </tr>
-<tr class="row-odd"><td>ri</td>
-<td>ority</td>
+<tr class="row-odd"><td>Im</td>
+<td>age</td>
 </tr>
-<tr class="row-even"><td>ri</td>
-<td>orityClassName</td>
-</tr>
-<tr class="row-odd"><td>od</td>
-<td>e</td>
-</tr>
-<tr class="row-even"><td>ta</td>
-<td>rtTime</td>
-</tr>
-<tr class="row-odd"><td>P</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-even"><td>or</td>
-<td>t</td>
-</tr>
-<tr class="row-odd"><td>ma</td>
-<td>ge</td>
-</tr>
-<tr class="row-even"><td></td>
+<tr class="row-even"><td>}</td>
 <td>&#160;</td>
 </tr>
 </tbody>
@@ -295,35 +295,98 @@ syetem to function.</p>
 <div class="section" id="podname-string">
 <h3>-PodName :String<a class="headerlink" href="#podname-string" title="Permalink to this headline">¶</a></h3>
 <p>the full pod name or matching part of name</p>
-<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span>Required?                    false
-Position?                    1
-Default value
-Accept pipeline input?       false
-Accept wildcard characters?  false
-</pre></div>
-</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="84%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">attr</th>
+<th class="head">value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Required?</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>Position?</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>Default value</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Accept pipeline input?</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>Accept wildcard characters?</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="detail-switchparameter">
 <h3>-Detail [:SwitchParameter]<a class="headerlink" href="#detail-switchparameter" title="Permalink to this headline">¶</a></h3>
 <p>this returns as array of the Pod class that can be iterated</p>
-<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span>Required?                    false
-Position?                    named
-Default value                False
-Accept pipeline input?       false
-Accept wildcard characters?  false
-</pre></div>
-</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="84%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">attr</th>
+<th class="head">value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Required?</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>Position?</td>
+<td>named</td>
+</tr>
+<tr class="row-even"><td>Default value</td>
+<td>False</td>
+</tr>
+<tr class="row-odd"><td>Accept pipeline input?</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>Accept wildcard characters?</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="single-switchparameter">
 <h3>-Single [:SwitchParameter]<a class="headerlink" href="#single-switchparameter" title="Permalink to this headline">¶</a></h3>
 <p>get only the first pod that matches the name</p>
-<div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span>Required?                    false
-Position?                    named
-Default value                False
-Accept pipeline input?       false
-Accept wildcard characters?  false
-</pre></div>
-</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="84%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">attr</th>
+<th class="head">value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Required?</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>Position?</td>
+<td>named</td>
+</tr>
+<tr class="row-even"><td>Default value</td>
+<td>False</td>
+</tr>
+<tr class="row-odd"><td>Accept pipeline input?</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>Accept wildcard characters?</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="commonparameters">
 <h3>CommonParameters<a class="headerlink" href="#commonparameters" title="Permalink to this headline">¶</a></h3>

@@ -39,26 +39,30 @@ Parameters
 
 The application to run as Administrator
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    1
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   1
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -ExtraArguments :String[]
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The arguments to pass to the application
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    2
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   2
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 CommonParameters
 ~~~~~~~~~~~~~~~~

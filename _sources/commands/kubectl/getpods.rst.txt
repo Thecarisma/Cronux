@@ -32,25 +32,25 @@ be printed.
 If the switch -Detail is added the output will be an instance of the Pod
 Object below for each of the pod.
 
-== ==============
-od Object
-== ==============
-\  
-am e
-ea dy
-ta tus
-es tarts
-ge 
-am espace
-ri ority
-ri orityClassName
-od e
-ta rtTime
-P  
-or t
-ma ge
-\  
-== ==============
+== ===============
+Po d Object
+== ===============
+{  
+Na me
+Re ady
+St atus
+Re starts
+Ag e
+Na mespace
+Pr iority
+Pr iorityClassName
+No de
+St artTime
+IP 
+Po rt
+Im age
+}  
+== ===============
 
 This command requirs kubectl command line app to be installed on the
 syetem to function.
@@ -71,39 +71,45 @@ Parameters
 
 the full pod name or matching part of name
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    1
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   1
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -Detail [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 this returns as array of the Pod class that can be iterated
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 -Single [:SwitchParameter]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 get only the first pod that matches the name
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    named
-   Default value                False
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 CommonParameters
 ~~~~~~~~~~~~~~~~

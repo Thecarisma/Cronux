@@ -41,13 +41,15 @@ Parameters
 -args :String[]
 ~~~~~~~~~~~~~~~
 
-.. code:: powershell
-
-   Required?                    false
-   Position?                    1
-   Default value                
-   Accept pipeline input?       false
-   Accept wildcard characters?  false
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   1
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
 
 CommonParameters
 ~~~~~~~~~~~~~~~~
