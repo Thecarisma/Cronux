@@ -42,13 +42,26 @@ Function Generate-Command-Wrapper {
         [string]$command
     )
     "Wrapping the command '$command' into '$output_folder_path\$command.bat'"
-    [System.IO.File]::WriteAllLines("$output_folder_path\$command.bat", 
+    If ($Env:OS.StartsWith("Windows")) {
+        [System.IO.File]::WriteAllLines("$output_folder_path\$command.bat", 
     "@echo off
 if `"%1`" == `"help`" (
     powershell -noprofile -executionpolicy bypass help $command -full
 ) else (
     powershell -noprofile -executionpolicy bypass $command %*
 )")
+    } else {
+        [System.IO.File]::WriteAllLines("$output_folder_path/$command", 
+    "#!/bin/bash
+WD=`$(pwd)
+DIR=`"`$( cd `"`$( dirname `"`${BASH_SOURCE[0]}`" )`" `>/dev/null 2`>`&1 && pwd )`"
+if [ `"`$1`" = `"help`" ]; then
+    powershell -noprofile -executionpolicy bypass help $command -full
+else
+    powershell -noprofile -executionpolicy bypass -Command $command $*
+fi".Replace("`r", ""))
+        chmod +x "$output_folder_path/$command"
+    }
 }
 
 If ($File) {

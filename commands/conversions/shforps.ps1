@@ -58,8 +58,8 @@ If ($Absolute) {
 }
 
 If ($Command) {
-    "Creating the caller batch file '$powershell_script_path.sh' in $output_folder_path"
-    [System.IO.File]::WriteAllLines("$output_folder_path/$powershell_script_path.sh", 
+    "Creating the caller batch file '$powershell_script_path' in $output_folder_path"
+    [System.IO.File]::WriteAllLines("$output_folder_path/$powershell_script_path", 
     "#!/bin/bash
 WD=`$(pwd)
 DIR=`"`$( cd `"`$( dirname `"`${BASH_SOURCE[0]}`" )`" `>/dev/null 2`>`&1 && pwd )`"
@@ -68,13 +68,14 @@ if [ `"`$1`" = `"help`" ]; then
 else
     powershell -noprofile -executionpolicy bypass $powershell_script_path $*
 fi")
+    chmod +x "$output_folder_path/$powershell_script_path"
 } Else {
     If (-not (Test-Path "$output_folder_path/$script_name")) {
         "Copying the Powershell Script '$script_name' to $output_folder_path"
         Copy-Item -Path $powershell_script_path -Destination "$output_folder_path/$script_name" -Force
     }
-    "Creating the caller batch file '$name_only.sh' in $output_folder_path"
-    [System.IO.File]::WriteAllLines("$output_folder_path/$name_only.sh", 
+    "Creating the caller batch file '$name_only' in $output_folder_path"
+    [System.IO.File]::WriteAllLines("$output_folder_path/$name_only", 
     "#!/bin/bash
 WD=`$(pwd)
 DIR=`"`$( cd `"`$( dirname `"`${BASH_SOURCE[0]}`" )`" `>/dev/null 2`>&1 && pwd )`"
@@ -83,5 +84,6 @@ if [ `"`$1`" = `"help`" ]; then
 else
     powershell -noprofile -executionpolicy bypass -file `"$powershell_script_path_write`" $*
 fi")
+    chmod +x "$output_folder_path/$name_only"
 }
 
