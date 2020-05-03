@@ -5,8 +5,13 @@ Function Install-Folder-X {
     if ($Env:OS.StartsWith("Windows")) {
         return $env:ProgramData + "\Cronux\"
     } else {
-        return "/bin/Cronux/"
+        return "~/Cronux/"
     }
+}
+
+if ($Env:OS -eq $NULL) {
+    $Env:OS = "unix" 
+    $env:SystemDrive = "/tmp/"
 }
 
 $AppName = "Cronux"
@@ -15,7 +20,7 @@ $AppArchiveUrl = "https://github.com/Thecarisma/Cronux/archive/master.zip"
 $InstallationPath = Install-Folder-X
 $PathEnvironment = "User"
 $BeforeScript = ""
-$AfterScript = "
+$AfterScript = " 
     Move-Item -Path ./Cronux-master/commands/archive/*.ps1 -Destination $InstallationPath -Force
     Move-Item -Path ./Cronux-master/commands/conversions/*.ps1 -Destination $InstallationPath -Force
     Move-Item -Path ./Cronux-master/commands/cronux/*.ps1 -Destination $InstallationPath -Force
@@ -34,7 +39,7 @@ If ( -not [System.IO.File]::Exists("$CommandsFolder\Cronux.ps1")) {
         If ( -not [System.IO.File]::Exists("$CommandsFolder\Cronux.ps1")) {
             $CommandsFolder = "$PSScriptRoot\..\..\..\"
         }
-    }
+    }   
 }
 
 $AddPath = $true
@@ -44,9 +49,9 @@ $TEMP = Join-Path $env:SystemDrive "temp\installx\$AppName"
 
 Function Check-Create-Directory {
     Param([string]$folder)
-    
-    If ( -not [System.IO.Directory]::Exists($folder)) {
-        [System.IO.Directory]::CreateDirectory($folder) > $null
+
+    If (-not (Test-Path $folder)) {
+        New-Item -Path $folder -ItemType Directory > $null
         If ( -not $?) {
             Return
         }
@@ -59,7 +64,7 @@ Function Download-App-Archive {
 
 Function Extract-App-Archive {
     Param([string]$archive_path, [string]$extact_folder)
-    
+
     If ( -not [System.IO.File]::Exists($archive_path)) {
         Write-Error "Cannot find the downloaded archive, stopping installation"
         Return
@@ -70,19 +75,24 @@ Function Extract-App-Archive {
 
 Function Add-Folder-To-Path {
     Param([string]$folder)
-    
-    $NewPath = ""    
-    ForEach ($_path in $Path.Split(";")) {
-        If ($_path -ne $InstallationPath -and $_path -ne "") {
-            $NewPath += "$_path;"
+
+    if ($Env:OS.StartsWith("Windows")) {
+        $NewPath = ""
+        ForEach ($_path in $Path.Split(";")) {
+            If ($_path -ne $InstallationPath -and $_path -ne "") {
+                $NewPath += "$_path;"
+            }
         }
+        [Environment]::SetEnvironmentVariable("Path", "$NewPath$folder", "$PathEnvironment")
+
+    } else {
+        "On Linux"
     }
-    [Environment]::SetEnvironmentVariable("Path", "$NewPath$folder", "$PathEnvironment")
 }
 
 Function Iterate-Folder {
     Param([string]$foldername)
-    
+
     Get-ChildItem $foldername | Foreach-Object {
         If ( -not $_.PSIsContainer) {
             If ( -not $_.Name.EndsWith(".ps1")) {
@@ -97,8 +107,8 @@ Function Iterate-Folder {
 
 "Preparing to install $AppName $Version"
 If ([System.IO.Directory]::Exists("$InstallationPath")) {
-    Remove-Item -path "$InstallationPath\*.ps1" -Recurse
-    Remove-Item -path "$InstallationPath\*.bat" -Recurse
+    Remove-Item -path "$InstallationPath\*.ps1" -Recurse -ErrorAction Ignore
+    Remove-Item -path "$InstallationPath\*.bat" -Recurse -ErrorAction Ignore
 }
 If (-not [System.IO.File]::Exists("$PSScriptRoot/../net/ipof.ps1")) {
     Check-Create-Directory $TEMP
@@ -123,13 +133,14 @@ If (-not [System.IO.File]::Exists("$PSScriptRoot/../net/ipof.ps1")) {
     Set-Location -Path $InstallationPath
     powershell -noprofile -executionpolicy bypass -file ./extractx.ps1 ./ExportList.txt
     powershell -noprofile -executionpolicy bypass -file ./buildcronux.ps1  ./ ./
-    If ([System.IO.Directory]::Exists("./Cronux-master")) {
+    If (Test-Path "./Cronux-master") {
         Remove-Item -path "./Cronux-master" -recurse
     }
 }
 
-If ($AddPath -eq $true) { 
+If ($AddPath -eq $true) {
     "Adding $InstallationPath to $PathEnvironment Path variable"
-    Add-Folder-To-Path "$InstallationPath" 
+    Add-Folder-To-Path "$InstallationPath"
 }
+
 

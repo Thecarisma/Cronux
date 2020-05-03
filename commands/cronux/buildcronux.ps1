@@ -32,6 +32,9 @@ $cronux_path = [System.IO.Path]::GetFullPath($cronux_path)
 $output_folder_path = [System.IO.Path]::GetFullPath($output_folder_path)
 $wrapcommand_script_path = "$cronux_path\wrapcommand.ps1"
 $batforps_script_path = "$cronux_path\batforps.ps1"
+If (($Env:OS -eq $NULL) -or (-not $Env:OS.StartsWith("Windows"))) {
+    $batforps_script_path = "$cronux_path/shforps.ps1"
+}
 $export_list_path = "$cronux_path\ExportList.txt"
 
 Function Iterate-Folder {
@@ -43,8 +46,8 @@ Function Iterate-Folder {
                 Return
             }
             "Copying and Generating Batch wrapper for $($_.Name)"
-            If ( -not [System.IO.File]::Exists("$output_folder_path\$($_.Name)")) {
-                [System.IO.File]::Copy($_.FullName, "$output_folder_path\$($_.Name)", $true)
+            If ( -not [System.IO.File]::Exists("$output_folder_path/$($_.Name)")) {
+                [System.IO.File]::Copy($_.FullName, "$output_folder_path/$($_.Name)", $true)
             }
         } Else {
             Iterate-Folder $_.FullName
@@ -52,23 +55,23 @@ Function Iterate-Folder {
     }
 }
 
-If ( -not [System.IO.Directory]::Exists($cronux_path)) {
+If ( -not (Test-Path $cronux_path)) {
     Write-Error "Specified Cronux path '$cronux_path' does not exist"
     Return
 }
-If ( -not [System.IO.File]::Exists($batforps_script_path)) {
-    Write-Error "batforps.ps1 script not found in Specified Cronux path '$cronux_path'"
+If ( -not (Test-Path $batforps_script_path)) {
+    Write-Error "batforps.ps1, or shforps.ps1 script not found in Specified Cronux path '$cronux_path'"
     Return
 }
-If ( -not [System.IO.File]::Exists($wrapcommand_script_path)) {
+If ( -not (Test-Path $wrapcommand_script_path)) {
     Write-Error "wrapcommand.ps1 script not found in Specified Cronux path '$cronux_path'"
     Return
 }
-If ( -not [System.IO.File]::Exists($export_list_path)) {
+If ( -not (Test-Path $export_list_path)) {
     Write-Error "ExportList.txt not found in Specified Cronux path '$cronux_path'"
     Return
 }
-If ( -not [System.IO.Directory]::Exists($output_folder_path)) {
+If ( -not (Test-Path $output_folder_path)) {
     [System.IO.Directory]::CreateDirectory($output_folder_path) > $null
     If ( -not $?) {
         Return
@@ -84,5 +87,5 @@ Get-ChildItem $output_folder_path | Foreach-Object {
         iex "$batforps_script_path $($_.FullName) $output_folder_path"
     } 
 }
-iex "$wrapcommand_script_path -File $export_list_path $output_folder_path"
+#iex "$wrapcommand_script_path -File $export_list_path $output_folder_path"
 
