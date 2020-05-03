@@ -12,5 +12,6 @@ Content of commands/conversions
 --------------
 
 -  :doc:`./pstobat`
--  :doc:`./batforps`
 -  :doc:`./wrapcommand`
+-  :doc:`./batforps`
+-  :doc:`./shforps`

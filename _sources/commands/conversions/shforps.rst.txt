@@ -1,0 +1,118 @@
+
+
+.. index::
+	single: shforps
+
+
+shforps
+=======
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : shforps.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : May-03-2020
+
+--------------
+
+Syntax
+------
+
+.. code:: powershell
+
+   shforps [-Command] [-powershell_script_path] 
+   <String> [-output_folder_path] <String> [-Absolute] [<CommonParameters>]  
+
+Parameters
+----------
+
+-Command [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-powershell_script_path :String
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   true
+Position?                   1
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-output_folder_path :String
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   true
+Position?                   2
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-Absolute [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+Outputs
+-------
+
+EXAMPLE 1
+---------
+
+::
+
+   shforps ./commands/printhead.ps1 ./dist/
+
+EXAMPLE 2
+---------
+
+::
+
+   shforps -Command Set-Location ./dist/
+
+The commands above creates a shell script wrapper for the powershell
+``Set-Location`` command
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
