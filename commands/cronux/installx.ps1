@@ -29,7 +29,7 @@ $AfterScript = "
     Move-Item -Path ./Cronux-master/LICENSE -Destination $InstallationPath -Force
     powershell -noprofile -executionpolicy bypass -file ./extractx.ps1 ./ExportList.txt
     powershell -noprofile -executionpolicy bypass -file ./buildcronux.ps1  ./ ./
-    Remove-Item -path ./Cronux-master -Recurse
+    Remove-Item -path ./Cronux-master -Recurse -ErrorAction Ignore
 "
 $CommandsFolder = $PSScriptRoot
 If ( -not [System.IO.File]::Exists("$CommandsFolder\Cronux.ps1")) {
@@ -86,7 +86,7 @@ Function Add-Folder-To-Path {
         [Environment]::SetEnvironmentVariable("Path", "$NewPath$folder", "$PathEnvironment")
 
     } else {
-        "On Linux"
+        
     }
 }
 
@@ -120,7 +120,7 @@ If (-not [System.IO.File]::Exists("$PSScriptRoot/../net/ipof.ps1")) {
     Download-App-Archive
     Check-Create-Directory $InstallationPath
     "Installing $AppName $Version in $InstallationPath"
-    Extract-App-Archive "$TEMP\installx_package_.zip" "$InstallationPath"
+    Extract-App-Archive "$TEMP/installx_package_.zip" "$InstallationPath"
     Set-Location -Path $InstallationPath
     If ($AfterScript -ne "") {
         "Executing the AfterScript..."
@@ -134,7 +134,7 @@ If (-not [System.IO.File]::Exists("$PSScriptRoot/../net/ipof.ps1")) {
     powershell -noprofile -executionpolicy bypass -file ./extractx.ps1 ./ExportList.txt
     powershell -noprofile -executionpolicy bypass -file ./buildcronux.ps1  ./ ./
     If (Test-Path "./Cronux-master") {
-        Remove-Item -path "./Cronux-master" -recurse
+        Remove-Item -path "./Cronux-master" -recurse -ErrorAction Ignore
     }
 }
 
