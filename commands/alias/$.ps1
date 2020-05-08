@@ -101,7 +101,6 @@ Function Evalute-Line {
         $Old_CD = [Environment]::CurrentDirectory
         [Environment]::CurrentDirectory = Get-Location
         $FirstCommand = Resolve-Shebang $FirstCommand
-        Write-Output $FirstCommand
         [Environment]::CurrentDirectory = $Old_CD
         iex "$FirstCommand $OtherCommands"
 }
