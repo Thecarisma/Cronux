@@ -46,10 +46,31 @@ executed. The hebang line will expands to
 
 will prints ‘hello world’ in the console.
 
+This also regocnize the webang line which allo the use of C89/C90
+comment for file execuition e.g.
+
+::
+
+   /*!gcc {0} -o test; ./test */
+   #include <stdio>
+   int main() {
+   printf("hello world for webang");
+   }
+
+Then execute this in the CLI. The file test.c will be compile and
+executed. The webang line will expands to
+``gcc C:/full/path/test.c -o test; ./test``
+
+::
+
+   $ ./test.c
+
+will prints ‘hello world for webang’ in the console.
+
 If no command is specified to the script it will enter a subshell where
 command can be executed line by line. The subshell is simply a
-powershell REPL which evaluates shebang and hebang line in file if
-specified.
+powershell REPL which evaluates shebang, webang and hebang line in file
+if specified.
 
 Syntax
 ------
