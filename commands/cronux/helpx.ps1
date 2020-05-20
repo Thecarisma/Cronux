@@ -22,6 +22,9 @@
 
 $command_folder = $PSScriptRoot
 $Global:found_help = $false
+if ($command_folder.Contains("commands")) {
+    $command_folder += "/../"
+}
 
 Function main {
     ForEach ($arg in $args[0]) {
