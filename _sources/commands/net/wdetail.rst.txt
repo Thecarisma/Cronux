@@ -1,0 +1,183 @@
+
+
+.. index::
+	single: wdetail
+
+
+wdetail
+=======
+
+View the full detail of a saved wifi networks
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : wdetail.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : May-20-2020
+
+--------------
+
+View the full detail of a saved wifi networks including the ssid and
+security detail.
+
+If no name given all the network will be shown in a list and a specific
+network can be choose with it index
+
+It accept various flag to select which info to show.
+
+Syntax
+------
+
+.. code:: powershell
+
+   wdetail [[-Name] <String>] [-Password] [-Type] [-Version] 
+   [-Authentication] [-Cipher] [<CommonParameters>]  
+
+Parameters
+----------
+
+-Name :String
+~~~~~~~~~~~~~
+
+the name of the wifi network to show
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   1
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-Password [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Show the wifi network password
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-Type [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Show the wifi network type
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-Version [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Show the wifi network version
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-Authentication [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Show the wifi network authentication
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-Cipher [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Show the wifi network cipher
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String
+
+Outputs
+-------
+
+[System.String]
+
+EXAMPLE 1
+---------
+
+::
+
+   wdetail
+
+List all the wifi networks that has been connected to this PC and select
+which one to display it full detail.
+
+EXAMPLE 2
+---------
+
+::
+
+   wdetail 'SMILE@THECARISMA'
+
+Show the detail of the wifi network which it name equal or contains
+‘SMILE@THECARISMA’
+
+EXAMPLE 3
+---------
+
+::
+
+   wdetail 'SMILE@THECARISMA' -Password
+
+Show only the password of the wifi network which it name equal or
+contains ‘SMILE@THECARISMA’
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
