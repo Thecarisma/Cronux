@@ -21,6 +21,7 @@ Content of commands
 -  :doc:`.//system/index`
 -  :doc:`.//git/index`
 -  :doc:`.//net/index`
+-  :doc:`.//interactive/index`
 -  :doc:`.//certificates/index`
 -  :doc:`.//others/index`
 -  :doc:`.//conversions/index`

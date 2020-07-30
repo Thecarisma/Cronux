@@ -1,0 +1,14 @@
+
+
+.. index::
+	single: interactive
+
+
+commands/interactive
+====================
+
+Content of commands/interactive
+
+--------------
+
+-  :doc:`./say`

@@ -1,0 +1,68 @@
+
+
+.. index::
+	single: say
+
+
+say
+===
+
+Convert a text to speech
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : say.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Jul-30-2020
+
+--------------
+
+This will use the powershell SpeechSynthesizer module to convert the
+text to speech.
+
+All the text after the say command is spoken
+
+Syntax
+------
+
+.. code:: powershell
+
+   say [<CommonParameters>]  
+
+Parameters
+----------
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String[]
+
+Outputs
+-------
+
+System.String
+
+EXAMPLE 1
+---------
+
+::
+
+   say hello World
+
+This will use the WinAPI to speak the text ‘hello World’
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
