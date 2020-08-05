@@ -145,7 +145,8 @@ Function Resolve-Shebang {
                         $Shebang += "$Bang "
                     }
                 }
-                return $Shebang + ' ' + [System.IO.Path]::GetFullPath($FirstCommand_)
+                $Shebang = $Shebang -f [System.IO.Path]::GetFullPath($FirstCommand_)
+                return $Shebang
                 
             } ElseIf ($Line.StartsWith("//!")){ # Hebang
                 $Hebang = $Line.SubString(3, $Line.Length - 3)
