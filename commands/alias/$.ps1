@@ -90,6 +90,7 @@ Function Main {
     } Else {
         Enter-Shell
     }
+    Exit $LastExitCode
 }
 
 Function Enter-Shell {

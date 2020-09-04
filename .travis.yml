@@ -21,9 +21,9 @@ deploy:
     skip_cleanup: true
     script: echo "Testing deploy by script"
     on:
-       branch: master
+       branch: main
   - provider: script
     skip_cleanup: true
     script: bash docs/deployghpage.sh
     on:
-       branch: master
+       branch: main

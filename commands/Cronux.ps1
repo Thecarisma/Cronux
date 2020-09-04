@@ -78,3 +78,4 @@ Function Iterate-Folder {
 }
 
 main $args
+Exit $LastExitCode
