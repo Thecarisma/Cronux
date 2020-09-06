@@ -1,0 +1,107 @@
+
+
+.. index::
+	single: gitlogp
+
+
+gitlogp
+=======
+
+Print the repository log in pretty format.
+
+--------------
+
+::
+
+   File Name  : gitlogp.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Sep-06-2020
+
+--------------
+
+An alias for the git command to show the log in a git repository .
+
+Before executing the command you have to change directory to the
+repository folder and you must have git installed on your Windows
+
+Syntax
+------
+
+.. code:: powershell
+
+   gitlogp [[-Format] <String>] [[-OtherArgs] <String[]>] 
+   [<CommonParameters>]  
+
+Parameters
+----------
+
+-Format :String
+~~~~~~~~~~~~~~~
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   1
+Default value %h - %an :    %s
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-OtherArgs :String[]
+~~~~~~~~~~~~~~~~~~~~
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   2
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String[]
+
+Outputs
+-------
+
+git log
+
+EXAMPLE 1
+---------
+
+::
+
+   gitlogp
+
+Print out the commit log of the repository
+
+EXAMPLE 2
+---------
+
+::
+
+   gitlogp "%s - %h"
+
+Print out the commit log of the repository in the following format
+
+change EOL to LF for Cronux.sh ab10ea1 add logo to the project 1641e42
+update location of extractx 8cbcf38
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
+-  https://git-scm.com/docs/git-log

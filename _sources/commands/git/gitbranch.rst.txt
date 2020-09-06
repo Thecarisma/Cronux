@@ -1,0 +1,65 @@
+
+
+.. index::
+	single: gitbranch
+
+
+gitbranch
+=========
+
+Check the branch of a repository.
+
+--------------
+
+::
+
+   File Name  : gitbranch.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : Sep-06-2020
+
+--------------
+
+Print out the branch infomation of a git repository.
+
+Syntax
+------
+
+.. code:: powershell
+
+   gitbranch [<CommonParameters>]  
+
+Parameters
+----------
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String[]
+
+Outputs
+-------
+
+git branch INFO
+
+EXAMPLE 1
+---------
+
+::
+
+   gitbranch
+
+Print out the branch of the repository
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux
+-  https://git-scm.com/docs/git-branch

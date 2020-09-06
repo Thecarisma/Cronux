@@ -12,8 +12,11 @@ Content of commands/git
 --------------
 
 -  :doc:`./gitclone`
+-  :doc:`./gitlog`
+-  :doc:`./gitlogp`
 -  :doc:`./gitstatus`
 -  :doc:`./gitpush`
+-  :doc:`./gitbranch`
 -  :doc:`./gitcommit`
 -  :doc:`./gitpull`
 -  :doc:`./gitfpush`
