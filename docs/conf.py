@@ -23,7 +23,6 @@ html_theme_options = {
         ('fab fa-twitter', 'https://twitter.com/iamthecarisma'),
         ('fab fa-github', 'https://github.com/Thecarisma/Cronux/')
     ],
-    "source_root": "https://github.com/Thecarisma/Cronux/tree/main",
     "metadata": {
         "enable": True,
         "url": "https://thecarisma.github.io/Cronux/",
