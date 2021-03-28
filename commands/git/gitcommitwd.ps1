@@ -27,15 +27,24 @@
 #>
 
 Param(
-    [int]$DaysAgo,
-    [Parameter(Mandatory=$true)]
+    [int]$Day,
+    [switch]$Amend,
+    [Parameter(Mandatory=$true, ValueFromRemainingArguments = $true)]
     [string[]]$args
 )
-if ($DaysAgo) {
-	$Date = [DateTime]::Today.AddDays($DaysAgo)
+if ($Day) {
+	$DateStr = [DateTime]::Today.AddDays($Day).ToString("ddd MMM dd hh:mm:ss yyyy -0400")
+	$Day = -$Day
+	SET GIT_AUTHOR_DATE=$DateStr
+	SET GIT_COMMITTER_DATE=$DateStr
 }
-$Date
-# git add .
-# if ($args) {
-    # git commit -m "$args"
-# }
+echo ""
+
+git add .
+if ($args) {
+	If ($Amend) {
+		git commit --amend --date="$Day days ago" -m "$args"
+	} else {
+		git commit --date="$Day days ago" -m "$args"
+	}
+}
