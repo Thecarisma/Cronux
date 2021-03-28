@@ -38,13 +38,12 @@ if ($Day) {
 	SET GIT_AUTHOR_DATE=$DateStr
 	SET GIT_COMMITTER_DATE=$DateStr
 }
-echo ""
 
 git add .
 if ($args) {
 	If ($Amend) {
-		git commit --amend --date="$Day days ago" -m "$args"
+		bash -c "GIT_AUTHOR_DATE=\`"$DateStr\`" GIT_COMMITTER_DATE=\`"$DateStr\`" git commit --amend --date=\`"$Day days ago\`" -m \`"$args\`""
 	} else {
-		git commit --date="$Day days ago" -m "$args"
+		bash -c "GIT_AUTHOR_DATE=\`"$DateStr\`" GIT_COMMITTER_DATE=\`"$DateStr\`" git commit --date=\`"$Day days ago\`" -m \`"$args\`""
 	}
 }
