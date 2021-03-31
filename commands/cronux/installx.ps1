@@ -16,20 +16,20 @@ if ($Env:OS -eq $NULL) {
 
 $AppName = "Cronux"
 $Version = & "$PSScriptRoot\versionx.ps1"
-$AppArchiveUrl = "https://github.com/Thecarisma/Cronux/archive/master.zip"
+$AppArchiveUrl = "https://github.com/Thecarisma/Cronux/archive/main.zip"
 $InstallationPath = Install-Folder-X
 $PathEnvironment = "User"
 $BeforeScript = ""
 $AfterScript = " 
-    Move-Item -Path ./Cronux-master/commands/archive/*.ps1 -Destination $InstallationPath -Force
-    Move-Item -Path ./Cronux-master/commands/conversions/*.ps1 -Destination $InstallationPath -Force
-    Move-Item -Path ./Cronux-master/commands/cronux/*.ps1 -Destination $InstallationPath -Force
-    Move-Item -Path ./Cronux-master/*.bat -Destination $InstallationPath -Force
-    Move-Item -Path ./Cronux-master/*.sh -Destination $InstallationPath -Force
-    Move-Item -Path ./Cronux-master/LICENSE -Destination $InstallationPath -Force
+    Move-Item -Path ./Cronux-main/commands/archive/*.ps1 -Destination $InstallationPath -Force
+    Move-Item -Path ./Cronux-main/commands/conversions/*.ps1 -Destination $InstallationPath -Force
+    Move-Item -Path ./Cronux-main/commands/cronux/*.ps1 -Destination $InstallationPath -Force
+    Move-Item -Path ./Cronux-main/*.bat -Destination $InstallationPath -Force
+    Move-Item -Path ./Cronux-main/*.sh -Destination $InstallationPath -Force
+    Move-Item -Path ./Cronux-main/LICENSE -Destination $InstallationPath -Force
     powershell -noprofile -executionpolicy bypass -file ./extractx.ps1 ./ExportList.txt
     powershell -noprofile -executionpolicy bypass -file ./buildcronux.ps1  ./ ./
-    Remove-Item -path ./Cronux-master -Recurse -ErrorAction Ignore
+    Remove-Item -path ./Cronux-main -Recurse -ErrorAction Ignore
 "
 $CommandsFolder = $PSScriptRoot
 If ( -not [System.IO.File]::Exists("$CommandsFolder\Cronux.ps1")) {
@@ -133,8 +133,8 @@ If (-not [System.IO.File]::Exists("$PSScriptRoot/../net/ipof.ps1")) {
     Set-Location -Path $InstallationPath
     powershell -noprofile -executionpolicy bypass -file ./extractx.ps1 ./ExportList.txt
     powershell -noprofile -executionpolicy bypass -file ./buildcronux.ps1  ./ ./
-    If (Test-Path "./Cronux-master") {
-        Remove-Item -path "./Cronux-master" -recurse -ErrorAction Ignore
+    If (Test-Path "./Cronux-main") {
+        Remove-Item -path "./Cronux-main" -recurse -ErrorAction Ignore
     }
 }
 
