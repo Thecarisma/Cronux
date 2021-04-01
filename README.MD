@@ -1,5 +1,5 @@
 
-![](https://github.com/Thecarisma/Cronux/raw/master/docs/cronux.png)
+![](https://github.com/Thecarisma/Cronux/raw/main/docs/cronux.png)
 
 # Cronux
 

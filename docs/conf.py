@@ -29,7 +29,7 @@ html_theme_options = {
         "type": "website",
         "title": "Handy commands to perform simple and complex tasks with Powershell.",
         "description": "Cronux contains Super useful handy commands to perform simple and complex task on the command line. Powershell has powerful command line functionality due to it interopability with visual basic script, the .NET sdk and installed apps. This project also exports over 100 built in commands in powershell to be used from the Windows Command prompt.",
-        "image": "https://raw.githubusercontent.com/Thecarisma/Cronux/master/docs/cronux.png",
+        "image": "https://raw.githubusercontent.com/Thecarisma/Cronux/main/docs/cronux.png",
         "keywords": "thecarisma, powershell, windows, linux, mac, commands, script, batch",
         "author": "Adewale Azeez"
     },
@@ -40,6 +40,6 @@ html_theme_options = {
         "creator": "@iamthecarisma",
         "title": "Handy commands to perform simple and complex tasks with Powershell.",
         "description": "Cronux contains Super useful handy commands to perform simple and complex task on the command line. Powershell has powerful command line functionality due to it interopability with visual basic script, the .NET sdk and installed apps. This project also exports over 100 built in commands in powershell to be used from the Windows Command prompt.",
-        "image": "https://raw.githubusercontent.com/Thecarisma/Cronux/master/docs/cronux.png",
+        "image": "https://raw.githubusercontent.com/Thecarisma/Cronux/main/docs/cronux.png",
     }
 }

@@ -1,11 +1,11 @@
 <#
 .SYNOPSIS
-    A shorthand script to clone a repository master or 
+    A shorthand script to clone a repository default or 
     specified branch
 .DESCRIPTION
     A short compact command to quickly clone a repository. 
     To clone a specific branch add the branch name as 
-    the second parameter. The master branch is clone by 
+    the second parameter. The default branch is clone by 
     default if the branch name is not specified.
 .INPUTS 
     System.String[]
