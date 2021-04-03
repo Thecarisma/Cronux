@@ -17,6 +17,7 @@ Content of commands/git
 -  :doc:`./gitstatus`
 -  :doc:`./gitpush`
 -  :doc:`./gitbranch`
--  :doc:`./gitcommit`
+-  :doc:`./gitcommitwd`
 -  :doc:`./gitpull`
 -  :doc:`./gitfpush`
+-  :doc:`./gitcommit`
