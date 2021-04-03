@@ -233,8 +233,7 @@
                 
   <div class="section" id="gitcommitwd">
 <span id="index-0"></span><h1>gitcommitwd<a class="headerlink" href="#gitcommitwd" title="Permalink to this headline">¶</a></h1>
-<p>Add and commit all the edited file to git with the commit message as the
-variadic arguments without quotes</p>
+<p>Commit or ammend a commit with a custom date.</p>
 <hr class="docutils" />
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">File</span> <span class="n">Name</span>  <span class="p">:</span> <span class="n">gitcommit</span><span class="o">.</span><span class="n">ps1</span>
 <span class="n">Author</span>     <span class="p">:</span> <span class="n">Adewale</span> <span class="n">Azeez</span> <span class="o">-</span> <span class="n">azeezadewale98</span><span class="nd">@gmail</span><span class="o">.</span><span class="n">com</span>
@@ -242,8 +241,10 @@ variadic arguments without quotes</p>
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>A short compact command to quickly add all edited files to a commit with
-the commit messages.</p>
+<p>Commit with a custom date. To commit in the past set the day value to -
+number of days in past. E.g. to commit - 3 days ago set the Day value to
+-3. Add and commit all the edited file to git with the commit message as
+the variadic arguments without quotes</p>
 <div class="section" id="syntax">
 <h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
 <div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gitcommitwd</span> <span class="p">[[</span><span class="o">-</span><span class="n">Day</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">Int32</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">Amend</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">args</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">String</span><span class="p">[]</span><span class="o">&gt;</span>
@@ -356,7 +357,7 @@ about_CommonParameters (<a class="reference external" href="https:/go.microsoft.
 </div>
 <div class="section" id="inputs">
 <h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
-<p>[System.String[]]</p>
+<p>[int] [switch] System.String[]]</p>
 </div>
 <div class="section" id="outputs">
 <h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
@@ -364,12 +365,23 @@ about_CommonParameters (<a class="reference external" href="https:/go.microsoft.
 </div>
 <div class="section" id="example-1">
 <h2>EXAMPLE 1<a class="headerlink" href="#example-1" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gitcommit</span> <span class="kn">from</span> <span class="nn">here</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">commit</span> <span class="n">message</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gitcommit</span> <span class="mi">0</span> <span class="o">-</span><span class="n">Amend</span> <span class="kn">from</span> <span class="nn">here</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">commit</span> <span class="n">message</span>
+</pre></div>
+</div>
+<p>your last commit will be ammended with the message “from here is the
+commit message” The command is equivalent to git add .; git commit
+–amend -m “from here is the commit message”;</p>
+</div>
+<div class="section" id="example-2">
+<h2>EXAMPLE 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gitcommit</span> <span class="o">-</span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">here</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">commit</span> <span class="n">message</span>
 </pre></div>
 </div>
 <p>your changes will be commit with the message “from here is the commit
-message”. The command is equivalent to git add .; git commit -m “from
-here is the commit message”;</p>
+message” plus the author and commit date will be set to 3 days ago. The
+command is equivalent to git add .; GIT_AUTHOR_DATE=‘Sun Feb 21 10:03:02
+2021 -0400’ GIT_COMMITTER_DATE=‘Sun Feb 21 10:03:02 2021 -0400’ git
+commit -m “from here is the commit message”;</p>
 </div>
 <div class="section" id="related-links">
 <h2>Related links<a class="headerlink" href="#related-links" title="Permalink to this headline">¶</a></h2>
@@ -419,6 +431,7 @@ here is the commit message”;</p>
 <li><a class="reference internal" href="#inputs">Inputs</a></li>
 <li><a class="reference internal" href="#outputs">Outputs</a></li>
 <li><a class="reference internal" href="#example-1">EXAMPLE 1</a></li>
+<li><a class="reference internal" href="#example-2">EXAMPLE 2</a></li>
 <li><a class="reference internal" href="#related-links">Related links</a></li>
 </ul>
 </li>
