@@ -160,7 +160,7 @@
 	single: Home
 
 
-.. image:: https://github.com/Thecarisma/Cronux/raw/master/docs/cronux.png
+.. image:: https://github.com/Thecarisma/Cronux/raw/main/docs/cronux.png
 
 Cronux
 ======
