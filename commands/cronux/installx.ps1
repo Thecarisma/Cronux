@@ -15,7 +15,7 @@ if ($Env:OS -eq $NULL) {
 }
 
 $AppName = "Cronux"
-$Version = & "$PSScriptRoot\versionx.ps1"
+$Version = "latest"
 $AppArchiveUrl = "https://github.com/Thecarisma/Cronux/archive/main.zip"
 $InstallationPath = Install-Folder-X
 $PathEnvironment = "User"
