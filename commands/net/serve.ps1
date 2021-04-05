@@ -1,36 +1,59 @@
 <#
 .SYNOPSIS
-   List the ip addresses of a url
+   Serve a folder over the network with a specific port
 .DESCRIPTION
-    List all the host addresses of a particular url.
-    Internet connection is required to fetch the ip 
-    addresses.
+    Serve a folder under all the available IPv4 address on your
+	system, (Ethernet, Wireless, LAN, WAN, Local Host e.t.c), 
+	with a specific port. 
+	
+	It impossible to kill the server while it running except 
+	by visiting the kill route which is /kill by default 
+	Use the -KillRoute to specify a custom kill route
 .INPUTS 
+    System.Int32
     System.String
+    System.String
+    System.Int32
+	Switch
+	Switch
 .OUTPUTS 
-    [System.String]
+    [System.String[]]
 .NOTES
     Version    : 1.0
-    File Name  : ipof.ps1
+    File Name  : serve.ps1
     Author     : Adewale Azeez - azeezadewale98@gmail.com
-    Date       : March-25-2020
+    Date       : April-04-2021
 .LINK
     https://thecarisma.github.io/Cronux
 .EXAMPLE
-    ipof google.com
-    List all the ip addresses of Google url 
+    serve 2000 C:/folder
+    Serve the folder 'C:/folder' over the port 2000 on all the 
+	IPv4 address including localhost:2000 and 127.0.0.1:2000.
+	
+	If a file name index.html is in the folder C:/folder it is 
+	served instead of listing the files and folders.
 .EXAMPLE
-    ipof https://www.github.com
-    List all the ip addresses of Github
+    serve 2000 C:/folder -NoIndex
+    Serve the folder 'C:/folder' over the port 2000 on all the 
+	IPv4 address including localhost:2000 and 127.0.0.1:2000
+	
+	If index.html is in the folder C:/folder it is ignored and 
+	the files and folders are listed
+.EXAMPLE
+    serve 2000 C:/folder -KillRoute jwyqsahsjh
+    Serve the folder 'C:/folder' over the port 2000 on all the 
+	IPv4 address including localhost:2000 and 127.0.0.1:2000.
+	
+	Since using Ctrl+C does not shutdown the server, visiting the 
+	address with the route /jwyqsahsjh e.g. 127.0.0.1:2000/jwyqsahsjh 
+	will kill the server
+.EXAMPLE
+    serve 2000 C:/folder -WirelessOnly
+    Serve the folder 'C:/folder' over the port 2000 on only
+	Wireless LAN and WAN IPv4 addresses only including localhost:2000 
+	and 127.0.0.1:2000, ethernet and other network IPv4 addresses are 
+	ignored
 #>
-
-# This is a super **SIMPLE** example of how to create a very basic powershell webserver
-# 2019-05-18 UPDATE — Created by me and and evalued by @jakobii and the comunity.
-
-# Get Request Url
-# When a request is made in a web browser the GetContext() method will return a request object
-# Our route examples below will use the request object properties to decide how to respond
-# Http Server
 
 [CmdletBinding()]
 Param(
