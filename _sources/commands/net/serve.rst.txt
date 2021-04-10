@@ -7,21 +7,25 @@
 serve
 =====
 
-List the ip addresses of a url
+Serve a folder over the network with a specific port
 
 --------------
 
 ::
 
    Version    : 1.0
-   File Name  : ipof.ps1
+   File Name  : serve.ps1
    Author     : Adewale Azeez - azeezadewale98@gmail.com
-   Date       : March-25-2020
+   Date       : April-04-2021
 
 --------------
 
-List all the host addresses of a particular url. Internet connection is
-required to fetch the ip addresses.
+Serve a folder under all the available IPv4 address on your system,
+(Ethernet, Wireless, LAN, WAN, Local Host e.t.c), with a specific port.
+
+It impossible to kill the server while it running except by visiting the
+kill route which is /kill by default Use the -KillRoute to specify a
+custom kill route
 
 Syntax
 ------
@@ -135,30 +139,63 @@ about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
 Inputs
 ------
 
-System.String
+System.Int32 System.String System.String System.Int32 Switch Switch
 
 Outputs
 -------
 
-[System.String]
+[System.String[]]
 
 EXAMPLE 1
 ---------
 
 ::
 
-   ipof google.com
+   serve 2000 C:/folder
 
-List all the ip addresses of Google url
+Serve the folder ‘C:/folder’ over the port 2000 on all the IPv4 address
+including localhost:2000 and 127.0.0.1:2000.
+
+If a file name index.html is in the folder C:/folder it is served
+instead of listing the files and folders.
 
 EXAMPLE 2
 ---------
 
 ::
 
-   ipof https://www.github.com
+   serve 2000 C:/folder -NoIndex
 
-List all the ip addresses of Github
+Serve the folder ‘C:/folder’ over the port 2000 on all the IPv4 address
+including localhost:2000 and 127.0.0.1:2000
+
+If index.html is in the folder C:/folder it is ignored and the files and
+folders are listed
+
+EXAMPLE 3
+---------
+
+::
+
+   serve 2000 C:/folder -KillRoute jwyqsahsjh
+
+Serve the folder ‘C:/folder’ over the port 2000 on all the IPv4 address
+including localhost:2000 and 127.0.0.1:2000.
+
+Since using Ctrl+C does not shutdown the server, visiting the address
+with the route /jwyqsahsjh e.g. 127.0.0.1:2000/jwyqsahsjh will kill the
+server
+
+EXAMPLE 4
+---------
+
+::
+
+   serve 2000 C:/folder -WirelessOnly
+
+Serve the folder ‘C:/folder’ over the port 2000 on only Wireless LAN and
+WAN IPv4 addresses only including localhost:2000 and 127.0.0.1:2000,
+ethernet and other network IPv4 addresses are ignored
 
 Related links
 -------------

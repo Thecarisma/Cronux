@@ -110,7 +110,7 @@ If ([System.IO.Directory]::Exists("$InstallationPath")) {
     Remove-Item -path "$InstallationPath\*.ps1" -Recurse -ErrorAction Ignore
     Remove-Item -path "$InstallationPath\*.bat" -Recurse -ErrorAction Ignore
 }
-If (-not [System.IO.File]::Exists("$PSScriptRoot/../net/ipof.ps1")) {
+If (-not [System.IO.File]::Exists("$PSScriptRoot/../net/ipof.sps1")) {
     Check-Create-Directory $TEMP
     If ($BeforeScript -ne "") {
         "Executing the BeforeScript..."
