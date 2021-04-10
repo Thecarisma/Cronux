@@ -248,7 +248,7 @@ required to fetch the ip addresses.</p>
 <div class="section" id="syntax">
 <h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
 <div class="code powershell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">serve</span> <span class="p">[</span><span class="o">-</span><span class="n">Port</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">Int32</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">-</span><span class="n">Folder</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="p">[[</span><span class="o">-</span><span class="n">KillRoute</span><span class="p">]</span>
-<span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">CommonParameters</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[[</span><span class="o">-</span><span class="n">BuffSize</span><span class="p">]</span> <span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">NoIndex</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">WirelessOnly</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">CommonParameters</span><span class="o">&gt;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -350,6 +350,102 @@ required to fetch the ip addresses.</p>
 </tbody>
 </table>
 </div>
+<div class="section" id="buffsize-object">
+<h3>-BuffSize :Object<a class="headerlink" href="#buffsize-object" title="Permalink to this headline">¶</a></h3>
+<p>The default buffer size</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="75%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">attr</th>
+<th class="head">value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Required?</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>Position?</td>
+<td>4</td>
+</tr>
+<tr class="row-even"><td>Default value</td>
+<td>268435456</td>
+</tr>
+<tr class="row-odd"><td>Accept pipeline input?</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>Accept wildcard characters?</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="noindex-switchparameter">
+<h3>-NoIndex [:SwitchParameter]<a class="headerlink" href="#noindex-switchparameter" title="Permalink to this headline">¶</a></h3>
+<p>If specified do not send index.html for a folder</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="84%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">attr</th>
+<th class="head">value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Required?</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>Position?</td>
+<td>named</td>
+</tr>
+<tr class="row-even"><td>Default value</td>
+<td>False</td>
+</tr>
+<tr class="row-odd"><td>Accept pipeline input?</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>Accept wildcard characters?</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="wirelessonly-switchparameter">
+<h3>-WirelessOnly [:SwitchParameter]<a class="headerlink" href="#wirelessonly-switchparameter" title="Permalink to this headline">¶</a></h3>
+<p>Serve on onle Wireless LAN/WAN IPv4 Addresses</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="84%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">attr</th>
+<th class="head">value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Required?</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>Position?</td>
+<td>named</td>
+</tr>
+<tr class="row-even"><td>Default value</td>
+<td>False</td>
+</tr>
+<tr class="row-odd"><td>Accept pipeline input?</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>Accept wildcard characters?</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="commonparameters">
 <h3>CommonParameters<a class="headerlink" href="#commonparameters" title="Permalink to this headline">¶</a></h3>
 <p>This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
@@ -420,6 +516,9 @@ about_CommonParameters (<a class="reference external" href="https:/go.microsoft.
 <li><a class="reference internal" href="#port-int32">-Port :Int32</a></li>
 <li><a class="reference internal" href="#folder-string">-Folder :String</a></li>
 <li><a class="reference internal" href="#killroute-string">-KillRoute :String</a></li>
+<li><a class="reference internal" href="#buffsize-object">-BuffSize :Object</a></li>
+<li><a class="reference internal" href="#noindex-switchparameter">-NoIndex [:SwitchParameter]</a></li>
+<li><a class="reference internal" href="#wirelessonly-switchparameter">-WirelessOnly [:SwitchParameter]</a></li>
 <li><a class="reference internal" href="#commonparameters">CommonParameters</a></li>
 </ul>
 </li>

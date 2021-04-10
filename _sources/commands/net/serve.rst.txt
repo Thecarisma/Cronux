@@ -29,7 +29,7 @@ Syntax
 .. code:: powershell
 
    serve [-Port] <Int32> [-Folder] <String> [[-KillRoute] 
-   <String>] [<CommonParameters>]  
+   <String>] [[-BuffSize] <Object>] [-NoIndex] [-WirelessOnly] [<CommonParameters>]  
 
 Parameters
 ----------
@@ -75,6 +75,51 @@ attr                        value
 Required?                   false
 Position?                   3
 Default value               /kill
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-BuffSize :Object
+~~~~~~~~~~~~~~~~~
+
+The default buffer size
+
+=========================== =========
+attr                        value
+=========================== =========
+Required?                   false
+Position?                   4
+Default value               268435456
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =========
+
+-NoIndex [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If specified do not send index.html for a folder
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-WirelessOnly [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Serve on onle Wireless LAN/WAN IPv4 Addresses
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
 Accept pipeline input?      false
 Accept wildcard characters? false
 =========================== =====
