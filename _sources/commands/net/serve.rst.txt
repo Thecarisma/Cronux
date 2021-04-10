@@ -1,0 +1,121 @@
+
+
+.. index::
+	single: serve
+
+
+serve
+=====
+
+List the ip addresses of a url
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : ipof.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : March-25-2020
+
+--------------
+
+List all the host addresses of a particular url. Internet connection is
+required to fetch the ip addresses.
+
+Syntax
+------
+
+.. code:: powershell
+
+   serve [-Port] <Int32> [-Folder] <String> [[-KillRoute] 
+   <String>] [<CommonParameters>]  
+
+Parameters
+----------
+
+-Port :Int32
+~~~~~~~~~~~~
+
+The port to serve the folder on
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   true
+Position?                   1
+Default value               0
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-Folder :String
+~~~~~~~~~~~~~~~
+
+The folder to serve
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   true
+Position?                   2
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-KillRoute :String
+~~~~~~~~~~~~~~~~~~
+
+The route to use for killing the server
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   3
+Default value               /kill
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String
+
+Outputs
+-------
+
+[System.String]
+
+EXAMPLE 1
+---------
+
+::
+
+   ipof google.com
+
+List all the ip addresses of Google url
+
+EXAMPLE 2
+---------
+
+::
+
+   ipof https://www.github.com
+
+List all the ip addresses of Github
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

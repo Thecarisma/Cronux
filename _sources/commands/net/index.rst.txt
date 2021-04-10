@@ -11,5 +11,6 @@ Content of commands/net
 
 --------------
 
--  :doc:`./wdetail`
 -  :doc:`./ipof`
+-  :doc:`./serve`
+-  :doc:`./wdetail`
