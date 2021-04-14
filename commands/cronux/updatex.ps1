@@ -22,4 +22,4 @@
 #>
 
 Set-ExecutionPolicy Bypass -Scope Process -Force 
-iex ((New-Object System.Net.WebClient).DownloadString('https://thecarisma.github.io/installx.ps1'))
+iex ((New-Object System.Net.WebClient).DownloadString('https://thecarisma.github.io/Cronux/installx.ps1'))
