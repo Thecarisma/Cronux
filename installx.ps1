@@ -1,5 +1,5 @@
 #-Requires -RunAsAdministrator
-#Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://thecarisma.github.io/installx.ps1'))
+#Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://thecarisma.github.io/Cronux/installx.ps1'))
 
 Function Install-Folder-X {
     if ($Env:OS.StartsWith("Windows")) {
