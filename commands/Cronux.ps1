@@ -33,7 +33,9 @@ Function main {
         "Execute 'listx -All' to view all commands..."
         "The Cronux specific commands are listed below.`n"
         $args[0] = @("listx") 
-    }
+    } ElseIf ($args[0] -eq "help") {
+		$args[0] = @("chelp")
+	}
     Execute-Command $args
 }
 
