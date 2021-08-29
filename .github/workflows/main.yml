@@ -29,6 +29,6 @@ jobs:
           cd dist/gh-pages/
           sphinx-build.exe -b html -d build/doctrees  ./ build/html
           cd ../../
-          echo powershell ./docs/deployghpage.ps1
+          powershell ./docs/deployghpage.ps1 "$env:GITHUB_TOKEN"
             
         
