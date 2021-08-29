@@ -8,7 +8,7 @@ cp -r ../wiki/* ./ -Force
 git config --local user.email "azeezadewale98@gmail.com"
 git config --local user.name "thecarisma-ci"
 git add .; git commit -m "Documentation build. Update Wiki from Travis CI"
-git push "https://Thecarisma:$($env:GITHUB_TOKEN)@github.com/Thecarisma/Cronux.wiki.git" HEAD:main;
+git push "https://Thecarisma:$($env:GITHUB_TOKEN)@github.com/Thecarisma/Cronux.wiki.git" HEAD:main
 cd ../../
 
 # Upload Github Pages 
@@ -22,5 +22,5 @@ cp -r ../gh-pages/build/html/* ./ -Force
 git config --local user.email "azeezadewale98@gmail.com"
 git config --local user.name "thecarisma-ci"
 git add .; git commit -m "Documentation build. Update Documentation from Travis CI"
-git push "https://Thecarisma:$($env:GITHUB_TOKEN)@github.com/Thecarisma/Cronux.git" HEAD:gh-pages;
+git push "https://Thecarisma:$($env:GITHUB_TOKEN)@github.com/Thecarisma/Cronux.git" HEAD:gh-pages
 cd ../../
