@@ -39,11 +39,8 @@ Param(
 Function Main {
 	$sw = [Diagnostics.Stopwatch]::StartNew()
     If ($Commands) {
-		$Old_CD = [Environment]::CurrentDirectory
-        [Environment]::CurrentDirectory = Get-Location
-		$Old_CD
+		$env:Path += ";$([Environment]::CurrentDirectory)"
         iex "$Commands"
-		[Environment]::CurrentDirectory = $Old_CD
     }
 	$sw.Stop()
 	$Verbose
