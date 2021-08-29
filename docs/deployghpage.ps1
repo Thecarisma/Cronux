@@ -4,10 +4,10 @@
 cd dist/
 git clone https://github.com/Thecarisma/Cronux.wiki.git
 cd Cronux.wiki/
-cp -r ../wiki/* ./
+cp -r ../wiki/* ./ -Force
 git config --local user.email "azeezadewale98@gmail.com"
-git config --local user.name "travis-ci.org"
-git add .; git commit -m "Travis build=${TRAVIS_BUILD_NUMBER}. Update Wiki from Travis CI"
+git config --local user.name "thecarisma-ci"
+git add .; git commit -m "Documentation build. Update Wiki from Travis CI"
 git push https://Thecarisma:${GITHUB_TOKEN}@github.com/Thecarisma/Cronux.wiki.git HEAD:main;
 cd ../../
 
@@ -20,7 +20,7 @@ cp -r ../../docs/.nojekyll ./
 cp -r ../../commands/cronux/installx.ps1 ./
 cp -r ../gh-pages/build/html/* ./
 git config --local user.email "azeezadewale98@gmail.com"
-git config --local user.name "travis-ci.org"
-git add .; git commit -m "Travis build=${TRAVIS_BUILD_NUMBER}. Update Documentation from Travis CI"
+git config --local user.name "thecarisma-ci"
+git add .; git commit -m "Documentation build. Update Documentation from Travis CI"
 git push https://Thecarisma:${GITHUB_TOKEN}@github.com/Thecarisma/Cronux.git HEAD:gh-pages;
 cd ../../

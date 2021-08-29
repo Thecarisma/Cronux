@@ -1,0 +1,33 @@
+
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+            
+  build-and-deploy-gh_pages:
+    runs-on: windows-latest
+    if: github.event_name == 'push' && contains(github.ref, 'refs/heads/main')
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+        with:
+          persist-credentials: false
+
+      - name: Install and Build 🔧
+        run: |
+          choco install pandoc -y
+          python -m pip install themata
+          powershell -Command Set-ExecutionPolicy Bypass
+          powershell -Command $(pwd)/Cronux.bat docronux
+          cd dist/gh-pages/
+          sphinx-build.exe -b html -d build/doctrees  ./ build/html
+          cd ../../
+          $GITHUB_TOKEN = ${{ secrets.GH_TOKEN_FOR_CI_CD }}
+          echo powershell ./docs/deployghpage.ps1
+            
+        
