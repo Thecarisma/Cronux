@@ -42,8 +42,8 @@ Syntax
 
 .. code:: powershell
 
-   installpfxx [-cert_path] <String> [-password_] 
-   <String> [[-store_location] <String>] [<CommonParameters>]  
+   installpfxx [-cert_path] <String> [-password_] <String> 
+   [[-store_location] <String>] [<CommonParameters>]  
 
 Parameters
 ----------

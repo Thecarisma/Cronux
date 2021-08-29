@@ -29,8 +29,7 @@ Syntax
 
 .. code:: powershell
 
-   logpod [-PodName] <String> [-NoTail] 
-   [<CommonParameters>]  
+   logpod [-PodName] <String> [-NoTail] [<CommonParameters>]  
 
 Parameters
 ----------

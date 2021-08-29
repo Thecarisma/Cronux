@@ -23,8 +23,8 @@ Syntax
 
 .. code:: powershell
 
-   batforps [-Command] [-powershell_script_path] 
-   <String> [-output_folder_path] <String> [-Absolute] [<CommonParameters>]  
+   batforps [-Command] [-powershell_script_path] <String> 
+   [-output_folder_path] <String> [-Absolute] [<CommonParameters>]  
 
 Parameters
 ----------

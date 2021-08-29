@@ -32,8 +32,7 @@ Syntax
 
 .. code:: powershell
 
-   podexec [-PodName] <String> -Commands <String[]> 
-   [<CommonParameters>]  
+   podexec [-PodName] <String> -Commands <String[]> [<CommonParameters>]  
 
 Parameters
 ----------

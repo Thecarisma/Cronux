@@ -238,14 +238,16 @@ All the command are listed below with it alias(es)
 
 .. code:: bash
 
-   $, gencert, gencodesigncert, installpfx, installpfxx, batforps,
-   pstobat, wrapcommand, aboutx, buildcronux, chelp, helpx, installfolderx,
-   installx, listx, uninstallx, updatex, versionx, base64, base64s,
-   docronux, ps12markdown, psdoc, psdoc2markdown, extractx, superwatcher,
-   touch, watcher, watcherb, gitclone, gitcommit, gitfpush, gitpull,
-   gitpush, gitstatus, deletepod, getpods, kubecontext, logpod, podexec,
-   podshell, portforward, ipof, printhead, close, elevate, makepssafeagain,
-   makepsunsafe, whatami, Cronux
+   $, extractx, gencert, gencodesigncert, installpfx, installpfxx,
+   batforps, pstobat, shforps, wrapcommand, aboutx, buildcronux,
+   chelp, helpx, installfolderx, installx, listx, removecommand,
+   uninstallx, updatex, versionx, base64, base64s, docronux, markdown2rst,
+   ps12markdown, psdoc, psdoc2markdown, superwatcher, touch, watcher,
+   watcherb, gitbranch, gitclone, gitcommit, gitcommitwd, gitfpush,
+   gitlog, gitlogp, gitpull, gitpush, gitstatus, say, deletepod, getpods,
+   kubecontext, logpod, podexec, podshell, portforward, ipof, serve,
+   wdetail, printhead, close, elevate, makepssafeagain, makepsunsafe,
+   timex, whatami, Cronux
 
 To view all the Cronux native and exported commands:
 

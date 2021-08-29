@@ -1,0 +1,100 @@
+
+
+.. index::
+	single: timex
+
+
+timex
+=====
+
+Print the time taken to execute a program, similar to linux time
+command.
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : timex.ps1
+   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Date       : August-28-2021
+
+--------------
+
+Print the time taken to execute a program, similar to linux time
+command.
+
+Syntax
+------
+
+.. code:: powershell
+
+   timex [[-Commands] <String[]>] [<CommonParameters>]  
+
+Parameters
+----------
+
+-Commands :String[]
+~~~~~~~~~~~~~~~~~~~
+
+the commands to execute or the file to execute
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   1
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+[System.String]
+
+Outputs
+-------
+
+[System.String]
+
+EXAMPLE 1
+---------
+
+::
+
+   timex dir
+
+-  28-Aug-21 07:56 PM
+
+   .. raw:: html
+
+      <DIR>
+
+   .
+-  28-Aug-21 07:53 PM
+
+   .. raw:: html
+
+      <DIR>
+
+   ..
+-  28-Aug-21 07:56 PM 9 .gitattributes
+-  28-Aug-21 07:56 PM 60 .gitignore
+-  2 File(s) 69 bytes Dir(s) 56,581,320,704 bytes free
+
+real: 0m0.902s user: 0m0.864s sys: 0m0.032s
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

@@ -60,8 +60,7 @@ Syntax
 
 .. code:: powershell
 
-   getpods [[-PodName] <String>] [-Detail] [-Single] 
-   [<CommonParameters>]  
+   getpods [[-PodName] <String>] [-Detail] [-Single] [<CommonParameters>]  
 
 Parameters
 ----------

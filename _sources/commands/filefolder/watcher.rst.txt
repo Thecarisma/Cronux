@@ -45,8 +45,8 @@ Syntax
 
 .. code:: powershell
 
-   watcher [-FolderPath] <String> [-CommandToExecute] 
-   <String> [-Create] [-Delete] [-Change] [-Rename] [<CommonParameters>]  
+   watcher [-FolderPath] <String> [-CommandToExecute] <String> [-Create] 
+   [-Delete] [-Change] [-Rename] [<CommonParameters>]  
 
 Parameters
 ----------

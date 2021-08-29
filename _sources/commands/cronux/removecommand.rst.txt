@@ -28,8 +28,7 @@ Syntax
 
 .. code:: powershell
 
-   removecommand [[-CommandsToRemove] <String>] 
-   [<CommonParameters>]  
+   removecommand [[-CommandsToRemove] <String>] [<CommonParameters>]  
 
 Parameters
 ----------

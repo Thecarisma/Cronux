@@ -25,8 +25,8 @@ Syntax
 
 .. code:: powershell
 
-   ps12markdown [-Path] <String> [-OutputFolder] 
-   <String> [[-ProjectName] <String>] [-SkipHtml] [-SkipNotes] [-Silent] [-Recurse] [-Keep] [<CommonParameters>]  
+   ps12markdown [-Path] <String> [-OutputFolder] <String> 
+   [[-ProjectName] <String>] [-SkipHtml] [-SkipNotes] [-Silent] [-Recurse] [-Keep] [<CommonParameters>]  
 
 Parameters
 ----------

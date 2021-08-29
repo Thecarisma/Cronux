@@ -23,8 +23,8 @@ Syntax
 
 .. code:: powershell
 
-   buildcronux [-cronux_path] <String> 
-   [-output_folder_path] <String> [<CommonParameters>]  
+   buildcronux [-cronux_path] <String> [-output_folder_path] <String> 
+   [<CommonParameters>]  
 
 Parameters
 ----------

@@ -28,8 +28,8 @@ Syntax
 
 .. code:: powershell
 
-   elevate [[-App] <String>] [[-ExtraArguments] 
-   <String[]>] [<CommonParameters>]  
+   elevate [[-App] <String>] [[-ExtraArguments] <String[]>] 
+   [<CommonParameters>]  
 
 Parameters
 ----------

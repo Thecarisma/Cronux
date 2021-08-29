@@ -42,9 +42,9 @@ Syntax
 
 .. code:: powershell
 
-   superwatcher [-Path] <String> [[-Filter] <String>] 
-   [-Recurse] [-SkipHiddenFolder] [-CreatedAction <ScriptBlock>] [-DeletedAction <ScriptBlock>] [-ChangedAction 
-   <ScriptBlock>] [-RenamedAction <ScriptBlock>] [-KeyboardTimeout <Int32>] [<CommonParameters>]  
+   superwatcher [-Path] <String> [[-Filter] <String>] [-Recurse] 
+   [-SkipHiddenFolder] [-CreatedAction <ScriptBlock>] [-DeletedAction <ScriptBlock>] [-ChangedAction <ScriptBlock>] 
+   [-RenamedAction <ScriptBlock>] [-KeyboardTimeout <Int32>] [<CommonParameters>]  
 
 Parameters
 ----------

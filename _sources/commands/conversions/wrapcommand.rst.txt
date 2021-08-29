@@ -23,8 +23,8 @@ Syntax
 
 .. code:: powershell
 
-   wrapcommand [-File] [-command_list_file_path] 
-   <String> [-output_folder_path] <String> [<CommonParameters>]  
+   wrapcommand [-File] [-command_list_file_path] <String> 
+   [-output_folder_path] <String> [<CommonParameters>]  
 
 Parameters
 ----------

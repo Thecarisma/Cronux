@@ -23,8 +23,8 @@ Syntax
 
 .. code:: powershell
 
-   pstobat [[-batch_path] <String>] [[-embed] 
-   <String>] [<CommonParameters>]  
+   pstobat [[-batch_path] <String>] [[-embed] <String>] 
+   [<CommonParameters>]  
 
 Parameters
 ----------

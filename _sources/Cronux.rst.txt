@@ -12,4 +12,5 @@ Content of Cronux
 --------------
 
 -  :doc:`.//commands/index`
+-  :doc:`.//.github/index`
 -  :doc:`.//docs/index`

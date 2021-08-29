@@ -37,8 +37,8 @@ Syntax
 
 .. code:: powershell
 
-   portforward [-PodName] <String> [-PodPort] <String> 
-   [-Single] [<CommonParameters>]  
+   portforward [-PodName] <String> [-PodPort] <String> [-Single] 
+   [<CommonParameters>]  
 
 Parameters
 ----------

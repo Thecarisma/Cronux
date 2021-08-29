@@ -28,8 +28,8 @@ Syntax
 
 .. code:: powershell
 
-   base64 [-InputFile] <String> [-ToJson] 
-   [-AndCopyToClipboard] [-WriteToFile] [<CommonParameters>]  
+   base64 [-InputFile] <String> [-ToJson] [-AndCopyToClipboard] [-WriteToFile] 
+   [<CommonParameters>]  
 
 Parameters
 ----------

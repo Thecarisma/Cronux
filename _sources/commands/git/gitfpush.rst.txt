@@ -88,7 +88,7 @@ EXAMPLE 2
    gitfpush
 
 This will commit your changes without any messages. git add .; git
-commit -m ""; git push origin HEAD
+commit -m ““; git push origin HEAD
 
 Related links
 -------------

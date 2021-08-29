@@ -31,8 +31,8 @@ Syntax
 
 .. code:: powershell
 
-   markdown2rst [-MdPath] <String> [-OutputFolder] 
-   <String> [-Recurse] [-Silent] [-FilterRst] [<CommonParameters>]  
+   markdown2rst [-MdPath] <String> [-OutputFolder] <String> [-Recurse] 
+   [-Silent] [-FilterRst] [<CommonParameters>]  
 
 Parameters
 ----------

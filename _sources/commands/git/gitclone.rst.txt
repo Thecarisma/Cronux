@@ -28,8 +28,7 @@ Syntax
 
 .. code:: powershell
 
-   gitclone [-RepoUrl] <String> [[-Branch] <String>] 
-   [<CommonParameters>]  
+   gitclone [-RepoUrl] <String> [[-Branch] <String>] [<CommonParameters>]  
 
 Parameters
 ----------

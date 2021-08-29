@@ -1,0 +1,14 @@
+
+
+.. index::
+	single: index
+
+
+.github
+=======
+
+Content of .github
+
+--------------
+
+-  :doc:`.//workflows/index`

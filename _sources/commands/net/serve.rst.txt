@@ -32,8 +32,8 @@ Syntax
 
 .. code:: powershell
 
-   serve [-Port] <Int32> [-Folder] <String> [[-KillRoute] 
-   <String>] [[-BuffSize] <Object>] [-NoIndex] [-WirelessOnly] [<CommonParameters>]  
+   serve [-Port] <Int32> [-Folder] <String> [[-KillRoute] <String>] [[-BuffSize] 
+   <Object>] [-NoIndex] [-WirelessOnly] [<CommonParameters>]  
 
 Parameters
 ----------

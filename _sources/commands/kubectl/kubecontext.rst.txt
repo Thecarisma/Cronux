@@ -34,8 +34,8 @@ Syntax
 
 .. code:: powershell
 
-   kubecontext [[-ContextName] <String>] [-All] [-User] 
-   [-Users] [<CommonParameters>]  
+   kubecontext [[-ContextName] <String>] [-All] [-User] [-Users] 
+   [<CommonParameters>]  
 
 Parameters
 ----------

@@ -30,8 +30,7 @@ Syntax
 
 .. code:: powershell
 
-   aboutx [-Version] [-Year] [-Author] [-Licence] 
-   [<CommonParameters>]  
+   aboutx [-Version] [-Year] [-Author] [-Licence] [<CommonParameters>]  
 
 Parameters
 ----------

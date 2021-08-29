@@ -11,8 +11,9 @@ Content of commands/system
 
 --------------
 
--  :doc:`./close`
--  :doc:`./elevate`
 -  :doc:`./makepssafeagain`
--  :doc:`./makepsunsafe`
+-  :doc:`./elevate`
 -  :doc:`./whatami`
+-  :doc:`./makepsunsafe`
+-  :doc:`./close`
+-  :doc:`./timex`

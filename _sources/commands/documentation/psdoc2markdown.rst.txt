@@ -29,9 +29,8 @@ Syntax
 
 .. code:: powershell
 
-   psdoc2markdown [-PsDocPath] <String> 
-   [-OutputFolder] <String> [[-ProjectName] <String>] [-SkipHtml] [-SkipNotes] [-SkipIndex] [-Silent] [-Recurse] 
-   [<CommonParameters>]  
+   psdoc2markdown [-PsDocPath] <String> [-OutputFolder] <String> 
+   [[-ProjectName] <String>] [-SkipHtml] [-SkipNotes] [-SkipIndex] [-Silent] [-Recurse] [<CommonParameters>]  
 
 Parameters
 ----------

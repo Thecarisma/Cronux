@@ -46,8 +46,8 @@ Syntax
 
 .. code:: powershell
 
-   watcherb [-FolderPath] <String> 
-   [-CommandToExecute] <String> [-Create] [-Delete] [-Change] [-Rename] [<CommonParameters>]  
+   watcherb [-FolderPath] <String> [-CommandToExecute] <String> [-Create] 
+   [-Delete] [-Change] [-Rename] [<CommonParameters>]  
 
 Parameters
 ----------

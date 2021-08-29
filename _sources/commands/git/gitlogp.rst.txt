@@ -29,8 +29,7 @@ Syntax
 
 .. code:: powershell
 
-   gitlogp [[-Format] <String>] [[-OtherArgs] <String[]>] 
-   [<CommonParameters>]  
+   gitlogp [[-Format] <String>] [[-OtherArgs] <String[]>] [<CommonParameters>]  
 
 Parameters
 ----------

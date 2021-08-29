@@ -33,8 +33,8 @@ Syntax
 
 .. code:: powershell
 
-   gencodesigncert [-cert_name] <String> 
-   [-expiry_year_] <Int32> [-output_folder_path] <String> [-password_] <String> [<CommonParameters>]  
+   gencodesigncert [-cert_name] <String> [-expiry_year_] <Int32> 
+   [-output_folder_path] <String> [-password_] <String> [<CommonParameters>]  
 
 Parameters
 ----------

@@ -25,8 +25,7 @@ Syntax
 
 .. code:: powershell
 
-   extractx [-export_list_path] <String> [-Application] 
-   [<CommonParameters>]  
+   extractx [-export_list_path] <String> [-Application] [<CommonParameters>]  
 
 Parameters
 ----------

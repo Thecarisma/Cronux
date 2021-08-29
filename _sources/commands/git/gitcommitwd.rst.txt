@@ -29,8 +29,7 @@ Syntax
 
 .. code:: powershell
 
-   gitcommitwd [[-Day] <Int32>] [-Amend] [-args] <String[]> 
-   [<CommonParameters>]  
+   gitcommitwd [[-Day] <Int32>] [-Amend] [-args] <String[]> [<CommonParameters>]  
 
 Parameters
 ----------
