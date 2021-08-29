@@ -19,6 +19,8 @@ jobs:
           persist-credentials: false
 
       - name: Install and Build 🔧
+        env: # Or as an environment variable
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_FOR_CI_CD }}
         run: |
           choco install pandoc -y
           python -m pip install themata
@@ -27,7 +29,6 @@ jobs:
           cd dist/gh-pages/
           sphinx-build.exe -b html -d build/doctrees  ./ build/html
           cd ../../
-          $GITHUB_TOKEN = ${{ secrets.GH_TOKEN_FOR_CI_CD }}
           echo powershell ./docs/deployghpage.ps1
             
         
