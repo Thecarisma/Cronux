@@ -74,7 +74,7 @@ Function Iterate-Folder {
     
     Get-ChildItem $FolderName | Foreach-Object {
         If ( -not $_.PSIsContainer) {
-            If ( $_.Name.EndsWith(".ps1")) {
+            If ( $_.Name.EndsWith(".ps1") -and !$_.Name.StartsWith("deployghpage")) {
                 $NameOnly = $_.Name.SubString(0, $_.Name.LastIndexOf('.'))
                 & $CHelpPath $_.FullName | Out-File "$OutputName\$NameOnly.psdoc"
                 if ($Verbose) {
