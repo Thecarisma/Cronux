@@ -41,6 +41,7 @@ Table of content
 
       -  `Powershell <#powershell>`__
       -  `Git Bash <#git-bash>`__
+      -  `Linux Bash <#linux-bash>`__
       -  `Download Zip and Extract <#download-zip-and-extract>`__
 
    -  `Uninstall <#uninstall>`__
@@ -92,6 +93,20 @@ cronux
 .. code:: bash
 
    git clone https://github.com/Thecarisma/Cronux.git && cd ./Cronux && ./Cronux.sh installx
+
+Linux Bash
+^^^^^^^^^^
+
+Install powershell following the procedure
+`here <https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-7.1>`__
+or if you are have snap installed install with
+``snap install powershell --classic``. The install cronux using the
+command below
+
+.. code:: bash
+
+
+   powershell <(curl -s https://thecarisma.github.io/Cronux/installx.ps1)
 
 Download Zip and Extract
 ^^^^^^^^^^^^^^^^^^^^^^^^
