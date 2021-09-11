@@ -34,7 +34,7 @@ Param(
 $version_value = & "$PSScriptRoot\versionx.ps1"
 $author_value = "Adewale Azeez"
 $licence_value = "MIT License"
-$year_value = "2020"
+$year_value = "2021"
 
 if ($Version) {
     $version_value

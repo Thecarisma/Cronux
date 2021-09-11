@@ -77,6 +77,7 @@ Function Add-Folder-To-Path {
     Param([string]$folder)
 
     if ($Env:OS.StartsWith("Windows")) {
+        "Adding $folder to $PathEnvironment Path variable"
         $NewPath = ""
         ForEach ($_path in $Path.Split(";")) {
             If ($_path -ne $InstallationPath -and $_path -ne "") {
@@ -86,7 +87,8 @@ Function Add-Folder-To-Path {
         [Environment]::SetEnvironmentVariable("Path", "$NewPath$folder", "$PathEnvironment")
 
     } else {
-        
+        "Adding $folder to ~/.bashrc Path variable"
+        echo "export PATH=`"$folder`":`$PATH">>~/.bashrc
     }
 }
 
@@ -110,7 +112,7 @@ If ([System.IO.Directory]::Exists("$InstallationPath")) {
     Remove-Item -path "$InstallationPath\*.ps1" -Recurse -ErrorAction Ignore
     Remove-Item -path "$InstallationPath\*.bat" -Recurse -ErrorAction Ignore
 }
-If (-not [System.IO.File]::Exists("$PSScriptRoot/../net/ipof.sps1")) {
+If (-not [System.IO.File]::Exists("$PSScriptRoot/../net/ipof.ps1")) {
     Check-Create-Directory $TEMP
     If ($BeforeScript -ne "") {
         "Executing the BeforeScript..."
@@ -139,7 +141,6 @@ If (-not [System.IO.File]::Exists("$PSScriptRoot/../net/ipof.sps1")) {
 }
 
 If ($AddPath -eq $true) {
-    "Adding $InstallationPath to $PathEnvironment Path variable"
     Add-Folder-To-Path "$InstallationPath"
 }
 
