@@ -15,9 +15,10 @@ Content of commands/git
 -  :doc:`./gitlog`
 -  :doc:`./gitlogp`
 -  :doc:`./gitstatus`
--  :doc:`./gitpush`
+-  :doc:`./gitppp`
 -  :doc:`./gitbranch`
 -  :doc:`./gitcommitwd`
 -  :doc:`./gitpull`
 -  :doc:`./gitfpush`
 -  :doc:`./gitcommit`
+-  :doc:`./gitpush`
