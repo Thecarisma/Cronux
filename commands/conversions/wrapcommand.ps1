@@ -10,7 +10,7 @@
 .NOTES
     Version    : 1.0
     File Name  : wrapcommand.ps1
-    Author     : Adewale Azeez - azeezadewale98@gmail.com
+    Author     : Adewale Azeez - iamthecarisma@gmail.com
     Date       : Jan-06-2020
 .LINK
     https://thecarisma.github.io/Cronux

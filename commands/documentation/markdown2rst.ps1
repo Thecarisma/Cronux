@@ -15,7 +15,7 @@
 .NOTES
     Version    : 1.0
     File Name  : markdown2rst.ps1
-    Author     : Adewale Azeez - azeezadewale98@gmail.com
+    Author     : Adewale Azeez - iamthecarisma@gmail.com
     Date       : April-02-2020
 .LINK
     https://thecarisma.github.io/Cronux

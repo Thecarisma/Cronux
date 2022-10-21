@@ -21,7 +21,7 @@
 .NOTES
     Version    : 1.0
     File Name  : serve.ps1
-    Author     : Adewale Azeez - azeezadewale98@gmail.com
+    Author     : Adewale Azeez - iamthecarisma@gmail.com
     Date       : April-04-2021
 .LINK
     https://thecarisma.github.io/Cronux

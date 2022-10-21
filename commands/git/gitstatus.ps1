@@ -10,7 +10,7 @@
     git status INFO
 .NOTES
     File Name  : gitstatus.ps1
-    Author     : Adewale Azeez - azeezadewale98@gmail.com
+    Author     : Adewale Azeez - iamthecarisma@gmail.com
     Date       : Mar-09-2020
 .LINK
     https://thecarisma.github.io/Cronux

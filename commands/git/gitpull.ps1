@@ -16,7 +16,7 @@
     git pull INFO
 .NOTES
     File Name  : gitpull.ps1
-    Author     : Adewale Azeez - azeezadewale98@gmail.com
+    Author     : Adewale Azeez - iamthecarisma@gmail.com
     Date       : Mar-02-2020
 .LINK
     https://thecarisma.github.io/Cronux

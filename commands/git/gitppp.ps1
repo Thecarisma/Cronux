@@ -21,7 +21,7 @@
     some text and analysis
 .NOTES
     File Name  : gitpush.ps1
-    Author     : Adewale Azeez - azeezadewale98@gmail.com
+    Author     : Adewale Azeez - iamthecarisma@gmail.com
     Date       : Oct-06-2021
 .LINK
     https://thecarisma.github.io/Cronux

@@ -23,7 +23,7 @@
 .NOTES
     Version    : 1.0
     File Name  : installpfxx.ps1
-    Author     : Adewale Azeez - azeezadewale98@gmail.com
+    Author     : Adewale Azeez - iamthecarisma@gmail.com
     Date       : Jan-12-2020
 .LINK
     https://thecarisma.github.io/Cronux

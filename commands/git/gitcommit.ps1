@@ -12,7 +12,7 @@
     [System.String[]]
 .NOTES
     File Name  : gitcommit.ps1
-    Author     : Adewale Azeez - azeezadewale98@gmail.com
+    Author     : Adewale Azeez - iamthecarisma@gmail.com
     Date       : Mar-30-2020
 .LINK
     https://thecarisma.github.io/Cronux

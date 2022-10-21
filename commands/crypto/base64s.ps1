@@ -12,7 +12,7 @@
 .NOTES
     Version    : 1.0
     File Name  : base64.ps1
-    Author     : Adewale Azeez - azeezadewale98@gmail.com
+    Author     : Adewale Azeez - iamthecarisma@gmail.com
     Date       : 2020
 .LINK
     https://thecarisma.github.io/Cronux

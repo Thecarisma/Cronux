@@ -16,7 +16,7 @@
     some text and analysis I don't need
 .NOTES
     File Name  : gitfpush.ps1
-    Author     : Adewale Azeez - azeezadewale98@gmail.com
+    Author     : Adewale Azeez - iamthecarisma@gmail.com
     Date       : Mar-01-2020
 .LINK
     https://thecarisma.github.io/Cronux

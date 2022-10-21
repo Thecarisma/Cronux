@@ -12,7 +12,7 @@
 .NOTES
     Version    : 1.0
     File Name  : timex.ps1
-    Author     : Adewale Azeez - azeezadewale98@gmail.com
+    Author     : Adewale Azeez - iamthecarisma@gmail.com
     Date       : August-28-2021
 .LINK
     https://thecarisma.github.io/Cronux
