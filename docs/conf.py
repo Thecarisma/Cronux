@@ -1,11 +1,10 @@
 import os
-import themata
+import themata.fluid
 
 project = 'Cronux'
 copyright = '2020, Adewale Azeez, MIT License'
 author = 'Adewale Azeez'
 
-html_theme_path = [themata.get_html_theme_path()]
 html_theme = 'fluid'
 master_doc = 'index'
 html_favicon = 'cronux.png'
@@ -17,6 +16,9 @@ html_theme_options = {
     'has_right_sidebar': True,
     'collapsible_sidebar': True,
     'collapsible_sidebar_display': 'none',
+    'syntax_highlighter': 'highlightjs',
+    'code_block_editable': False,
+    'syntax_highlighter_theme': 'an-old-hope',
     'show_navigators': True,
     'social_icons': [
         ('fab fa-dev', 'https://dev.to/iamthecarisma'),
