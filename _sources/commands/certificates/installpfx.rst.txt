@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: installpfx
-
+.. index:: single: installpfx
 
 installpfx
 ==========
@@ -15,7 +11,7 @@ Install a pfx certificate into Cert:/LocalMachine/Root store.
 
    Version    : 1.0
    File Name  : installpfx.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : Jan-09-2020
 
 --------------

@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: base64
-
+.. index:: single: base64
 
 base64
 ======

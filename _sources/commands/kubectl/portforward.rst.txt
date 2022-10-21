@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: portforward
-
+.. index:: single: portforward
 
 portforward
 ===========
@@ -15,7 +11,7 @@ Listen on a port on the local machine and forward to pod port
 
    Version    : 1.0
    File Name  : portforward.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : March-30-2020
 
 --------------

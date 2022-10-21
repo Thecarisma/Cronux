@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: archive
-
+.. index:: single: archive
 
 commands/archive
 ================

@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: filefolder
-
+.. index:: single: filefolder
 
 commands/filefolder
 ===================

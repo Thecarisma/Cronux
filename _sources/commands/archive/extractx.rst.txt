@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: extractx
-
+.. index:: single: extractx
 
 extractx
 ========
@@ -13,7 +9,7 @@ extractx
 
    Version    : 1.0
    File Name  : extractx.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : Jan-06-2020
 
 --------------

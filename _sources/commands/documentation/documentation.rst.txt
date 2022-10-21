@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: documentation
-
+.. index:: single: documentation
 
 commands/documentation
 ======================

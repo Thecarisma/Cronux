@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: index
-
+.. index:: single: index
 
 commands/conversions
 ====================
@@ -11,6 +7,7 @@ Content of commands/conversions
 
 --------------
 
+-  :doc:`./wmv2mp4`
 -  :doc:`./pstobat`
 -  :doc:`./wrapcommand`
 -  :doc:`./batforps`

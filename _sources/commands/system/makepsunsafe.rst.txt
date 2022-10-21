@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: makepsunsafe
-
+.. index:: single: makepsunsafe
 
 makepsunsafe
 ============
@@ -15,7 +11,7 @@ Allow powershell to execute unsigned .ps1 files without any warning
 
    Version    : 1.0
    File Name  : makepsunsafe.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : April-01-2020
 
 --------------

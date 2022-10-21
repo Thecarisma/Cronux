@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: crypto
-
+.. index:: single: crypto
 
 commands/crypto
 ===============

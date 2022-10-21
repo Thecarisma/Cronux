@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: podshell
-
+.. index:: single: podshell
 
 podshell
 ========
@@ -15,7 +11,7 @@ Enter a pod shell using it full name or select from matching pods.
 
    Version    : 1.0
    File Name  : podshell.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : March-31-2020
 
 --------------

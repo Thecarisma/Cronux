@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: gitbranch
-
+.. index:: single: gitbranch
 
 gitbranch
 =========
@@ -14,7 +10,7 @@ Check the branch of a repository.
 ::
 
    File Name  : gitbranch.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : Sep-06-2020
 
 --------------

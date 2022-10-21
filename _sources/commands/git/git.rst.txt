@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: git
-
+.. index:: single: git
 
 commands/git
 ============

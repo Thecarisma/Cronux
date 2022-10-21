@@ -1,0 +1,118 @@
+.. index:: single: wmv2mp4
+
+wmv2mp4
+=======
+
+Convert a WMV file to MP4
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : wmv2mp4.ps1
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
+   Date       : October-21-2022
+
+--------------
+
+Convert a WMV to MP4 using ffmpefg. Download ffmpeg from
+https://ffmpeg.org/download.html.
+
+Syntax
+------
+
+.. code:: powershell
+
+   wmv2mp4 [-MediaPath] <String> [-OutputFolder <String>] [-Silent] 
+   [<CommonParameters>]  
+
+Parameters
+----------
+
+-MediaPath :String
+~~~~~~~~~~~~~~~~~~
+
+The path to the WMV file to convert to mp4
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   true
+Position?                   1
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-OutputFolder :String
+~~~~~~~~~~~~~~~~~~~~~
+
+the folder to put generated reStructuredText
+
+=========================== ========
+attr                        value
+=========================== ========
+Required?                   false
+Position?                   named
+Default value               ./output
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== ========
+
+-Silent [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+whether to print anything to the console
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+[System.String[]]
+
+Outputs
+-------
+
+[System.String[]]
+
+EXAMPLE 1
+---------
+
+::
+
+   wmv2mp4 video.wmv
+
+This will generates video.mp4 in the folder ./output relative to the
+working dir.
+
+EXAMPLE 2
+---------
+
+::
+
+   wmv2mp4 video.wmv C:/videos/
+
+This will generates video.mp4 in the folder C:/videos/
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

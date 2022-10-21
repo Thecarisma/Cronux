@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: docronux
-
+.. index:: single: docronux
 
 docronux
 ========
@@ -15,7 +11,7 @@ Generate documenation for Cronux
 
    Version    : 1.0
    File Name  : docronux.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : March-16-2020
 
 --------------

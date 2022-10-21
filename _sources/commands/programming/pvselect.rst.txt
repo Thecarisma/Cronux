@@ -1,0 +1,146 @@
+.. index:: single: pvselect
+
+pvselect
+========
+
+Select of View list of available version of a programming language on a
+system.
+
+--------------
+
+::
+
+   Version    : 1.0
+   File Name  : pvselect.ps1
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
+   Date       : Jun-05-2022
+
+--------------
+
+View all the list of installed versions of a programming language on
+your system.
+
+Also allow selecting which version of the programming language to use
+for the active shell session.
+
+If the List switch and the version to select is not specified this
+command will only print out the current version of the programming
+language.
+
+Supported Languages: php
+
+Syntax
+------
+
+.. code:: powershell
+
+   pvselect [-Language] <String> [[-Version] <String>] [-List] 
+   [<CommonParameters>]  
+
+Parameters
+----------
+
+-Language :String
+~~~~~~~~~~~~~~~~~
+
+The programming language to slect the version for the active shell
+session
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   true
+Position?                   1
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-Version :String
+~~~~~~~~~~~~~~~~
+
+The language version to use for the active shell session
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   2
+Default value               
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+-List [:SwitchParameter]
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+List all the available version of a language on the system
+
+=========================== =====
+attr                        value
+=========================== =====
+Required?                   false
+Position?                   named
+Default value               False
+Accept pipeline input?      false
+Accept wildcard characters? false
+=========================== =====
+
+CommonParameters
+~~~~~~~~~~~~~~~~
+
+This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
+ErrorVariable, WarningAction, WarningVariable, OutBuffer,
+PipelineVariable, and OutVariable. For more information, see
+about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216).
+
+Inputs
+------
+
+System.String[]
+
+Outputs
+-------
+
+System.String
+
+EXAMPLE 1
+---------
+
+::
+
+   pvselect php -List
+
+List all the installed versions of php on the system
+
+EXAMPLE 2
+---------
+
+::
+
+   pvselect php
+
+List all the installed versions of php on the system
+
+EXAMPLE 3
+---------
+
+::
+
+   pvselect php 5.6.40
+
+Change the php version in the active shell to php5.6.40
+
+EXAMPLE 4
+---------
+
+::
+
+   pvselect php 7.4.26
+
+Change the php version in the active shell to php7.4.26
+
+Related links
+-------------
+
+-  https://thecarisma.github.io/Cronux

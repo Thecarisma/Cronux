@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: ipof
-
+.. index:: single: ipof
 
 ipof
 ====
@@ -15,7 +11,7 @@ List the ip addresses of a url
 
    Version    : 1.0
    File Name  : ipof.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : March-25-2020
 
 --------------

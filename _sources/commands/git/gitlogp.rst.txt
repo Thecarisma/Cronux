@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: gitlogp
-
+.. index:: single: gitlogp
 
 gitlogp
 =======
@@ -14,7 +10,7 @@ Print the repository log in pretty format.
 ::
 
    File Name  : gitlogp.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : Sep-06-2020
 
 --------------

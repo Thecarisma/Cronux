@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: gitpush
-
+.. index:: single: gitpush
 
 gitpush
 =======
@@ -15,7 +11,7 @@ variadic arguments without quotes
 ::
 
    File Name  : gitpush.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : Jan-03-2020
 
 --------------

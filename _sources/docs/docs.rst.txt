@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: docs
-
+.. index:: single: docs
 
 docs
 ====

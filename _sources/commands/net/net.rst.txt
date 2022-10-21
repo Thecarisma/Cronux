@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: net
-
+.. index:: single: net
 
 commands/net
 ============

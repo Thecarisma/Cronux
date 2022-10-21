@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: commands
-
+.. index:: single: commands
 
 commands
 ========
@@ -20,6 +16,7 @@ Content of commands
 -  :doc:`.//crypto/index`
 -  :doc:`.//system/index`
 -  :doc:`.//git/index`
+-  :doc:`.//programming/index`
 -  :doc:`.//net/index`
 -  :doc:`.//interactive/index`
 -  :doc:`.//certificates/index`

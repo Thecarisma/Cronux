@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Cronux &#8212; Cronux  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,7 +12,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="shortcut icon" href="_static/cronux.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -21,6 +23,7 @@
   
   
     <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    
   
     
     <meta name="description" content="Cronux contains Super useful handy commands to perform simple and complex task on the command line. Powershell has powerful command line functionality due to it interopability with visual basic script, the .NET sdk and installed apps. This project also exports over 100 built in commands in powershell to be used from the Windows Command prompt.">
@@ -43,6 +46,24 @@
     <meta name="twitter:image" content="https://raw.githubusercontent.com/Thecarisma/Cronux/main/docs/cronux.png" />
     
   
+  
+  <script>
+        const __themataOnloadCallbacks = [];
+        const __themataJsLoadedCallbacks = [];
+        const themataCurrentPageTitle = "Cronux";
+        const themataCurrentProject = "Cronux";
+        const themataCurrentProjectGithubLocation = "";
+        const themataCurrentPagePath = "index.rst";
+        const themataCurrentPageLocation = "/index.rst".replace("/edit/", "/blob/");
+        const themataGithubFeedbackProjectTemplate = ``;
+        const themataGithubFeedbackPageTemplate = ``;
+        function themataRegisterOnloadCallback(cb) {
+            __themataJsLoadedCallbacks.push(cb);
+        }
+        function themataRegisterJsLoadedCallback(cb) {
+            __themataOnloadCallbacks.push(cb);
+        }
+    </script>
 
   </head><body>
 
@@ -111,6 +132,7 @@
 <p class="caption" role="heading"><span class="caption-text">Conversions</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="commands/conversions/wrapcommand.html">wrapcommand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands/conversions/wmv2mp4.html">wmv2mp4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands/conversions/shforps.html">shforps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands/conversions/pstobat.html">pstobat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="commands/conversions/index.html">commands/conversions</a></li>
@@ -261,7 +283,7 @@
 </div>
 <img alt="https://github.com/Thecarisma/Cronux/raw/main/docs/cronux.png" id="index-0" src="https://github.com/Thecarisma/Cronux/raw/main/docs/cronux.png" />
 <section id="cronux">
-<h1>Cronux<a class="headerlink" href="#cronux" title="Permalink to this headline">¶</a></h1>
+<h1>Cronux<a class="headerlink" href="#cronux" title="Permalink to this heading">¶</a></h1>
 <p>Handy commands to perform simple and complex tasks with Powershell</p>
 <hr class="docutils" />
 <p><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/Thecarisma/Cronux" /> <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Thecarisma/Cronux" /> <a class="reference external" href="https://twitter.com/iamthecarisma"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/iamthecarisma?style=social" /></a> <a class="reference external" href="https://www.patreon.com/join/devcareer/checkout?rid=3922862"><img alt="Support on Patreon" src="https://img.shields.io/static/v1?label=Support%20Devcareer%20on%20Patreon&amp;message=$10&amp;color=brightgreen" /></a></p>
@@ -277,7 +299,7 @@ switch between other OSes and Windows often.</p>
 <p>Do not heisitate to send in a PR with your awesome powershell script.</p>
 <hr class="docutils" />
 <section id="table-of-content">
-<h2>Table of content<a class="headerlink" href="#table-of-content" title="Permalink to this headline">¶</a></h2>
+<h2>Table of content<a class="headerlink" href="#table-of-content" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="#requirements">Requirements</a></p></li>
 <li><p><a class="reference external" href="#installation">Installation</a></p>
@@ -309,7 +331,7 @@ switch between other OSes and Windows often.</p>
 </ul>
 </section>
 <section id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Powershell 2+</p></li>
 <li><p>Windows Command Prompt on Microsoft Windows</p></li>
@@ -317,20 +339,20 @@ switch between other OSes and Windows often.</p>
 </ul>
 </section>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
 <p>The script provides wrapper commands for various application e.g git,
 kubectl. The main requirement for Cronux is powershell 3 and above.</p>
 <section id="install">
-<h3>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h3>
+<h3>Install<a class="headerlink" href="#install" title="Permalink to this heading">¶</a></h3>
 <section id="powershell">
-<h4>Powershell<a class="headerlink" href="#powershell" title="Permalink to this headline">¶</a></h4>
+<h4>Powershell<a class="headerlink" href="#powershell" title="Permalink to this heading">¶</a></h4>
 <p>Run your powershell as admin and execute:</p>
 <div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">Set-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="n">-Scope</span> <span class="k">Process</span> <span class="n">-Force</span><span class="p">;</span> <span class="nb">iex </span><span class="p">((</span><span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;https://thecarisma.github.io/Cronux/installx.ps1&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </section>
 <section id="git-bash">
-<h4>Git Bash<a class="headerlink" href="#git-bash" title="Permalink to this headline">¶</a></h4>
+<h4>Git Bash<a class="headerlink" href="#git-bash" title="Permalink to this heading">¶</a></h4>
 <p>If you have git bash installed use the one line command below to install
 cronux</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/Thecarisma/Cronux.git <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ./Cronux <span class="o">&amp;&amp;</span> ./Cronux.sh installx
@@ -338,7 +360,7 @@ cronux</p>
 </div>
 </section>
 <section id="linux-bash">
-<h4>Linux Bash<a class="headerlink" href="#linux-bash" title="Permalink to this headline">¶</a></h4>
+<h4>Linux Bash<a class="headerlink" href="#linux-bash" title="Permalink to this heading">¶</a></h4>
 <p>Install powershell following the procedure
 <a class="reference external" href="https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-7.1">here</a>
 or if you are have snap installed install with
@@ -349,7 +371,7 @@ command below</p>
 </div>
 </section>
 <section id="download-zip-and-extract">
-<h4>Download Zip and Extract<a class="headerlink" href="#download-zip-and-extract" title="Permalink to this headline">¶</a></h4>
+<h4>Download Zip and Extract<a class="headerlink" href="#download-zip-and-extract" title="Permalink to this heading">¶</a></h4>
 <p>Download the zip archive from the repo or release page, extract it to
 any folder on your disk and execute Cronux from within the folder.</p>
 <p>To use all the commands you will need to prefix the word <strong>Cronux</strong>
@@ -361,7 +383,7 @@ the command available independent of Cronux itself install Cronux with:</p>
 </section>
 </section>
 <section id="uninstall">
-<h3>Uninstall<a class="headerlink" href="#uninstall" title="Permalink to this headline">¶</a></h3>
+<h3>Uninstall<a class="headerlink" href="#uninstall" title="Permalink to this heading">¶</a></h3>
 <p>To uninstall the Entrie Cronux and it sub commands Scripts use the
 command below</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Cronux</span> <span class="n">uninstallx</span>
@@ -377,7 +399,7 @@ toolchain).</p>
 </div>
 </section>
 <section id="update">
-<h3>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h3>
+<h3>Update<a class="headerlink" href="#update" title="Permalink to this heading">¶</a></h3>
 <p>If you already have Cronux installed you can execute the <code class="docutils literal notranslate"><span class="pre">updatex</span></code>
 command to update to the latest version.</p>
 <div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">updatex</span>
@@ -390,7 +412,7 @@ command to update to the latest version.</p>
 </section>
 </section>
 <section id="creating-alias">
-<h2>Creating alias<a class="headerlink" href="#creating-alias" title="Permalink to this headline">¶</a></h2>
+<h2>Creating alias<a class="headerlink" href="#creating-alias" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">shorty</span></code> command can be used to create a short alias for a long
 command. So instead of executing a long command from the CLI the alias
 script can be called to execute the commands e.g. the following command
@@ -417,7 +439,7 @@ command value.</p>
 in your terminal instead of typing the git command.</p>
 </section>
 <section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
 <p>After installation you can use the commands independently as each batch
 script will be generated for each command. Note that not all the command
 will have it own script such as the <strong>dir</strong> command as it will conflict
@@ -433,7 +455,7 @@ a sample use to open cmd as administrator</p>
 </pre></div>
 </div>
 <section id="powershell-exeception">
-<h3>Powershell Exeception<a class="headerlink" href="#powershell-exeception" title="Permalink to this headline">¶</a></h3>
+<h3>Powershell Exeception<a class="headerlink" href="#powershell-exeception" title="Permalink to this heading">¶</a></h3>
 <p>If you try to execute the commands from powershell you will have to set
 the Execution Policy to Bypass else you should call the .bat command
 directly e.g instead of <code class="docutils literal notranslate"><span class="pre">gitpush</span></code> use <code class="docutils literal notranslate"><span class="pre">gitpush.bat</span></code>. Top allow the
@@ -459,7 +481,7 @@ policy to be secure again execute</p>
 </section>
 </section>
 <section id="available-commands">
-<h2>Available Commands<a class="headerlink" href="#available-commands" title="Permalink to this headline">¶</a></h2>
+<h2>Available Commands<a class="headerlink" href="#available-commands" title="Permalink to this heading">¶</a></h2>
 <p>All the command are listed below with it alias(es)</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$, extractx, gencert, gencodesigncert, installpfx, installpfxx,
 batforps, pstobat, shforps, wrapcommand, aboutx, buildcronux,
@@ -487,7 +509,7 @@ timex, whatami, Cronux
 </div>
 </section>
 <section id="wiki">
-<h2>Wiki<a class="headerlink" href="#wiki" title="Permalink to this headline">¶</a></h2>
+<h2>Wiki<a class="headerlink" href="#wiki" title="Permalink to this heading">¶</a></h2>
 <p>The wiki and documentation website are auto generated by Travis for
 every push.</p>
 <ul class="simple">
@@ -508,7 +530,7 @@ every push.</p>
 </ul>
 </section>
 <section id="contributing">
-<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this heading">¶</a></h2>
 <p>If you have any issue or you just want more command to be added you can
 file a request
 <a class="reference external" href="https://github.com/Thecarisma/Cronux/issues/new">issue</a> anytime and
@@ -518,7 +540,7 @@ request</a></p>
 <p>May the force be with you.</p>
 </section>
 <section id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
 <p>You can support some of this community as they make big impact in the
 developement of people to get started with software engineering.</p>
 <ul class="simple">
@@ -526,7 +548,7 @@ developement of people to get started with software engineering.</p>
 </ul>
 </section>
 <section id="useful-links">
-<h2>Useful Links<a class="headerlink" href="#useful-links" title="Permalink to this headline">¶</a></h2>
+<h2>Useful Links<a class="headerlink" href="#useful-links" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.microsoft.com/en-us/powershell/scripting/overview">Powershell</a></p></li>
 <li><p><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/">.NET Documentation</a></p></li>
@@ -535,7 +557,7 @@ developement of people to get started with software engineering.</p>
 </ul>
 </section>
 <section id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
 <p>The MIT License Copyright (c) 2019 Adewale Azeez</p>
 <p></p>
 </section>
@@ -546,6 +568,7 @@ developement of people to get started with software engineering.</p>
                 </br>
                  
                     
+                
                 
         </div>
         
@@ -619,7 +642,7 @@ developement of people to get started with software engineering.</p>
         
         <div class="doc-sphinx-info">
                     &copy; Copyright 2020, Adewale Azeez, MIT License.
-                Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.2.0
+                Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0
                 with <a href="https://thecarisma.github.io/themata/fluid/index.html">fluid</a> theme.
         </div>
     </div>
@@ -641,6 +664,15 @@ developement of people to get started with software engineering.</p>
             }
             </script>
     
+    <script>
+                const themataSyntaxHighlighter = "highlightjs";
+                const themataCodeBlockIsEditable = false;
+                const themataSyntaxHighlighterTheme = "an-old-hope";
+                const themataStaticAssetsDir = "_static/";
+                const themataSyntaxHighlighterIframeEmbed = false;
+                $("pre").parent().css("display", "none");
+            </script>
+    <script src="_static/themata.js"></script>
 
   </body>
 </html>

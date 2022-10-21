@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>installpfx &#8212; Cronux  documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
@@ -12,7 +12,9 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <link rel="shortcut icon" href="../../_static/cronux.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -22,6 +24,7 @@
   
   
     <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    
   
     
     <meta name="description" content="Cronux contains Super useful handy commands to perform simple and complex task on the command line. Powershell has powerful command line functionality due to it interopability with visual basic script, the .NET sdk and installed apps. This project also exports over 100 built in commands in powershell to be used from the Windows Command prompt.">
@@ -44,6 +47,24 @@
     <meta name="twitter:image" content="https://raw.githubusercontent.com/Thecarisma/Cronux/main/docs/cronux.png" />
     
   
+  
+  <script>
+        const __themataOnloadCallbacks = [];
+        const __themataJsLoadedCallbacks = [];
+        const themataCurrentPageTitle = "installpfx";
+        const themataCurrentProject = "Cronux";
+        const themataCurrentProjectGithubLocation = "";
+        const themataCurrentPagePath = "commands/certificates/installpfx.rst";
+        const themataCurrentPageLocation = "/commands/certificates/installpfx.rst".replace("/edit/", "/blob/");
+        const themataGithubFeedbackProjectTemplate = ``;
+        const themataGithubFeedbackPageTemplate = ``;
+        function themataRegisterOnloadCallback(cb) {
+            __themataJsLoadedCallbacks.push(cb);
+        }
+        function themataRegisterJsLoadedCallback(cb) {
+            __themataOnloadCallbacks.push(cb);
+        }
+    </script>
 
   </head><body>
 
@@ -112,6 +133,7 @@
 <p class="caption" role="heading"><span class="caption-text">Conversions</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../conversions/wrapcommand.html">wrapcommand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conversions/wmv2mp4.html">wmv2mp4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conversions/shforps.html">shforps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conversions/pstobat.html">pstobat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../conversions/index.html">commands/conversions</a></li>
@@ -233,12 +255,12 @@
         <div class="bodywrapper">
                 
   <section id="installpfx">
-<span id="index-0"></span><h1>installpfx<a class="headerlink" href="#installpfx" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>installpfx<a class="headerlink" href="#installpfx" title="Permalink to this heading">¶</a></h1>
 <p>Install a pfx certificate into Cert:/LocalMachine/Root store.</p>
 <hr class="docutils" />
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Version</span>    <span class="p">:</span> <span class="mf">1.0</span>
 <span class="n">File</span> <span class="n">Name</span>  <span class="p">:</span> <span class="n">installpfx</span><span class="o">.</span><span class="n">ps1</span>
-<span class="n">Author</span>     <span class="p">:</span> <span class="n">Adewale</span> <span class="n">Azeez</span> <span class="o">-</span> <span class="n">azeezadewale98</span><span class="nd">@gmail</span><span class="o">.</span><span class="n">com</span>
+<span class="n">Author</span>     <span class="p">:</span> <span class="n">Adewale</span> <span class="n">Azeez</span> <span class="o">-</span> <span class="n">iamthecarisma</span><span class="nd">@gmail</span><span class="o">.</span><span class="n">com</span>
 <span class="n">Date</span>       <span class="p">:</span> <span class="n">Jan</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">2020</span>
 </pre></div>
 </div>
@@ -250,21 +272,17 @@ Cert:/LocalMachine/Root store.</p>
 the pfx certificate location and password is required and this does not
 prompt a confirm dialog.</p>
 <section id="syntax">
-<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">installpfx</span> <span class="p">[</span><span class="n">-cert_path</span><span class="p">]</span> <span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;</span> <span class="p">[</span><span class="n">-password_</span><span class="p">]</span> <span class="p">&lt;</span><span class="n">Object</span><span class="p">&gt;</span>
 <span class="p">[&lt;</span><span class="n">CommonParameters</span><span class="p">&gt;]</span>
 </pre></div>
 </div>
 </section>
 <section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading">¶</a></h2>
 <section id="cert-path-string">
-<h3>-cert_path :String<a class="headerlink" href="#cert-path-string" title="Permalink to this headline">¶</a></h3>
+<h3>-cert_path :String<a class="headerlink" href="#cert-path-string" title="Permalink to this heading">¶</a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 84%" />
-<col style="width: 16%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>attr</p></th>
 <th class="head"><p>value</p></th>
@@ -290,12 +308,8 @@ prompt a confirm dialog.</p>
 </table>
 </section>
 <section id="password-object">
-<h3>-password_ :Object<a class="headerlink" href="#password-object" title="Permalink to this headline">¶</a></h3>
+<h3>-password_ :Object<a class="headerlink" href="#password-object" title="Permalink to this heading">¶</a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 84%" />
-<col style="width: 16%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>attr</p></th>
 <th class="head"><p>value</p></th>
@@ -321,7 +335,7 @@ prompt a confirm dialog.</p>
 </table>
 </section>
 <section id="commonparameters">
-<h3>CommonParameters<a class="headerlink" href="#commonparameters" title="Permalink to this headline">¶</a></h3>
+<h3>CommonParameters<a class="headerlink" href="#commonparameters" title="Permalink to this heading">¶</a></h3>
 <p>This cmdlet supports the common parameters: Verbose, Debug, ErrorAction,
 ErrorVariable, WarningAction, WarningVariable, OutBuffer,
 PipelineVariable, and OutVariable. For more information, see
@@ -329,15 +343,15 @@ about_CommonParameters (<a class="reference external" href="https:/go.microsoft.
 </section>
 </section>
 <section id="inputs">
-<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
+<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this heading">¶</a></h2>
 <p>System.String[]</p>
 </section>
 <section id="outputs">
-<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h2>
+<h2>Outputs<a class="headerlink" href="#outputs" title="Permalink to this heading">¶</a></h2>
 <p>System.String</p>
 </section>
 <section id="example-1">
-<h2>EXAMPLE 1<a class="headerlink" href="#example-1" title="Permalink to this headline">¶</a></h2>
+<h2>EXAMPLE 1<a class="headerlink" href="#example-1" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">installpfx</span> <span class="o">./</span><span class="n">Certificate</span><span class="o">.</span><span class="n">pfx</span> <span class="n">password</span>
 </pre></div>
 </div>
@@ -345,7 +359,7 @@ about_CommonParameters (<a class="reference external" href="https:/go.microsoft.
 Cert:/LocalMachine/Root</p>
 </section>
 <section id="example-2">
-<h2>EXAMPLE 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h2>
+<h2>EXAMPLE 2<a class="headerlink" href="#example-2" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">installpfx</span> <span class="o">./</span><span class="n">Certificate2</span><span class="o">.</span><span class="n">pfx</span> <span class="n">youshallnotpass</span>
 </pre></div>
 </div>
@@ -353,7 +367,7 @@ Cert:/LocalMachine/Root</p>
 Cert:/LocalMachine/Root</p>
 </section>
 <section id="related-links">
-<h2>Related links<a class="headerlink" href="#related-links" title="Permalink to this headline">¶</a></h2>
+<h2>Related links<a class="headerlink" href="#related-links" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://thecarisma.github.io/Cronux">https://thecarisma.github.io/Cronux</a></p></li>
 <li><p><a class="reference external" href="https://dev.to/iamthecarisma/managing-certificates-through-powershell-2ok0">https://dev.to/iamthecarisma/managing-certificates-through-powershell-2ok0</a></p></li>
@@ -370,7 +384,7 @@ Cert:/LocalMachine/Root</p>
                     
                         <div class="navigation">
                             
-                            <a class="reference navigator" style="float:left;" href="../../genindex.html"><i class="fa fa-book"></i>Index</a>
+                            
                             
                             
                                 <a class="reference navigator" style="float:right;" href="gencodesigncert.html">gencodesigncert<i class="fa fa-arrow-right"></i></a> 
@@ -380,6 +394,7 @@ Cert:/LocalMachine/Root</p>
                             
                         </div>
                     
+                
                 
         </div>
         
@@ -443,7 +458,7 @@ Cert:/LocalMachine/Root</p>
         
         <div class="doc-sphinx-info">
                     &copy; Copyright 2020, Adewale Azeez, MIT License.
-                Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 4.2.0
+                Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.3.0
                 with <a href="https://thecarisma.github.io/themata/fluid/index.html">fluid</a> theme.
         </div>
     </div>
@@ -465,6 +480,15 @@ Cert:/LocalMachine/Root</p>
             }
             </script>
     
+    <script>
+                const themataSyntaxHighlighter = "highlightjs";
+                const themataCodeBlockIsEditable = false;
+                const themataSyntaxHighlighterTheme = "an-old-hope";
+                const themataStaticAssetsDir = "../../_static/";
+                const themataSyntaxHighlighterIframeEmbed = false;
+                $("pre").parent().css("display", "none");
+            </script>
+    <script src="../../_static/themata.js"></script>
 
   </body>
 </html>

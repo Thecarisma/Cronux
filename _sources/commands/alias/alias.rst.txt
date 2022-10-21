@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: alias
-
+.. index:: single: alias
 
 commands/alias
 ==============
@@ -11,4 +7,4 @@ Content of commands/alias
 
 --------------
 
--  :doc:`./$`
+-  [:math:`](./`)

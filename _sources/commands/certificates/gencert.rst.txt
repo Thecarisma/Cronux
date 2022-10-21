@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: gencert
-
+.. index:: single: gencert
 
 gencert
 =======
@@ -15,7 +11,7 @@ Generate a secure code signing certificate.
 
    Version    : 1.0
    File Name  : gencodesigncert.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : Jan-09-2020
 
 --------------

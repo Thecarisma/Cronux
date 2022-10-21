@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: github
-
+.. index:: single: github
 
 .github
 =======

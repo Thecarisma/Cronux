@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: superwatcher
-
+.. index:: single: superwatcher
 
 superwatcher
 ============

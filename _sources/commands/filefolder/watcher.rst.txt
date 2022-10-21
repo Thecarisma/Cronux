@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: watcher
-
+.. index:: single: watcher
 
 watcher
 =======
@@ -14,7 +10,7 @@ Execute powershell command when an event occur in a directory.
 ::
 
    File Name  : watcher.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : Mar-11-2020
 
 --------------

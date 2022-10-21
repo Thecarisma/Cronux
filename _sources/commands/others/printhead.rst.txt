@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: printhead
-
+.. index:: single: printhead
 
 printhead
 =========
@@ -15,7 +11,7 @@ Prints a sentence with a line printed at the top and bottom
 
    Version    : 1.0
    File Name  : printhead.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : Jan-07-2020
 
 --------------

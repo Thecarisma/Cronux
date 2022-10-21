@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: installpfxx
-
+.. index:: single: installpfxx
 
 installpfxx
 ===========
@@ -15,7 +11,7 @@ Install a pfx certificate to specified location.
 
    Version    : 1.0
    File Name  : installpfxx.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : Jan-12-2020
 
 --------------

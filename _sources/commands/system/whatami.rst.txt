@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: whatami
-
+.. index:: single: whatami
 
 whatami
 =======
@@ -15,7 +11,7 @@ Tell you what you are
 
    Version    : 1.0
    File Name  : whatami.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : March-26-2020
 
 --------------

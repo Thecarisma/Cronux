@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: workflows
-
+.. index:: single: workflows
 
 .github/workflows
 =================

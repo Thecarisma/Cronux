@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: interactive
-
+.. index:: single: interactive
 
 commands/interactive
 ====================

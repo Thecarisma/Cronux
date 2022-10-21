@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: others
-
+.. index:: single: others
 
 commands/others
 ===============

@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: kubectl
-
+.. index:: single: kubectl
 
 commands/kubectl
 ================

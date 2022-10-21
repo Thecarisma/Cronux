@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: serve
-
+.. index:: single: serve
 
 serve
 =====
@@ -15,7 +11,7 @@ Serve a folder over the network with a specific port
 
    Version    : 1.0
    File Name  : serve.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : April-04-2021
 
 --------------

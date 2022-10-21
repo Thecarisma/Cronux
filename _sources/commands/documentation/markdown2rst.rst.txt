@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: markdown2rst
-
+.. index:: single: markdown2rst
 
 markdown2rst
 ============
@@ -15,7 +11,7 @@ Convert a markdown to reStructuredText using pandoc
 
    Version    : 1.0
    File Name  : markdown2rst.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : April-02-2020
 
 --------------

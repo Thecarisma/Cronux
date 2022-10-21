@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: installx
-
+.. index:: single: installx
 
 --------------
 
@@ -23,4 +19,4 @@ Parameters
 \``\`
 
 ﻿installx.ps1
--------------
+------------

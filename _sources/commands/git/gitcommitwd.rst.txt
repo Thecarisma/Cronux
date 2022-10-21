@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: gitcommitwd
-
+.. index:: single: gitcommitwd
 
 gitcommitwd
 ===========
@@ -14,7 +10,7 @@ Commit or ammend a commit with a custom date.
 ::
 
    File Name  : gitcommit.ps1
-   Author     : Adewale Azeez - azeezadewale98@gmail.com
+   Author     : Adewale Azeez - iamthecarisma@gmail.com
    Date       : Mar-30-2020
 
 --------------

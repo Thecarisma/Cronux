@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: Home
-
+.. index:: single: Home
 
 .. image:: https://github.com/Thecarisma/Cronux/raw/main/docs/cronux.png
 

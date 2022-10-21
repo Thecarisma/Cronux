@@ -1,8 +1,4 @@
-
-
-.. index::
-	single: system
-
+.. index:: single: system
 
 commands/system
 ===============
