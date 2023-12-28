@@ -43,7 +43,7 @@
 
 Param(
     # The programming language to slect the version for the active shell session
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory = $true)]
     [string]$Language,
     # The language version to use for the active shell session
     [string]$Version,
@@ -52,7 +52,7 @@ Param(
 )
 
 Function main {
-	Write-Output "Language $Language, Version $Version, List $List"
+    Write-Output "Language $Language, Version $Version, List $List"
     Treat-Language
 }
 
@@ -65,9 +65,9 @@ Function Treat-Language {
 
 Function Search-Into {
     Param(
-		$SearchIntoPaths,
-		$Filter = "*"
-	)
+        $SearchIntoPaths,
+        $Filter = "*"
+    )
 
     $SearchIntoResult = New-Object System.Collections.ArrayList
     ForEach ($SearchPath in $SearchIntoPaths) {
@@ -85,7 +85,7 @@ Function Resolve-Php {
     $SearchPaths.Add("C:\wamp\bin\php") > $null
     $SearchPaths.Add("C:\wamp64\bin\php") > $null
 
-    If (-not $Version -and -not $List) {
+    If ((-not $Version -or $Null -eq $Version -or $Version -eq "") -and -not $List) {
         php -v
         Return
     }
@@ -93,7 +93,7 @@ Function Resolve-Php {
     $SearchPaths = Search-Into $SearchPaths
     If ($List) {
         ForEach ($SearchPath in $SearchPaths) {
-            Write-Output $SearchPath.SubString($SearchPath.LastIndexOf("\")+1)
+            Write-Output $SearchPath.SubString($SearchPath.LastIndexOf("\") + 1)
         }
         Return
     }
@@ -101,17 +101,30 @@ Function Resolve-Php {
     ForEach ($SearchPath in $SearchPaths) {
         If ($SearchPath.Contains($Version)) {
             $env:Path = $SearchPath + ';' + $env:Path
-            $ParentProcessIds = Get-CimInstance -Class Win32_Process -Filter "ProcessId = $PID"
-            $ParentProcessIds
-            $ParentProcessIds = Get-CimInstance -Class Win32_Process -Filter "ProcessId = $($ParentProcessIds[0].ParentProcessId)"
-            $ParentProcessIds
-            $ParentProcessIds = Get-CimInstance -Class Win32_Process -Filter "ProcessId = $($ParentProcessIds[0].ParentProcessId)"
-            $ParentProcessIds
-            #Start-Process cmd -ArgumentList "/c", "SET PATH=$SearchPath;%PATH%", "&&", "php -v", "&&", "TIMEOUT /T 20"
+            $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
+            [System.IO.File]::WriteAllLines("$([System.IO.Path]::GetTempPath())/cronux_temp.bat", "SET PATH=$SearchPath;%PATH%", $Utf8NoBomEncoding)
+            Write-Output "$([System.IO.Path]::GetTempPath())/cronux_temp.bat"
+            & "$([System.IO.Path]::GetTempPath())/cronux_temp.bat"
+            $ "php -v"
+            Return
+            # Write-Output "SET PATH=$SearchPath;%PATH%" > New-TemporaryDirectory/cronux_temp.bat
+            # call ~/cronux_temp.bat
+            # $ParentProcessIds = Get-CimInstance -Class Win32_Process -Filter "ProcessId = $PID"
+            # $ParentProcessIds
+            # $ParentProcessIds = Get-CimInstance -Class Win32_Process -Filter "ProcessId = $($ParentProcessIds[0].ParentProcessId)"
+            # $ParentProcessIds
+            # $ParentProcessIds = Get-CimInstance -Class Win32_Process -Filter "ProcessId = $($ParentProcessIds[0].ParentProcessId)"
+            # $ParentProcessIds
+            # Start-Process cmd -ArgumentList "/c", "SET PATH=$SearchPath;%PATH%", "&&", "php -v", "&&", "TIMEOUT /T 20"
         }
     }
-    php -v
     
+}
+
+function New-TemporaryDirectory {
+    $parent = [System.IO.Path]::GetTempPath()
+    [string] $name = [System.Guid]::NewGuid()
+    New-Item -ItemType Directory -Path (Join-Path $parent $name)
 }
 
 main
